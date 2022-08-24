@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getRegions } from "../helpers/regions";
+import React from "react";
+import regions from "../helpers/regions";
 
 const RegionList = ({
 	region,
@@ -11,7 +11,7 @@ const RegionList = ({
 	return (
 		<div>
 			<span className="block text-center text-xl">{region}</span>
-			{getRegions().map((el) => (
+			{Object.keys(regions).map((el) => (
 				<button
 					key={el}
 					className="block"
