@@ -1,7 +1,7 @@
 type Location = {
 	name: string;
-	child: boolean;
-	adult: boolean;
+	child?: boolean;
+	adult?: boolean;
 };
 
 type Exit = Location & { destination: Region };
@@ -3804,6 +3804,11 @@ const regions: Record<Region["name"], Region> = {
 			"Ganons Tower Boss Key Chest": {
 				name: "Ganons Tower Boss Key Chest",
 				child: true,
+				adult: true,
+			},
+			Ganon: {
+				name: "Ganon",
+				child: false,
 				adult: true,
 			},
 		},
