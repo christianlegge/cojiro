@@ -48,9 +48,7 @@ const LocationList = ({
 							if (res.status === 200) {
 								setItems((items) => [...items, res.data]);
 								setChecked([...checked, el]);
-								console.log(checked);
 							}
-							console.log(res);
 						}}
 					>
 						{locationDisplayName(el, region)}
