@@ -48,10 +48,10 @@ function App() {
 			{playthroughId ? (
 				<>
 					<div className="xl:flex min-h-screen">
-						<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400 p-4">
+						<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400">
 							<RegionList region={region} setRegion={setRegion} />
 						</div>
-						<div className="p-4 flex flex-col justify-between pb-24 container">
+						<div className="p-4 flex flex-col justify-between pb-24">
 							<LocationList
 								region={region}
 								checked={checked}

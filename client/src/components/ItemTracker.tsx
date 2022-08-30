@@ -59,9 +59,15 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 			style={{ imageRendering: "crisp-edges" }}
 		>
 			{itemGrid.map((item) => (
-				<div key={itemToImageFilename(item)} className="w-16 h-16">
+				<div
+					key={itemToImageFilename(item)}
+					className="w-16 h-16 relative group"
+				>
+					<div className="top-10 absolute scale-0 group-hover:scale-100 text-white bg-gray-900 p-2 rounded-md order-last transition duration-100 z-10">
+						{item}
+					</div>
 					<img
-						className={`object-contain w-full h-full ${
+						className={`object-contain w-full h-full z-0 ${
 							items.includes(item) ? "opacity-100" : "opacity-30"
 						}`}
 						src={itemToImageFilename(item)}

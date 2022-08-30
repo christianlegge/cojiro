@@ -40,7 +40,7 @@ const LocationList = ({
 							className={`block rounded-md p-2 ${
 								checked.includes(el)
 									? "line-through cursor-default bg-gray-100 text-gray-500"
-									: "shadow-md cursor-pointer bg-green-200"
+									: "shadow-md cursor-pointer bg-green-300 hover:bg-green-200 active:bg-green-400"
 							}`}
 							key={el}
 							onClick={async () => {
