@@ -8,8 +8,8 @@ type Exit = Location & { destination: Region };
 
 type Region = {
 	name: string;
-	child: boolean;
-	adult: boolean;
+	child?: boolean;
+	adult?: boolean;
 	locations: Record<Location["name"], Location>;
 	exits: Exit[];
 };
@@ -304,29 +304,24 @@ const regions: Record<Region["name"], Region> = {
 	"Hyrule Castle": {
 		name: "Hyrule Castle",
 		child: true,
-		adult: true,
 		locations: {
 			"Song from Impa": {
 				name: "Song from Impa",
 				child: true,
-				adult: true,
 			},
-			"HC Malon Egg": { name: "HC Malon Egg", child: true, adult: true },
+			"HC Malon Egg": { name: "HC Malon Egg", child: true },
 			"HC Zeldas Letter": {
 				name: "HC Zeldas Letter",
 				child: true,
-				adult: true,
 			},
 			"HC Great Fairy Reward": {
 				name: "HC Great Fairy Reward",
 				child: true,
-				adult: true,
 			},
-			"HC GS Tree": { name: "HC GS Tree", child: true, adult: true },
+			"HC GS Tree": { name: "HC GS Tree", child: true },
 			"HC GS Storms Grotto": {
 				name: "HC GS Storms Grotto",
 				child: true,
-				adult: true,
 			},
 		},
 		exits: [],
@@ -339,17 +334,14 @@ const regions: Record<Region["name"], Region> = {
 			"Song from Malon": {
 				name: "Song from Malon",
 				child: true,
-				adult: true,
 			},
 			"LLR Talons Chickens": {
 				name: "LLR Talons Chickens",
 				child: true,
-				adult: true,
 			},
 			"LLR Freestanding PoH": {
 				name: "LLR Freestanding PoH",
 				child: true,
-				adult: true,
 			},
 			"LLR Deku Scrub Grotto Left": {
 				name: "LLR Deku Scrub Grotto Left",
@@ -413,11 +405,9 @@ const regions: Record<Region["name"], Region> = {
 			"Song from Saria": {
 				name: "Song from Saria",
 				child: true,
-				adult: true,
 			},
 			"Sheik in Forest": {
 				name: "Sheik in Forest",
-				child: true,
 				adult: true,
 			},
 			"SFM Wolfos Grotto Chest": {
@@ -439,8 +429,8 @@ const regions: Record<Region["name"], Region> = {
 		},
 		exits: [],
 	},
-	"the Graveyard": {
-		name: "the Graveyard",
+	Graveyard: {
+		name: "Graveyard",
 		child: true,
 		adult: true,
 		locations: {
@@ -810,7 +800,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Ice Cavern": {
 		name: "Ice Cavern",
-		child: true,
 		adult: true,
 		locations: {
 			"Sheik in Ice Cavern": {
@@ -965,22 +954,18 @@ const regions: Record<Region["name"], Region> = {
 			"KF Midos Top Left Chest": {
 				name: "KF Midos Top Left Chest",
 				child: true,
-				adult: true,
 			},
 			"KF Midos Top Right Chest": {
 				name: "KF Midos Top Right Chest",
 				child: true,
-				adult: true,
 			},
 			"KF Midos Bottom Left Chest": {
 				name: "KF Midos Bottom Left Chest",
 				child: true,
-				adult: true,
 			},
 			"KF Midos Bottom Right Chest": {
 				name: "KF Midos Bottom Right Chest",
 				child: true,
-				adult: true,
 			},
 			"KF Kokiri Sword Chest": {
 				name: "KF Kokiri Sword Chest",
@@ -1055,8 +1040,8 @@ const regions: Record<Region["name"], Region> = {
 		},
 		exits: [],
 	},
-	"the Lost Woods": {
-		name: "the Lost Woods",
+	"Lost Woods": {
+		name: "Lost Woods",
 		child: true,
 		adult: true,
 		locations: {
@@ -1134,44 +1119,37 @@ const regions: Record<Region["name"], Region> = {
 		},
 		exits: [],
 	},
-	"the Market": {
-		name: "the Market",
+	Market: {
+		name: "Market",
 		child: true,
 		adult: true,
 		locations: {
 			"Market Shooting Gallery Reward": {
 				name: "Market Shooting Gallery Reward",
 				child: true,
-				adult: true,
 			},
 			"Market Bombchu Bowling First Prize": {
 				name: "Market Bombchu Bowling First Prize",
 				child: true,
-				adult: true,
 			},
 			"Market Bombchu Bowling Second Prize": {
 				name: "Market Bombchu Bowling Second Prize",
 				child: true,
-				adult: true,
 			},
 			"Market Bombchu Bowling Bombchus": {
 				name: "Market Bombchu Bowling Bombchus",
 				child: true,
-				adult: true,
 			},
 			"Market Lost Dog": {
 				name: "Market Lost Dog",
 				child: true,
-				adult: true,
 			},
 			"Market Treasure Chest Game Reward": {
 				name: "Market Treasure Chest Game Reward",
 				child: true,
-				adult: true,
 			},
 			"Market 10 Big Poes": {
 				name: "Market 10 Big Poes",
-				child: true,
 				adult: true,
 			},
 			"Market GS Guard House": {
@@ -1800,21 +1778,18 @@ const regions: Record<Region["name"], Region> = {
 		locations: {
 			"Wasteland Bombchu Salesman": {
 				name: "Wasteland Bombchu Salesman",
-				child: true,
 				adult: true,
 			},
 			"Wasteland Chest": {
 				name: "Wasteland Chest",
-				child: true,
 				adult: true,
 			},
-			"Wasteland GS": { name: "Wasteland GS", child: true, adult: true },
+			"Wasteland GS": { name: "Wasteland GS", adult: true },
 		},
 		exits: [],
 	},
 	"Outside Ganon's Castle": {
 		name: "Outside Ganon's Castle",
-		child: true,
 		adult: true,
 		locations: {
 			"OGC Great Fairy Reward": {
@@ -1829,7 +1804,6 @@ const regions: Record<Region["name"], Region> = {
 	"Deku Tree": {
 		name: "Deku Tree",
 		child: true,
-		adult: true,
 		locations: {
 			"Deku Tree Map Chest": {
 				name: "Deku Tree Map Chest",
@@ -2115,7 +2089,6 @@ const regions: Record<Region["name"], Region> = {
 	"Jabu Jabu's Belly": {
 		name: "Jabu Jabu's Belly",
 		child: true,
-		adult: true,
 		locations: {
 			"Jabu Jabus Belly Boomerang Chest": {
 				name: "Jabu Jabus Belly Boomerang Chest",
@@ -2248,7 +2221,6 @@ const regions: Record<Region["name"], Region> = {
 	"Bottom of the Well": {
 		name: "Bottom of the Well",
 		child: true,
-		adult: true,
 		locations: {
 			"Bottom of the Well Front Left Fake Wall Chest": {
 				name: "Bottom of the Well Front Left Fake Wall Chest",
@@ -2380,7 +2352,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Forest Temple": {
 		name: "Forest Temple",
-		child: true,
 		adult: true,
 		locations: {
 			"Forest Temple First Room Chest": {
@@ -2568,7 +2539,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Fire Temple": {
 		name: "Fire Temple",
-		child: true,
 		adult: true,
 		locations: {
 			"Fire Temple Near Boss Chest": {
@@ -2761,7 +2731,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Water Temple": {
 		name: "Water Temple",
-		child: true,
 		adult: true,
 		locations: {
 			"Water Temple Compass Chest": {
@@ -2904,7 +2873,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Shadow Temple": {
 		name: "Shadow Temple",
-		child: true,
 		adult: true,
 		locations: {
 			"Shadow Temple Map Chest": {
@@ -3152,7 +3120,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Spirit Temple": {
 		name: "Spirit Temple",
-		child: true,
 		adult: true,
 		locations: {
 			"Spirit Temple Child Bridge Chest": {
@@ -3410,7 +3377,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Gerudo Training Ground": {
 		name: "Gerudo Training Ground",
-		child: true,
 		adult: true,
 		locations: {
 			"Gerudo Training Ground Lobby Left Chest": {
@@ -3613,7 +3579,6 @@ const regions: Record<Region["name"], Region> = {
 	},
 	"Ganon's Castle": {
 		name: "Ganon's Castle",
-		child: true,
 		adult: true,
 		locations: {
 			"Ganons Castle Forest Trial Chest": {

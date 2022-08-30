@@ -15,12 +15,14 @@ function locationDisplayName(name: string, region: string): string {
 }
 
 const LocationList = ({
+	age,
 	region,
 	checked,
 	setChecked,
 	setItems,
 	allLocations,
 }: {
+	age: "child" | "adult";
 	region: string;
 	checked: string[];
 	setChecked: React.Dispatch<React.SetStateAction<string[]>>;

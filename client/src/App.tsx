@@ -21,6 +21,8 @@ function App() {
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
 
+	const [age, setAge] = useState<"child" | "adult">("child");
+
 	useEffect(() => {
 		localStorage.setItem("region", region);
 	}, [region]);
@@ -49,10 +51,16 @@ function App() {
 				<>
 					<div className="xl:flex min-h-screen">
 						<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400">
-							<RegionList region={region} setRegion={setRegion} />
+							<RegionList
+								region={region}
+								setRegion={setRegion}
+								age={age}
+								setAge={setAge}
+							/>
 						</div>
 						<div className="p-4 flex flex-col justify-between pb-24">
 							<LocationList
+								age={age}
 								region={region}
 								checked={checked}
 								setChecked={setChecked}
