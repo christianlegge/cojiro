@@ -1,12 +1,11 @@
 import axios from "axios";
 import React from "react";
+import TextInput from "./TextInput";
 
 const StartForm = ({
 	setPlaythroughId,
-	setLocations,
 }: {
 	setPlaythroughId: (id: string | null) => void;
-	setLocations: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
 	async function startPlaythrough() {
 		let res = await axios.get(
@@ -14,18 +13,24 @@ const StartForm = ({
 		);
 		localStorage.setItem("playthroughId", res.data.id);
 		setPlaythroughId(res.data.id);
-		setLocations(res.data.locations);
 	}
 
 	return (
-		<div>
-			<button
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				startPlaythrough();
+			}}
+			className=""
+		>
+			<TextInput name="Seed" placeholder="leave blank for random" />
+			<TextInput name="Settings" required />
+			<input
+				type="submit"
 				className="p-4 rounded-md bg-blue-200"
-				onClick={startPlaythrough}
-			>
-				Start Playthrough
-			</button>
-		</div>
+				value="Generate"
+			/>
+		</form>
 	);
 };
 

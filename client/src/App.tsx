@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import RegionList from "./components/RegionList";
 import LocationList from "./components/LocationList";
-import StartForm from "./components/StartForm";
 import QuitForm from "./components/QuitForm";
 import Playthrough from "./contexts/Playthrough";
 import ItemTracker from "./components/ItemTracker";
 import axios from "axios";
+import LandingPage from "./components/LandingPage";
 
 function App() {
 	const [region, setRegion] = useState<string>(
@@ -66,10 +66,7 @@ function App() {
 					<QuitForm playthroughSetter={setPlaythroughId} />
 				</>
 			) : (
-				<StartForm
-					setPlaythroughId={setPlaythroughId}
-					setLocations={setLocations}
-				/>
+				<LandingPage setPlaythroughId={setPlaythroughId} />
 			)}
 		</Playthrough.Provider>
 	);
