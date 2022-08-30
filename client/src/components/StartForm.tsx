@@ -2,22 +2,29 @@ import axios from "axios";
 import React from "react";
 
 const StartForm = ({
-	playthroughSetter,
+	setPlaythroughId,
+	setLocations,
 }: {
-	playthroughSetter: (id: string | null) => void;
+	setPlaythroughId: (id: string | null) => void;
+	setLocations: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
 	async function startPlaythrough() {
 		let res = await axios.get(
 			`${process.env.REACT_APP_SERVER_URL}/startPlaythrough`
 		);
 		localStorage.setItem("playthroughId", res.data.id);
-		playthroughSetter(res.data.id);
-		console.log(res.data.locations);
+		setPlaythroughId(res.data.id);
+		setLocations(res.data.locations);
 	}
 
 	return (
 		<div>
-			<button onClick={startPlaythrough}>Start Playthrough</button>
+			<button
+				className="p-4 rounded-md bg-blue-200"
+				onClick={startPlaythrough}
+			>
+				Start Playthrough
+			</button>
 		</div>
 	);
 };

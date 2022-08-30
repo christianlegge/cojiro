@@ -48,28 +48,38 @@ router.get("/startPlaythrough", async (req, res) => {
 	seedDocument.save();
 	let playthroughDocument = new Playthrough({
 		seed: seedDocument,
+		checked: [],
+		items: [],
 	});
 	playthroughDocument.save();
 	res.send({
 		id: playthroughDocument.id,
-		locations: Object.keys(seed.locations),
+		locations: seedDocument.locations.map((el) => el.location),
 	});
 });
 
 router.get("/getPlaythrough", async (req, res) => {
 	if (!req.query.id) {
 		res.status(400).send("Request missing playthrough ID");
+		return;
 	}
 	if (!mongoose.isValidObjectId(req.query.id)) {
 		res.status(400).send(`${req.query.id} is not a valid MongoDB ObjectID`);
+		return;
 	}
 	let playthrough = await Playthrough.findById(req.query.id);
 	if (!playthrough) {
 		res.status(404).send(`Playthrough with ID ${req.query.id} not found`);
+		return;
 	}
-
+	let seed = await Seed.findById(playthrough.seed);
+	if (!seed) {
+		res.status(500).send("Seed data not present in playthrough object");
+		return;
+	}
 	res.send({
 		checked: playthrough.checked,
+		locations: seed.locations.map((el) => el.location),
 		items: playthrough.items,
 		id: playthrough.id,
 	});

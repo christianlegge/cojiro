@@ -7,12 +7,6 @@ import Playthrough from "./contexts/Playthrough";
 import ItemTracker from "./components/ItemTracker";
 import axios from "axios";
 
-type PlaythroughType = {
-	id: string;
-	items: string[];
-	checked: string[];
-};
-
 function App() {
 	const [region, setRegion] = useState<string>(
 		() => localStorage.getItem("region") ?? "Kokiri Forest"
@@ -21,6 +15,8 @@ function App() {
 	const [playthroughId, setPlaythroughId] = useState<string | null>(() =>
 		localStorage.getItem("playthroughId")
 	);
+
+	const [locations, setLocations] = useState<string[]>([]);
 
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
@@ -40,6 +36,7 @@ function App() {
 			.then((res) => {
 				setItems(res.data.items);
 				setChecked(res.data.checked);
+				setLocations(res.data.locations);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -49,24 +46,30 @@ function App() {
 	return (
 		<Playthrough.Provider value={playthroughId}>
 			{playthroughId ? (
-				<div className="xl:flex min-h-screen">
-					<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400 p-4">
-						<RegionList region={region} setRegion={setRegion} />
+				<>
+					<div className="xl:flex min-h-screen">
+						<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400 p-4">
+							<RegionList region={region} setRegion={setRegion} />
+						</div>
+						<div className="p-4 flex flex-col justify-between pb-24 container">
+							<LocationList
+								region={region}
+								checked={checked}
+								setChecked={setChecked}
+								setItems={setItems}
+								allLocations={locations}
+							/>
+							<ItemTracker items={items} />
+						</div>
+						<div className=""></div>
 					</div>
-					<div className="p-4 flex flex-col justify-between pb-24">
-						<LocationList
-							region={region}
-							checked={checked}
-							setChecked={setChecked}
-							setItems={setItems}
-						/>
-						<ItemTracker items={items} />
-					</div>
-					<div className=""></div>
 					<QuitForm playthroughSetter={setPlaythroughId} />
-				</div>
+				</>
 			) : (
-				<StartForm playthroughSetter={setPlaythroughId} />
+				<StartForm
+					setPlaythroughId={setPlaythroughId}
+					setLocations={setLocations}
+				/>
 			)}
 		</Playthrough.Provider>
 	);
