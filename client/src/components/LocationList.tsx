@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import regions from "../helpers/regions";
 import Playthrough from "../contexts/Playthrough";
 import axios from "axios";
@@ -31,9 +31,42 @@ const LocationList = ({
 }) => {
 	const playthroughId = useContext(Playthrough);
 	const [lastItem, setLastItem] = useState("");
+	const itemToAdd = useRef<HTMLInputElement>(null);
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
+			<input
+				type="text"
+				name="item"
+				id="item"
+				className="border-2"
+				ref={itemToAdd}
+				onKeyDown={(e) => {
+					if (e.key !== "Enter") return;
+					setItems((prev) => [
+						...prev,
+						itemToAdd.current?.value as string,
+					]);
+				}}
+			/>
+			<button
+				className="p-2 rounded bg-blue-300"
+				onClick={async () => {
+					let res = await axios.get(
+						`${process.env.REACT_APP_SERVER_URL}/getAllItems`,
+						{
+							params: {
+								id: playthroughId,
+							},
+						}
+					);
+					if (res.status === 200) {
+						setItems(res.data);
+					}
+				}}
+			>
+				Get all items
+			</button>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
 					.filter((el) => allLocations.includes(el))

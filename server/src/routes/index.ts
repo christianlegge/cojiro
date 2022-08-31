@@ -123,4 +123,31 @@ router.get("/checkLocation", async (req, res) => {
 	res.send(loc.item);
 });
 
+router.get("/getAllItems", async (req, res) => {
+	if (!req.query.id || !mongoose.isValidObjectId(req.query.id)) {
+		res.status(400).send("Request needs location and valid playthrough ID");
+		return;
+	}
+	let playthrough = await Playthrough.findById(req.query.id);
+	if (!playthrough) {
+		res.status(404).send(`Playthrough not found with ID ${req.query.id}`);
+		return;
+	}
+	if (playthrough.checked.includes(req.query.location)) {
+		res.status(400).send(
+			`Playthrough already checked location ${req.query.location}`
+		);
+		return;
+	}
+	let seed = await Seed.findById(playthrough.seed);
+	if (!seed) {
+		res.status(500).send("Seed data not present in playthrough object");
+		return;
+	}
+	let allItems = seed.locations.map((el) => el.item);
+	playthrough.items = allItems;
+	playthrough.save();
+	res.send(allItems);
+});
+
 export default router;
