@@ -60,6 +60,33 @@ function itemToImageFilename(item: string): string {
 		.replaceAll("'", "")}.png`;
 }
 
+function childTradeTrackerItem(items: string[]): TrackerItem {
+	const tradeItems = [
+		"Mask of Truth",
+		"Bunny Hood",
+		"Spooky Mask",
+		"Skull Mask",
+		"Keaton Mask",
+		"Zeldas Letter",
+		"Chicken",
+		"Weird Egg",
+	];
+	for (let i = 0; i < tradeItems.length; i++) {
+		if (items.includes(tradeItems[i])) {
+			return {
+				fileName: itemToImageFilename(tradeItems[i]),
+				displayName: tradeItems[i],
+				itemName: tradeItems[i],
+			};
+		}
+	}
+	return {
+		fileName: itemToImageFilename("Weird Egg"),
+		itemName: "Weird Egg",
+		displayName: "Child Trade",
+	};
+}
+
 function adultTradeTrackerItem(items: string[]): TrackerItem {
 	const tradeItems = [
 		"Claim Check",
@@ -90,6 +117,60 @@ function adultTradeTrackerItem(items: string[]): TrackerItem {
 	};
 }
 
+function bottleTrackerItem(items: string[]): TrackerItem {
+	let item = "Bottle";
+	let nonRutoBottles = items.filter((el) => el.startsWith(item));
+	let numNonRutoBottles = Math.min(3, nonRutoBottles.length);
+	let hasRuto = items.includes("Rutos Letter");
+	if (numNonRutoBottles === 0) {
+		if (hasRuto) {
+			return {
+				fileName: itemToImageFilename("ruto-bottle"),
+				displayName: "Rutos Letter",
+				itemName: "Rutos Letter",
+			};
+		} else {
+			return {
+				fileName: itemToImageFilename(item),
+				displayName: item,
+				itemName: item,
+			};
+		}
+	} else if (numNonRutoBottles === 1) {
+		if (hasRuto) {
+			return {
+				fileName: itemToImageFilename("ruto-bottle2"),
+				displayName: "Bottles (2) (Rutos Letter)",
+				itemName: nonRutoBottles[0],
+			};
+		} else {
+			return {
+				fileName: itemToImageFilename(item),
+				displayName: item,
+				itemName: nonRutoBottles[0],
+			};
+		}
+	} else {
+		if (hasRuto) {
+			return {
+				fileName: itemToImageFilename(
+					`ruto-bottle${numNonRutoBottles + 1}`
+				),
+				displayName: `Bottles (${
+					numNonRutoBottles + 1
+				}) (Rutos Letter)`,
+				itemName: nonRutoBottles[0],
+			};
+		} else {
+			return {
+				fileName: itemToImageFilename(`bottle${numNonRutoBottles}`),
+				displayName: `Bottles (${numNonRutoBottles})`,
+				itemName: nonRutoBottles[0],
+			};
+		}
+	}
+}
+
 function progressiveTrackerItem(
 	item: string,
 	items: string[],
@@ -110,6 +191,8 @@ function progressiveTrackerItem(
 
 function createTrackerItem(item: string, items: string[]): TrackerItem {
 	switch (item) {
+		case "Child Trade":
+			return childTradeTrackerItem(items);
 		case "Adult Trade":
 			return adultTradeTrackerItem(items);
 		case "Wallet":
@@ -152,58 +235,23 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 				itemName: item,
 			};
 		case "Bottle":
-			let nonRutoBottles = items.filter((el) => el.startsWith("Bottle"));
-			let numNonRutoBottles = Math.min(3, nonRutoBottles.length);
-			let hasRuto = items.includes("Rutos Letter");
-			if (numNonRutoBottles === 0) {
-				if (hasRuto) {
+			return bottleTrackerItem(items);
+		case "Ocarina":
+			let ocarinas = ["Ocarina of Time", "Fairy Ocarina"];
+			for (let i = 0; i < ocarinas.length; i++) {
+				if (items.includes(ocarinas[i])) {
 					return {
-						fileName: itemToImageFilename("ruto-bottle"),
-						displayName: "Rutos Letter",
-						itemName: "Rutos Letter",
-					};
-				} else {
-					return {
-						fileName: itemToImageFilename(item),
-						displayName: item,
-						itemName: item,
-					};
-				}
-			} else if (numNonRutoBottles === 1) {
-				if (hasRuto) {
-					return {
-						fileName: itemToImageFilename("ruto-bottle2"),
-						displayName: "Bottles (2) (Rutos Letter)",
-						itemName: nonRutoBottles[0],
-					};
-				} else {
-					return {
-						fileName: itemToImageFilename(item),
-						displayName: item,
-						itemName: nonRutoBottles[0],
-					};
-				}
-			} else {
-				if (hasRuto) {
-					return {
-						fileName: itemToImageFilename(
-							`ruto-bottle${numNonRutoBottles + 1}`
-						),
-						displayName: `Bottles (${
-							numNonRutoBottles + 1
-						}) (Rutos Letter)`,
-						itemName: nonRutoBottles[0],
-					};
-				} else {
-					return {
-						fileName: itemToImageFilename(
-							`bottle${numNonRutoBottles}`
-						),
-						displayName: `Bottles (${numNonRutoBottles})`,
-						itemName: nonRutoBottles[0],
+						fileName: itemToImageFilename(ocarinas[i]),
+						displayName: ocarinas[i],
+						itemName: ocarinas[i],
 					};
 				}
 			}
+			return {
+				fileName: itemToImageFilename("Fairy Ocarina"),
+				displayName: "Ocarina",
+				itemName: "Ocarina",
+			};
 
 		default:
 			return {
