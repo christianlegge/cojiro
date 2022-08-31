@@ -151,6 +151,60 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 				displayName,
 				itemName: item,
 			};
+		case "Bottle":
+			let nonRutoBottles = items.filter((el) => el.startsWith("Bottle"));
+			let numNonRutoBottles = Math.min(3, nonRutoBottles.length);
+			let hasRuto = items.includes("Rutos Letter");
+			if (numNonRutoBottles === 0) {
+				if (hasRuto) {
+					return {
+						fileName: itemToImageFilename("ruto-bottle"),
+						displayName: "Rutos Letter",
+						itemName: "Rutos Letter",
+					};
+				} else {
+					return {
+						fileName: itemToImageFilename(item),
+						displayName: item,
+						itemName: item,
+					};
+				}
+			} else if (numNonRutoBottles === 1) {
+				if (hasRuto) {
+					return {
+						fileName: itemToImageFilename("ruto-bottle2"),
+						displayName: "Bottles (2) (Rutos Letter)",
+						itemName: nonRutoBottles[0],
+					};
+				} else {
+					return {
+						fileName: itemToImageFilename(item),
+						displayName: item,
+						itemName: nonRutoBottles[0],
+					};
+				}
+			} else {
+				if (hasRuto) {
+					return {
+						fileName: itemToImageFilename(
+							`ruto-bottle${numNonRutoBottles + 1}`
+						),
+						displayName: `Bottles (${
+							numNonRutoBottles + 1
+						}) (Rutos Letter)`,
+						itemName: nonRutoBottles[0],
+					};
+				} else {
+					return {
+						fileName: itemToImageFilename(
+							`bottle${numNonRutoBottles}`
+						),
+						displayName: `Bottles (${numNonRutoBottles})`,
+						itemName: nonRutoBottles[0],
+					};
+				}
+			}
+
 		default:
 			return {
 				fileName: itemToImageFilename(item),
