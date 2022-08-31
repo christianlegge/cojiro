@@ -21,14 +21,19 @@ function App() {
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
 
-	const [age, setAge] = useState<"child" | "adult">("child");
+	const [age, setAge] = useState<"child" | "adult">(
+		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
+	);
 
 	useEffect(() => {
 		localStorage.setItem("region", region);
-	}, [region]);
+		localStorage.setItem("age", age);
+	}, [region, age]);
 
 	useEffect(() => {
 		if (!playthroughId) {
+			setAge("child");
+			setRegion("Kokiri Forest");
 			return;
 		}
 		axios
