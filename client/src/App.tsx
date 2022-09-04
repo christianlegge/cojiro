@@ -53,17 +53,18 @@ function App() {
 	return (
 		<Playthrough.Provider value={playthroughId}>
 			{playthroughId ? (
-				<>
-					<div className="xl:flex min-h-screen">
-						<div className="xl:border-r-2 xl:w-64 xl:border-b-0 border-b-2 border-red-400">
-							<RegionList
-								region={region}
-								setRegion={setRegion}
-								age={age}
-								setAge={setAge}
-							/>
-						</div>
-						<div className="p-4 flex flex-col justify-between pb-24">
+				<div className="flex flex-col lg:flex-row">
+					<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 border-red-400">
+						<RegionList
+							region={region}
+							setRegion={setRegion}
+							age={age}
+							setAge={setAge}
+						/>
+					</div>
+					<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min">
+						<div className="xl:col-span-3 p-4 flex flex-col justify-between pb-24">
+							<QuitForm playthroughSetter={setPlaythroughId} />
 							<LocationList
 								age={age}
 								region={region}
@@ -72,12 +73,14 @@ function App() {
 								setItems={setItems}
 								allLocations={locations}
 							/>
+						</div>
+						<div className="bg-red-300">
 							<ItemTracker items={items} />
 						</div>
-						<div className=""></div>
+						<div className="bg-blue-400">Medallions</div>
+						<div className="bg-green-300">Hints</div>
 					</div>
-					<QuitForm playthroughSetter={setPlaythroughId} />
-				</>
+				</div>
 			) : (
 				<LandingPage setPlaythroughId={setPlaythroughId} />
 			)}
