@@ -30,11 +30,11 @@ const RegionList = ({
 					.map((el) => (
 						<div
 							key={el}
-							className={`p-2 border-y-2 text-white lg:text-right lg:w-full w-32 h-32 border-2 lg:h-auto ${
+							className={`p-2 border-y-2 text-white lg:text-right lg:w-full w-32 h-32 border-2 lg:h-auto transition ${
 								el === region
-									? "bg-gray-400"
-									: "hover:bg-gray-600 active:bg-gray-800 bg-gray-700 cursor-pointer"
-							}`}
+									? "font-semibold bg-zinc-500 scale-110 z-20 lg:translate-x-4"
+									: "hover:bg-zinc-600 active:bg-zinc-800 bg-zinc-700 cursor-pointer hover:z-10 hover:scale-105 hover:lg:translate-x-2"
+							} lg: scale-100`}
 							onClick={() => setRegion(el)}
 						>
 							{el}
