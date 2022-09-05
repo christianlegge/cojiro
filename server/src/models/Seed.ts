@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, InferSchemaType } from "mongoose";
 
 const seedSchema = new Schema({
 	locations: [
@@ -11,4 +11,6 @@ const seedSchema = new Schema({
 	],
 });
 
-export default model("Seed", seedSchema);
+export type ISeed = InferSchemaType<typeof seedSchema>;
+
+export default model<ISeed>("Seed", seedSchema);

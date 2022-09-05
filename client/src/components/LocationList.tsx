@@ -53,7 +53,7 @@ const LocationList = ({
 				className="p-2 rounded bg-blue-300"
 				onClick={async () => {
 					let res = await axios.get(
-						`${process.env.REACT_APP_SERVER_URL}/getAllItems`,
+						`${process.env.REACT_APP_SERVER_URL}/playthrough/getAllItems`,
 						{
 							params: {
 								id: playthroughId,
@@ -83,7 +83,7 @@ const LocationList = ({
 									return;
 								}
 								let res = await axios.get(
-									`${process.env.REACT_APP_SERVER_URL}/checkLocation`,
+									`${process.env.REACT_APP_SERVER_URL}/playthrough/checkLocation`,
 									{
 										params: {
 											id: playthroughId,

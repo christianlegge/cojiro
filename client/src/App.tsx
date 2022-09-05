@@ -37,9 +37,12 @@ function App() {
 			return;
 		}
 		axios
-			.get(`${process.env.REACT_APP_SERVER_URL}/getPlaythrough`, {
-				params: { id: playthroughId },
-			})
+			.get(
+				`${process.env.REACT_APP_SERVER_URL}/playthrough/getPlaythrough`,
+				{
+					params: { id: playthroughId },
+				}
+			)
 			.then((res) => {
 				setItems(res.data.items);
 				setChecked(res.data.checked);
