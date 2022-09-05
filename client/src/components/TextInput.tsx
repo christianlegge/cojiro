@@ -4,10 +4,12 @@ const TextInput = ({
 	name,
 	placeholder,
 	required,
+	valueState,
 }: {
 	name: string;
 	placeholder?: string;
 	required?: boolean;
+	valueState?: [string, React.Dispatch<React.SetStateAction<string>>];
 }) => {
 	return (
 		<div className="p-2">
@@ -19,6 +21,14 @@ const TextInput = ({
 				type="text"
 				name={name}
 				id={name}
+				{...(valueState
+					? {
+							value: valueState[0],
+							onChange: (e) => {
+								valueState[1](e.target.value);
+							},
+					  }
+					: {})}
 				{...{ required: required }}
 			/>
 		</div>

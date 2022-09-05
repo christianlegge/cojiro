@@ -25,7 +25,48 @@ router.get("/getSampleSeed", (req, res) => {
 });
 
 router.get("/startPlaythrough", async (req, res) => {
-	let seed = sampleSeed;
+	let seed: typeof sampleSeed;
+	if (req.query.sampleSeed) {
+		seed = sampleSeed;
+	} else {
+		if (!req.query.settingsString) {
+			return res.status(400).send("Request must include settings string");
+		}
+		try {
+			seed = await createSeed({
+				seed: req.query.seed as string,
+				settingsString: req.query.settingsString as string,
+			});
+		} catch (err) {
+			if (
+				err.response.status === 403 &&
+				err.response.data.includes("Invalid API Key")
+			) {
+				return res
+					.status(500)
+					.send(
+						"Invalid API key - this is a server issue, please report this!"
+					);
+			} else if (
+				err.response.status === 400 &&
+				err.response.data.includes("settings_string")
+			) {
+				return res.status(400).send("Invalid settings string!");
+			} else if (
+				err.response.status === 403 &&
+				err.response.data.includes("once every")
+			) {
+				return res
+					.status(429)
+					.send("Rate limited - try again in 5 seconds.");
+			} else {
+				console.log(err);
+				return res
+					.status(500)
+					.send("Unknown server error - please report this!");
+			}
+		}
+	}
 	let locations = seed.locations as Locations;
 	let locArray = Object.keys(seed.locations).map((key) => {
 		let el = locations[key];

@@ -19,7 +19,7 @@ const createSeed = async (params: {
 		);
 		return response.data;
 	} catch (err) {
-		return err;
+		throw err;
 	}
 };
 
