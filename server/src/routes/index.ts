@@ -9,6 +9,10 @@ type Locations = {
 	[location: string]: string | { item: string; price: number };
 };
 
+type GossipStones = {
+	[stone: string]: { text: string; colors: string[] };
+};
+
 let router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -68,7 +72,7 @@ router.get("/startPlaythrough", async (req, res) => {
 		}
 	}
 	let locations = seed.locations as Locations;
-	let locArray = Object.keys(seed.locations).map((key) => {
+	let locArray = Object.keys(locations).map((key) => {
 		let el = locations[key];
 		if (typeof el === "string") {
 			return { location: key, item: el };
@@ -76,15 +80,14 @@ router.get("/startPlaythrough", async (req, res) => {
 			return { location: key, item: el.item, price: el.price };
 		}
 	});
+	let gossip_stones = seed.gossip_stones as GossipStones;
+	let stoneArray = Object.keys(gossip_stones).map((stone) => ({
+		stone: stone,
+		hint: gossip_stones[stone].text,
+	}));
 	let seedDocument = new Seed({
-		locations: Object.keys(seed.locations).map((key) => {
-			let el = locations[key];
-			if (typeof el === "string") {
-				return { location: key, item: el };
-			} else {
-				return { location: key, item: el.item, price: el.price };
-			}
-		}),
+		locations: locArray,
+		gossip_stones: stoneArray,
 	});
 	seedDocument.save();
 	let playthroughDocument = new Playthrough({

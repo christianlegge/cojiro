@@ -32,7 +32,11 @@ const StartForm = ({
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
 
-	async function startPlaythrough(seed: string, settingsString: string) {
+	async function startPlaythrough(
+		seed: string,
+		settingsString: string,
+		sampleSeed?: boolean
+	) {
 		try {
 			let res = await axios.get(
 				`${process.env.REACT_APP_SERVER_URL}/startPlaythrough`,
@@ -40,6 +44,7 @@ const StartForm = ({
 					params: {
 						seed: seed,
 						settingsString: settingsString,
+						sampleSeed: sampleSeed,
 					},
 				}
 			);
@@ -103,6 +108,9 @@ const StartForm = ({
 					)}
 				</button>
 			</form>
+			<button onClick={() => startPlaythrough("", "", true)}>
+				Sample seed
+			</button>
 			<ErrorBox error={error} />
 		</>
 	);

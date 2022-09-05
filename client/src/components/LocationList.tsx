@@ -69,7 +69,9 @@ const LocationList = ({
 			</button>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
-					.filter((el) => allLocations.includes(el))
+					.filter(
+						(el) => allLocations.includes(el) || el.includes("")
+					)
 					.map((el) => (
 						<button
 							className={`block rounded-md p-2 ${

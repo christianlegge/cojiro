@@ -9,6 +9,13 @@ const seedSchema = new Schema({
 			price: Number,
 		},
 	],
+	gossip_stones: [
+		{
+			_id: false,
+			stone: { type: String, required: true },
+			hint: { type: String, required: true },
+		},
+	],
 });
 
 export type ISeed = InferSchemaType<typeof seedSchema>;

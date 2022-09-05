@@ -82,4 +82,30 @@ router.get("/getAllItems", async (req, res) => {
 	res.send(allItems);
 });
 
+router.get("/checkStone", async (req, res) => {
+	if (!req.query.stone) {
+		res.status(400).send("Request missing stone parameter");
+		return;
+	}
+	if (req.playthrough.checked.includes(req.query.stone)) {
+		res.status(400).send(
+			`Playthrough already checked stone ${req.query.stone}`
+		);
+		return;
+	}
+	let hint = req.seed.gossip_stones.find(
+		(el) => el.stone === req.query.stone
+	);
+	if (!hint) {
+		res.status(400).send(
+			`stone ${req.query.stone} not found in playthrough`
+		);
+		return;
+	}
+	req.playthrough.checked.push(req.query.stone);
+	req.playthrough.known_hints.push(hint);
+	req.playthrough.save();
+	res.send(hint);
+});
+
 export default router;
