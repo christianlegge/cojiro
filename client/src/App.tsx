@@ -55,38 +55,49 @@ function App() {
 
 	return (
 		<Playthrough.Provider value={playthroughId}>
-			{playthroughId ? (
-				<div className="flex flex-col lg:flex-row">
-					<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 border-red-400">
-						<RegionList
-							region={region}
-							setRegion={setRegion}
-							age={age}
-							setAge={setAge}
-						/>
-					</div>
-					<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min">
-						<div className="xl:col-span-3 p-4 flex flex-col justify-between pb-24">
-							<QuitForm playthroughSetter={setPlaythroughId} />
-							<LocationList
-								age={age}
+			<>
+				{playthroughId ? (
+					<div className="flex flex-col lg:flex-row">
+						<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 border-red-400">
+							<RegionList
 								region={region}
-								checked={checked}
-								setChecked={setChecked}
-								setItems={setItems}
-								allLocations={locations}
+								setRegion={setRegion}
+								age={age}
+								setAge={setAge}
 							/>
 						</div>
-						<div className="bg-red-300">
-							<ItemTracker items={items} />
+						<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min">
+							<div className="xl:col-span-3 p-4 flex flex-col justify-between pb-24">
+								<QuitForm
+									playthroughSetter={setPlaythroughId}
+								/>
+								<LocationList
+									age={age}
+									region={region}
+									checked={checked}
+									setChecked={setChecked}
+									setItems={setItems}
+									allLocations={locations}
+								/>
+							</div>
+							<div className="bg-red-300">
+								<ItemTracker items={items} />
+							</div>
+							<div className="bg-blue-400">Medallions</div>
+							<div className="bg-green-300">Hints</div>
 						</div>
-						<div className="bg-blue-400">Medallions</div>
-						<div className="bg-green-300">Hints</div>
 					</div>
-				</div>
-			) : (
-				<LandingPage setPlaythroughId={setPlaythroughId} />
-			)}
+				) : (
+					<LandingPage setPlaythroughId={setPlaythroughId} />
+				)}
+				<a
+					className="absolute right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300"
+					href={`//github.com/scatter-dev/zootr-sim/issues/new?body=Describe issue here%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${playthroughId}`}
+					target="_blank"
+				>
+					⚠ Report issue
+				</a>
+			</>
 		</Playthrough.Provider>
 	);
 }
