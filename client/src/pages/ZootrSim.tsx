@@ -6,6 +6,7 @@ import Playthrough from "../contexts/Playthrough";
 import ItemTracker from "../components/ItemTracker";
 import axios from "axios";
 import LandingPage from "../components/LandingPage";
+import MedallionTracker from "../components/MedallionTracker";
 
 const ZootrSim = () => {
 	const [region, setRegion] = useState<string>(
@@ -81,7 +82,9 @@ const ZootrSim = () => {
 							<div className="bg-red-300">
 								<ItemTracker items={items} />
 							</div>
-							<div className="bg-blue-400">Medallions</div>
+							<div className="bg-blue-400">
+								<MedallionTracker items={items} />
+							</div>
 							<div className="bg-green-300">Hints</div>
 						</div>
 					</div>
