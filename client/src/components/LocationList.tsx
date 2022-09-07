@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import regions from "../helpers/regions";
 import Playthrough from "../contexts/Playthrough";
 import axios from "axios";
@@ -31,11 +31,10 @@ const LocationList = ({
 }) => {
 	const playthroughId = useContext(Playthrough);
 	const [lastItem, setLastItem] = useState("");
-	const itemToAdd = useRef<HTMLInputElement>(null);
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
-			<input
+			{/* <input
 				type="text"
 				name="item"
 				id="item"
@@ -66,8 +65,22 @@ const LocationList = ({
 				}}
 			>
 				Get all items
-			</button>
-			<div className="flex flex-wrap gap-2">
+			</button> */}
+			{/* <div
+				style={{
+					backgroundImage: `url('images/maps/${region}.jpg')`,
+					backgroundSize: "contain",
+					backgroundRepeat: "no-repeat",
+				}}
+				className="w-full h-full"
+			></div> */}
+			<img
+				src={`images/maps/${region}.jpg`}
+				alt=""
+				className="object-contain mx-auto"
+			/>
+			<div className="w-8 h-8 bg-lime-500 absolute top-[51%] left-[50.5%]"></div>
+			<div className="flex flex-wrap gap-2 hidden">
 				{Object.keys(regions[region].locations)
 					.filter(
 						(el) => allLocations.includes(el) || el.includes("")
