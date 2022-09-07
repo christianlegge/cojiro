@@ -6,14 +6,14 @@ Simulate and practice Ocarina of Time Randomizer seeds
 
 ```
 $ cd client
-$ npm i
-$ npm start
+$ yarn install
+$ yarn start
 ```
 
 ## Running the server
 
 ```
 $ cd server
-$ npm i
-$ npm run devStart
+$ yarn install
+$ yarn dev
 ```
