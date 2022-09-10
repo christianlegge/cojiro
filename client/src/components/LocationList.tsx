@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import regions from "../helpers/regions";
+import regions from "../utils/regions";
 import Playthrough from "../contexts/Playthrough";
 import axios from "axios";
 

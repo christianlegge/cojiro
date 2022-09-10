@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
 import HowToPlay from "./pages/HowToPlay";
 import ZootrSim from "./pages/ZootrSim";
+import { trpc } from "./utils/trpc";
 
 const App = () => {
+	const [queryClient] = useState(() => new QueryClient());
+	const [trpcClient] = useState(() =>
+		trpc.createClient({
+			url: `${process.env.REACT_APP_SERVER_URL ?? ""}/trpc`,
+		})
+	);
 	return (
-		<Routes>
-			<Route path="/" element={<ZootrSim />} />
-			<Route path="/how-to-play" element={<HowToPlay />} />
-		</Routes>
+		<trpc.Provider client={trpcClient} queryClient={queryClient}>
+			<QueryClientProvider client={queryClient}>
+				<Routes>
+					<Route path="/" element={<ZootrSim />} />
+					<Route path="/how-to-play" element={<HowToPlay />} />
+				</Routes>
+			</QueryClientProvider>
+		</trpc.Provider>
 	);
 };
 

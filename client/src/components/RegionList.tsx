@@ -1,5 +1,5 @@
 import React from "react";
-import regions from "../helpers/regions";
+import regions from "../utils/regions";
 
 const RegionList = ({
 	region,
