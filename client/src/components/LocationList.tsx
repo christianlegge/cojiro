@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import regions from "../utils/regions";
 import Playthrough from "../contexts/Playthrough";
-import axios from "axios";
 import { trpc } from "../utils/trpc";
 
 function locationDisplayName(name: string, region: string): string {

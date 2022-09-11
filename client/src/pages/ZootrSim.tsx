@@ -4,7 +4,6 @@ import LocationList from "../components/LocationList";
 import QuitForm from "../components/QuitForm";
 import Playthrough from "../contexts/Playthrough";
 import ItemTracker from "../components/ItemTracker";
-import axios from "axios";
 import { trpc } from "../utils/trpc";
 import LandingPage from "../components/LandingPage";
 import MedallionTracker from "../components/MedallionTracker";
@@ -57,7 +56,7 @@ const ZootrSim = () => {
 		} else {
 			getPlaythroughResult.refetch();
 		}
-	}, [playthroughId]);
+	}, [playthroughId, getPlaythroughResult]);
 
 	return (
 		<Playthrough.Provider value={playthroughId}>
@@ -97,9 +96,10 @@ const ZootrSim = () => {
 					<LandingPage setPlaythroughId={setPlaythroughId} />
 				)}
 				<a
-					className="absolute right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300"
+					className="absolute right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
 					href={`//github.com/scatter-dev/zootr-sim/issues/new?body=Describe issue here%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${playthroughId}`}
 					target="_blank"
+					rel="noreferrer"
 				>
 					⚠ Report issue
 				</a>
