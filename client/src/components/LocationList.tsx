@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import regions from "../utils/regions";
 import Playthrough from "../contexts/Playthrough";
 import { trpc } from "../utils/trpc";
+import CheckSquare from "./CheckSquare";
 
 function locationDisplayName(name: string, region: string): string {
 	if (name.startsWith(region)) {
@@ -82,12 +83,29 @@ const LocationList = ({
 				}}
 				className="w-full h-full"
 			></div> */}
-			<img
-				src={`images/maps/${region}.jpg`}
-				alt=""
-				className="object-contain mx-auto"
-			/>
-			<div className="w-8 h-8 bg-lime-500 absolute top-[51%] left-[50.5%]"></div>
+			<div className="relative">
+				<img
+					src={`images/maps/${region}.jpg`}
+					alt=""
+					className="object-contain h-full w-auto mx-auto"
+				/>
+				{Object.keys(regions[region].locations)
+					.filter((el) => allLocations.includes(el))
+					.map((el, idx) => (
+						<CheckSquare
+							check={el}
+							coords={{ top: 0, left: idx * 40 }}
+							displayName={locationDisplayName(el, region)}
+							checked={checked.includes(el)}
+							onClick={() => {
+								checkLocation.mutate({
+									id: playthroughId,
+									location: el,
+								});
+							}}
+						/>
+					))}
+			</div>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
 					.filter((el) => allLocations.includes(el))
