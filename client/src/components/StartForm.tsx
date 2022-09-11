@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import ErrorBox from "./ErrorBox";
 import TextInput from "./TextInput";
+import { trpc } from "../utils/trpc";
 
 const settingsPresets: { [key: string]: string } = {
 	"Settings Presets": "",
@@ -31,31 +31,14 @@ const StartForm = ({
 }) => {
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
-
-	async function startPlaythrough(
-		seed: string,
-		settingsString: string,
-		sampleSeed?: boolean
-	) {
-		try {
-			let res = await axios.get(
-				`${process.env.REACT_APP_SERVER_URL}/startPlaythrough`,
-				{
-					params: {
-						seed: seed,
-						settingsString: settingsString,
-						sampleSeed: sampleSeed,
-					},
-				}
-			);
-			localStorage.setItem("playthroughId", res.data.id);
-			setPlaythroughId(res.data.id);
-		} catch (err: any) {
-			setError(err.response.data);
-		} finally {
-			setGenerating(false);
-		}
-	}
+	const startMutation = trpc.useMutation("startPlaythrough", {
+		onSuccess: ({ id, locations }) => {
+			localStorage.setItem("playthroughId", id);
+			setPlaythroughId(id);
+		},
+		onSettled: () => setGenerating(false),
+		onError: (err) => setError(err.message),
+	});
 
 	const [settingsString, setSettingsString] = useState<string>("");
 
@@ -68,7 +51,10 @@ const StartForm = ({
 						Seed: { value: string };
 						Settings: { value: string };
 					};
-					startPlaythrough(target.Seed.value, target.Settings.value);
+					startMutation.mutate({
+						seed: target.Seed.value,
+						settingsString: target.Settings.value,
+					});
 					setError(null);
 					setGenerating(true);
 				}}
@@ -108,7 +94,7 @@ const StartForm = ({
 					)}
 				</button>
 			</form>
-			<button onClick={() => startPlaythrough("", "", true)}>
+			<button onClick={() => startMutation.mutate({ sampleSeed: true })}>
 				Sample seed
 			</button>
 			<ErrorBox error={error} />

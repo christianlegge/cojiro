@@ -80,7 +80,7 @@ const LocationList = ({
 				className="object-contain mx-auto"
 			/>
 			<div className="w-8 h-8 bg-lime-500 absolute top-[51%] left-[50.5%]"></div>
-			<div className="flex flex-wrap gap-2 hidden">
+			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
 					.filter(
 						(el) => allLocations.includes(el) || el.includes("")

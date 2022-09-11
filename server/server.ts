@@ -24,12 +24,6 @@ mongoose.connect(mongoUrl, () => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const createContext = ({
-	req,
-	res,
-}: trpcExpress.CreateExpressContextOptions) => ({});
-type Context = trpc.inferAsyncReturnType<typeof createContext>;
-
 const trpcRouter = trpc
 	.router()
 	.merge("", indexRouter)
@@ -41,7 +35,6 @@ app.use(
 	"/trpc",
 	trpcExpress.createExpressMiddleware({
 		router: trpcRouter,
-		createContext,
 	})
 );
 

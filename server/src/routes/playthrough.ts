@@ -4,6 +4,8 @@ import Playthrough, { IPlaythrough } from "../models/Playthrough";
 import Seed, { ISeed } from "../models/Seed";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
+import * as trpcExpress from "@trpc/server/adapters/express";
+import { resolve } from "path";
 
 // declare global {
 // 	namespace Express {
@@ -14,6 +16,13 @@ import { z } from "zod";
 // 	}
 // }
 
+export async function createContext(
+	opts?: trpcExpress.CreateExpressContextOptions
+) {
+	return { playthroughId: "test id" };
+}
+type Context = trpc.inferAsyncReturnType<typeof createContext>;
+
 const router = trpc
 	.router()
 	.middleware(async ({ next }) => {
@@ -21,10 +30,27 @@ const router = trpc
 		return next();
 	})
 	.query("get", {
-		resolve(req) {
+		input: z.object({
+			id: z.string(),
+		}),
+		async resolve({ input }) {
 			console.log("get called");
 			return "hello";
 		},
+	})
+	.mutation("checkLocation", {
+		input: z.object({
+			id: z.string(),
+			location: z.string(),
+		}),
+		async resolve({ input }) {},
+	})
+	.mutation("checkStone", {
+		input: z.object({
+			id: z.string(),
+			stone: z.string(),
+		}),
+		async resolve({ input }) {},
 	});
 
 // let router = express.Router();
