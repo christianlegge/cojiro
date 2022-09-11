@@ -9,7 +9,7 @@ const App = () => {
 	const [queryClient] = useState(() => new QueryClient());
 	const [trpcClient] = useState(() =>
 		trpc.createClient({
-			url: `${process.env.REACT_APP_SERVER_URL ?? ""}/trpc`,
+			url: `${import.meta.env.VITE_SERVER_URL ?? ""}/trpc`,
 		})
 	);
 	return (
