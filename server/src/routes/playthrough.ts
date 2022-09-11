@@ -5,7 +5,6 @@ import Seed, { ISeed } from "../models/Seed";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { resolve } from "path";
 
 // declare global {
 // 	namespace Express {
@@ -25,17 +24,31 @@ type Context = trpc.inferAsyncReturnType<typeof createContext>;
 
 const router = trpc
 	.router()
-	.middleware(async ({ next }) => {
-		console.log("middleware called");
-		return next();
-	})
 	.query("get", {
 		input: z.object({
 			id: z.string(),
 		}),
 		async resolve({ input }) {
-			console.log("get called");
-			return "hello";
+			let playthrough = await Playthrough.findById(input.id);
+			if (!playthrough) {
+				throw new trpc.TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			let seed = await Seed.findById(playthrough.seed);
+			if (!seed) {
+				throw new trpc.TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Playthrough corrupt: seed missing",
+				});
+			}
+			return {
+				checked: playthrough.checked,
+				locations: Array.from(seed.locations.keys()),
+				items: playthrough.items,
+				id: playthrough.id,
+			};
 		},
 	})
 	.mutation("checkLocation", {
@@ -43,7 +56,42 @@ const router = trpc
 			id: z.string(),
 			location: z.string(),
 		}),
-		async resolve({ input }) {},
+		async resolve({ input }) {
+			let playthrough = await Playthrough.findById(input.id);
+			if (!playthrough) {
+				throw new trpc.TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			let seed = await Seed.findById(playthrough.seed);
+			if (!seed) {
+				throw new trpc.TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Playthrough corrupt: seed missing",
+				});
+			}
+			if (playthrough.checked.includes(input.location)) {
+				throw new trpc.TRPCError({
+					code: "BAD_REQUEST",
+					message: `Playthrough already checked location ${input.location}`,
+				});
+			}
+			if (!seed.locations.has(input.location)) {
+				throw new trpc.TRPCError({
+					code: "NOT_FOUND",
+					message: `Location ${input.location} not found in seed`,
+				});
+			}
+			let item = seed.locations.get(input.location)!.item;
+			playthrough.checked.push(input.location);
+			playthrough.items.push(item);
+			playthrough.save();
+			return {
+				item,
+				checked: input.location,
+			};
+		},
 	})
 	.mutation("checkStone", {
 		input: z.object({
@@ -52,69 +100,6 @@ const router = trpc
 		}),
 		async resolve({ input }) {},
 	});
-
-// let router = express.Router();
-
-// router.use(async (req, res, next) => {
-// 	if (!req.query.id) {
-// 		return res.status(400).send("Request missing playthrough ID");
-// 	}
-// 	if (!mongoose.isValidObjectId(req.query.id)) {
-// 		return res
-// 			.status(400)
-// 			.send(`${req.query.id} is not a valid MongoDB ObjectID`);
-// 	}
-// 	let playthrough = await Playthrough.findById(req.query.id);
-// 	if (!playthrough) {
-// 		return res
-// 			.status(404)
-// 			.send(`Playthrough with ID ${req.query.id} not found`);
-// 	}
-// 	let seed = await Seed.findById(playthrough.seed);
-// 	if (!seed) {
-// 		return res
-// 			.status(500)
-// 			.send("Seed data not present in playthrough object");
-// 	}
-// 	req.seed = seed;
-// 	req.playthrough = playthrough;
-// 	next();
-// });
-
-// router.get("/getPlaythrough", async (req, res) => {
-// 	res.send({
-// 		checked: req.playthrough.checked,
-// 		locations: req.seed.locations.map((el) => el.location),
-// 		items: req.playthrough.items,
-// 		id: req.playthrough.id,
-// 	});
-// });
-
-// router.get("/checkLocation", async (req, res) => {
-// 	if (!req.query.location) {
-// 		res.status(400).send("Request missing location parameter");
-// 		return;
-// 	}
-// 	if (req.playthrough.checked.includes(req.query.location)) {
-// 		res.status(400).send(
-// 			`Playthrough already checked location ${req.query.location}`
-// 		);
-// 		return;
-// 	}
-// 	let loc = req.seed.locations.find(
-// 		(el) => el.location === req.query.location
-// 	);
-// 	if (!loc) {
-// 		res.status(400).send(
-// 			`Location ${req.query.location} not found in playthrough`
-// 		);
-// 		return;
-// 	}
-// 	req.playthrough.checked.push(req.query.location);
-// 	req.playthrough.items.push(loc.item);
-// 	req.playthrough.save();
-// 	res.send(loc.item);
-// });
 
 // router.get("/getAllItems", async (req, res) => {
 // 	let allItems = req.seed.locations.map((el) => el.item);

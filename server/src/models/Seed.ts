@@ -4,6 +4,7 @@ const seedSchema = new Schema({
 	locations: {
 		type: Map,
 		of: {
+			_id: false,
 			item: { type: String, required: true },
 			price: Number,
 		},

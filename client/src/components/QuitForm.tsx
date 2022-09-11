@@ -3,7 +3,7 @@ import React from "react";
 const QuitForm = ({
 	playthroughSetter,
 }: {
-	playthroughSetter: (id: string | null) => void;
+	playthroughSetter: (id: string) => void;
 }) => {
 	return (
 		<div>
@@ -11,7 +11,7 @@ const QuitForm = ({
 				className="p-2 bg-red-200 rounded-md m-2"
 				onClick={() => {
 					localStorage.removeItem("playthroughId");
-					playthroughSetter(null);
+					playthroughSetter("");
 				}}
 			>
 				Quit

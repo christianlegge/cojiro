@@ -5,6 +5,7 @@ import QuitForm from "../components/QuitForm";
 import Playthrough from "../contexts/Playthrough";
 import ItemTracker from "../components/ItemTracker";
 import axios from "axios";
+import { trpc } from "../utils/trpc";
 import LandingPage from "../components/LandingPage";
 import MedallionTracker from "../components/MedallionTracker";
 
@@ -13,8 +14,8 @@ const ZootrSim = () => {
 		() => localStorage.getItem("region") ?? "Kokiri Forest"
 	);
 
-	const [playthroughId, setPlaythroughId] = useState<string | null>(() =>
-		localStorage.getItem("playthroughId")
+	const [playthroughId, setPlaythroughId] = useState<string>(
+		() => localStorage.getItem("playthroughId") ?? ""
 	);
 
 	const [locations, setLocations] = useState<string[]>([]);
@@ -26,32 +27,36 @@ const ZootrSim = () => {
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
 	);
 
+	const getPlaythroughResult = trpc.useQuery(
+		[
+			"playthrough.get",
+			{
+				id: playthroughId,
+			},
+		],
+		{
+			enabled: playthroughId !== "",
+			onSuccess: ({ checked, items, locations }) => {
+				setLocations(locations);
+				setItems(items);
+				setChecked(checked);
+			},
+		}
+	);
+
 	useEffect(() => {
 		localStorage.setItem("region", region);
 		localStorage.setItem("age", age);
 	}, [region, age]);
 
 	useEffect(() => {
-		if (!playthroughId) {
+		if (playthroughId === "") {
 			setAge("child");
 			setRegion("Kokiri Forest");
 			return;
+		} else {
+			getPlaythroughResult.refetch();
 		}
-		axios
-			.get(
-				`${process.env.REACT_APP_SERVER_URL}/playthrough/getPlaythrough`,
-				{
-					params: { id: playthroughId },
-				}
-			)
-			.then((res) => {
-				setItems(res.data.items);
-				setChecked(res.data.checked);
-				setLocations(res.data.locations);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
 	}, [playthroughId]);
 
 	return (

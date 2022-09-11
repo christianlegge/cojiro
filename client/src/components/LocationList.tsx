@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import regions from "../utils/regions";
 import Playthrough from "../contexts/Playthrough";
 import axios from "axios";
+import { trpc } from "../utils/trpc";
 
 function locationDisplayName(name: string, region: string): string {
 	if (name.startsWith(region)) {
@@ -31,6 +32,14 @@ const LocationList = ({
 }) => {
 	const playthroughId = useContext(Playthrough);
 	const [lastItem, setLastItem] = useState("");
+	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
+		onSuccess: ({ checked, item }) => {
+			setItems((items) => [...items, item]);
+			setChecked((prev) => [...prev, checked]);
+			setLastItem(item);
+		},
+		onError: (err) => console.log(err),
+	});
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
@@ -82,9 +91,7 @@ const LocationList = ({
 			<div className="w-8 h-8 bg-lime-500 absolute top-[51%] left-[50.5%]"></div>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
-					.filter(
-						(el) => allLocations.includes(el) || el.includes("")
-					)
+					.filter((el) => allLocations.includes(el))
 					.map((el) => (
 						<button
 							className={`block rounded-md p-2 ${
@@ -97,20 +104,10 @@ const LocationList = ({
 								if (checked.includes(el)) {
 									return;
 								}
-								let res = await axios.get(
-									`${process.env.REACT_APP_SERVER_URL}/playthrough/checkLocation`,
-									{
-										params: {
-											id: playthroughId,
-											location: el,
-										},
-									}
-								);
-								if (res.status === 200) {
-									setItems((items) => [...items, res.data]);
-									setChecked([...checked, el]);
-									setLastItem(res.data);
-								}
+								checkLocation.mutate({
+									id: playthroughId,
+									location: el,
+								});
 							}}
 						>
 							{locationDisplayName(el, region)}

@@ -38,9 +38,4 @@ app.use(
 	})
 );
 
-// app.use("/", indexRouter);
-// app.use("/playthrough", playthroughRouter);
-
-app.use(errorHandler);
-
 app.listen(port, () => console.log(`Server started on ${port}`));

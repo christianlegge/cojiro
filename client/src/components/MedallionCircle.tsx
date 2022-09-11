@@ -12,7 +12,6 @@ const MedallionCircle = () => {
 					`${(-y / 2 + 0.5) * 100}%`,
 					`${(x / 2 + 0.5) * 100}%`,
 				];
-				console.log({ medallion, angle, x, y });
 				return (
 					<div
 						key={medallion}

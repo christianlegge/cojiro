@@ -27,7 +27,7 @@ const settingsPresets: { [key: string]: string } = {
 const StartForm = ({
 	setPlaythroughId,
 }: {
-	setPlaythroughId: (id: string | null) => void;
+	setPlaythroughId: (id: string) => void;
 }) => {
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);

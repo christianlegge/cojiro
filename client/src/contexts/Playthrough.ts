@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const Playthrough = createContext<string | null>(null);
+const Playthrough = createContext<string>("");
 
 export default Playthrough;

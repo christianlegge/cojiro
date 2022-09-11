@@ -1,10 +1,10 @@
-import { Schema, model, InferSchemaType } from "mongoose";
+import mongoose, { Schema, model, InferSchemaType } from "mongoose";
 
 const playthroughSchema = new Schema({
-	seed: { type: Schema.Types.ObjectId, ref: "Seed", required: true },
-	checked: [String],
-	items: [String],
-	known_hints: [String],
+	seed: { type: mongoose.Types.ObjectId, ref: "Seed", required: true },
+	checked: { type: [String], required: true },
+	items: { type: [String], required: true },
+	known_hints: { type: [String], required: true },
 });
 
 export type IPlaythrough = InferSchemaType<typeof playthroughSchema>;
