@@ -275,7 +275,7 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 						key={trackerItem.fileName}
 						className="w-16 h-16 relative group"
 					>
-						<div className="top-10 absolute scale-0 group-hover:scale-100 text-white bg-gray-900 p-2 rounded-md order-last transition duration-100 z-10">
+						<div className="bottom-full absolute w-max font-semibold scale-0 group-hover:scale-100 text-white bg-gray-900 p-2 rounded-md order-last transition duration-100 z-10">
 							{trackerItem.displayName}
 						</div>
 						<img
