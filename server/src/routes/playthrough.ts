@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose, { HydratedDocument } from "mongoose";
-import Playthrough, { IPlaythrough } from "../models/Playthrough";
-import Seed, { ISeed } from "../models/Seed";
+import Playthrough, { ISeed } from "../models/Playthrough";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
 import * as trpcExpress from "@trpc/server/adapters/express";
@@ -36,7 +35,7 @@ const router = trpc
 					message: "Playthrough for ID not found",
 				});
 			}
-			let seed = await Seed.findById(playthrough.seed);
+			let seed = playthrough.seed;
 			if (!seed) {
 				throw new trpc.TRPCError({
 					code: "INTERNAL_SERVER_ERROR",
@@ -64,7 +63,7 @@ const router = trpc
 					message: "Playthrough for ID not found",
 				});
 			}
-			let seed = await Seed.findById(playthrough.seed);
+			let seed = playthrough.seed;
 			if (!seed) {
 				throw new trpc.TRPCError({
 					code: "INTERNAL_SERVER_ERROR",

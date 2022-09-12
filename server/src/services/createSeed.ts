@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import dotenv from "dotenv";
 import parseSeed from "../util/parseSeed";
-import { ISeed } from "../models/Seed";
+import { ISeed } from "../models/Playthrough";
 
 dotenv.config();
 

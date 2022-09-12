@@ -1,5 +1,5 @@
 import { SeedReturnType } from "../services/createSeed";
-import { ISeed } from "../models/Seed";
+import { ISeed } from "../models/Playthrough";
 
 function parseSeed(seed: SeedReturnType): ISeed {
 	let locationMap = new Map<string, { item: string; price?: number }>();

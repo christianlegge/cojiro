@@ -1,6 +1,5 @@
 import createSeed, { sampleSeed, SeedReturnType } from "../services/createSeed";
-import Playthrough from "../models/Playthrough";
-import Seed, { ISeed } from "../models/Seed";
+import Playthrough, { ISeed } from "../models/Playthrough";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
 import parseSeed from "../util/parseSeed";
@@ -33,10 +32,8 @@ const router = trpc
 					settingsString: input.settingsString,
 				});
 			}
-			let seedDoc = new Seed(seed);
-			seedDoc.save();
 			let playthroughDoc = new Playthrough({
-				seed: seedDoc,
+				seed: seed,
 				checked: [],
 				items: [],
 			});
