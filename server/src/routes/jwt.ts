@@ -14,11 +14,21 @@ const router = trpc
 		}),
 		async resolve({ input }) {
 			try {
-				let decoded = jwt.verify(
+				let { playthroughs } = jwt.verify(
 					input.token,
 					process.env.JWT_SECRET!
-				) as string[];
-				return decoded;
+				) as { playthroughs: string[] };
+				let newToken = jwt.sign(
+					{ playthroughs },
+					process.env.JWT_SECRET!,
+					{
+						expiresIn: "7d",
+					}
+				) as string;
+				return {
+					playthroughs,
+					newToken,
+				};
 			} catch (err) {
 				throw new trpc.TRPCError({
 					code: "UNAUTHORIZED",
@@ -27,27 +37,30 @@ const router = trpc
 			}
 		},
 	})
-	.query("addPlaythrough", {
+	.mutation("addPlaythrough", {
 		input: z.object({
-			token: z.string().optional(),
+			token: z.string().nullable(),
 			playthroughId: z.string(),
 		}),
 		async resolve({ input }) {
-			let decoded: string[] = [];
+			let playthroughs: string[] = [];
 			if (input.token) {
 				try {
-					decoded = jwt.verify(
+					let decoded = jwt.verify(
 						input.token,
 						process.env.JWT_SECRET!
-					) as string[];
+					) as { playthroughs: string[] };
+					playthroughs = decoded.playthroughs;
 				} catch (err) {
-					decoded = [];
+					playthroughs = [];
 				}
 			}
-			decoded.push(input.playthroughId);
-			return jwt.sign(decoded, process.env.JWT_SECRET!, {
-				expiresIn: "7d",
-			}) as string;
+			playthroughs.push(input.playthroughId);
+			return {
+				newToken: jwt.sign({ playthroughs }, process.env.JWT_SECRET!, {
+					expiresIn: "7d",
+				}) as string,
+			};
 		},
 	});
 export default router;

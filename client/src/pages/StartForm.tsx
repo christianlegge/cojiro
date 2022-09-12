@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ErrorBox from "../components/ErrorBox";
 import TextInput from "../components/TextInput";
 import { trpc } from "../utils/trpc";
@@ -29,9 +29,39 @@ const StartForm = () => {
 	const navigate = useNavigate();
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
+	const [jwt, setJwt] = useState<string | null>(null);
+	const getPlaythroughFromJwt = trpc.useQuery(
+		[
+			"jwt.getPlaythroughs",
+			{
+				token: jwt as string,
+			},
+		],
+		{
+			enabled: jwt !== null,
+			onSuccess({ playthroughs, newToken }) {
+				localStorage.setItem("playthroughsJwt", newToken);
+				console.log(playthroughs);
+			},
+			onError(err) {
+				console.log(err);
+			},
+		}
+	);
+	const addPlaythroughToJwt = trpc.useMutation("jwt.addPlaythrough", {
+		onSuccess({ newToken }) {
+			localStorage.setItem("playthroughsJwt", newToken);
+		},
+		onError(err) {
+			console.log(err);
+		},
+	});
 	const startMutation = trpc.useMutation("startPlaythrough", {
 		onSuccess: ({ id, locations }) => {
-			localStorage.setItem("playthroughId", id);
+			addPlaythroughToJwt.mutate({
+				token: jwt,
+				playthroughId: id,
+			});
 			navigate(`/play/${id}`);
 		},
 		onSettled: () => setGenerating(false),
@@ -39,6 +69,10 @@ const StartForm = () => {
 	});
 
 	const [settingsString, setSettingsString] = useState<string>("");
+
+	useEffect(() => {
+		setJwt(localStorage.getItem("playthroughsJwt"));
+	}, []);
 
 	return (
 		<>
