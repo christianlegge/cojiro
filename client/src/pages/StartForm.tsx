@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ErrorBox from "./ErrorBox";
-import TextInput from "./TextInput";
+import ErrorBox from "../components/ErrorBox";
+import TextInput from "../components/TextInput";
 import { trpc } from "../utils/trpc";
 import { useNavigate } from "react-router-dom";
 

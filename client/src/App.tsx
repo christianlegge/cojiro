@@ -5,7 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import HowToPlay from "./pages/HowToPlay";
 import ZootrSim from "./pages/ZootrSim";
 import { trpc } from "./utils/trpc";
-import StartForm from "./components/StartForm";
+import StartForm from "./pages/StartForm";
 
 const App = () => {
 	const [queryClient] = useState(() => new QueryClient());
