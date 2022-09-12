@@ -40,6 +40,9 @@ const LocationList = ({
 		},
 		onError: (err) => console.log(err),
 	});
+	const numChecks = Object.keys(regions[region].locations).filter((el) =>
+		allLocations.includes(el)
+	).length;
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
@@ -56,7 +59,10 @@ const LocationList = ({
 							<CheckSquare
 								key={idx}
 								check={el}
-								coords={{ top: 0, left: idx * 40 }}
+								coords={{
+									top: 2,
+									left: `${(idx / numChecks) * 100}%`,
+								}}
 								displayName={locationDisplayName(el, region)}
 								checked={checked.includes(el)}
 								onClick={() => {

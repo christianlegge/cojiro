@@ -9,7 +9,7 @@ const CheckSquare = ({
 	onClick,
 }: {
 	check: string;
-	coords: { top: number; left: number };
+	coords: { top: number | string; left: number | string };
 	displayName: string;
 	checked: boolean;
 	onClick: () => void;
