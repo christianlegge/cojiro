@@ -45,7 +45,9 @@ const StartForm = () => {
 				setIds(playthroughs);
 			},
 			onError(err) {
-				console.log(err);
+				localStorage.removeItem("playthroughsJwt");
+				setJwt(null);
+				setIds([]);
 			},
 		}
 	);
