@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ErrorBox from "../components/ErrorBox";
 import TextInput from "../components/TextInput";
 import { trpc } from "../utils/trpc";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const settingsPresets: { [key: string]: string } = {
 	"Settings Presets": "",
@@ -30,6 +30,7 @@ const StartForm = () => {
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
 	const [jwt, setJwt] = useState<string | null>(null);
+	const [ids, setIds] = useState<string[]>([]);
 	const getPlaythroughFromJwt = trpc.useQuery(
 		[
 			"jwt.getPlaythroughs",
@@ -41,7 +42,7 @@ const StartForm = () => {
 			enabled: jwt !== null,
 			onSuccess({ playthroughs, newToken }) {
 				localStorage.setItem("playthroughsJwt", newToken);
-				console.log(playthroughs);
+				setIds(playthroughs);
 			},
 			onError(err) {
 				console.log(err);
@@ -129,6 +130,18 @@ const StartForm = () => {
 			<button onClick={() => startMutation.mutate({ sampleSeed: true })}>
 				Sample seed
 			</button>
+			<h2>In progress games</h2>
+			<ul>
+				{ids.length === 0 ? (
+					<span>None!</span>
+				) : (
+					ids.map((el) => (
+						<li>
+							<Link to={`/play/${el}`}>{el}</Link>
+						</li>
+					))
+				)}
+			</ul>
 			<ErrorBox error={error} />
 		</>
 	);
