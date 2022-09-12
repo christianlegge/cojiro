@@ -138,7 +138,7 @@ const StartForm = () => {
 					<span>None!</span>
 				) : (
 					ids.map((el) => (
-						<li>
+						<li key={el}>
 							<Link to={`/play/${el}`}>{el}</Link>
 						</li>
 					))
