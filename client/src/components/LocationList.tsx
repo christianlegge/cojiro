@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import regions from "../utils/regions";
-import Playthrough from "../contexts/Playthrough";
 import { trpc } from "../utils/trpc";
 import CheckSquare from "./CheckSquare";
+import { useParams } from "react-router-dom";
 
 function locationDisplayName(name: string, region: string): string {
 	if (name.startsWith(region)) {
@@ -30,7 +30,7 @@ const LocationList = ({
 	setItems: React.Dispatch<React.SetStateAction<string[]>>;
 	allLocations: string[];
 }) => {
-	const playthroughId = useContext(Playthrough);
+	const { id } = useParams() as { id: string };
 	const [lastItem, setLastItem] = useState("");
 	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
 		onSuccess: ({ checked, item }) => {
@@ -46,7 +46,7 @@ const LocationList = ({
 			<div className="flex justify-center w-full h-auto">
 				<div className="relative inline-block min-h-0 min-w-0">
 					<img
-						src={`images/maps/${region}.jpg`}
+						src={`/images/maps/${region}.jpg`}
 						alt=""
 						className="object-contain h-full w-auto mx-auto"
 					/>
@@ -54,13 +54,14 @@ const LocationList = ({
 						.filter((el) => allLocations.includes(el))
 						.map((el, idx) => (
 							<CheckSquare
+								key={idx}
 								check={el}
 								coords={{ top: 0, left: idx * 40 }}
 								displayName={locationDisplayName(el, region)}
 								checked={checked.includes(el)}
 								onClick={() => {
 									checkLocation.mutate({
-										id: playthroughId,
+										id,
 										location: el,
 									});
 								}}
@@ -84,7 +85,7 @@ const LocationList = ({
 									return;
 								}
 								checkLocation.mutate({
-									id: playthroughId,
+									id,
 									location: el,
 								});
 							}}

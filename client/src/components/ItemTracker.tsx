@@ -52,7 +52,7 @@ const itemGrid = [
 ];
 
 function itemToImageFilename(item: string): string {
-	return `images/${item
+	return `/images/${item
 		.toLowerCase()
 		.replaceAll(" ", "-")
 		.replaceAll("(", "")

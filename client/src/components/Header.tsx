@@ -11,7 +11,8 @@ const Header = () => {
 					className={({ isActive }) =>
 						isActive ? activeClass : undefined
 					}
-					to="/"
+					to="/play"
+					end
 				>
 					Play
 				</NavLink>

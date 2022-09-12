@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ErrorBox from "./ErrorBox";
 import TextInput from "./TextInput";
 import { trpc } from "../utils/trpc";
+import { useNavigate } from "react-router-dom";
 
 const settingsPresets: { [key: string]: string } = {
 	"Settings Presets": "",
@@ -24,17 +25,14 @@ const settingsPresets: { [key: string]: string } = {
 		"AASWWCHYKAA8KRAHJAAAXECCYCHGLTDDAKJ8S8AAJAEAC2AJSDGBLADLED7JKQUXEANKAJAAWTASBFSA",
 };
 
-const StartForm = ({
-	setPlaythroughId,
-}: {
-	setPlaythroughId: (id: string) => void;
-}) => {
+const StartForm = () => {
+	const navigate = useNavigate();
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
 	const startMutation = trpc.useMutation("startPlaythrough", {
 		onSuccess: ({ id, locations }) => {
 			localStorage.setItem("playthroughId", id);
-			setPlaythroughId(id);
+			navigate(`/play/${id}`);
 		},
 		onSettled: () => setGenerating(false),
 		onError: (err) => setError(err.message),

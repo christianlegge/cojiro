@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import HowToPlay from "./pages/HowToPlay";
 import ZootrSim from "./pages/ZootrSim";
 import { trpc } from "./utils/trpc";
@@ -16,7 +17,9 @@ const App = () => {
 		<trpc.Provider client={trpcClient} queryClient={queryClient}>
 			<QueryClientProvider client={queryClient}>
 				<Routes>
-					<Route path="/" element={<ZootrSim />} />
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/play" element={<LandingPage />} />
+					<Route path="/play/:id" element={<ZootrSim />} />
 					<Route path="/how-to-play" element={<HowToPlay />} />
 				</Routes>
 			</QueryClientProvider>
