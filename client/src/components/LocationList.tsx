@@ -43,68 +43,30 @@ const LocationList = ({
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
-			{/* <input
-				type="text"
-				name="item"
-				id="item"
-				className="border-2"
-				ref={itemToAdd}
-				onKeyDown={(e) => {
-					if (e.key !== "Enter") return;
-					setItems((prev) => [
-						...prev,
-						itemToAdd.current?.value as string,
-					]);
-				}}
-			/>
-			<button
-				className="p-2 rounded bg-blue-300"
-				onClick={async () => {
-					let res = await axios.get(
-						`${process.env.REACT_APP_SERVER_URL}/playthrough/getAllItems`,
-						{
-							params: {
-								id: playthroughId,
-							},
-						}
-					);
-					if (res.status === 200) {
-						setItems(res.data);
-					}
-				}}
-			>
-				Get all items
-			</button> */}
-			{/* <div
-				style={{
-					backgroundImage: `url('images/maps/${region}.jpg')`,
-					backgroundSize: "contain",
-					backgroundRepeat: "no-repeat",
-				}}
-				className="w-full h-full"
-			></div> */}
-			<div className="relative">
-				<img
-					src={`images/maps/${region}.jpg`}
-					alt=""
-					className="object-contain h-full w-auto mx-auto"
-				/>
-				{Object.keys(regions[region].locations)
-					.filter((el) => allLocations.includes(el))
-					.map((el, idx) => (
-						<CheckSquare
-							check={el}
-							coords={{ top: 0, left: idx * 40 }}
-							displayName={locationDisplayName(el, region)}
-							checked={checked.includes(el)}
-							onClick={() => {
-								checkLocation.mutate({
-									id: playthroughId,
-									location: el,
-								});
-							}}
-						/>
-					))}
+			<div className="flex justify-center w-full h-auto">
+				<div className="relative inline-block min-h-0 min-w-0">
+					<img
+						src={`images/maps/${region}.jpg`}
+						alt=""
+						className="object-contain h-full w-auto mx-auto"
+					/>
+					{Object.keys(regions[region].locations)
+						.filter((el) => allLocations.includes(el))
+						.map((el, idx) => (
+							<CheckSquare
+								check={el}
+								coords={{ top: 0, left: idx * 40 }}
+								displayName={locationDisplayName(el, region)}
+								checked={checked.includes(el)}
+								onClick={() => {
+									checkLocation.mutate({
+										id: playthroughId,
+										location: el,
+									});
+								}}
+							/>
+						))}
+				</div>
 			</div>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region].locations)
