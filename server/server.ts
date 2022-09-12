@@ -6,6 +6,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import mongoose from "mongoose";
 import indexRouter from "./src/routes/index";
 import playthroughRouter from "./src/routes/playthrough";
+import jwtRouter from "./src/routes/jwt";
 import errorHandler from "./src/middleware/error";
 
 dotenv.config();
@@ -27,7 +28,8 @@ app.use(express.json());
 const trpcRouter = trpc
 	.router()
 	.merge("", indexRouter)
-	.merge("playthrough.", playthroughRouter);
+	.merge("playthrough.", playthroughRouter)
+	.merge("jwt.", jwtRouter);
 
 export type AppRouter = typeof trpcRouter;
 
