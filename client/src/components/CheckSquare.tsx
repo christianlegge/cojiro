@@ -1,4 +1,5 @@
 import React from "react";
+import Tooltip from "./Tooltip";
 
 const CheckSquare = ({
 	check,
@@ -14,27 +15,30 @@ const CheckSquare = ({
 	onClick: () => void;
 }) => {
 	return (
-		<div
-			className={`absolute group w-8 h-8 ${
-				checked
-					? "cursor-default bg-zinc-500"
-					: "cursor-pointer bg-lime-500"
-			}`}
+		<Tooltip
+			content={
+				<span
+					className={`${
+						checked ? "text-zinc-400 line-through font-normal" : ""
+					}`}
+				>
+					{check}
+				</span>
+			}
+			className="absolute w-8 h-8"
 			style={{ ...coords }}
-			onClick={() => {
-				if (!checked) onClick();
-			}}
 		>
 			<div
-				className={`absolute bottom-full rounded-md bg-zinc-800 p-2 w-max h-auto scale-0 group-hover:scale-100 transition z-50 ${
+				className={`w-full h-full ${
 					checked
-						? "text-zinc-400 line-through"
-						: "text-white font-semibold"
+						? "cursor-default bg-zinc-500"
+						: "cursor-pointer bg-lime-500"
 				}`}
-			>
-				{check}
-			</div>
-		</div>
+				onClick={() => {
+					if (!checked) onClick();
+				}}
+			></div>
+		</Tooltip>
 	);
 };
 

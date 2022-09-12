@@ -1,4 +1,5 @@
 import React from "react";
+import Tooltip from "./Tooltip";
 
 type TrackerItem = {
 	fileName: string; // path to image file in public/images
@@ -271,13 +272,11 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, items);
 				return (
-					<div
+					<Tooltip
 						key={trackerItem.fileName}
-						className="w-16 h-16 relative group"
+						className="w-16 h-16 relative"
+						content={trackerItem.displayName}
 					>
-						<div className="bottom-full absolute w-max font-semibold scale-0 group-hover:scale-100 text-white bg-gray-900 p-2 rounded-md order-last transition duration-100 z-10">
-							{trackerItem.displayName}
-						</div>
 						<img
 							className={`object-contain w-full h-full z-0 ${
 								items.includes(trackerItem.itemName)
@@ -288,7 +287,7 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 							alt={trackerItem.displayName}
 							title={trackerItem.displayName}
 						/>
-					</div>
+					</Tooltip>
 				);
 			})}
 		</div>
