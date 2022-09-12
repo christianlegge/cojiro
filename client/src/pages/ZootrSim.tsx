@@ -7,6 +7,7 @@ import { trpc } from "../utils/trpc";
 import LandingPage from "./LandingPage";
 import MedallionTracker from "../components/MedallionTracker";
 import { useParams, useNavigate } from "react-router-dom";
+import { FiExternalLink } from "react-icons/fi";
 
 const ZootrSim = () => {
 	const { id } = useParams() as { id: string };
@@ -94,12 +95,13 @@ const ZootrSim = () => {
 			</div>
 
 			<a
-				className="absolute right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
-				href={`//github.com/scatter-dev/zootr-sim/issues/new?body=Describe issue here%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
+				className="absolute flex items-center gap-1 right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
+				href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
 				target="_blank"
 				rel="noreferrer"
 			>
-				⚠ Report issue
+				<span>Give feedback/report issue</span>
+				<FiExternalLink style={{ display: "inline" }} />
 			</a>
 		</>
 	);
