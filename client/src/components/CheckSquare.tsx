@@ -15,7 +15,7 @@ const CheckSquare = ({
 }) => {
 	return (
 		<div
-			className={`absolute w-8 h-8 ${
+			className={`absolute group w-8 h-8 ${
 				checked
 					? "cursor-default bg-zinc-500"
 					: "cursor-pointer bg-lime-500"
@@ -25,7 +25,13 @@ const CheckSquare = ({
 				if (!checked) onClick();
 			}}
 		>
-			{displayName}
+			<div
+				className={`absolute -top-full rounded-md bg-zinc-800 p-2 w-max h-auto scale-0 group-hover:scale-100 transition z-50 ${
+					checked ? "text-zinc-400 line-through" : "text-white"
+				}`}
+			>
+				{check}
+			</div>
 		</div>
 	);
 };
