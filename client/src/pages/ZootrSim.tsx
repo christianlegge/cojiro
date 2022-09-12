@@ -59,7 +59,10 @@ const ZootrSim = () => {
 
 	return (
 		<>
-			<div className="flex flex-col lg:flex-row">
+			<div
+				className="flex flex-col lg:flex-row"
+				style={{ imageRendering: "crisp-edges" }}
+			>
 				<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 border-red-400 z-10">
 					<RegionList
 						region={region}

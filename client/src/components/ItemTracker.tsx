@@ -265,10 +265,7 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 
 const ItemTracker = ({ items }: { items: string[] }) => {
 	return (
-		<div
-			className="bg-gray-700 p-2 grid grid-cols-7 gap-2 mx-auto"
-			style={{ imageRendering: "crisp-edges" }}
-		>
+		<div className="bg-gray-700 p-2 grid grid-cols-7 gap-2 mx-auto">
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, items);
 				return (
