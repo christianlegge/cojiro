@@ -17,10 +17,9 @@ type Region = {
 const regions: Record<Region["name"], Region> = {
 	None: {
 		name: "None",
-		child: true,
-		adult: true,
+		child: false,
+		adult: false,
 		locations: {
-			"Links Pocket": { name: "Links Pocket", child: true, adult: true },
 			Ganon: { name: "Ganon", child: true, adult: true },
 			"Gift from Sages": {
 				name: "Gift from Sages",

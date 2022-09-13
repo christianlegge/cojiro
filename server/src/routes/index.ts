@@ -41,6 +41,7 @@ const router = trpc
 			return {
 				id: playthroughDoc.id,
 				locations: Object.keys(seed.locations),
+				pocket: seed.locations.get("Links Pocket"),
 			};
 		},
 	});

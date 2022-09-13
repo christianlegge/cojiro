@@ -26,6 +26,19 @@ const ZootrSim = () => {
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
 	);
 
+	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
+		onSuccess: ({ checked, item }) => {
+			setItems((items) => [...items, item]);
+			setChecked((prev) => [...prev, checked]);
+			// setLastItem(item);
+		},
+		onError: (err) => console.log(err),
+	});
+
+	if (!checked.includes("Links Pocket")) {
+		checkLocation.mutate({ id, location: "Links Pocket" });
+	}
+
 	const getPlaythroughResult = trpc.useQuery(
 		[
 			"playthrough.get",
@@ -82,6 +95,7 @@ const ZootrSim = () => {
 							setChecked={setChecked}
 							setItems={setItems}
 							allLocations={locations}
+							checkLocation={checkLocation}
 						/>
 					</div>
 					<div className="bg-red-300">

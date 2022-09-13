@@ -3,6 +3,7 @@ import regions from "../utils/regions";
 import { trpc } from "../utils/trpc";
 import CheckSquare from "./CheckSquare";
 import { useParams } from "react-router-dom";
+import { Mutation, UseMutationResult } from "react-query";
 
 function locationDisplayName(name: string, region: string): string {
 	if (name.startsWith(region)) {
@@ -22,6 +23,7 @@ const LocationList = ({
 	setChecked,
 	setItems,
 	allLocations,
+	checkLocation,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -29,17 +31,11 @@ const LocationList = ({
 	setChecked: React.Dispatch<React.SetStateAction<string[]>>;
 	setItems: React.Dispatch<React.SetStateAction<string[]>>;
 	allLocations: string[];
+	checkLocation: UseMutationResult;
 }) => {
 	const { id } = useParams() as { id: string };
 	const [lastItem, setLastItem] = useState("");
-	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
-		onSuccess: ({ checked, item }) => {
-			setItems((items) => [...items, item]);
-			setChecked((prev) => [...prev, checked]);
-			setLastItem(item);
-		},
-		onError: (err) => console.log(err),
-	});
+
 	const numChecks = Object.keys(regions[region].locations).filter((el) =>
 		allLocations.includes(el)
 	).length;
