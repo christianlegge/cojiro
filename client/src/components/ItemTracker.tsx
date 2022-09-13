@@ -1,4 +1,5 @@
 import React from "react";
+import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
 
 type TrackerItem = {
@@ -274,15 +275,11 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 						className="w-16 h-16 relative"
 						content={trackerItem.displayName}
 					>
-						<img
-							className={`object-contain w-full h-full z-0 ${
-								items.includes(trackerItem.itemName)
-									? "opacity-100"
-									: "opacity-30"
-							}`}
+						<ItemIcon
+							className="object-contain w-full h-full z-0"
 							src={trackerItem.fileName}
 							alt={trackerItem.displayName}
-							title={trackerItem.displayName}
+							has={items.includes(trackerItem.itemName)}
 						/>
 					</Tooltip>
 				);

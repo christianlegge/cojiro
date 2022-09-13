@@ -5,7 +5,7 @@ import QuitForm from "../components/QuitForm";
 import ItemTracker from "../components/ItemTracker";
 import { trpc } from "../utils/trpc";
 import LandingPage from "./LandingPage";
-import MedallionTracker from "../components/MedallionTracker";
+import QuestTracker from "../components/QuestTracker";
 import { useParams, useNavigate } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 
@@ -88,7 +88,7 @@ const ZootrSim = () => {
 						<ItemTracker items={items} />
 					</div>
 					<div className="bg-blue-400">
-						<MedallionTracker items={items} />
+						<QuestTracker items={items} />
 					</div>
 					<div className="bg-green-300">Hints</div>
 				</div>
