@@ -3,32 +3,39 @@ import ErrorBox from "../components/ErrorBox";
 import TextInput from "../components/TextInput";
 import { trpc } from "../utils/trpc";
 import { Link, useNavigate } from "react-router-dom";
+import LeftRightSwitch from "../components/LeftRightSwitch";
 
 const settingsPresets: { [key: string]: string } = {
-	"Settings Presets": "",
-	"Default / Beginner": "AJLSXCHYKASBJAAZNAAAANCUWCHGLTDDAAAAAKAAA4AAJUCA",
-	"Easy Mode": "AJUWXCHYKAA83RABAAAAAECCWCHGLTDDAKJ8S8A9BAAANKAAA4HA2UCA",
 	"S5 Tournament":
 		"AJTWXCHYKAA8KLAHJAASAECCWCHGLTDDAKAAJAEAC2AJSDGBLADLED7JKQUXEANKCAJAAYMASBFAB",
+	"Scrub Tournament":
+		"AJSWPCBSKAA8KLAHJAASAECCYCHGLTDDAKJ8S8A9BAJAEAC2AJSDGBLADLED7JKYUAJGKAABDAA7BANJBJ",
+	"Co-op Tournament Season 2":
+		"AASWWCHYKAA8RAHJAAAXECCYCHGLTDDAKJ8S8AAJAEAC2AJSDGBLADLED7JKQUXEANKAJAAWTASBFSA",
 	"Standard Weekly (Latest)":
 		"AJSWXCHYKAA8KLAHJAASAECCWCHGLTDDAKAAJAEAC2AJSDGBLADLED7JKQUXEANKCAJAAWVASBFAB",
 	"DDR Weekly (2021-01-19)":
 		"AJ2EXAHYKAA6MAAHJAAAAECCUCHGLTDDAKAAJAEAC2AJSDGBLAD8SC3JHLUVNFBAMCAASYAAYWAA",
-	"Scrub Tournament":
-		"AJSWPCBSKAA8KLAHJAASAECCYCHGLTDDAKJ8S8A9BAJAEAC2AJSDGBLADLED7JKYUAJGKAABDAA7BANJBJ",
-	"Multiworld Tournament Season 2":
-		"CJSWXCHYKAA8KRAHJAAAXECCYCHGLTDHAKJ8S8AAJAEAC2AJSDGBLAD5TC3JHLUVNFBSNCAUFNAAWXASBFSA",
-	"Hell Mode": "AJKSYCHYKSTBAAAZ6559HD7PXCHGLTDRAA29BAAASEGAE23S",
+	"Default / Beginner": "AJLSXCHYKASBJAAZNAAAANCUWCHGLTDDAAAAAKAAA4AAJUCA",
+	"Easy Mode": "AJUWXCHYKAA83RABAAAAAECCWCHGLTDDAKJ8S8A9BAAANKAAA4HA2UCA",
+	// "Multiworld Tournament Season 2":
+	// 	"CJSWXCHYKAA8KRAHJAAAXECCYCHGLTDHAKJ8S8AAJAEAC2AJSDGBLAD5TC3JHLUVNFBSNCAUFNAAWXASBFSA",
+	// "Hell Mode": "AJKSYCHYKSTBAAAZ6559HD7PXCHGLTDRAA29BAAASEGAE23S",
 	Bingo: "AJ2AWCHYKASFKAAHJAAAANCUWCHGLTDDAKJ8S82TBASAWJG4TU6EMKA2UAAAWDASFFAA",
 	League: "AASWXCHYKAA8KCAHJAAAAECCWCHGLTDDAKAAJAEAHADLED7JKQUXEANKAJ2AAJZAADLAC",
-	"Co-op Tournament Season 2":
-		"AASWWCHYKAA8KRAHJAAAXECCYCHGLTDDAKJ8S8AAJAEAC2AJSDGBLADLED7JKQUXEANKAJAAWTASBFSA",
 };
 
 const StartForm = () => {
 	const navigate = useNavigate();
 	const [error, setError] = useState<string | null>(null);
 	const [generating, setGenerating] = useState(false);
+	const [selectedPreset, setSelectedPreset] = useState<string>("");
+	const [seedType, setSeedType] = useState<"random" | "custom">("random");
+	const [settingsType, setSettingsType] = useState<"preset" | "custom">(
+		"preset"
+	);
+	const [seed, setSeed] = useState("");
+	const [settings, setSettings] = useState("");
 	const [jwt, setJwt] = useState<string | null>(null);
 	const [ids, setIds] = useState<string[]>([]);
 	const getPlaythroughFromJwt = trpc.useQuery(
@@ -68,67 +75,138 @@ const StartForm = () => {
 			navigate(`/play/${id}`);
 		},
 		onSettled: () => setGenerating(false),
-		onError: (err) => setError(err.message),
+		onError: (err) => {
+			setError(err.message);
+			setSelectedPreset("");
+		},
 	});
-
-	const [settingsString, setSettingsString] = useState<string>("");
 
 	useEffect(() => {
 		setJwt(localStorage.getItem("playthroughsJwt"));
 	}, []);
 
-	return (
-		<>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					const target = e.target as typeof e.target & {
-						Seed: { value: string };
-						Settings: { value: string };
-					};
-					startMutation.mutate({
-						seed: target.Seed.value,
-						settingsString: target.Settings.value,
-					});
-					setError(null);
-					setGenerating(true);
-				}}
-				className=""
-			>
-				<TextInput name="Seed" placeholder="leave blank for random" />
-				<TextInput
-					name="Settings"
-					valueState={[settingsString, setSettingsString]}
-					required
-				/>
-				<select
-					onChange={(e) => {
-						setSettingsString(settingsPresets[e.target.value]);
-					}}
-				>
-					{Object.keys(settingsPresets).map((preset) => (
-						<option key={preset}>{preset}</option>
-					))}
-				</select>
+	const startPlaythrough = (settingsString: string): void => {
+		if (seedType === "custom" && !seed) {
+			setSelectedPreset("");
+			setError(
+				'No seed given! Please type a seed or choose "Random seed".'
+			);
+			return;
+		}
 
-				<button
-					className={`p-4 rounded-md ${
-						generating ? "bg-zinc-300" : "bg-blue-200"
-					}`}
-					{...(generating ? { disabled: true } : {})}
-				>
-					{generating ? (
-						<>
-							<span className="animate-spin inline-block mr-3">
-								.
-							</span>
-							<span>Generating...</span>
-						</>
-					) : (
-						"Generate"
-					)}
-				</button>
-			</form>
+		if (settingsType === "custom" && !settings) {
+			setSelectedPreset("");
+			setError(
+				'No settings given! Please type a settings string or disable "Use custom settings".'
+			);
+			return;
+		}
+
+		startMutation.mutate({
+			seed: seedType === "custom" ? seed : undefined,
+			settingsString: settingsString,
+		});
+		setError(null);
+		setGenerating(true);
+	};
+
+	return (
+		<div className="grid place-items-center pt-2 px-2 gap-4">
+			<div className="grid grid-cols-3 gap-2">
+				<div className="flex pl-4 justify-between items-center w-full gap-10 col-span-3">
+					<h2 className="font-semibold text-2xl">Presets</h2>
+					<div className="space-x-2">
+						<label htmlFor="customSettings" className="">
+							Use custom settings
+						</label>
+						<input
+							checked={settingsType === "custom"}
+							onChange={(e) =>
+								setSettingsType(
+									e.target.checked ? "custom" : "preset"
+								)
+							}
+							type="checkbox"
+							name="customSettings"
+							id="customSettings"
+						/>
+					</div>
+				</div>
+				{Object.keys(settingsPresets).map((preset) => (
+					<button
+						disabled={generating || settingsType === "custom"}
+						key={preset}
+						className={`border px-4 py-2 rounded-lg shadow-md ${
+							settingsType === "custom" ||
+							(generating && preset !== selectedPreset)
+								? "opacity-50"
+								: ""
+						} ${
+							preset === selectedPreset
+								? "shadow-none translate-y-1"
+								: ""
+						}`}
+						onClick={() => {
+							setSelectedPreset(preset);
+							startPlaythrough(settingsPresets[preset]);
+						}}
+					>
+						{generating && preset === selectedPreset ? (
+							<>
+								<span className="animate-spin inline-block mr-3">
+									.
+								</span>
+								<span>Generating...</span>
+							</>
+						) : (
+							preset
+						)}
+					</button>
+				))}
+			</div>
+			{settingsType === "custom" && (
+				<div className="flex gap-2">
+					<TextInput
+						name="settings"
+						placeholder="settings"
+						valueState={[settings, setSettings]}
+						enterCallback={() => startPlaythrough(settings)}
+					/>
+					<button
+						className={`px-8 border rounded-lg ${
+							generating ? "translate-y-1" : "shadow-md"
+						}`}
+						onClick={() => startPlaythrough(settings)}
+					>
+						{generating ? (
+							<>
+								<span className="animate-spin inline-block mr-3">
+									.
+								</span>
+								<span>Generating...</span>
+							</>
+						) : (
+							"Submit"
+						)}
+					</button>
+				</div>
+			)}
+			<div className="flex flex-wrap justify-center items-center">
+				<LeftRightSwitch
+					left="Random seed"
+					right="Custom seed"
+					leftCallback={() => setSeedType("random")}
+					rightCallback={() => setSeedType("custom")}
+				/>
+				{seedType === "custom" && (
+					<TextInput
+						name="seed"
+						placeholder="seed"
+						valueState={[seed, setSeed]}
+					/>
+				)}
+			</div>
+			<ErrorBox error={error} />
 			<button onClick={() => startMutation.mutate({ sampleSeed: true })}>
 				Sample seed
 			</button>
@@ -144,8 +222,7 @@ const StartForm = () => {
 					))
 				)}
 			</ul>
-			<ErrorBox error={error} />
-		</>
+		</div>
 	);
 };
 

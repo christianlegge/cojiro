@@ -5,21 +5,31 @@ const TextInput = ({
 	placeholder,
 	required,
 	valueState,
+	enterCallback,
 }: {
 	name: string;
 	placeholder?: string;
 	required?: boolean;
 	valueState?: [string, React.Dispatch<React.SetStateAction<string>>];
+	enterCallback?: () => void;
 }) => {
 	return (
-		<div className="p-2">
-			<label htmlFor={name}>{name}</label>
-			<br />
+		<div>
+			{/* <label htmlFor={name}>{name}</label>
+			<br /> */}
 			<input
 				className="border-[1px] border-gray-300 rounded-md p-2"
 				placeholder={placeholder}
 				type="text"
 				name={name}
+				onKeyDown={
+					enterCallback &&
+					((e) => {
+						if (e.key === "Enter") {
+							enterCallback();
+						}
+					})
+				}
 				id={name}
 				{...(valueState
 					? {
