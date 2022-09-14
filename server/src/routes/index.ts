@@ -25,13 +25,25 @@ const router = trpc
 			),
 		async resolve({ input }) {
 			let seed: ParsedSeed;
+			let startingItems: string[] = [];
 			if ("sampleSeed" in input) {
-				seed = parseSeed(sampleSeed as SeedReturnType);
+				seed = parseSeed(sampleSeed);
+				startingItems = Object.keys(sampleSeed.starting_items).flatMap(
+					(el) =>
+						Array(Math.min(sampleSeed.starting_items[el], 5)).fill(
+							el
+						)
+				);
 			} else {
-				seed = await createSeed({
+				let apiSeed = await createSeed({
 					seed: input.seed,
 					settingsString: input.settingsString,
 				});
+				seed = parseSeed(apiSeed);
+				startingItems = Object.keys(apiSeed.starting_items).flatMap(
+					(el) =>
+						Array(Math.min(apiSeed.starting_items[el], 5)).fill(el)
+				);
 			}
 			const playthrough = await prisma.playthrough.create({
 				data: {
@@ -40,13 +52,12 @@ const router = trpc
 							...seed,
 						},
 					},
+					items: startingItems,
 				},
 			});
 
 			return {
 				id: playthrough.id,
-				locations: Object.keys(seed.locations),
-				pocket: seed.locations["Links Pocket"],
 			};
 		},
 	});

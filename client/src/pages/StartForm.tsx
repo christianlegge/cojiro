@@ -67,7 +67,7 @@ const StartForm = () => {
 		},
 	});
 	const startMutation = trpc.useMutation("startPlaythrough", {
-		onSuccess: ({ id, locations }) => {
+		onSuccess: ({ id }) => {
 			addPlaythroughToJwt.mutate({
 				token: jwt,
 				playthroughId: id,

@@ -1,14 +1,12 @@
 import axios, { AxiosError } from "axios";
 import dotenv from "dotenv";
-import parseSeed from "../util/parseSeed";
-import { ParsedSeed } from "../util/parseSeed";
 
 dotenv.config();
 
 const createSeed = async (params: {
 	seed?: string;
 	settingsString: string;
-}): Promise<ParsedSeed> => {
+}): Promise<SeedReturnType> => {
 	try {
 		let response = await axios.get(
 			"https://www.ootrandomizer.com/api/seed/create",
@@ -19,9 +17,8 @@ const createSeed = async (params: {
 				},
 			}
 		);
-		let data = response.data as SeedReturnType;
 
-		return parseSeed(data);
+		return response.data as SeedReturnType;
 	} catch (err) {
 		throw err;
 	}
@@ -121,10 +118,7 @@ export type SeedReturnType = {
 	};
 	randomized_settings: { starting_age: "child" | "adult" };
 	starting_items: {
-		"Deku Nuts": 99;
-		"Deku Shield": 1;
-		"Deku Sticks": 99;
-		Ocarina: 1;
+		[key: string]: number;
 	};
 	item_pool: {
 		[key: string]: number;
@@ -255,7 +249,7 @@ export type SeedReturnType = {
 	};
 };
 
-export const sampleSeed = {
+export const sampleSeed: SeedReturnType = {
 	":version": "6.2.0 Release",
 	file_hash: ["Frog", "Slingshot", "Hover Boots", "Map", "SOLD OUT"],
 	":seed": "OODJ06KV3E",
