@@ -1,30 +1,38 @@
 import { SeedReturnType } from "../services/createSeed";
-import { ISeed } from "../models/Playthrough";
 
-function parseSeed(seed: SeedReturnType): ISeed {
-	let locationMap = new Map<string, { item: string; price?: number }>();
+export type ParsedSeed = {
+	locations: {
+		[key: string]: {
+			item: string;
+			price?: number;
+		};
+	};
+	gossip_stones: {
+		[key: string]: string;
+	};
+};
 
-	Object.keys(seed.locations).forEach((location) => {
-		let entry: { item: string; price?: number };
-		if (typeof seed.locations[location] === "string") {
-			entry = { item: seed.locations[location] as string };
-		} else {
-			entry = {
-				...(seed.locations[location] as {
-					item: string;
-					price: number;
-				}),
+function parseSeed(seed: SeedReturnType): ParsedSeed {
+	let locations: ParsedSeed["locations"] = Object.keys(seed.locations).reduce(
+		(acc, el) => {
+			let loc = seed.locations[el];
+			return {
+				...acc,
+				[el]: {
+					item: typeof loc === "string" ? loc : loc.item,
+					price: typeof loc === "string" ? undefined : loc.price,
+				},
 			};
-		}
-		locationMap.set(location, entry);
-	});
-	let stonesMap = new Map<string, string>();
-	Object.keys(seed.gossip_stones).forEach((stone) => {
-		stonesMap.set(stone, seed.gossip_stones[stone].text);
-	});
+		},
+		{}
+	);
+	let gossip_stones: ParsedSeed["gossip_stones"] = Object.keys(
+		seed.gossip_stones
+	).reduce((acc, el) => ({ ...acc, [el]: seed.gossip_stones[el].text }), {});
+
 	return {
-		locations: new Map(locationMap),
-		gossip_stones: new Map(stonesMap),
+		locations,
+		gossip_stones,
 	};
 }
 

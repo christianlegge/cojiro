@@ -1,8 +1,9 @@
 import createSeed, { sampleSeed, SeedReturnType } from "../services/createSeed";
-import Playthrough, { ISeed } from "../models/Playthrough";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
 import parseSeed from "../util/parseSeed";
+import prisma from "../db/client";
+import { ParsedSeed } from "../util/parseSeed";
 
 const router = trpc
 	.router()
@@ -23,7 +24,7 @@ const router = trpc
 				})
 			),
 		async resolve({ input }) {
-			let seed: ISeed;
+			let seed: ParsedSeed;
 			if ("sampleSeed" in input) {
 				seed = parseSeed(sampleSeed as SeedReturnType);
 			} else {
@@ -32,16 +33,20 @@ const router = trpc
 					settingsString: input.settingsString,
 				});
 			}
-			let playthroughDoc = new Playthrough({
-				seed: seed,
-				checked: [],
-				items: [],
+			const playthrough = await prisma.playthrough.create({
+				data: {
+					seed: {
+						create: {
+							...seed,
+						},
+					},
+				},
 			});
-			playthroughDoc.save();
+
 			return {
-				id: playthroughDoc.id,
+				id: playthrough.id,
 				locations: Object.keys(seed.locations),
-				pocket: seed.locations.get("Links Pocket"),
+				pocket: seed.locations["Links Pocket"],
 			};
 		},
 	});

@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Seed {
+	id String @id @default(cuid())
+	locations Json
+	gossip_stones Json
+	playthrough Playthrough?
+}
+
+model Playthrough {
+	id String @id @default(cuid())
+	createdAt DateTime @default(now())
+	seed Seed @relation(fields: [seedId], references: [id])
+	seedId String @unique
+	checked String[]
+	items String[]
+	known_hints String[]
+}

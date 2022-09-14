@@ -1,14 +1,14 @@
 import axios, { AxiosError } from "axios";
 import dotenv from "dotenv";
 import parseSeed from "../util/parseSeed";
-import { ISeed } from "../models/Playthrough";
+import { ParsedSeed } from "../util/parseSeed";
 
 dotenv.config();
 
 const createSeed = async (params: {
 	seed?: string;
 	settingsString: string;
-}): Promise<ISeed> => {
+}): Promise<ParsedSeed> => {
 	try {
 		let response = await axios.get(
 			"https://www.ootrandomizer.com/api/seed/create",
