@@ -24,6 +24,14 @@ const Header = () => {
 				>
 					How to Play
 				</NavLink>
+				<NavLink
+					className={({ isActive }) =>
+						isActive ? activeClass : undefined
+					}
+					to="/login"
+				>
+					Log in/Register
+				</NavLink>
 			</div>
 		</header>
 	);

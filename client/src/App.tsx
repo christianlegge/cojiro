@@ -6,6 +6,7 @@ import HowToPlay from "./pages/HowToPlay";
 import ZootrSim from "./pages/ZootrSim";
 import { trpc } from "./utils/trpc";
 import StartForm from "./pages/StartForm";
+import LoginRegister from "./pages/LoginRegister";
 
 const App = () => {
 	const [queryClient] = useState(() => new QueryClient());
@@ -19,6 +20,7 @@ const App = () => {
 			<QueryClientProvider client={queryClient}>
 				<Routes>
 					<Route path="/" element={<LandingPage />} />
+					<Route path="/login" element={<LoginRegister />} />
 					<Route path="/play" element={<StartForm />} />
 					<Route path="/play/:id" element={<ZootrSim />} />
 					<Route path="/how-to-play" element={<HowToPlay />} />
