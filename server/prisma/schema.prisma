@@ -35,5 +35,5 @@ model Playthrough {
 	items String[]
 	known_hints String[]
 	user User? @relation(fields: [userId], references: [id])
-	userId String
+	userId String?
 }
