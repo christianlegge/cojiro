@@ -7,6 +7,7 @@ const locations = Object.keys(hellSeed.locations);
 const amt = locations.length;
 const regions = getRegions();
 const nonNoneLocations = getNonNoneLocations();
+const allStones = Object.keys(hellSeed.gossip_stones);
 
 const CheckPosition = () => {
 	const [region, setRegion] = useState(regions[1]);
@@ -82,14 +83,20 @@ const CheckPosition = () => {
 								el in regionObj[region].locations ||
 								!nonNoneLocations.includes(el)
 						)
+						.concat(allStones)
 						.map((el, idx) => {
 							return (
 								<button
 									key={el}
-									className={btnClasses(
-										el === loc,
-										allChecks.includes(el)
-									)}
+									className={
+										btnClasses(
+											el === loc,
+											allChecks.includes(el)
+										) +
+										(el === allStones[0]
+											? " border-t-8 border-t-black"
+											: "")
+									}
 									onClick={() => setLoc(el)}
 								>
 									{el}
@@ -129,12 +136,7 @@ const CheckPosition = () => {
 								e.pageX - (offset.left + window.scrollX),
 								e.pageY - (offset.top + window.scrollY),
 							];
-							console.log(e.pageX, e.pageY);
-							console.log(x, y);
-							console.log(
-								(100 * x) / offset.width,
-								(100 * y) / offset.height
-							);
+
 							setLocation.mutate({
 								location: loc,
 								region: region,
