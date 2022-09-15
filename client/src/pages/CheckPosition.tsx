@@ -28,7 +28,13 @@ const CheckPosition = () => {
 			setAdult(data.adult);
 		},
 	});
-	const setLocation = trpc.useMutation("check.set");
+	const setLocation = trpc.useMutation("check.set", {
+		onSuccess(data, variables, context) {
+			setAllChecks((prev) => [...prev, variables.location]);
+			setCurrentLeft(variables.left);
+			setCurrentTop(variables.top);
+		},
+	});
 	const imageRef = useRef<HTMLImageElement>(null);
 
 	const [child, setChild] = useState(true);
@@ -147,7 +153,7 @@ const CheckPosition = () => {
 								top: currentTop + "%",
 								left: currentLeft + "%",
 							}}
-							className="absolute rounded-full border-8 ring-8 ring-offset-8 border-pink-400"
+							className="absolute rounded-full border-8 ring-8 ring-offset-8 border-pink-400 -translate-x-1/2 -translate-y-1/2"
 						></div>
 					)}
 				</div>
