@@ -8,6 +8,7 @@ import LandingPage from "./LandingPage";
 import QuestTracker from "../components/QuestTracker";
 import { useParams, useNavigate } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
+import { stringify } from "querystring";
 
 const ZootrSim = () => {
 	const { id } = useParams() as { id: string };
@@ -34,6 +35,10 @@ const ZootrSim = () => {
 		},
 		onError: (err) => console.log(err),
 	});
+
+	const checkLocationWrapper = (input: { id: string; location: string }) => {
+		checkLocation.mutate({ ...input });
+	};
 
 	if (!checked.includes("Links Pocket")) {
 		checkLocation.mutate({ id, location: "Links Pocket" });
@@ -95,7 +100,7 @@ const ZootrSim = () => {
 							setChecked={setChecked}
 							setItems={setItems}
 							allLocations={locations}
-							checkLocation={checkLocation}
+							checkLocation={checkLocationWrapper}
 						/>
 					</div>
 					<div className="bg-red-300">

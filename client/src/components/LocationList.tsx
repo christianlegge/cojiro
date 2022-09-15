@@ -31,7 +31,7 @@ const LocationList = ({
 	setChecked: React.Dispatch<React.SetStateAction<string[]>>;
 	setItems: React.Dispatch<React.SetStateAction<string[]>>;
 	allLocations: string[];
-	checkLocation: UseMutationResult;
+	checkLocation: (input: { id: string; location: string }) => void;
 }) => {
 	const { id } = useParams() as { id: string };
 	const [lastItem, setLastItem] = useState("");
@@ -62,7 +62,7 @@ const LocationList = ({
 								displayName={locationDisplayName(el, region)}
 								checked={checked.includes(el)}
 								onClick={() => {
-									checkLocation.mutate({
+									checkLocation({
 										id,
 										location: el,
 									});
@@ -86,7 +86,7 @@ const LocationList = ({
 								if (checked.includes(el)) {
 									return;
 								}
-								checkLocation.mutate({
+								checkLocation({
 									id,
 									location: el,
 								});
