@@ -7,6 +7,7 @@ import indexRouter from "./src/routes/index";
 import playthroughRouter from "./src/routes/playthrough";
 import jwtRouter from "./src/routes/jwt";
 import userRouter from "./src/routes/user";
+import checkRouter from "./src/routes/checkPosition";
 
 dotenv.config();
 
@@ -24,7 +25,8 @@ const trpcRouter = trpc
 	.merge("", indexRouter)
 	.merge("playthrough.", playthroughRouter)
 	.merge("jwt.", jwtRouter)
-	.merge("user.", userRouter);
+	.merge("user.", userRouter)
+	.merge("check.", checkRouter);
 
 export type AppRouter = typeof trpcRouter;
 

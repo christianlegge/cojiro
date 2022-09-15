@@ -10,6 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model CheckPosition {
+	location String @id
+	region String
+	top Decimal
+	left Decimal
+}
+
 model User {
 	id String @id @default(cuid())
 	username String @unique

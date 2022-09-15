@@ -1,16 +1,7 @@
-import express from "express";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
-import * as trpcExpress from "@trpc/server/adapters/express";
 import prisma from "../db/client";
 import { ParsedSeed } from "../util/parseSeed";
-
-export async function createContext(
-	opts?: trpcExpress.CreateExpressContextOptions
-) {
-	return { playthroughId: "test id" };
-}
-type Context = trpc.inferAsyncReturnType<typeof createContext>;
 
 const router = trpc
 	.router()
