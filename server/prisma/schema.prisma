@@ -13,8 +13,10 @@ datasource db {
 model CheckPosition {
 	location String @id
 	region String
-	top Decimal
-	left Decimal
+	top Float
+	left Float
+	child Boolean @default(true)
+	adult Boolean @default(true)
 }
 
 model User {

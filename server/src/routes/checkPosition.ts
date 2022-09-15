@@ -8,7 +8,11 @@ const router = trpc
 		input: z.object({
 			location: z.string(),
 		}),
-		async resolve({ input }) {},
+		async resolve({ input }) {
+			return await prisma.checkPosition.findUnique({
+				where: { location: input.location },
+			});
+		},
 	})
 	.mutation("set", {
 		input: z.object({
@@ -16,12 +20,30 @@ const router = trpc
 			region: z.string(),
 			top: z.number().min(0).max(100),
 			left: z.number().min(0).max(100),
+			child: z.boolean(),
+			adult: z.boolean(),
 		}),
 		async resolve({ input }) {
-			await prisma.checkPosition.create({
-				data: { ...input },
+			await prisma.checkPosition.upsert({
+				where: {
+					location: input.location,
+				},
+				update: {
+					...input,
+				},
+				create: {
+					...input,
+				},
 			});
 			return true;
+		},
+	})
+	.query("getAll", {
+		async resolve() {
+			let allChecks = await prisma.checkPosition.findMany({
+				select: { location: true },
+			});
+			return allChecks.map((el) => el.location);
 		},
 	});
 

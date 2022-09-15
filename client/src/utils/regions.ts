@@ -3783,9 +3783,14 @@ const regions: Record<Region["name"], Region> = {
 	},
 };
 
-const getRegions = () => ["Kokiri Forest", "Hyrule Field", "Lake Hylia"];
+const getRegions = () => Object.keys(regions);
 
 const getLocationsAtRegion = (region: string) => ["Check 1, Check 2, Check 3"];
 
 export default regions;
 export { getRegions, getLocationsAtRegion };
+
+export const getNonNoneLocations = () =>
+	Object.keys(regions)
+		.filter((el) => el !== "None")
+		.flatMap((el) => Object.keys(regions[el].locations));
