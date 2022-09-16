@@ -12,7 +12,10 @@ const QuestTracker = ({ items }: { items: string[] }) => {
 	const stones = ["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"];
 	return (
 		<div className="grid grid-cols-[1fr_16rem]">
-			<div>skulltulas etc</div>
+			<div>
+				Skulltulas:{" "}
+				{items.filter((el) => el === "Gold Skulltula Token").length}
+			</div>
 			<div className="row-span-2 pr-12 py-6">
 				<MedallionCircle items={items} />
 				<div className="flex justify-between gap-1 w-full mt-20">

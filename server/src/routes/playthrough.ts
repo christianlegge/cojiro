@@ -64,13 +64,17 @@ const router = trpc
 					message: `Playthrough already checked location ${input.location}`,
 				});
 			}
-			if (!(input.location in seed.locations)) {
+			let item: string;
+			if (input.location in seed.locations) {
+				item = seed.locations[input.location].item;
+			} else if (input.location.includes("GS")) {
+				item = "Gold Skulltula Token";
+			} else {
 				throw new trpc.TRPCError({
 					code: "NOT_FOUND",
 					message: `Location ${input.location} not found in seed`,
 				});
 			}
-			let item = seed.locations[input.location].item;
 			await prisma.playthrough.update({
 				where: { id: playthrough.id },
 				data: {

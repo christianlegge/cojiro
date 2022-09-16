@@ -58,7 +58,10 @@ const LocationList = ({
 						className="object-contain h-full w-auto mx-auto"
 					/>
 					{Object.keys(regions[region])
-						.filter((el) => allLocations.includes(el))
+						.filter(
+							(el) =>
+								allLocations.includes(el) || el.includes("GS")
+						)
 						.map((el, idx) => (
 							<CheckSquare
 								key={idx}
@@ -81,7 +84,9 @@ const LocationList = ({
 			</div>
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region])
-					.filter((el) => allLocations.includes(el))
+					.filter(
+						(el) => allLocations.includes(el) || el.includes("GS")
+					)
 					.map((el) => (
 						<button
 							className={`block rounded-md p-2 ${
