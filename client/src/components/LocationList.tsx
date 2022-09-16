@@ -43,6 +43,7 @@ const LocationList = ({
 	allLocations,
 	checkLocation,
 	checkStone,
+	headerText,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -52,16 +53,19 @@ const LocationList = ({
 	allLocations: string[];
 	checkLocation: (input: { id: string; location: string }) => void;
 	checkStone: (input: { id: string; stone: string }) => void;
+	headerText?: string;
 }) => {
 	if (!(region in regions)) {
 		return <div>Error! region not set correctly</div>;
 	}
 	const { id } = useParams() as { id: string };
-	const [lastItem, setLastItem] = useState("");
 
 	return (
 		<>
-			<span className="text-2xl mx-auto">{lastItem}</span>
+			<div className="flex px-4 py-2 justify-between">
+				<span className="text-2xl font-bold">{region}</span>
+				<span className="text-lg">{headerText}</span>
+			</div>
 			<div className="flex justify-center w-full h-auto">
 				<div className="relative inline-block min-h-0 min-w-0">
 					<img

@@ -24,6 +24,7 @@ const ZootrSim = () => {
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
 	const [hints, setHints] = useState<string[]>([]);
+	const [lastCheck, setLastCheck] = useState("");
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -59,8 +60,7 @@ const ZootrSim = () => {
 		onSuccess: ({ checked, item }) => {
 			setItems((items) => [...items, item]);
 			setChecked((prev) => [...prev, checked]);
-
-			// setLastItem(item);
+			setLastCheck(`${checked}: ${item}`);
 		},
 		onError: (err) => console.log(err),
 	});
@@ -71,10 +71,8 @@ const ZootrSim = () => {
 
 	const checkStone = trpc.useMutation("playthrough.checkStone", {
 		onSuccess: ({ checked, hint }) => {
-			// setItems((items) => [...items, item]);
 			setChecked((prev) => [...prev, checked]);
-
-			// setLastItem(item);
+			setLastCheck(`${checked}: ${hint}`);
 		},
 		onError: (err) => console.log(err),
 	});
@@ -108,6 +106,7 @@ const ZootrSim = () => {
 							allLocations={locations}
 							checkLocation={checkLocationWrapper}
 							checkStone={checkStoneWrapper}
+							headerText={lastCheck}
 						/>
 					</div>
 					<ItemTracker items={items} />
@@ -119,7 +118,7 @@ const ZootrSim = () => {
 			</div>
 
 			<a
-				className="absolute flex items-center gap-1 right-4 top-4 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
+				className="absolute flex items-center gap-1 right-4 -top-14 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
 				href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
 				target="_blank"
 				rel="noreferrer"

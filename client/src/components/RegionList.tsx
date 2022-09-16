@@ -14,9 +14,6 @@ const RegionList = ({
 }) => {
 	return (
 		<>
-			<span className="block text-center text-xl lg:text-right lg:pr-2">
-				{region}
-			</span>
 			<button
 				onClick={() =>
 					setAge((prev) => (prev === "adult" ? "child" : "adult"))
