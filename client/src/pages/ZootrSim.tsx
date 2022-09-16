@@ -93,6 +93,7 @@ const ZootrSim = () => {
 						setRegion={setRegion}
 						age={age}
 						setAge={setAge}
+						items={items}
 					/>
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
