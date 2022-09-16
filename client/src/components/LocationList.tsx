@@ -12,7 +12,7 @@ const regions: {
 				adult: boolean;
 			};
 		};
-		regions: {
+		gossip_stones: {
 			[key: string]: {
 				top: number;
 				left: number;
@@ -42,6 +42,7 @@ const LocationList = ({
 	setItems,
 	allLocations,
 	checkLocation,
+	checkStone,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -50,6 +51,7 @@ const LocationList = ({
 	setItems: React.Dispatch<React.SetStateAction<string[]>>;
 	allLocations: string[];
 	checkLocation: (input: { id: string; location: string }) => void;
+	checkStone: (input: { id: string; stone: string }) => void;
 }) => {
 	if (!(region in regions)) {
 		return <div>Error! region not set correctly</div>;
@@ -67,31 +69,48 @@ const LocationList = ({
 						alt=""
 						className="object-contain h-full w-auto mx-auto"
 					/>
-					{Object.keys(regions[region].locations)
-						.filter(
-							(el) =>
-								(allLocations.includes(el) ||
-									el.includes("GS")) &&
-								regions[region].locations[el][age]
-						)
-						.map((el, idx) => (
-							<CheckSquare
-								key={idx}
-								check={el}
-								coords={{
-									top: `${regions[region].locations[el].top}%`,
-									left: `${regions[region].locations[el].left}%`,
-								}}
-								displayName={locationDisplayName(el, region)}
-								checked={checked.includes(el)}
-								onClick={() => {
-									checkLocation({
-										id,
-										location: el,
-									});
-								}}
-							/>
-						))}
+					{(
+						["locations", "gossip_stones"] as (
+							| "locations"
+							| "gossip_stones"
+						)[]
+					).flatMap((checkType) =>
+						Object.keys(regions[region][checkType])
+							.filter(
+								(el) =>
+									regions[region][checkType][el][age] &&
+									(checkType === "gossip_stones" ||
+										allLocations.includes(el) ||
+										el.includes("GS"))
+							)
+							.map((el) => (
+								<CheckSquare
+									type={checkType}
+									key={el}
+									check={el}
+									coords={{
+										top: `${regions[region][checkType][el].top}%`,
+										left: `${regions[region][checkType][el].left}%`,
+									}}
+									displayName={locationDisplayName(
+										el,
+										region
+									)}
+									checked={checked.includes(el)}
+									onClick={() => {
+										checkType === "locations"
+											? checkLocation({
+													id,
+													location: el,
+											  })
+											: checkStone({
+													id,
+													stone: el,
+											  });
+									}}
+								/>
+							))
+					)}
 				</div>
 			</div>
 			<div className="flex flex-wrap gap-2">

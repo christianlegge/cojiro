@@ -97,7 +97,12 @@ const router = trpc
 			id: z.string(),
 			stone: z.string(),
 		}),
-		async resolve({ input }) {},
+		async resolve({ input }) {
+			return {
+				hint: "asdf",
+				checked: input.stone,
+			};
+		},
 	});
 
 export default router;

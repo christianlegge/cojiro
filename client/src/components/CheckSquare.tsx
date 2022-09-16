@@ -2,12 +2,14 @@ import React from "react";
 import Tooltip from "./Tooltip";
 
 const CheckSquare = ({
+	type,
 	check,
 	coords,
 	displayName,
 	checked,
 	onClick,
 }: {
+	type: "locations" | "gossip_stones";
 	check: string;
 	coords: { top: number | string; left: number | string };
 	displayName: string;
@@ -50,7 +52,9 @@ const CheckSquare = ({
 				<img
 					className="object-contain w-full h-full"
 					src={
-						check.includes("GS")
+						type === "gossip_stones"
+							? "/images/gossip-stone.png"
+							: check.includes("GS")
 							? "/images/skulltula.png"
 							: check.includes("Freestanding PoH")
 							? "/images/heartpiecemodel.png"

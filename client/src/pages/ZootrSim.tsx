@@ -66,6 +66,20 @@ const ZootrSim = () => {
 		checkLocation.mutate({ ...input });
 	};
 
+	const checkStone = trpc.useMutation("playthrough.checkStone", {
+		onSuccess: ({ checked, hint }) => {
+			// setItems((items) => [...items, item]);
+			setChecked((prev) => [...prev, checked]);
+
+			// setLastItem(item);
+		},
+		onError: (err) => console.log(err),
+	});
+
+	const checkStoneWrapper = (input: { id: string; stone: string }) => {
+		checkStone.mutate({ ...input });
+	};
+
 	return (
 		<>
 			<div
@@ -90,6 +104,7 @@ const ZootrSim = () => {
 							setItems={setItems}
 							allLocations={locations}
 							checkLocation={checkLocationWrapper}
+							checkStone={checkStoneWrapper}
 						/>
 					</div>
 					<ItemTracker items={items} />
