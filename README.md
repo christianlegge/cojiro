@@ -7,7 +7,7 @@ Simulate and practice Ocarina of Time Randomizer seeds
 ```
 $ cd client
 $ yarn install
-$ yarn start
+$ yarn dev
 ```
 
 ## Running the server
