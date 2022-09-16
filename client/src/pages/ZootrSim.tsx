@@ -27,23 +27,6 @@ const ZootrSim = () => {
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
 	);
 
-	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
-		onSuccess: ({ checked, item }) => {
-			setItems((items) => [...items, item]);
-			setChecked((prev) => [...prev, checked]);
-			// setLastItem(item);
-		},
-		onError: (err) => console.log(err),
-	});
-
-	const checkLocationWrapper = (input: { id: string; location: string }) => {
-		checkLocation.mutate({ ...input });
-	};
-
-	if (!checked.includes("Links Pocket")) {
-		checkLocation.mutate({ id, location: "Links Pocket" });
-	}
-
 	const getPlaythroughResult = trpc.useQuery(
 		[
 			"playthrough.get",
@@ -57,6 +40,9 @@ const ZootrSim = () => {
 				setLocations(locations);
 				setItems(items);
 				setChecked(checked);
+				if (!checked.includes("Links Pocket")) {
+					checkLocation.mutate({ id, location: "Links Pocket" });
+				}
 			},
 		}
 	);
@@ -66,15 +52,19 @@ const ZootrSim = () => {
 		localStorage.setItem("age", age);
 	}, [region, age]);
 
-	useEffect(() => {
-		if (id === "") {
-			setAge("child");
-			setRegion("Kokiri Forest");
-			return;
-		} else {
-			getPlaythroughResult.refetch();
-		}
-	}, [id]);
+	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
+		onSuccess: ({ checked, item }) => {
+			setItems((items) => [...items, item]);
+			setChecked((prev) => [...prev, checked]);
+
+			// setLastItem(item);
+		},
+		onError: (err) => console.log(err),
+	});
+
+	const checkLocationWrapper = (input: { id: string; location: string }) => {
+		checkLocation.mutate({ ...input });
+	};
 
 	return (
 		<>
