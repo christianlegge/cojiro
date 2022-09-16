@@ -64,7 +64,9 @@ const CheckSquare = ({
 					style={
 						checked
 							? { opacity: 0.7 }
-							: { filter: "drop-shadow(0px 0px 8px white)" }
+							: {
+									filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
+							  }
 					}
 				/>
 			</div>

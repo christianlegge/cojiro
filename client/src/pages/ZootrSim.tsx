@@ -9,6 +9,7 @@ import QuestTracker from "../components/QuestTracker";
 import { useParams, useNavigate } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { stringify } from "querystring";
+import HintTracker from "../components/HintTracker";
 
 const ZootrSim = () => {
 	const { id } = useParams() as { id: string };
@@ -22,6 +23,7 @@ const ZootrSim = () => {
 
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
+	const [hints, setHints] = useState<string[]>([]);
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -36,10 +38,11 @@ const ZootrSim = () => {
 		],
 		{
 			enabled: id !== "",
-			onSuccess: ({ checked, items, locations }) => {
+			onSuccess: ({ checked, items, locations, known_hints }) => {
 				setLocations(locations);
 				setItems(items);
 				setChecked(checked);
+				setHints(known_hints);
 				if (!checked.includes("Links Pocket")) {
 					checkLocation.mutate({ id, location: "Links Pocket" });
 				}
@@ -111,7 +114,7 @@ const ZootrSim = () => {
 					<div className="bg-blue-400">
 						<QuestTracker items={items} />
 					</div>
-					<div className="bg-green-300">Hints</div>
+					<HintTracker hints={hints} />
 				</div>
 			</div>
 
