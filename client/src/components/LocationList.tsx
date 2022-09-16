@@ -1,9 +1,17 @@
-import React, { useContext, useState } from "react";
-import regions from "../utils/regions";
-import { trpc } from "../utils/trpc";
+import React, { useState } from "react";
 import CheckSquare from "./CheckSquare";
 import { useParams } from "react-router-dom";
-import { Mutation, UseMutationResult } from "react-query";
+
+const regions: {
+	[key: string]: {
+		[key: string]: {
+			top: number;
+			left: number;
+			child: boolean;
+			adult: boolean;
+		};
+	};
+} = await import("../data/regions.json").then((x) => x.default);
 
 function locationDisplayName(name: string, region: string): string {
 	if (name.startsWith(region)) {
@@ -33,12 +41,12 @@ const LocationList = ({
 	allLocations: string[];
 	checkLocation: (input: { id: string; location: string }) => void;
 }) => {
+	if (!(region in regions)) {
+		return <div>Error! region not set correctly</div>;
+	}
 	const { id } = useParams() as { id: string };
 	const [lastItem, setLastItem] = useState("");
 
-	const numChecks = Object.keys(regions[region].locations).filter((el) =>
-		allLocations.includes(el)
-	).length;
 	return (
 		<>
 			<span className="text-2xl mx-auto">{lastItem}</span>
@@ -49,15 +57,15 @@ const LocationList = ({
 						alt=""
 						className="object-contain h-full w-auto mx-auto"
 					/>
-					{Object.keys(regions[region].locations)
+					{Object.keys(regions[region])
 						.filter((el) => allLocations.includes(el))
 						.map((el, idx) => (
 							<CheckSquare
 								key={idx}
 								check={el}
 								coords={{
-									top: 2,
-									left: `${(idx / numChecks) * 100}%`,
+									top: `${regions[region][el].top}%`,
+									left: `${regions[region][el].left}%`,
 								}}
 								displayName={locationDisplayName(el, region)}
 								checked={checked.includes(el)}
@@ -72,7 +80,7 @@ const LocationList = ({
 				</div>
 			</div>
 			<div className="flex flex-wrap gap-2">
-				{Object.keys(regions[region].locations)
+				{Object.keys(regions[region])
 					.filter((el) => allLocations.includes(el))
 					.map((el) => (
 						<button

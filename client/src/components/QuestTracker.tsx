@@ -9,7 +9,6 @@ function formatFilename(str: string): string {
 }
 
 const QuestTracker = ({ items }: { items: string[] }) => {
-	const medallions = ["Light", "Forest", "Fire", "Water", "Spirit", "Shadow"];
 	const stones = ["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"];
 	return (
 		<div className="grid grid-cols-[1fr_16rem]">
@@ -18,7 +17,11 @@ const QuestTracker = ({ items }: { items: string[] }) => {
 				<MedallionCircle items={items} />
 				<div className="flex justify-between gap-1 w-full mt-20">
 					{stones.map((stone) => (
-						<Tooltip content={stone} className="w-12 h-12 relative">
+						<Tooltip
+							key={stone}
+							content={stone}
+							className="w-12 h-12 relative"
+						>
 							<ItemIcon
 								src={`/images/${formatFilename(stone)}.png`}
 								className="object-contain w-full h-full"

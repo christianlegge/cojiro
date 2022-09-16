@@ -74,7 +74,7 @@ const ZootrSim = () => {
 		} else {
 			getPlaythroughResult.refetch();
 		}
-	}, [id, getPlaythroughResult]);
+	}, [id]);
 
 	return (
 		<>

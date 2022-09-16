@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import hellSeed from "../data/OoTR_1198103_ZNN2QY0R2G_Spoilers.json";
 import { trpc } from "../utils/trpc";
 import regionObj, { getNonNoneLocations, getRegions } from "../utils/regions";
+import locsWithData from "../data/allLocations.json";
 
 const locations = Object.keys(hellSeed.locations);
 const amt = locations.length;
@@ -44,13 +45,15 @@ const CheckPosition = () => {
 	const [currentLeft, setCurrentLeft] = useState(0);
 	const [currentTop, setCurrentTop] = useState(0);
 
+	const dataRef = useRef<HTMLElement>(null);
+
 	const btnClasses = (selected: boolean, done: boolean) =>
 		`w-full px-4 py=2 border rounded-lg ${done && "line-through"} ${
 			selected ? "text-white bg-blue-500" : done && "text-zinc-400"
 		}`;
 
 	return (
-		<div className="flex pt-1">
+		<div className="flex pt-1 align-top">
 			<div className="grid grid-cols-2 flex-grow-0 flex-shrink-0 w-80">
 				<div className="space-y-1">
 					{regions
