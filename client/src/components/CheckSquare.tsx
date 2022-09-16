@@ -25,19 +25,45 @@ const CheckSquare = ({
 					{check}
 				</span>
 			}
-			className="absolute w-8 h-8"
+			className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2"
 			style={{ ...coords }}
 		>
 			<div
-				className={`w-full h-full ${
+				className={`w-full h-full bg-contain bg-center bg-no-repeat ${
 					checked
-						? "cursor-default bg-zinc-500"
-						: "cursor-pointer bg-lime-500"
+						? "cursor-default" // bg-zinc-500"
+						: "cursor-pointer" // bg-lime-500"
 				}`}
 				onClick={() => {
 					if (!checked) onClick();
 				}}
-			></div>
+				// style={{
+				// 	backgroundImage: `url(${
+				// 		check.includes("GS")
+				// 			? "/images/skulltula.png"
+				// 			: check.includes("Freestanding PoH")
+				// 			? "/images/heartpiecemodel.png"
+				// 			: "/images/chest.png"
+				// 	})`,
+				// }}
+			>
+				<img
+					className="object-contain w-full h-full"
+					src={
+						check.includes("GS")
+							? "/images/skulltula.png"
+							: check.includes("Freestanding PoH")
+							? "/images/heartpiecemodel.png"
+							: "/images/chest.png"
+					}
+					alt=""
+					style={
+						checked
+							? { opacity: 0.7 }
+							: { filter: "drop-shadow(0px 0px 8px white)" }
+					}
+				/>
+			</div>
 		</Tooltip>
 	);
 };

@@ -72,14 +72,13 @@ const ZootrSim = () => {
 				className="flex flex-col lg:flex-row"
 				style={{ imageRendering: "crisp-edges" }}
 			>
-				<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 border-red-400 z-10">
+				<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 z-10">
 					<RegionList
 						region={region}
 						setRegion={setRegion}
 						age={age}
 						setAge={setAge}
 					/>
-					<QuitForm />
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
 					<div className="xl:col-span-3 lg:col-span-2 relative">
@@ -93,9 +92,7 @@ const ZootrSim = () => {
 							checkLocation={checkLocationWrapper}
 						/>
 					</div>
-					<div className="bg-red-300">
-						<ItemTracker items={items} />
-					</div>
+					<ItemTracker items={items} />
 					<div className="bg-blue-400">
 						<QuestTracker items={items} />
 					</div>

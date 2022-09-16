@@ -60,7 +60,9 @@ const LocationList = ({
 					{Object.keys(regions[region])
 						.filter(
 							(el) =>
-								allLocations.includes(el) || el.includes("GS")
+								(allLocations.includes(el) ||
+									el.includes("GS")) &&
+								regions[region][el][age]
 						)
 						.map((el, idx) => (
 							<CheckSquare
@@ -85,7 +87,9 @@ const LocationList = ({
 			<div className="flex flex-wrap gap-2">
 				{Object.keys(regions[region])
 					.filter(
-						(el) => allLocations.includes(el) || el.includes("GS")
+						(el) =>
+							(allLocations.includes(el) || el.includes("GS")) &&
+							regions[region][el][age]
 					)
 					.map((el) => (
 						<button
