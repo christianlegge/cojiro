@@ -4,11 +4,21 @@ import { useParams } from "react-router-dom";
 
 const regions: {
 	[key: string]: {
-		[key: string]: {
-			top: number;
-			left: number;
-			child: boolean;
-			adult: boolean;
+		locations: {
+			[key: string]: {
+				top: number;
+				left: number;
+				child: boolean;
+				adult: boolean;
+			};
+		};
+		regions: {
+			[key: string]: {
+				top: number;
+				left: number;
+				child: boolean;
+				adult: boolean;
+			};
 		};
 	};
 } = await import("../data/regions.json").then((x) => x.default);
@@ -57,20 +67,20 @@ const LocationList = ({
 						alt=""
 						className="object-contain h-full w-auto mx-auto"
 					/>
-					{Object.keys(regions[region])
+					{Object.keys(regions[region].locations)
 						.filter(
 							(el) =>
 								(allLocations.includes(el) ||
 									el.includes("GS")) &&
-								regions[region][el][age]
+								regions[region].locations[el][age]
 						)
 						.map((el, idx) => (
 							<CheckSquare
 								key={idx}
 								check={el}
 								coords={{
-									top: `${regions[region][el].top}%`,
-									left: `${regions[region][el].left}%`,
+									top: `${regions[region].locations[el].top}%`,
+									left: `${regions[region].locations[el].left}%`,
 								}}
 								displayName={locationDisplayName(el, region)}
 								checked={checked.includes(el)}
@@ -85,11 +95,11 @@ const LocationList = ({
 				</div>
 			</div>
 			<div className="flex flex-wrap gap-2">
-				{Object.keys(regions[region])
+				{Object.keys(regions[region].locations)
 					.filter(
 						(el) =>
 							(allLocations.includes(el) || el.includes("GS")) &&
-							regions[region][el][age]
+							regions[region].locations[el][age]
 					)
 					.map((el) => (
 						<button

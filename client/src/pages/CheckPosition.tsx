@@ -54,6 +54,91 @@ const CheckPosition = () => {
 
 	return (
 		<div className="flex pt-1 align-top">
+			<button
+				onClick={() =>
+					navigator.clipboard.writeText(
+						dataRef.current?.textContent ?? ""
+					)
+				}
+			>
+				Copy
+			</button>
+			<code ref={dataRef}>
+				{JSON.stringify(
+					locsWithData.reduce(
+						(a, v) => {
+							console.log(v);
+							let { location, region, top, left, child, adult } =
+								v;
+							if (!(region in a)) {
+								a[region] = {
+									locations: {},
+									gossip_stones: {},
+								};
+							}
+							let is_stone = /.+ \(.+\)/.test(location);
+							console.log(is_stone);
+							if (is_stone) {
+								return {
+									...a,
+									[region]: {
+										locations: {
+											...a[region].locations,
+										},
+										gossip_stones: {
+											...a[region].gossip_stones,
+											[location]: {
+												top,
+												left,
+												adult,
+												child,
+											},
+										},
+									},
+								};
+							} else {
+								return {
+									...a,
+									[region]: {
+										locations: {
+											...a[region].locations,
+											[location]: {
+												top,
+												left,
+												adult,
+												child,
+											},
+										},
+										gossip_stones: {
+											...a[region].gossip_stones,
+										},
+									},
+								};
+							}
+						},
+						{} as {
+							[key: string]: {
+								locations: {
+									[key: string]: {
+										top: number;
+										left: number;
+										child: boolean;
+										adult: boolean;
+									};
+								};
+								gossip_stones: {
+									[key: string]: {
+										top: number;
+										left: number;
+										child: boolean;
+										adult: boolean;
+									};
+								};
+							};
+						}
+					)
+				)}
+			</code>
 			<div className="grid grid-cols-2 flex-grow-0 flex-shrink-0 w-80">
 				<div className="space-y-1">
 					{regions
