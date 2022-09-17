@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import RegionList from "../components/RegionList";
 import LocationList from "../components/LocationList";
-import QuitForm from "../components/QuitForm";
 import ItemTracker from "../components/ItemTracker";
 import { trpc } from "../utils/trpc";
-import LandingPage from "./LandingPage";
 import QuestTracker from "../components/QuestTracker";
 import { useParams, useNavigate } from "react-router-dom";
-import { FiExternalLink } from "react-icons/fi";
-import { stringify } from "querystring";
 import HintTracker from "../components/HintTracker";
 
 const ZootrSim = () => {
@@ -146,16 +142,6 @@ const ZootrSim = () => {
 					<HintTracker />
 				</div>
 			</div>
-
-			<a
-				className="absolute flex items-center gap-1 right-4 -top-14 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
-				href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
-				target="_blank"
-				rel="noreferrer"
-			>
-				<span>Give feedback/report issue</span>
-				<FiExternalLink style={{ display: "inline" }} />
-			</a>
 		</>
 	);
 };

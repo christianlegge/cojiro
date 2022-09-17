@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CheckSquare from "./CheckSquare";
 import { useParams } from "react-router-dom";
+import { FiExternalLink } from "react-icons/fi";
 
 const regions: {
 	[key: string]: {
@@ -68,9 +69,20 @@ const LocationList = ({
 
 	return (
 		<>
-			<div className="flex px-4 py-2 justify-between">
-				<span className="text-2xl font-bold">{region}</span>
+			<div className="flex px-4 py-2 gap-8 h-16 justify-between items-center">
+				<span className="w-max text-2xl font-bold flex-shrink-0">
+					{region}
+				</span>
 				<span className="text-lg">{headerText}</span>
+				<a
+					className="flex items-center gap-1 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
+					href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
+					target="_blank"
+					rel="noreferrer"
+				>
+					<span>Feedback</span>
+					<FiExternalLink style={{ display: "inline" }} />
+				</a>
 			</div>
 			<div className="flex justify-center w-full h-auto">
 				<div className="relative inline-block min-h-0 min-w-0">
