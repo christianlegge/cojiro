@@ -37,7 +37,9 @@ const router = trpc
 				// known_hints: playthrough.known_hints,
 				known_woth: playthrough.known_woth,
 				known_barren: playthrough.known_barren,
-				known_locations: playthrough.known_locations,
+				known_locations: playthrough.known_locations as {
+					[key: string]: string;
+				},
 				// known_medallions: playthrough.known_medallions,
 			};
 		},

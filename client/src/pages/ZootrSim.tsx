@@ -26,6 +26,9 @@ const ZootrSim = () => {
 	const [lastCheck, setLastCheck] = useState("");
 	const [woth, setWoth] = useState<string[]>([]);
 	const [barren, setBarren] = useState<string[]>([]);
+	const [knownLocations, setKnownLocations] = useState<{
+		[key: string]: string;
+	}>({});
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -46,12 +49,14 @@ const ZootrSim = () => {
 				locations,
 				known_barren,
 				known_woth,
+				known_locations,
 			}) => {
 				setLocations(locations);
 				setItems(items);
 				setChecked(checked);
 				setWoth(known_woth);
 				setBarren(known_barren);
+				setKnownLocations(known_locations);
 				if (!checked.includes("Links Pocket")) {
 					checkLocation.mutate({ id, location: "Links Pocket" });
 				}
@@ -85,6 +90,11 @@ const ZootrSim = () => {
 				setWoth((prev) => [...prev, data.region!]);
 			} else if (data.type === "barren") {
 				setBarren((prev) => [...prev, data.region!]);
+			} else if (data.type === "item") {
+				setKnownLocations((prev) => ({
+					...prev,
+					[data.location!]: data.item!,
+				}));
 			}
 		},
 		onError: (err) => console.log(err),
@@ -125,7 +135,10 @@ const ZootrSim = () => {
 							headerText={lastCheck}
 						/>
 					</div>
-					<ItemTracker items={items} />
+					<ItemTracker
+						items={items}
+						known_locations={knownLocations}
+					/>
 					<div className="bg-blue-400">
 						<QuestTracker items={items} />
 					</div>

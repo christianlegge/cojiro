@@ -1,6 +1,7 @@
 import React from "react";
 import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
+import { FcInfo } from "react-icons/fc";
 
 type TrackerItem = {
 	fileName: string; // path to image file in public/images
@@ -264,16 +265,33 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 	}
 }
 
-const ItemTracker = ({ items }: { items: string[] }) => {
+const ItemTracker = ({
+	items,
+	known_locations,
+}: {
+	items: string[];
+	known_locations: { [key: string]: string };
+}) => {
+	let itemLocations = Object.keys(known_locations).reduce(
+		(a, v) => ({
+			...a,
+			[known_locations[v]]: [...(a[known_locations[v]] ?? []), v],
+		}),
+		{} as { [key: string]: string[] }
+	);
 	return (
 		<div className="bg-gray-700 p-2 grid grid-cols-7 gap-2">
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, items);
+				let tooltip = trackerItem.displayName;
+				if (item in itemLocations) {
+					tooltip = `${tooltip} (${itemLocations[item].join(", ")})`;
+				}
 				return (
 					<Tooltip
 						key={trackerItem.fileName}
 						className="w-16 h-16 relative"
-						content={trackerItem.displayName}
+						content={tooltip}
 					>
 						<ItemIcon
 							className="object-contain w-full h-full z-0"
@@ -281,6 +299,9 @@ const ItemTracker = ({ items }: { items: string[] }) => {
 							alt={trackerItem.displayName}
 							has={items.includes(trackerItem.itemName)}
 						/>
+						{item in itemLocations && (
+							<FcInfo className="absolute bottom-0 right-2 w-6 h-6" />
+						)}
 					</Tooltip>
 				);
 			})}
