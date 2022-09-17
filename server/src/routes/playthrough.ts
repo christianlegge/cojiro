@@ -145,7 +145,7 @@ const router = trpc
 				});
 			}
 			let hint = seed.gossip_stones[input.stone];
-			let parsedHint = parseHint(hint);
+			let parsedHint = parseHint(hint, Object.keys(seed.locations));
 			let returnObj = {
 				type: parsedHint.type,
 				text: hint,
@@ -191,7 +191,7 @@ const router = trpc
 					},
 				},
 			});
-			console.log(returnObj);
+			// console.log(returnObj);
 			return returnObj;
 		},
 	});
