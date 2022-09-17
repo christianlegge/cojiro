@@ -8,6 +8,7 @@ const CheckSquare = ({
 	displayName,
 	checked,
 	onClick,
+	item,
 }: {
 	type: "locations" | "gossip_stones";
 	check: string;
@@ -15,6 +16,7 @@ const CheckSquare = ({
 	displayName: string;
 	checked: boolean;
 	onClick: () => void;
+	item?: string;
 }) => {
 	return (
 		<Tooltip
@@ -24,7 +26,7 @@ const CheckSquare = ({
 						checked ? "text-zinc-400 line-through font-normal" : ""
 					}`}
 				>
-					{check}
+					{item ? `${check} (${item})` : check}
 				</span>
 			}
 			className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2"

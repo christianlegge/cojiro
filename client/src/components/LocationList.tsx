@@ -48,6 +48,7 @@ const LocationList = ({
 	checkLocation,
 	checkStone,
 	headerText,
+	knownLocations,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -58,6 +59,7 @@ const LocationList = ({
 	checkLocation: (input: { id: string; location: string }) => void;
 	checkStone: (input: { id: string; stone: string }) => void;
 	headerText?: string;
+	knownLocations: { [key: string]: string };
 }) => {
 	if (!(region in regions)) {
 		return <div>Error! region not set correctly</div>;
@@ -116,6 +118,7 @@ const LocationList = ({
 													stone: el,
 											  });
 									}}
+									item={knownLocations[el]}
 								/>
 							))
 					)}

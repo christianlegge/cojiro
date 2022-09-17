@@ -133,11 +133,12 @@ const ZootrSim = () => {
 							checkLocation={checkLocationWrapper}
 							checkStone={checkStoneWrapper}
 							headerText={lastCheck}
+							knownLocations={knownLocations}
 						/>
 					</div>
 					<ItemTracker
 						items={items}
-						known_locations={knownLocations}
+						knownLocations={knownLocations}
 					/>
 					<div className="bg-blue-400">
 						<QuestTracker items={items} />

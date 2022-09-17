@@ -267,15 +267,15 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 
 const ItemTracker = ({
 	items,
-	known_locations,
+	knownLocations,
 }: {
 	items: string[];
-	known_locations: { [key: string]: string };
+	knownLocations: { [key: string]: string };
 }) => {
-	let itemLocations = Object.keys(known_locations).reduce(
+	let itemLocations = Object.keys(knownLocations).reduce(
 		(a, v) => ({
 			...a,
-			[known_locations[v]]: [...(a[known_locations[v]] ?? []), v],
+			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
 		}),
 		{} as { [key: string]: string[] }
 	);
