@@ -23,7 +23,6 @@ const ZootrSim = () => {
 
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
-	const [hints, setHints] = useState<string[]>([]);
 	const [lastCheck, setLastCheck] = useState("");
 
 	const [age, setAge] = useState<"child" | "adult">(
@@ -39,11 +38,10 @@ const ZootrSim = () => {
 		],
 		{
 			enabled: id !== "",
-			onSuccess: ({ checked, items, locations, known_hints }) => {
+			onSuccess: ({ checked, items, locations }) => {
 				setLocations(locations);
 				setItems(items);
 				setChecked(checked);
-				setHints(known_hints);
 				if (!checked.includes("Links Pocket")) {
 					checkLocation.mutate({ id, location: "Links Pocket" });
 				}
@@ -70,9 +68,9 @@ const ZootrSim = () => {
 	};
 
 	const checkStone = trpc.useMutation("playthrough.checkStone", {
-		onSuccess: ({ checked, hint }) => {
-			setChecked((prev) => [...prev, checked]);
-			setLastCheck(`${checked}: ${hint}`);
+		onSuccess: (data) => {
+			setChecked((prev) => [...prev, data.checked]);
+			setLastCheck(`${data.checked}: ${data.text}`);
 		},
 		onError: (err) => console.log(err),
 	});
@@ -114,7 +112,7 @@ const ZootrSim = () => {
 					<div className="bg-blue-400">
 						<QuestTracker items={items} />
 					</div>
-					<HintTracker hints={hints} />
+					<HintTracker />
 				</div>
 			</div>
 

@@ -1,9 +1,9 @@
-import createSeed, { sampleSeed, SeedReturnType } from "../services/createSeed";
+import createSeed, { sampleSeed } from "../services/createSeed";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
-import parseSeed from "../util/parseSeed";
+import parseSeed from "../utils/parseSeed";
 import prisma from "../db/client";
-import { ParsedSeed } from "../util/parseSeed";
+import { ParsedSeed } from "../utils/parseSeed";
 
 const router = trpc
 	.router()
@@ -52,6 +52,8 @@ const router = trpc
 							...seed,
 						},
 					},
+					known_locations: {},
+					// known_medallions: {},
 					items: startingItems,
 				},
 			});

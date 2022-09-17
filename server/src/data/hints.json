@@ -1,0 +1,2435 @@
+{
+	"Triforce Piece": [
+		"a triumph fork",
+		"cheese",
+		"a gold fragment",
+		"a Piece of the Triforce"
+	],
+	"Magic Meter": [
+		"mystic training",
+		"pixie dust",
+		"a green rectangle",
+		"a Magic Meter"
+	],
+	"Double Defense": [
+		"a white outline",
+		"damage decrease",
+		"strengthened love",
+		"Double Defense"
+	],
+	"Slingshot": [
+		"a seed shooter",
+		"a rubberband",
+		"a child's catapult",
+		"a Slingshot"
+	],
+	"Boomerang": ["a banana", "a stun stick", "the Boomerang"],
+	"Bow": ["an archery enabler", "a danger dart launcher", "a Bow"],
+	"Bomb Bag": ["an explosive container", "a blast bag", "a Bomb Bag"],
+	"Progressive Hookshot": [
+		"Dampé's keepsake",
+		"the Grapple Beam",
+		"the BOING! chain",
+		"a Hookshot"
+	],
+	"Progressive Strength Upgrade": [
+		"power gloves",
+		"metal mittens",
+		"the heavy lifty",
+		"a Strength Upgrade"
+	],
+	"Progressive Scale": ["a deeper dive", "a piece of Zora", "a Zora Scale"],
+	"Megaton Hammer": [
+		"the dragon smasher",
+		"the metal mallet",
+		"the heavy hitter",
+		"the Megaton Hammer"
+	],
+	"Iron Boots": ["sink shoes", "clank cleats", "the Iron Boots"],
+	"Hover Boots": [
+		"butter boots",
+		"sacred slippers",
+		"spacewalkers",
+		"the Hover Boots"
+	],
+	"Kokiri Sword": [
+		"a butter knife",
+		"a starter slasher",
+		"a switchblade",
+		"the Kokiri Sword"
+	],
+	"Giants Knife": [
+		"a fragile blade",
+		"a breakable cleaver",
+		"the Giant's Knife"
+	],
+	"Biggoron Sword": [
+		"the biggest blade",
+		"a colossal cleaver",
+		"the Biggoron Sword"
+	],
+	"Master Sword": ["evil's bane", "the Master Sword"],
+	"Deku Shield": ["a wooden ward", "a burnable barrier", "a Deku Shield"],
+	"Hylian Shield": [
+		"a steel safeguard",
+		"Like Like's metal meal",
+		"a Hylian Shield"
+	],
+	"Mirror Shield": [
+		"the reflective rampart",
+		"Medusa's weakness",
+		"a silvered surface",
+		"the Mirror Shield"
+	],
+	"Farores Wind": [
+		"teleportation",
+		"a relocation rune",
+		"a green ball",
+		"a green gust",
+		"Farore's Wind"
+	],
+	"Nayrus Love": [
+		"a safe space",
+		"an impregnable aura",
+		"a blue barrier",
+		"a blue crystal",
+		"Nayru's Love"
+	],
+	"Dins Fire": ["an inferno", "a heat wave", "a red ball", "Din's Fire"],
+	"Fire Arrows": [
+		"the furnace firearm",
+		"the burning bolts",
+		"a magma missile",
+		"the Fire Arrows"
+	],
+	"Ice Arrows": [
+		"the refrigerator rocket",
+		"the frostbite bolts",
+		"an iceberg maker",
+		"the Ice Arrows"
+	],
+	"Light Arrows": [
+		"the shining shot",
+		"the luminous launcher",
+		"Ganondorf's bane",
+		"the lighting bolts",
+		"the Light Arrows"
+	],
+	"Lens of Truth": [
+		"a lie detector",
+		"a ghost tracker",
+		"true sight",
+		"a detective's tool",
+		"the Lens of Truth"
+	],
+	"Ocarina": ["a flute", "a music maker", "an Ocarina"],
+	"Goron Tunic": [
+		"ruby robes",
+		"fireproof fabric",
+		"cooking clothes",
+		"a Goron Tunic"
+	],
+	"Zora Tunic": [
+		"a sapphire suit",
+		"scuba gear",
+		"a swimsuit",
+		"a Zora Tunic"
+	],
+	"Epona": ["a horse", "a four legged friend", "Epona"],
+	"Zeldas Lullaby": [
+		"a song of royal slumber",
+		"a triforce tune",
+		"Zelda's Lullaby"
+	],
+	"Eponas Song": [
+		"an equestrian etude",
+		"Malon's melody",
+		"a ranch song",
+		"Epona's Song"
+	],
+	"Sarias Song": [
+		"a song of dancing Gorons",
+		"Saria's phone number",
+		"Saria's Song"
+	],
+	"Suns Song": [
+		"Sunny Day",
+		"the ReDead's bane",
+		"the Gibdo's bane",
+		"the Sun's Song"
+	],
+	"Song of Time": [
+		"a song 7 years long",
+		"the tune of ages",
+		"the Song of Time"
+	],
+	"Song of Storms": [
+		"Rain Dance",
+		"a thunderstorm tune",
+		"windmill acceleration",
+		"the Song of Storms"
+	],
+	"Minuet of Forest": [
+		"the song of tall trees",
+		"an arboreal anthem",
+		"a green spark trail",
+		"the Minuet of Forest"
+	],
+	"Bolero of Fire": [
+		"a song of lethal lava",
+		"a red spark trail",
+		"a volcanic verse",
+		"the Bolero of Fire"
+	],
+	"Serenade of Water": [
+		"a song of a damp ditch",
+		"a blue spark trail",
+		"the lake's lyric",
+		"the Serenade of Water"
+	],
+	"Requiem of Spirit": [
+		"a song of sandy statues",
+		"an orange spark trail",
+		"the desert ditty",
+		"the Requiem of Spirit"
+	],
+	"Nocturne of Shadow": [
+		"a song of spooky spirits",
+		"a graveyard boogie",
+		"a haunted hymn",
+		"a purple spark trail",
+		"the Nocturne of Shadow"
+	],
+	"Prelude of Light": [
+		"a luminous prologue melody",
+		"a yellow spark trail",
+		"the temple traveler",
+		"the Prelude of Light"
+	],
+	"Bottle": ["a glass container", "an empty jar", "encased air", "a Bottle"],
+	"Rutos Letter": [
+		"a call for help",
+		"the note that Mweeps",
+		"an SOS call",
+		"a fishy stationery",
+		"Ruto's Letter"
+	],
+	"Bottle with Milk": [
+		"cow juice",
+		"a white liquid",
+		"a baby's breakfast",
+		"a Milk Bottle"
+	],
+	"Bottle with Red Potion": [
+		"a vitality vial",
+		"a red liquid",
+		"a Red Potion Bottle"
+	],
+	"Bottle with Green Potion": [
+		"a magic mixture",
+		"a green liquid",
+		"a Green Potion Bottle"
+	],
+	"Bottle with Blue Potion": [
+		"an ailment antidote",
+		"a blue liquid",
+		"a Blue Potion Bottle"
+	],
+	"Bottle with Fairy": [
+		"an imprisoned fairy",
+		"an extra life",
+		"Navi's cousin",
+		"a Fairy Bottle"
+	],
+	"Bottle with Fish": ["an aquarium", "a deity's snack", "a Fish Bottle"],
+	"Bottle with Blue Fire": [
+		"a conflagration canteen",
+		"an icemelt jar",
+		"a Blue Fire Bottle"
+	],
+	"Bottle with Bugs": ["an insectarium", "Skulltula finders", "a Bug Bottle"],
+	"Bottle with Poe": ["a spooky ghost", "a face in the jar", "a Poe Bottle"],
+	"Bottle with Big Poe": [
+		"the spookiest ghost",
+		"a sidequest spirit",
+		"a Big Poe Bottle"
+	],
+	"Stone of Agony": [
+		"the shake stone",
+		"the Rumble Pak [TM]",
+		"the Stone of Agony"
+	],
+	"Gerudo Membership Card": [
+		"a girl club membership",
+		"a desert tribe's pass",
+		"the Gerudo Card"
+	],
+	"Progressive Wallet": [
+		"a mo' money holder",
+		"a gem purse",
+		"a portable bank",
+		"a Wallet"
+	],
+	"Deku Stick Capacity": [
+		"a lumber rack",
+		"more flammable twigs",
+		"Deku Stick Capacity"
+	],
+	"Deku Nut Capacity": [
+		"more nuts",
+		"flashbang storage",
+		"Deku Nut Capacity"
+	],
+	"Heart Container": [
+		"a lot of love",
+		"a Valentine's gift",
+		"a boss's organ",
+		"a Heart Container"
+	],
+	"Piece of Heart": ["a little love", "a broken heart", "a Piece of Heart"],
+	"Piece of Heart [Treasure Chest Game]": [
+		"a victory valentine",
+		"a Piece of Heart"
+	],
+	"Recovery Heart": [
+		"a free heal",
+		"a hearty meal",
+		"a Band-Aid",
+		"a Recovery Heart"
+	],
+	"Rupee [Treasure Chest Game]": ["the dollar of defeat", "a Green Rupee"],
+	"Deku Stick [1]": ["a breakable branch", "a Deku Stick"],
+	"Rupee [1]": ["a unique coin", "a penny", "a green gem", "a Green Rupee"],
+	"Rupees [5]": ["a common coin", "a blue gem", "a Blue Rupee"],
+	"Rupees [20]": ["couch cash", "a red gem", "a Red Rupee"],
+	"Rupees [50]": ["big bucks", "a purple gem", "wealth", "a Purple Rupee"],
+	"Rupees [200]": [
+		"a juicy jackpot",
+		"a yellow gem",
+		"a giant gem",
+		"great wealth",
+		"a Huge Rupee"
+	],
+	"Weird Egg": ["a chicken dilemma", "the Weird Egg"],
+	"Zeldas Letter": [
+		"an autograph",
+		"royal stationery",
+		"royal snail mail",
+		"Zelda's Letter"
+	],
+	"Pocket Egg": [
+		"a Cucco container",
+		"a Cucco, eventually",
+		"a fowl youth",
+		"the Pocket Egg"
+	],
+	"Pocket Cucco": ["a little clucker", "the Pocket Cucco"],
+	"Cojiro": ["a cerulean capon", "Cojiro"],
+	"Odd Mushroom": ["a powder ingredient", "an Odd Mushroom"],
+	"Odd Potion": ["Granny's goodies", "an Odd Potion"],
+	"Poachers Saw": ["a tree killer", "the Poacher's Saw"],
+	"Broken Sword": ["a shattered slicer", "the Broken Sword"],
+	"Prescription": ["a pill pamphlet", "a doctor's note", "the Prescription"],
+	"Eyeball Frog": ["a perceiving polliwog", "the Eyeball Frog"],
+	"Eyedrops": ["a vision vial", "the Eyedrops"],
+	"Claim Check": ["a three day wait", "the Claim Check"],
+	"Map": ["a dungeon atlas", "blueprints", "a Map"],
+	"Map [Deku Tree]": [
+		"an atlas of an ancient tree",
+		"blueprints of an ancient tree",
+		"a Map of the Deku Tree"
+	],
+	"Map [Dodongos Cavern]": [
+		"an atlas of an immense cavern",
+		"blueprints of an immense cavern",
+		"a Map of Dodongo's Cavern"
+	],
+	"Map [Jabu Jabus Belly]": [
+		"an atlas of the belly of a deity",
+		"blueprints of the belly of a deity",
+		"a Map of Jabu Jabu's Belly"
+	],
+	"Map [Forest Temple]": [
+		"an atlas of a deep forest",
+		"blueprints of a deep forest",
+		"a Map of the Forest Temple"
+	],
+	"Map [Fire Temple]": [
+		"an atlas of a high mountain",
+		"blueprints of a high mountain",
+		"a Map of the Fire Temple"
+	],
+	"Map [Water Temple]": [
+		"an atlas of a vast lake",
+		"blueprints of a vast lake",
+		"a Map of the Water Temple"
+	],
+	"Map [Shadow Temple]": [
+		"an atlas of the house of the dead",
+		"blueprints of the house of the dead",
+		"a Map of the Shadow Temple"
+	],
+	"Map [Spirit Temple]": [
+		"an atlas of the goddess of the sand",
+		"blueprints of the goddess of the sand",
+		"a Map of the Spirit Temple"
+	],
+	"Map [Bottom of the Well]": [
+		"an atlas of a shadow's prison",
+		"blueprints of a shadow's prison",
+		"a Map of the Bottom of the Well"
+	],
+	"Map [Ice Cavern]": [
+		"an atlas of a frozen maze",
+		"blueprints of a frozen maze",
+		"a Map of the Ice Cavern"
+	],
+	"Compass": ["a treasure tracker", "a magnetic needle", "a Compass"],
+	"Compass [Deku Tree]": [
+		"a treasure tracker for an ancient tree",
+		"a magnetic needle for an ancient tree",
+		"a Deku Tree Compass"
+	],
+	"Compass [Dodongos Cavern]": [
+		"a treasure tracker for an immense cavern",
+		"a magnetic needle for an immense cavern",
+		"a Dodongo's Cavern Compass"
+	],
+	"Compass [Jabu Jabus Belly]": [
+		"a treasure tracker for the belly of a deity",
+		"a magnetic needle for the belly of a deity",
+		"a Jabu Jabu's Belly Compass"
+	],
+	"Compass [Forest Temple]": [
+		"a treasure tracker for a deep forest",
+		"a magnetic needle for a deep forest",
+		"a Forest Temple Compass"
+	],
+	"Compass [Fire Temple]": [
+		"a treasure tracker for a high mountain",
+		"a magnetic needle for a high mountain",
+		"a Fire Temple Compass"
+	],
+	"Compass [Water Temple]": [
+		"a treasure tracker for a vast lake",
+		"a magnetic needle for a vast lake",
+		"a Water Temple Compass"
+	],
+	"Compass [Shadow Temple]": [
+		"a treasure tracker for the house of the dead",
+		"a magnetic needle for the house of the dead",
+		"a Shadow Temple Compass"
+	],
+	"Compass [Spirit Temple]": [
+		"a treasure tracker for a goddess of the sand",
+		"a magnetic needle for a goddess of the sand",
+		"a Spirit Temple Compass"
+	],
+	"Compass [Bottom of the Well]": [
+		"a treasure tracker for a shadow's prison",
+		"a magnetic needle for a shadow's prison",
+		"a Bottom of the Well Compass"
+	],
+	"Compass [Ice Cavern]": [
+		"a treasure tracker for a frozen maze",
+		"a magnetic needle for a frozen maze",
+		"an Ice Cavern Compass"
+	],
+	"BossKey": [
+		"a master of unlocking",
+		"a dungeon's master pass",
+		"a Boss Key"
+	],
+	"GanonBossKey": [
+		"a master of unlocking",
+		"a dungeon's master pass",
+		"a Boss Key"
+	],
+	"SmallKey": [
+		"a tool for unlocking",
+		"a dungeon pass",
+		"a lock remover",
+		"a lockpick",
+		"a Small Key"
+	],
+	"HideoutSmallKey": ["a get out of jail free card", "a Jail Key"],
+	"Boss Key [Forest Temple]": [
+		"a master of unlocking for a deep forest",
+		"a master pass for a deep forest",
+		"the Forest Temple Boss Key"
+	],
+	"Boss Key [Fire Temple]": [
+		"a master of unlocking for a high mountain",
+		"a master pass for a high mountain",
+		"the Fire Temple Boss Key"
+	],
+	"Boss Key [Water Temple]": [
+		"a master of unlocking for under a vast lake",
+		"a master pass for under a vast lake",
+		"the Water Temple Boss Key"
+	],
+	"Boss Key [Shadow Temple]": [
+		"a master of unlocking for the house of the dead",
+		"a master pass for the house of the dead",
+		"the Shadow Temple Boss Key"
+	],
+	"Boss Key [Spirit Temple]": [
+		"a master of unlocking for a goddess of the sand",
+		"a master pass for a goddess of the sand",
+		"the Spirit Temple Boss Key"
+	],
+	"Boss Key [Ganons Castle]": [
+		"an master of unlocking",
+		"a floating dungeon's master pass",
+		"Ganon's Castle Boss Key"
+	],
+	"Small Key [Forest Temple]": [
+		"a tool for unlocking a deep forest",
+		"a dungeon pass for a deep forest",
+		"a lock remover for a deep forest",
+		"a lockpick for a deep forest",
+		"a Forest Temple Small Key"
+	],
+	"Small Key [Fire Temple]": [
+		"a tool for unlocking a high mountain",
+		"a dungeon pass for a high mountain",
+		"a lock remover for a high mountain",
+		"a lockpick for a high mountain",
+		"a Fire Temple Small Key"
+	],
+	"Small Key [Water Temple]": [
+		"a tool for unlocking a vast lake",
+		"a dungeon pass for under a vast lake",
+		"a lock remover for under a vast lake",
+		"a lockpick for under a vast lake",
+		"a Water Temple Small Key"
+	],
+	"Small Key [Shadow Temple]": [
+		"a tool for unlocking the house of the dead",
+		"a dungeon pass for the house of the dead",
+		"a lock remover for the house of the dead",
+		"a lockpick for the house of the dead",
+		"a Shadow Temple Small Key"
+	],
+	"Small Key [Spirit Temple]": [
+		"a tool for unlocking a goddess of the sand",
+		"a dungeon pass for a goddess of the sand",
+		"a lock remover for a goddess of the sand",
+		"a lockpick for a goddess of the sand",
+		"a Spirit Temple Small Key"
+	],
+	"Small Key [Bottom of the Well]": [
+		"a tool for unlocking a shadow's prison",
+		"a dungeon pass for a shadow's prison",
+		"a lock remover for a shadow's prison",
+		"a lockpick for a shadow's prison",
+		"a Bottom of the Well Small Key"
+	],
+	"Small Key [Gerudo Training Ground]": [
+		"a tool for unlocking the test of thieves",
+		"a dungeon pass for the test of thieves",
+		"a lock remover for the test of thieves",
+		"a lockpick for the test of thieves",
+		"a Gerudo Training Ground Small Key"
+	],
+	"Small Key [Ganons Castle]": [
+		"a tool for unlocking a conquered citadel",
+		"a dungeon pass for a conquered citadel",
+		"a lock remover for a conquered citadel",
+		"a lockpick for a conquered citadel",
+		"a Ganon's Castle Small Key"
+	],
+	"Small Key [Thieves Hideout]": [
+		"a get out of jail free card",
+		"a Jail Key"
+	],
+	"KeyError": [
+		"something mysterious",
+		"an unknown treasure",
+		"An Error [Please Report This]"
+	],
+	"Arrows [5]": [
+		"a few danger darts",
+		"a few sharp shafts",
+		"Arrows [5 pieces]"
+	],
+	"Arrows [10]": [
+		"some danger darts",
+		"some sharp shafts",
+		"Arrows [10 pieces]"
+	],
+	"Arrows [30]": [
+		"plenty of danger darts",
+		"plenty of sharp shafts",
+		"Arrows [30 pieces]"
+	],
+	"Bombs [5]": ["a few explosives", "a few blast balls", "Bombs [5 pieces]"],
+	"Bombs [10]": ["some explosives", "some blast balls", "Bombs [10 pieces]"],
+	"Bombs [20]": [
+		"lots-o-explosives",
+		"plenty of blast balls",
+		"Bombs [20 pieces]"
+	],
+	"Ice Trap": [
+		"a gift from Ganon",
+		"a chilling discovery",
+		"frosty fun",
+		"an Ice Trap"
+	],
+	"Magic Bean": ["a wizardly legume", "a Magic Bean"],
+	"Magic Bean Pack": ["wizardly legumes", "Magic Beans"],
+	"Bombchus": [
+		"mice bombs",
+		"proximity mice",
+		"wall crawlers",
+		"trail blazers",
+		"Bombchus"
+	],
+	"Bombchus [5]": [
+		"a few mice bombs",
+		"a few proximity mice",
+		"a few wall crawlers",
+		"a few trail blazers",
+		"Bombchus [5 pieces]"
+	],
+	"Bombchus [10]": [
+		"some mice bombs",
+		"some proximity mice",
+		"some wall crawlers",
+		"some trail blazers",
+		"Bombchus [10 pieces]"
+	],
+	"Bombchus [20]": [
+		"plenty of mice bombs",
+		"plenty of proximity mice",
+		"plenty of wall crawlers",
+		"plenty of trail blazers",
+		"Bombchus [20 pieces]"
+	],
+	"Deku Nuts [5]": [
+		"some nuts",
+		"some flashbangs",
+		"some scrub spit",
+		"Deku Nuts [5 pieces]"
+	],
+	"Deku Nuts [10]": [
+		"lots-o-nuts",
+		"plenty of flashbangs",
+		"plenty of scrub spit",
+		"Deku Nuts [10 pieces]"
+	],
+	"Deku Seeds [30]": [
+		"catapult ammo",
+		"lots-o-seeds",
+		"Deku Seeds [30 pieces]"
+	],
+	"Gold Skulltula Token": [
+		"proof of destruction",
+		"an arachnid chip",
+		"spider remains",
+		"one percent of a curse",
+		"a Gold Skulltula Token"
+	],
+
+	"ZR Frogs Ocarina Game": [
+		"an #amphibian feast# yields",
+		"the #croaking choir's magnum opus# awards",
+		"the #froggy finale# yields",
+		"the final reward from the #Frogs of Zora's River# is",
+		"always"
+	],
+	"KF Links House Cow": [
+		"the #bovine bounty of a horseback hustle# gifts",
+		"#Malon's obstacle course# leads to",
+		"always"
+	],
+
+	"Song from Ocarina of Time": ["the #Ocarina of Time# teaches"],
+	"Song from Royal Familys Tomb": [
+		"#ReDead in the royal tomb# guard",
+		"the #Composer Brothers wrote#"
+	],
+	"Sheik in Forest": ["#in a meadow# Sheik teaches"],
+	"Sheik at Temple": ["Sheik waits at a #monument to time# to teach"],
+	"Sheik in Crater": ["the #crater's melody# is"],
+	"Sheik in Ice Cavern": ["the #frozen cavern# echoes with"],
+	"Sheik in Kakariko": ["a #ravaged village# mourns with"],
+	"Sheik at Colossus": ["a hero ventures #beyond the wasteland# to learn"],
+
+	"Market 10 Big Poes": [
+		"#ghost hunters# will be rewarded with",
+		"catching #Big Poes# leads to"
+	],
+	"Deku Theater Skull Mask": ["the #Skull Mask# yields"],
+	"Deku Theater Mask of Truth": [
+		"showing a #truthful eye to the crowd# rewards",
+		"the #Mask of Truth# yields"
+	],
+	"HF Ocarina of Time Item": ["the #treasure thrown by Princess Zelda# is"],
+	"DMT Biggoron": ["#Biggoron# crafts"],
+	"Kak 50 Gold Skulltula Reward": [
+		"#50 bug badges# rewards",
+		"#50 spider souls# yields",
+		"#50 auriferous arachnids# lead to",
+		"slaying #50 Gold Skulltulas# reveals"
+	],
+	"Kak 40 Gold Skulltula Reward": [
+		"#40 bug badges# rewards",
+		"#40 spider souls# yields",
+		"#40 auriferous arachnids# lead to",
+		"slaying #40 Gold Skulltulas# reveals"
+	],
+	"Kak 30 Gold Skulltula Reward": [
+		"#30 bug badges# rewards",
+		"#30 spider souls# yields",
+		"#30 auriferous arachnids# lead to",
+		"slaying #30 Gold Skulltulas# reveals"
+	],
+	"Kak 20 Gold Skulltula Reward": [
+		"#20 bug badges# rewards",
+		"#20 spider souls# yields",
+		"#20 auriferous arachnids# lead to",
+		"slaying #20 Gold Skulltulas# reveals"
+	],
+	"Kak Anju as Child": [
+		"#wrangling roosters# rewards",
+		"#chucking chickens# gifts",
+		"#collecting cuccos# rewards"
+	],
+	"GC Darunias Joy": [
+		"a #groovin' goron# gifts",
+		"#Darunia's dance# leads to"
+	],
+	"LW Skull Kid": ["the #Skull Kid# grants"],
+	"LH Sun": ["staring into #the sun# grants", "shooting #the sun# grants"],
+	"Market Treasure Chest Game Reward": [
+		"#gambling# grants",
+		"there is a #1/32 chance# to win",
+		"the #treasure chest game# grants"
+	],
+	"GF HBA 1500 Points": [
+		"mastery of #horseback archery# grants",
+		"scoring 1500 in #horseback archery# grants"
+	],
+	"Graveyard Heart Piece Grave Chest": [
+		"playing #Sun's Song# in a grave spawns"
+	],
+	"GC Maze Left Chest": ["in #Goron City# the hammer unlocks"],
+	"GV Chest": ["in #Gerudo Valley# the hammer unlocks"],
+	"GV Cow": ["a #cow in Gerudo Valley# gifts"],
+	"HC GS Storms Grotto": ["a #spider behind a muddy wall# in a grotto holds"],
+	"HF GS Cow Grotto": ["a #spider behind webs# in a grotto holds"],
+	"HF Cow Grotto Cow": [
+		"the #cobwebbed cow# gifts",
+		"a #cow behind webs# in a grotto gifts"
+	],
+	"ZF GS Hidden Cave": ["a spider high #above the icy waters# holds"],
+	"Wasteland Chest": [
+		"#deep in the wasteland# is",
+		"beneath #the sands#, flames reveal"
+	],
+	"Wasteland GS": ["a #spider in the wasteland# holds"],
+	"Graveyard Royal Familys Tomb Chest": [
+		"#flames in the royal tomb# reveal",
+		"the #Composer Brothers hid#"
+	],
+	"ZF Bottom Freestanding PoH": ["#under the icy waters# lies"],
+	"GC Pot Freestanding PoH": ["spinning #Goron pottery# contains"],
+	"ZD King Zora Thawed": [
+		"a #defrosted dignitary# gifts",
+		"unfreezing #King Zora# grants"
+	],
+	"DMC Deku Scrub": ["a single #scrub in the crater# sells"],
+	"DMC GS Crate": ["a spider under a #crate in the crater# holds"],
+	"LW Target in Woods": ["shooting a #target in the woods# grants"],
+	"ZR Frogs in the Rain": ["#frogs in a storm# gift"],
+	"LH Lab Dive": ["a #diving experiment# is rewarded with"],
+	"HC Great Fairy Reward": [
+		"the #fairy of fire# holds",
+		"a #fairy outside Hyrule Castle# holds"
+	],
+	"OGC Great Fairy Reward": [
+		"the #fairy of strength# holds",
+		"a #fairy outside Ganon's Castle# holds"
+	],
+
+	"Deku Tree MQ After Spinning Log Chest": [
+		"a #temporal stone within a tree# contains",
+		"a #temporal stone within the Deku Tree# contains"
+	],
+	"Deku Tree MQ GS Basement Graves Room": [
+		"a #spider on a ceiling in a tree# holds",
+		"a #spider on a ceiling in the Deku Tree# holds"
+	],
+	"Dodongos Cavern MQ GS Song of Time Block Room": [
+		"a spider under #temporal stones in a cavern# holds",
+		"a spider under #temporal stones in Dodongo's Cavern# holds"
+	],
+	"Jabu Jabus Belly Boomerang Chest": [
+		"a school of #stingers swallowed by a deity# guard",
+		"a school of #stingers swallowed by Jabu Jabu# guard"
+	],
+	"Jabu Jabus Belly MQ GS Invisible Enemies Room": [
+		"a spider surrounded by #shadows in the belly of a deity# holds",
+		"a spider surrounded by #shadows in Jabu Jabu's Belly# holds"
+	],
+	"Jabu Jabus Belly MQ Cow": [
+		"a #cow swallowed by a deity# gifts",
+		"a #cow swallowed by Jabu Jabu# gifts"
+	],
+	"Fire Temple Scarecrow Chest": [
+		"a #scarecrow atop the volcano# hides",
+		"#Pierre atop the Fire Temple# hides"
+	],
+	"Fire Temple Megaton Hammer Chest": [
+		"the #Flare Dancer atop the volcano# guards a chest containing",
+		"the #Flare Dancer atop the Fire Temple# guards a chest containing"
+	],
+	"Fire Temple MQ Chest On Fire": [
+		"the #Flare Dancer atop the volcano# guards a chest containing",
+		"the #Flare Dancer atop the Fire Temple# guards a chest containing"
+	],
+	"Fire Temple MQ GS Skull On Fire": [
+		"a #spider under a block in the volcano# holds",
+		"a #spider under a block in the Fire Temple# holds"
+	],
+	"Water Temple River Chest": [
+		"beyond the #river under the lake# waits",
+		"beyond the #river in the Water Temple# waits"
+	],
+	"Water Temple Central Pillar Chest": [
+		"beneath a #tall tower under a vast lake# lies",
+		"a chest in the #central pillar of Water Temple# contains"
+	],
+	"Water Temple Boss Key Chest": [
+		"dodging #rolling boulders under the lake# leads to",
+		"dodging #rolling boulders in the Water Temple# leads to"
+	],
+	"Water Temple GS Behind Gate": [
+		"a spider behind a #gate under the lake# holds",
+		"a spider behind a #gate in the Water Temple# holds"
+	],
+	"Water Temple MQ Central Pillar Chest": [
+		"beneath a #tall tower under a vast lake# lies",
+		"a chest in the #central pillar of Water Temple# contains"
+	],
+	"Water Temple MQ Freestanding Key": [
+		"hidden in a #box under the lake# lies",
+		"hidden in a #box in the Water Temple# lies"
+	],
+	"Water Temple MQ GS Freestanding Key Area": [
+		"the #locked spider under the lake# holds",
+		"the #locked spider in the Water Temple# holds"
+	],
+	"Water Temple MQ GS Triple Wall Torch": [
+		"a spider behind a #gate under the lake# holds",
+		"a spider behind a #gate in the Water Temple# holds"
+	],
+	"Gerudo Training Ground Underwater Silver Rupee Chest": [
+		"those who seek #sunken silver rupees# will find",
+		"the #thieves' underwater training# rewards"
+	],
+	"Gerudo Training Ground MQ Underwater Silver Rupee Chest": [
+		"those who seek #sunken silver rupees# will find",
+		"the #thieves' underwater training# rewards"
+	],
+	"Gerudo Training Ground Maze Path Final Chest": [
+		"the final prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground MQ Ice Arrows Chest": [
+		"the final prize of #the thieves' training# is"
+	],
+	"Spirit Temple Silver Gauntlets Chest": [
+		"the treasure #sought by Nabooru# is",
+		"upon the #Colossus's right hand# is"
+	],
+	"Spirit Temple Mirror Shield Chest": ["upon the #Colossus's left hand# is"],
+	"Spirit Temple MQ Child Hammer Switch Chest": [
+		"a #temporal paradox in the Colossus# yields",
+		"a #temporal paradox in the Spirit Temple# yields"
+	],
+	"Spirit Temple MQ Symphony Room Chest": [
+		"a #symphony in the Colossus# yields",
+		"a #symphony in the Spirit Temple# yields"
+	],
+	"Spirit Temple MQ GS Symphony Room": [
+		"a #spider's symphony in the Colossus# yields",
+		"a #spider's symphony in the Spirit Temple# yields"
+	],
+	"Shadow Temple Freestanding Key": [
+		"a #burning skull in the house of the dead# holds",
+		"a #giant pot in the Shadow Temple# holds"
+	],
+	"Shadow Temple MQ Bomb Flower Chest": [
+		"shadows in an #invisible maze# guard"
+	],
+	"Shadow Temple MQ Stalfos Room Chest": [
+		"near an #empty pedestal within the house of the dead# lies",
+		"#stalfos in the Shadow Temple# guard"
+	],
+	"Ice Cavern Iron Boots Chest": [
+		"a #monster in a frozen cavern# guards",
+		"the #final treasure of Ice Cavern# is"
+	],
+	"Ice Cavern MQ Iron Boots Chest": [
+		"a #monster in a frozen cavern# guards",
+		"the #final treasure of Ice Cavern# is"
+	],
+	"Ganons Castle Shadow Trial Golden Gauntlets Chest": [
+		"#deep in the test of darkness# lies",
+		"a #like-like in Ganon's Shadow Trial# guards"
+	],
+	"Ganons Castle MQ Shadow Trial Eye Switch Chest": [
+		"#deep in the test of darkness# lies",
+		"shooting an #eye switch in Ganon's Shadow Trial# reveals"
+	],
+
+	"KF Kokiri Sword Chest": ["the #hidden treasure of the Kokiri# is"],
+	"KF Midos Top Left Chest": [
+		"the #leader of the Kokiri# hides",
+		"#inside Mido's house# is"
+	],
+	"KF Midos Top Right Chest": [
+		"the #leader of the Kokiri# hides",
+		"#inside Mido's house# is"
+	],
+	"KF Midos Bottom Left Chest": [
+		"the #leader of the Kokiri# hides",
+		"#inside Mido's house# is"
+	],
+	"KF Midos Bottom Right Chest": [
+		"the #leader of the Kokiri# hides",
+		"#inside Mido's house# is"
+	],
+	"Graveyard Shield Grave Chest": ["the #treasure of a fallen soldier# is"],
+	"DMT Chest": ["hidden behind a wall on a #mountain trail# is"],
+	"GC Maze Right Chest": ["in #Goron City# explosives unlock"],
+	"GC Maze Center Chest": ["in #Goron City# explosives unlock"],
+	"ZD Chest": ["fire #beyond a waterfall# reveals"],
+	"Graveyard Hookshot Chest": [
+		"a chest hidden by a #speedy spectre# holds",
+		"#dead Dampé's first prize# is"
+	],
+	"GF Chest": ["on a #rooftop in the desert# lies"],
+	"Kak Redead Grotto Chest": ["#zombies beneath the earth# guard"],
+	"SFM Wolfos Grotto Chest": ["#wolves beneath the earth# guard"],
+	"HF Near Market Grotto Chest": [
+		"a #hole in a field near a drawbridge# holds"
+	],
+	"HF Southeast Grotto Chest": ["a #hole amongst trees in a field# holds"],
+	"HF Open Grotto Chest": ["an #open hole in a field# holds"],
+	"Kak Open Grotto Chest": ["an #open hole in a town# holds"],
+	"ZR Open Grotto Chest": ["a #hole along a river# holds"],
+	"KF Storms Grotto Chest": ["a #hole in a forest village# holds"],
+	"LW Near Shortcuts Grotto Chest": ["a #hole in a wooded maze# holds"],
+	"DMT Storms Grotto Chest": ["#hole flooded with rain on a mountain# holds"],
+	"DMC Upper Grotto Chest": ["a #hole in a volcano# holds"],
+
+	"ToT Light Arrows Cutscene": ["the #final gift of a princess# is"],
+	"LW Gift from Saria": [
+		"a #potato hoarder# holds",
+		"a rooty tooty #flutey cutey# gifts",
+		"#Saria's Gift# is"
+	],
+	"ZF Great Fairy Reward": ["the #fairy of winds# holds"],
+	"Colossus Great Fairy Reward": ["the #fairy of love# holds"],
+	"DMT Great Fairy Reward": ["a #magical fairy# gifts"],
+	"DMC Great Fairy Reward": ["a #magical fairy# gifts"],
+
+	"Song from Impa": ["#deep in a castle#, Impa teaches"],
+	"Song from Malon": ["#a farm girl# sings"],
+	"Song from Saria": ["#deep in the forest#, Saria teaches"],
+	"Song from Windmill": ["a man #in a windmill# is obsessed with"],
+
+	"HC Malon Egg": ["a #girl looking for her father# gives"],
+	"HC Zeldas Letter": ["a #princess in a castle# gifts"],
+	"ZD Diving Minigame": [
+		"an #unsustainable business model# gifts",
+		"those who #dive for Zora rupees# will find"
+	],
+	"LH Child Fishing": ["#fishing in youth# bestows"],
+	"LH Adult Fishing": ["#fishing in maturity# bestows"],
+	"GC Rolling Goron as Adult": [
+		"#comforting yourself# provides",
+		"#reassuring a young Goron# is rewarded with"
+	],
+	"Market Bombchu Bowling First Prize": ["the #first explosive prize# is"],
+	"Market Bombchu Bowling Second Prize": ["the #second explosive prize# is"],
+	"Market Lost Dog": [
+		"#puppy lovers# will find",
+		"#rescuing Richard the Dog# is rewarded with"
+	],
+	"LW Ocarina Memory Game": [
+		"the prize for a #game of Simon Says# is",
+		"a #child sing-a-long# holds",
+		"#playing an Ocarina in Lost Woods# is rewarded with"
+	],
+	"Kak 10 Gold Skulltula Reward": [
+		"#10 bug badges# rewards",
+		"#10 spider souls# yields",
+		"#10 auriferous arachnids# lead to",
+		"slaying #10 Gold Skulltulas# reveals"
+	],
+	"Kak Man on Roof": ["a #rooftop wanderer# holds"],
+	"ZR Magic Bean Salesman": [
+		"a seller of #colorful crops# has",
+		"a #bean seller# offers"
+	],
+	"GF HBA 1000 Points": ["scoring 1000 in #horseback archery# grants"],
+	"Market Shooting Gallery Reward": ["#shooting in youth# grants"],
+	"Kak Shooting Gallery Reward": ["#shooting in maturity# grants"],
+	"Kak Anju as Adult": ["a #chicken caretaker# offers adults"],
+	"LLR Talons Chickens": ["#finding Super Cuccos# is rewarded with"],
+	"GC Rolling Goron as Child": [
+		"the prize offered by a #large rolling Goron# is"
+	],
+	"LH Underwater Item": ["the #sunken treasure in a lake# is"],
+	"Hideout Gerudo Membership Card": [
+		"#rescuing captured carpenters# is rewarded with"
+	],
+	"Wasteland Bombchu Salesman": ["a #carpet guru# sells"],
+
+	"Kak Impas House Freestanding PoH": ["#imprisoned in a house# lies"],
+	"HF Tektite Grotto Freestanding PoH": ["#deep underwater in a hole# is"],
+	"Kak Windmill Freestanding PoH": ["on a #windmill ledge# lies"],
+	"Graveyard Dampe Race Freestanding PoH": [
+		"#racing a ghost# leads to",
+		"#dead Dampé's second# prize is"
+	],
+	"LLR Freestanding PoH": ["in a #ranch silo# lies"],
+	"Graveyard Freestanding PoH": ["a #crate in a graveyard# hides"],
+	"Graveyard Dampe Gravedigging Tour": ["a #gravekeeper digs up#"],
+	"ZR Near Open Grotto Freestanding PoH": [
+		"on top of a #pillar in a river# lies"
+	],
+	"ZR Near Domain Freestanding PoH": [
+		"on a #river ledge by a waterfall# lies"
+	],
+	"LH Freestanding PoH": ["high on a #lab rooftop# one can find"],
+	"ZF Iceberg Freestanding PoH": ["#floating on ice# is"],
+	"GV Waterfall Freestanding PoH": ["behind a #desert waterfall# is"],
+	"GV Crate Freestanding PoH": ["a #crate in a valley# hides"],
+	"Colossus Freestanding PoH": ["on top of an #arch of stone# lies"],
+	"DMT Freestanding PoH": ["above a #mountain cavern entrance# is"],
+	"DMC Wall Freestanding PoH": ["nestled in a #volcanic wall# is"],
+	"DMC Volcano Freestanding PoH": ["obscured by #volcanic ash# is"],
+	"Hideout Jail Guard [1 Torch]": ["#defeating Gerudo guards# reveals"],
+	"Hideout Jail Guard [2 Torches]": ["#defeating Gerudo guards# reveals"],
+	"Hideout Jail Guard [3 Torches]": ["#defeating Gerudo guards# reveals"],
+	"Hideout Jail Guard [4 Torches]": ["#defeating Gerudo guards# reveals"],
+
+	"Deku Tree Map Chest": ["in the #center of the Deku Tree# lies"],
+	"Deku Tree Slingshot Chest": [
+		"the #treasure guarded by a scrub# in the Deku Tree is"
+	],
+	"Deku Tree Slingshot Room Side Chest": [
+		"the #treasure guarded by a scrub# in the Deku Tree is"
+	],
+	"Deku Tree Compass Chest": ["#pillars of wood# in the Deku Tree lead to"],
+	"Deku Tree Compass Room Side Chest": [
+		"#pillars of wood# in the Deku Tree lead to"
+	],
+	"Deku Tree Basement Chest": ["#webs in the Deku Tree# hide"],
+
+	"Deku Tree MQ Map Chest": ["in the #center of the Deku Tree# lies"],
+	"Deku Tree MQ Compass Chest": [
+		"a #treasure guarded by a large spider# in the Deku Tree is"
+	],
+	"Deku Tree MQ Slingshot Chest": [
+		"#pillars of wood# in the Deku Tree lead to"
+	],
+	"Deku Tree MQ Slingshot Room Back Chest": [
+		"#pillars of wood# in the Deku Tree lead to"
+	],
+	"Deku Tree MQ Basement Chest": ["#webs in the Deku Tree# hide"],
+	"Deku Tree MQ Before Spinning Log Chest": [
+		"#magical fire in the Deku Tree# leads to"
+	],
+
+	"Dodongos Cavern Boss Room Chest": ["#above King Dodongo# lies"],
+
+	"Dodongos Cavern Map Chest": ["a #muddy wall in Dodongo's Cavern# hides"],
+	"Dodongos Cavern Compass Chest": ["a #statue in Dodongo's Cavern# guards"],
+	"Dodongos Cavern Bomb Flower Platform Chest": [
+		"above a #maze of stone# in Dodongo's Cavern lies"
+	],
+	"Dodongos Cavern Bomb Bag Chest": [
+		"the #second lizard cavern battle# yields"
+	],
+	"Dodongos Cavern End of Bridge Chest": [
+		"a #chest at the end of a bridge# yields"
+	],
+
+	"Dodongos Cavern MQ Map Chest": [
+		"a #muddy wall in Dodongo's Cavern# hides"
+	],
+	"Dodongos Cavern MQ Bomb Bag Chest": [
+		"an #elevated alcove# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern MQ Compass Chest": [
+		"#fire-breathing lizards# in Dodongo's Cavern guard"
+	],
+	"Dodongos Cavern MQ Larvae Room Chest": [
+		"#baby spiders# in Dodongo's Cavern guard"
+	],
+	"Dodongos Cavern MQ Torch Puzzle Room Chest": [
+		"above a #maze of stone# in Dodongo's Cavern lies"
+	],
+	"Dodongos Cavern MQ Under Grave Chest": [
+		"#beneath a headstone# in Dodongo's Cavern lies"
+	],
+
+	"Jabu Jabus Belly Map Chest": [
+		"#tentacle trouble# in a deity's belly guards",
+		"a #slimy thing# guards"
+	],
+	"Jabu Jabus Belly Compass Chest": [
+		"#bubble trouble# in a deity's belly guards",
+		"#bubbles# guard"
+	],
+
+	"Jabu Jabus Belly MQ First Room Side Chest": [
+		"shooting a #mouth cow# reveals"
+	],
+	"Jabu Jabus Belly MQ Map Chest": [
+		"#pop rocks# hide",
+		"an #explosive palate# holds",
+		"a #boulder before cows# hides"
+	],
+	"Jabu Jabus Belly MQ Second Room Lower Chest": [
+		"near a #spiked elevator# lies"
+	],
+	"Jabu Jabus Belly MQ Compass Chest": ["a #drowning cow# unveils"],
+	"Jabu Jabus Belly MQ Second Room Upper Chest": [
+		"#moving anatomy# creates a path to"
+	],
+	"Jabu Jabus Belly MQ Basement Near Switches Chest": [
+		"a #pair of digested cows# hold"
+	],
+	"Jabu Jabus Belly MQ Basement Near Vines Chest": [
+		"a #pair of digested cows# hold"
+	],
+	"Jabu Jabus Belly MQ Near Boss Chest": [
+		"the #final cows' reward# in a deity's belly is"
+	],
+	"Jabu Jabus Belly MQ Falling Like Like Room Chest": [
+		"#cows protected by falling monsters# in a deity's belly guard"
+	],
+	"Jabu Jabus Belly MQ Boomerang Room Small Chest": [
+		"a school of #stingers swallowed by a deity# guard",
+		"a school of #stingers swallowed by Jabu Jabu# guard"
+	],
+	"Jabu Jabus Belly MQ Boomerang Chest": [
+		"a school of #stingers swallowed by a deity# guard",
+		"a school of #stingers swallowed by Jabu Jabu# guard"
+	],
+
+	"Forest Temple First Room Chest": [
+		"a #tree in the Forest Temple# supports"
+	],
+	"Forest Temple First Stalfos Chest": [
+		"#defeating enemies beneath a falling ceiling# in Forest Temple yields"
+	],
+	"Forest Temple Well Chest": ["a #sunken chest deep in the woods# contains"],
+	"Forest Temple Map Chest": ["a #fiery skull# in Forest Temple guards"],
+	"Forest Temple Raised Island Courtyard Chest": [
+		"a #chest on a small island# in the Forest Temple holds"
+	],
+	"Forest Temple Falling Ceiling Room Chest": [
+		"beneath a #checkerboard falling ceiling# lies"
+	],
+	"Forest Temple Eye Switch Chest": [
+		"a #sharp eye# will spot",
+		"#blocks of stone# in the Forest Temple surround"
+	],
+	"Forest Temple Floormaster Chest": [
+		"deep in the forest #shadows guard a chest# containing"
+	],
+	"Forest Temple Bow Chest": [
+		"an #army of the dead# guards",
+		"#Stalfos deep in the Forest Temple# guard"
+	],
+	"Forest Temple Red Poe Chest": ["#Joelle# guards", "a #red ghost# guards"],
+	"Forest Temple Blue Poe Chest": ["#Beth# guards", "a #blue ghost# guards"],
+	"Forest Temple Basement Chest": [
+		"#revolving walls# in the Forest Temple conceal"
+	],
+	"Forest Temple Boss Key Chest": [
+		"a #turned trunk# contains",
+		"a #sideways chest in the Forest Temple# hides"
+	],
+
+	"Forest Temple MQ Boss Key Chest": [
+		"a #turned trunk# contains",
+		"a #sideways chest in the Forest Temple# hides"
+	],
+	"Forest Temple MQ First Room Chest": [
+		"a #tree in the Forest Temple# supports"
+	],
+	"Forest Temple MQ Wolfos Chest": [
+		"#defeating enemies beneath a falling ceiling# in Forest Temple yields"
+	],
+	"Forest Temple MQ Bow Chest": [
+		"an #army of the dead# guards",
+		"#Stalfos deep in the Forest Temple# guard"
+	],
+	"Forest Temple MQ Raised Island Courtyard Lower Chest": [
+		"a #chest on a small island# in the Forest Temple holds"
+	],
+	"Forest Temple MQ Raised Island Courtyard Upper Chest": [
+		"#high in a courtyard# within the Forest Temple is"
+	],
+	"Forest Temple MQ Well Chest": [
+		"a #sunken chest deep in the woods# contains"
+	],
+	"Forest Temple MQ Map Chest": ["#Joelle# guards", "a #red ghost# guards"],
+	"Forest Temple MQ Compass Chest": [
+		"#Beth# guards",
+		"a #blue ghost# guards"
+	],
+	"Forest Temple MQ Falling Ceiling Room Chest": [
+		"beneath a #checkerboard falling ceiling# lies"
+	],
+	"Forest Temple MQ Basement Chest": [
+		"#revolving walls# in the Forest Temple conceal"
+	],
+	"Forest Temple MQ Redead Chest": [
+		"deep in the forest #undead guard a chest# containing"
+	],
+
+	"Fire Temple Near Boss Chest": ["#near a dragon# is"],
+	"Fire Temple Flare Dancer Chest": [
+		"the #Flare Dancer behind a totem# guards"
+	],
+	"Fire Temple Boss Key Chest": ["a #prison beyond a totem# holds"],
+	"Fire Temple Big Lava Room Blocked Door Chest": [
+		"#explosives over a lava pit# unveil"
+	],
+	"Fire Temple Big Lava Room Lower Open Door Chest": [
+		"a #Goron trapped near lava# holds"
+	],
+	"Fire Temple Boulder Maze Lower Chest": [
+		"a #Goron at the end of a maze# holds"
+	],
+	"Fire Temple Boulder Maze Upper Chest": ["a #Goron above a maze# holds"],
+	"Fire Temple Boulder Maze Side Room Chest": [
+		"a #Goron hidden near a maze# holds"
+	],
+	"Fire Temple Boulder Maze Shortcut Chest": [
+		"a #blocked path# in Fire Temple holds"
+	],
+	"Fire Temple Map Chest": ["a #caged chest# in the Fire Temple hoards"],
+	"Fire Temple Compass Chest": ["a #chest in a fiery maze# contains"],
+	"Fire Temple Highest Goron Chest": ["a #Goron atop the Fire Temple# holds"],
+
+	"Fire Temple MQ Near Boss Chest": ["#near a dragon# is"],
+	"Fire Temple MQ Megaton Hammer Chest": [
+		"the #Flare Dancer in the depths of a volcano# guards",
+		"the #Flare Dancer in the depths of the Fire Temple# guards"
+	],
+	"Fire Temple MQ Compass Chest": ["a #blocked path# in Fire Temple holds"],
+	"Fire Temple MQ Lizalfos Maze Lower Chest": ["#crates in a maze# contain"],
+	"Fire Temple MQ Lizalfos Maze Upper Chest": ["#crates in a maze# contain"],
+	"Fire Temple MQ Map Room Side Chest": [
+		"a #falling slug# in the Fire Temple guards"
+	],
+	"Fire Temple MQ Map Chest": [
+		"using a #hammer in the depths of the Fire Temple# reveals"
+	],
+	"Fire Temple MQ Boss Key Chest": [
+		"#illuminating a lava pit# reveals the path to"
+	],
+	"Fire Temple MQ Big Lava Room Blocked Door Chest": [
+		"#explosives over a lava pit# unveil"
+	],
+	"Fire Temple MQ Lizalfos Maze Side Room Chest": [
+		"a #Goron hidden near a maze# holds"
+	],
+	"Fire Temple MQ Freestanding Key": [
+		"hidden #beneath a block of stone# lies"
+	],
+
+	"Water Temple Map Chest": ["#rolling spikes# in the Water Temple surround"],
+	"Water Temple Compass Chest": [
+		"#roaming stingers in the Water Temple# guard"
+	],
+	"Water Temple Torches Chest": ["#fire in the Water Temple# reveals"],
+	"Water Temple Dragon Chest": ["a #serpent's prize# in the Water Temple is"],
+	"Water Temple Central Bow Target Chest": [
+		"#blinding an eye# in the Water Temple leads to"
+	],
+	"Water Temple Cracked Wall Chest": [
+		"#through a crack# in the Water Temple is"
+	],
+	"Water Temple Longshot Chest": [
+		"#facing yourself# reveals",
+		"a #dark reflection# of yourself guards",
+		"#Dark Link# guards"
+	],
+
+	"Water Temple MQ Boss Key Chest": [
+		"fire in the Water Temple unlocks a #vast gate# revealing a chest with"
+	],
+	"Water Temple MQ Longshot Chest": [
+		"#through a crack# in the Water Temple is"
+	],
+	"Water Temple MQ Compass Chest": ["#fire in the Water Temple# reveals"],
+	"Water Temple MQ Map Chest": [
+		"#sparring soldiers# in the Water Temple guard"
+	],
+
+	"Spirit Temple Child Bridge Chest": [
+		"a child conquers a #skull in green fire# in the Spirit Temple to reach"
+	],
+	"Spirit Temple Child Early Torches Chest": [
+		"a child can find a #caged chest# in the Spirit Temple with"
+	],
+	"Spirit Temple Compass Chest": [
+		"#across a pit of sand# in the Spirit Temple lies"
+	],
+	"Spirit Temple Early Adult Right Chest": [
+		"#dodging boulders to collect silver rupees# in the Spirit Temple yields"
+	],
+	"Spirit Temple First Mirror Left Chest": [
+		"a #shadow circling reflected light# in the Spirit Temple guards"
+	],
+	"Spirit Temple First Mirror Right Chest": [
+		"a #shadow circling reflected light# in the Spirit Temple guards"
+	],
+	"Spirit Temple Map Chest": [
+		"#before a giant statue# in the Spirit Temple lies"
+	],
+	"Spirit Temple Child Climb North Chest": [
+		"#lizards in the Spirit Temple# guard"
+	],
+	"Spirit Temple Child Climb East Chest": [
+		"#lizards in the Spirit Temple# guard"
+	],
+	"Spirit Temple Sun Block Room Chest": [
+		"#torchlight among Beamos# in the Spirit Temple reveals"
+	],
+	"Spirit Temple Statue Room Hand Chest": [
+		"a #statue in the Spirit Temple# holds"
+	],
+	"Spirit Temple Statue Room Northeast Chest": [
+		"on a #ledge by a statue# in the Spirit Temple rests"
+	],
+	"Spirit Temple Near Four Armos Chest": [
+		"those who #show the light among statues# in the Spirit Temple find"
+	],
+	"Spirit Temple Hallway Right Invisible Chest": [
+		"the #Eye of Truth in the Spirit Temple# reveals"
+	],
+	"Spirit Temple Hallway Left Invisible Chest": [
+		"the #Eye of Truth in the Spirit Temple# reveals"
+	],
+	"Spirit Temple Boss Key Chest": [
+		"a #chest engulfed in flame# in the Spirit Temple holds"
+	],
+	"Spirit Temple Topmost Chest": [
+		"those who #show the light above the Colossus# find"
+	],
+
+	"Spirit Temple MQ Entrance Front Left Chest": [
+		"#lying unguarded# in the Spirit Temple is"
+	],
+	"Spirit Temple MQ Entrance Back Right Chest": [
+		"a #switch in a pillar# within the Spirit Temple drops"
+	],
+	"Spirit Temple MQ Entrance Front Right Chest": [
+		"#collecting rupees through a water jet# reveals"
+	],
+	"Spirit Temple MQ Entrance Back Left Chest": [
+		"an #eye blinded by stone# within the Spirit Temple conceals"
+	],
+	"Spirit Temple MQ Map Chest": ["surrounded by #fire and wrappings# lies"],
+	"Spirit Temple MQ Map Room Enemy Chest": [
+		"a child defeats a #gauntlet of monsters# within the Spirit Temple to find"
+	],
+	"Spirit Temple MQ Child Climb North Chest": [
+		"#explosive sunlight# within the Spirit Temple uncovers"
+	],
+	"Spirit Temple MQ Child Climb South Chest": [
+		"#trapped by falling enemies# within the Spirit Temple is"
+	],
+	"Spirit Temple MQ Compass Chest": ["#blinding the colossus# unveils"],
+	"Spirit Temple MQ Statue Room Lullaby Chest": [
+		"a #royal melody awakens the colossus# to reveal"
+	],
+	"Spirit Temple MQ Statue Room Invisible Chest": [
+		"the #Eye of Truth# finds the colossus's hidden"
+	],
+	"Spirit Temple MQ Silver Block Hallway Chest": [
+		"#the old hide what the young find# to reveal"
+	],
+	"Spirit Temple MQ Sun Block Room Chest": [
+		"#sunlight in a maze of fire# hides"
+	],
+	"Spirit Temple MQ Leever Room Chest": [
+		"#across a pit of sand# in the Spirit Temple lies"
+	],
+	"Spirit Temple MQ Beamos Room Chest": [
+		"where #temporal stone blocks the path# within the Spirit Temple lies"
+	],
+	"Spirit Temple MQ Chest Switch Chest": [
+		"a #chest of double purpose# holds"
+	],
+	"Spirit Temple MQ Boss Key Chest": [
+		"a #temporal stone blocks the light# leading to"
+	],
+	"Spirit Temple MQ Mirror Puzzle Invisible Chest": [
+		"those who #show the light above the Colossus# find"
+	],
+
+	"Shadow Temple Map Chest": [
+		"the #Eye of Truth# pierces a hall of faces to reveal"
+	],
+	"Shadow Temple Hover Boots Chest": [
+		"a #nether dweller in the Shadow Temple# holds",
+		"#Dead Hand in the Shadow Temple# holds"
+	],
+	"Shadow Temple Compass Chest": [
+		"#mummies revealed by the Eye of Truth# guard"
+	],
+	"Shadow Temple Early Silver Rupee Chest": ["#spinning scythes# protect"],
+	"Shadow Temple Invisible Blades Visible Chest": [
+		"#invisible blades# guard"
+	],
+	"Shadow Temple Invisible Blades Invisible Chest": [
+		"#invisible blades# guard"
+	],
+	"Shadow Temple Falling Spikes Lower Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple Falling Spikes Upper Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple Falling Spikes Switch Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple Invisible Spikes Chest": [
+		"the #dead roam among invisible spikes# guarding"
+	],
+	"Shadow Temple Wind Hint Chest": [
+		"an #invisible chest guarded by the dead# holds"
+	],
+	"Shadow Temple After Wind Enemy Chest": ["#mummies guarding a ferry# hide"],
+	"Shadow Temple After Wind Hidden Chest": [
+		"#mummies guarding a ferry# hide"
+	],
+	"Shadow Temple Spike Walls Left Chest": [
+		"#walls consumed by a ball of fire# reveal"
+	],
+	"Shadow Temple Invisible Floormaster Chest": [
+		"shadows in an #invisible maze# guard"
+	],
+	"Shadow Temple Boss Key Chest": [
+		"#walls consumed by a ball of fire# reveal"
+	],
+
+	"Shadow Temple MQ Compass Chest": [
+		"the #Eye of Truth# pierces a hall of faces to reveal"
+	],
+	"Shadow Temple MQ Hover Boots Chest": [
+		"#Dead Hand in the Shadow Temple# holds"
+	],
+	"Shadow Temple MQ Early Gibdos Chest": [
+		"#mummies revealed by the Eye of Truth# guard"
+	],
+	"Shadow Temple MQ Map Chest": ["#spinning scythes# protect"],
+	"Shadow Temple MQ Beamos Silver Rupees Chest": [
+		"#collecting rupees in a vast cavern# with the Shadow Temple unveils"
+	],
+	"Shadow Temple MQ Falling Spikes Switch Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple MQ Falling Spikes Lower Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple MQ Falling Spikes Upper Chest": [
+		"#falling spikes# block the path to"
+	],
+	"Shadow Temple MQ Invisible Spikes Chest": [
+		"the #dead roam among invisible spikes# guarding"
+	],
+	"Shadow Temple MQ Boss Key Chest": [
+		"#walls consumed by a ball of fire# reveal"
+	],
+	"Shadow Temple MQ Spike Walls Left Chest": [
+		"#walls consumed by a ball of fire# reveal"
+	],
+	"Shadow Temple MQ Invisible Blades Invisible Chest": [
+		"#invisible blades# guard"
+	],
+	"Shadow Temple MQ Invisible Blades Visible Chest": [
+		"#invisible blades# guard"
+	],
+	"Shadow Temple MQ Wind Hint Chest": [
+		"an #invisible chest guarded by the dead# holds"
+	],
+	"Shadow Temple MQ After Wind Hidden Chest": [
+		"#mummies guarding a ferry# hide"
+	],
+	"Shadow Temple MQ After Wind Enemy Chest": [
+		"#mummies guarding a ferry# hide"
+	],
+	"Shadow Temple MQ Near Ship Invisible Chest": ["#caged near a ship# lies"],
+	"Shadow Temple MQ Freestanding Key": ["#behind three burning skulls# lies"],
+
+	"Bottom of the Well Front Left Fake Wall Chest": [
+		"the #Eye of Truth in the well# reveals"
+	],
+	"Bottom of the Well Front Center Bombable Chest": [
+		"#gruesome debris# in the well hides"
+	],
+	"Bottom of the Well Right Bottom Fake Wall Chest": [
+		"the #Eye of Truth in the well# reveals"
+	],
+	"Bottom of the Well Compass Chest": [
+		"a #hidden entrance to a cage# in the well leads to"
+	],
+	"Bottom of the Well Center Skulltula Chest": [
+		"a #spider guarding a cage# in the well protects"
+	],
+	"Bottom of the Well Back Left Bombable Chest": [
+		"#gruesome debris# in the well hides"
+	],
+	"Bottom of the Well Invisible Chest": ["#Dead Hand's invisible secret# is"],
+	"Bottom of the Well Underwater Front Chest": [
+		"a #royal melody in the well# uncovers"
+	],
+	"Bottom of the Well Underwater Left Chest": [
+		"a #royal melody in the well# uncovers"
+	],
+	"Bottom of the Well Map Chest": ["in the #depths of the well# lies"],
+	"Bottom of the Well Fire Keese Chest": [
+		"#perilous pits# in the well guard the path to"
+	],
+	"Bottom of the Well Like Like Chest": [
+		"#locked in a cage# in the well lies"
+	],
+	"Bottom of the Well Freestanding Key": ["#inside a coffin# hides"],
+	"Bottom of the Well Lens of Truth Chest": [
+		"the well's #grasping ghoul# hides",
+		"a #nether dweller in the well# holds",
+		"#Dead Hand in the well# holds"
+	],
+
+	"Bottom of the Well MQ Compass Chest": [
+		"the well's #grasping ghoul# hides",
+		"a #nether dweller in the well# holds",
+		"#Dead Hand in the well# holds"
+	],
+	"Bottom of the Well MQ Map Chest": [
+		"a #royal melody in the well# uncovers"
+	],
+	"Bottom of the Well MQ Lens of Truth Chest": [
+		"an #army of the dead# in the well guards"
+	],
+	"Bottom of the Well MQ Dead Hand Freestanding Key": [
+		"#Dead Hand's explosive secret# is"
+	],
+	"Bottom of the Well MQ East Inner Room Freestanding Key": [
+		"an #invisible path in the well# leads to"
+	],
+
+	"Ice Cavern Map Chest": [
+		"#winds of ice# surround",
+		"a chest #atop a pillar of ice# contains"
+	],
+	"Ice Cavern Compass Chest": ["a #wall of ice# protects"],
+	"Ice Cavern Freestanding PoH": ["a #wall of ice# protects"],
+
+	"Ice Cavern MQ Compass Chest": ["#winds of ice# surround"],
+	"Ice Cavern MQ Map Chest": ["a #wall of ice# protects"],
+	"Ice Cavern MQ Freestanding PoH": ["#winds of ice# surround"],
+
+	"Gerudo Training Ground Lobby Left Chest": [
+		"a #blinded eye in the Gerudo Training Ground# drops"
+	],
+	"Gerudo Training Ground Lobby Right Chest": [
+		"a #blinded eye in the Gerudo Training Ground# drops"
+	],
+	"Gerudo Training Ground Stalfos Chest": [
+		"#soldiers walking on shifting sands# in the Gerudo Training Ground guard"
+	],
+	"Gerudo Training Ground Beamos Chest": [
+		"#reptilian warriors# in the Gerudo Training Ground protect"
+	],
+	"Gerudo Training Ground Hidden Ceiling Chest": [
+		"the #Eye of Truth# in the Gerudo Training Ground reveals"
+	],
+	"Gerudo Training Ground Maze Path First Chest": [
+		"the first prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground Maze Path Second Chest": [
+		"the second prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground Maze Path Third Chest": [
+		"the third prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground Maze Right Central Chest": [
+		"the #Song of Time# in the Gerudo Training Ground leads to"
+	],
+	"Gerudo Training Ground Maze Right Side Chest": [
+		"the #Song of Time# in the Gerudo Training Ground leads to"
+	],
+	"Gerudo Training Ground Hammer Room Clear Chest": [
+		"#fiery foes# in the Gerudo Training Ground guard"
+	],
+	"Gerudo Training Ground Hammer Room Switch Chest": [
+		"#engulfed in flame# where thieves train lies"
+	],
+	"Gerudo Training Ground Eye Statue Chest": [
+		"thieves #blind four faces# to find"
+	],
+	"Gerudo Training Ground Near Scarecrow Chest": [
+		"thieves #blind four faces# to find"
+	],
+	"Gerudo Training Ground Before Heavy Block Chest": [
+		"#before a block of silver# thieves can find"
+	],
+	"Gerudo Training Ground Heavy Block First Chest": [
+		"a #feat of strength# rewards thieves with"
+	],
+	"Gerudo Training Ground Heavy Block Second Chest": [
+		"a #feat of strength# rewards thieves with"
+	],
+	"Gerudo Training Ground Heavy Block Third Chest": [
+		"a #feat of strength# rewards thieves with"
+	],
+	"Gerudo Training Ground Heavy Block Fourth Chest": [
+		"a #feat of strength# rewards thieves with"
+	],
+	"Gerudo Training Ground Freestanding Key": [
+		"the #Song of Time# in the Gerudo Training Ground leads to"
+	],
+
+	"Gerudo Training Ground MQ Lobby Right Chest": [
+		"#thieves prepare for training# with"
+	],
+	"Gerudo Training Ground MQ Lobby Left Chest": [
+		"#thieves prepare for training# with"
+	],
+	"Gerudo Training Ground MQ First Iron Knuckle Chest": [
+		"#soldiers walking on shifting sands# in the Gerudo Training Ground guard"
+	],
+	"Gerudo Training Ground MQ Before Heavy Block Chest": [
+		"#before a block of silver# thieves can find"
+	],
+	"Gerudo Training Ground MQ Eye Statue Chest": [
+		"thieves #blind four faces# to find"
+	],
+	"Gerudo Training Ground MQ Flame Circle Chest": [
+		"#engulfed in flame# where thieves train lies"
+	],
+	"Gerudo Training Ground MQ Second Iron Knuckle Chest": [
+		"#fiery foes# in the Gerudo Training Ground guard"
+	],
+	"Gerudo Training Ground MQ Dinolfos Chest": [
+		"#reptilian warriors# in the Gerudo Training Ground protect"
+	],
+	"Gerudo Training Ground MQ Maze Right Central Chest": [
+		"a #path of fire# leads thieves to"
+	],
+	"Gerudo Training Ground MQ Maze Path First Chest": [
+		"the first prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground MQ Maze Right Side Chest": [
+		"a #path of fire# leads thieves to"
+	],
+	"Gerudo Training Ground MQ Maze Path Third Chest": [
+		"the third prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground MQ Maze Path Second Chest": [
+		"the second prize of #the thieves' training# is"
+	],
+	"Gerudo Training Ground MQ Hidden Ceiling Chest": [
+		"the #Eye of Truth# in the Gerudo Training Ground reveals"
+	],
+	"Gerudo Training Ground MQ Heavy Block Chest": [
+		"a #feat of strength# rewards thieves with"
+	],
+
+	"Ganons Tower Boss Key Chest": ["the #Evil King# hoards"],
+
+	"Ganons Castle Forest Trial Chest": ["the #test of the wilds# holds"],
+	"Ganons Castle Water Trial Left Chest": ["the #test of the seas# holds"],
+	"Ganons Castle Water Trial Right Chest": ["the #test of the seas# holds"],
+	"Ganons Castle Shadow Trial Front Chest": [
+		"#music in the test of darkness# unveils"
+	],
+	"Ganons Castle Spirit Trial Crystal Switch Chest": [
+		"the #test of the sands# holds"
+	],
+	"Ganons Castle Spirit Trial Invisible Chest": [
+		"the #test of the sands# holds"
+	],
+	"Ganons Castle Light Trial First Left Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Second Left Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Third Left Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial First Right Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Second Right Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Third Right Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Invisible Enemies Chest": [
+		"the #test of radiance# holds"
+	],
+	"Ganons Castle Light Trial Lullaby Chest": [
+		"#music in the test of radiance# reveals"
+	],
+
+	"Ganons Castle MQ Water Trial Chest": ["the #test of the seas# holds"],
+	"Ganons Castle MQ Forest Trial Eye Switch Chest": [
+		"the #test of the wilds# holds"
+	],
+	"Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": [
+		"the #test of the wilds# holds"
+	],
+	"Ganons Castle MQ Light Trial Lullaby Chest": [
+		"#music in the test of radiance# reveals"
+	],
+	"Ganons Castle MQ Shadow Trial Bomb Flower Chest": [
+		"the #test of darkness# holds"
+	],
+	"Ganons Castle MQ Spirit Trial Golden Gauntlets Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Spirit Trial Sun Back Right Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Spirit Trial Sun Back Left Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Spirit Trial Sun Front Left Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Spirit Trial First Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Spirit Trial Invisible Chest": [
+		"#reflected light in the test of the sands# reveals"
+	],
+	"Ganons Castle MQ Forest Trial Freestanding Key": [
+		"the #test of the wilds# holds"
+	],
+
+	"Deku Tree Queen Gohma Heart": [
+		"the #Parasitic Armored Arachnid# holds",
+		"#Queen Gohma# holds"
+	],
+	"Dodongos Cavern King Dodongo Heart": [
+		"the #Infernal Dinosaur# holds",
+		"#King Dodongo# holds"
+	],
+	"Jabu Jabus Belly Barinade Heart": [
+		"the #Bio-Electric Anemone# holds",
+		"#Barinade# holds"
+	],
+	"Forest Temple Phantom Ganon Heart": [
+		"the #Evil Spirit from Beyond# holds",
+		"#Phantom Ganon# holds"
+	],
+	"Fire Temple Volvagia Heart": [
+		"the #Subterranean Lava Dragon# holds",
+		"#Volvagia# holds"
+	],
+	"Water Temple Morpha Heart": [
+		"the #Giant Aquatic Amoeba# holds",
+		"#Morpha# holds"
+	],
+	"Spirit Temple Twinrova Heart": [
+		"the #Sorceress Sisters# hold",
+		"#Twinrova# holds"
+	],
+	"Shadow Temple Bongo Bongo Heart": [
+		"the #Phantom Shadow Beast# holds",
+		"#Bongo Bongo# holds"
+	],
+
+	"Deku Tree GS Basement Back Room": [
+		"a #spider deep within the Deku Tree# hides"
+	],
+	"Deku Tree GS Basement Gate": [
+		"a #web protects a spider# within the Deku Tree holding"
+	],
+	"Deku Tree GS Basement Vines": [
+		"a #web protects a spider# within the Deku Tree holding"
+	],
+	"Deku Tree GS Compass Room": ["a #spider atop the Deku Tree# holds"],
+
+	"Deku Tree MQ GS Lobby": [
+		"a #spider in a crate# within the Deku Tree hides"
+	],
+	"Deku Tree MQ GS Compass Room": [
+		"a #wall of rock protects a spider# within the Deku Tree holding"
+	],
+	"Deku Tree MQ GS Basement Back Room": [
+		"a #spider deep within the Deku Tree# hides"
+	],
+
+	"Dodongos Cavern GS Vines Above Stairs": [
+		"a #spider entangled in vines# in Dodongo's Cavern guards"
+	],
+	"Dodongos Cavern GS Scarecrow": ["a #spider among explosive slugs# hides"],
+	"Dodongos Cavern GS Alcove Above Stairs": [
+		"a #spider just out of reach# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern GS Back Room": [
+		"a #spider behind a statue# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern GS Side Room Near Lower Lizalfos": [
+		"a #spider among bats# in Dodongo's Cavern holds"
+	],
+
+	"Dodongos Cavern MQ GS Scrub Room": [
+		"a #spider high on a wall# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern MQ GS Lizalfos Room": [
+		"a #spider on top of a pillar of rock# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern MQ GS Larvae Room": [
+		"a #spider in a crate# in Dodongo's Cavern holds"
+	],
+	"Dodongos Cavern MQ GS Back Area": [
+		"a #spider among graves# in Dodongo's Cavern holds"
+	],
+
+	"Jabu Jabus Belly GS Lobby Basement Lower": [
+		"a #spider resting near a princess# in Jabu Jabu's Belly holds"
+	],
+	"Jabu Jabus Belly GS Lobby Basement Upper": [
+		"a #spider resting near a princess# in Jabu Jabu's Belly holds"
+	],
+	"Jabu Jabus Belly GS Near Boss": ["#jellyfish surround a spider# holding"],
+	"Jabu Jabus Belly GS Water Switch Room": [
+		"a #spider guarded by a school of stingers# in Jabu Jabu's Belly holds"
+	],
+
+	"Jabu Jabus Belly MQ GS Tailpasaran Room": [
+		"a #spider surrounded by electricity# in Jabu Jabu's Belly holds"
+	],
+	"Jabu Jabus Belly MQ GS Boomerang Chest Room": [
+		"a #spider guarded by a school of stingers# in Jabu Jabu's Belly holds"
+	],
+	"Jabu Jabus Belly MQ GS Near Boss": [
+		"a #spider in a web within Jabu Jabu's Belly# holds"
+	],
+
+	"Forest Temple GS Raised Island Courtyard": [
+		"a #spider on a small island# in the Forest Temple holds"
+	],
+	"Forest Temple GS First Room": [
+		"a #spider high on a wall of vines# in the Forest Temple holds"
+	],
+	"Forest Temple GS Level Island Courtyard": [
+		"#stone columns# lead to a spider in the Forest Temple hiding"
+	],
+	"Forest Temple GS Lobby": [
+		"a #spider among ghosts# in the Forest Temple guards"
+	],
+	"Forest Temple GS Basement": [
+		"a #spider within revolving walls# in the Forest Temple holds"
+	],
+
+	"Forest Temple MQ GS First Hallway": [
+		"an #ivy-hidden spider# in the Forest Temple hoards"
+	],
+	"Forest Temple MQ GS Block Push Room": [
+		"a #spider in a hidden nook# within the Forest Temple holds"
+	],
+	"Forest Temple MQ GS Raised Island Courtyard": [
+		"a #spider on an arch# in the Forest Temple holds"
+	],
+	"Forest Temple MQ GS Level Island Courtyard": [
+		"a #spider on a ledge# in the Forest Temple holds"
+	],
+	"Forest Temple MQ GS Well": [
+		"#draining a well# in Forest Temple uncovers a spider with"
+	],
+
+	"Fire Temple GS Song of Time Room": [
+		"#eight tiles of malice# guard a spider holding"
+	],
+	"Fire Temple GS Boss Key Loop": [
+		"#five tiles of malice# guard a spider holding"
+	],
+	"Fire Temple GS Boulder Maze": [
+		"#explosives in a maze# unveil a spider hiding"
+	],
+	"Fire Temple GS Scarecrow Top": [
+		"a #spider-friendly scarecrow# atop a volcano hides",
+		"a #spider-friendly scarecrow# atop the Fire Temple hides"
+	],
+	"Fire Temple GS Scarecrow Climb": [
+		"a #spider-friendly scarecrow# atop a volcano hides",
+		"a #spider-friendly scarecrow# atop the Fire Temple hides"
+	],
+
+	"Fire Temple MQ GS Above Fire Wall Maze": [
+		"a #spider above a fiery maze# holds"
+	],
+	"Fire Temple MQ GS Fire Wall Maze Center": [
+		"a #spider within a fiery maze# holds"
+	],
+	"Fire Temple MQ GS Big Lava Room Open Door": [
+		"a #Goron trapped near lava# befriended a spider with"
+	],
+	"Fire Temple MQ GS Fire Wall Maze Side Room": [
+		"a #spider beside a fiery maze# holds"
+	],
+
+	"Water Temple GS Falling Platform Room": [
+		"a #spider over a waterfall# in the Water Temple holds"
+	],
+	"Water Temple GS Central Pillar": [
+		"a #spider in the center of the Water Temple# holds"
+	],
+	"Water Temple GS Near Boss Key Chest": [
+		"a spider protected by #rolling boulders under the lake# hides",
+		"a spider protected by #rolling boulders in the Water Temple# hides"
+	],
+	"Water Temple GS River": [
+		"a #spider over a river# in the Water Temple holds"
+	],
+
+	"Water Temple MQ GS Before Upper Water Switch": [
+		"#beyond a pit of lizards# is a spider holding"
+	],
+	"Water Temple MQ GS Lizalfos Hallway": [
+		"#lizards guard a spider# in the Water Temple with"
+	],
+	"Water Temple MQ GS River": [
+		"a #spider over a river# in the Water Temple holds"
+	],
+
+	"Spirit Temple GS Hall After Sun Block Room": [
+		"a spider in the #hall of a knight# guards"
+	],
+	"Spirit Temple GS Boulder Room": [
+		"a #spider behind a temporal stone# in the Spirit Temple yields"
+	],
+	"Spirit Temple GS Lobby": ["a #spider beside a statue# holds"],
+	"Spirit Temple GS Sun on Floor Room": [
+		"a #spider at the top of a deep shaft# in the Spirit Temple holds"
+	],
+	"Spirit Temple GS Metal Fence": [
+		"a child defeats a #spider among bats# in the Spirit Temple to gain"
+	],
+
+	"Spirit Temple MQ GS Leever Room": [
+		"#above a pit of sand# in the Spirit Temple hides"
+	],
+	"Spirit Temple MQ GS Nine Thrones Room West": [
+		"a spider in the #hall of a knight# guards"
+	],
+	"Spirit Temple MQ GS Nine Thrones Room North": [
+		"a spider in the #hall of a knight# guards"
+	],
+	"Spirit Temple MQ GS Sun Block Room": [
+		"#upon a web of glass# in the Spirit Temple sits a spider holding"
+	],
+
+	"Shadow Temple GS Single Giant Pot": [
+		"#beyond a burning skull# lies a spider with"
+	],
+	"Shadow Temple GS Falling Spikes Room": [
+		"a #spider beyond falling spikes# holds"
+	],
+	"Shadow Temple GS Triple Giant Pot": [
+		"#beyond three burning skulls# lies a spider with"
+	],
+	"Shadow Temple GS Like Like Room": [
+		"a spider guarded by #invisible blades# holds"
+	],
+	"Shadow Temple GS Near Ship": ["a spider near a #docked ship# hoards"],
+
+	"Shadow Temple MQ GS Falling Spikes Room": [
+		"a #spider beyond falling spikes# holds"
+	],
+	"Shadow Temple MQ GS Wind Hint Room": [
+		"a #spider amidst roaring winds# in the Shadow Temple holds"
+	],
+	"Shadow Temple MQ GS After Wind": [
+		"a #spider beneath gruesome debris# in the Shadow Temple hides"
+	],
+	"Shadow Temple MQ GS After Ship": [
+		"a #fallen statue# reveals a spider with"
+	],
+	"Shadow Temple MQ GS Near Boss": ["a #suspended spider# guards"],
+
+	"Bottom of the Well GS Like Like Cage": [
+		"a #spider locked in a cage# in the well holds"
+	],
+	"Bottom of the Well GS East Inner Room": [
+		"an #invisible path in the well# leads to"
+	],
+	"Bottom of the Well GS West Inner Room": [
+		"a #spider locked in a crypt# within the well guards"
+	],
+
+	"Bottom of the Well MQ GS Basement": [
+		"a #gauntlet of invisible spiders# protects"
+	],
+	"Bottom of the Well MQ GS Coffin Room": [
+		"a #spider crawling near the dead# in the well holds"
+	],
+	"Bottom of the Well MQ GS West Inner Room": [
+		"a #spider locked in a crypt# within the well guards"
+	],
+
+	"Ice Cavern GS Push Block Room": ["a #spider above icy pits# holds"],
+	"Ice Cavern GS Spinning Scythe Room": [
+		"#spinning ice# guards a spider holding"
+	],
+	"Ice Cavern GS Heart Piece Room": ["a #spider behind a wall of ice# hides"],
+
+	"Ice Cavern MQ GS Scarecrow": ["a #spider above icy pits# holds"],
+	"Ice Cavern MQ GS Ice Block": ["a #web of ice# surrounds a spider with"],
+	"Ice Cavern MQ GS Red Ice": ["a #spider in fiery ice# hoards"],
+
+	"HF GS Near Kak Grotto": ["a #spider-guarded spider in a hole# hoards"],
+
+	"LLR GS Back Wall": ["night reveals a #spider in a ranch# holding"],
+	"LLR GS Rain Shed": ["night reveals a #spider in a ranch# holding"],
+	"LLR GS House Window": ["night reveals a #spider in a ranch# holding"],
+	"LLR GS Tree": ["a spider hiding in a #ranch tree# holds"],
+
+	"KF GS Bean Patch": ["a #spider buried in a forest# holds"],
+	"KF GS Know It All House": [
+		"night in the past reveals a #spider in a forest# holding"
+	],
+	"KF GS House of Twins": [
+		"night in the future reveals a #spider in a forest# holding"
+	],
+
+	"LW GS Bean Patch Near Bridge": [
+		"a #spider buried deep in a forest maze# holds"
+	],
+	"LW GS Bean Patch Near Theater": [
+		"a #spider buried deep in a forest maze# holds"
+	],
+	"LW GS Above Theater": [
+		"night reveals a #spider deep in a forest maze# holding"
+	],
+	"SFM GS": ["night reveals a #spider in a forest meadow# holding"],
+
+	"OGC GS": ["a #spider outside a tyrant's tower# holds"],
+	"HC GS Tree": ["a spider hiding in a #tree outside of a castle# holds"],
+	"Market GS Guard House": ["a #spider in a guarded crate# holds"],
+
+	"DMC GS Bean Patch": ["a #spider buried in a volcano# holds"],
+
+	"DMT GS Bean Patch": ["a #spider buried outside a cavern# holds"],
+	"DMT GS Near Kak": ["a #spider hidden in a mountain nook# holds"],
+	"DMT GS Above Dodongos Cavern": [
+		"the hammer reveals a #spider on a mountain# holding"
+	],
+	"DMT GS Falling Rocks Path": [
+		"the hammer reveals a #spider on a mountain# holding"
+	],
+
+	"GC GS Center Platform": ["a #suspended spider# in Goron City holds"],
+	"GC GS Boulder Maze": ["a spider in a #Goron City crate# holds"],
+
+	"Kak GS House Under Construction": [
+		"night in the past reveals a #spider in a town# holding"
+	],
+	"Kak GS Skulltula House": [
+		"night in the past reveals a #spider in a town# holding"
+	],
+	"Kak GS Guards House": [
+		"night in the past reveals a #spider in a town# holding"
+	],
+	"Kak GS Tree": ["night in the past reveals a #spider in a town# holding"],
+	"Kak GS Watchtower": [
+		"night in the past reveals a #spider in a town# holding"
+	],
+	"Kak GS Above Impas House": [
+		"night in the future reveals a #spider in a town# holding"
+	],
+
+	"Graveyard GS Wall": ["night reveals a #spider in a graveyard# holding"],
+	"Graveyard GS Bean Patch": ["a #spider buried in a graveyard# holds"],
+
+	"ZR GS Ladder": ["night in the past reveals a #spider in a river# holding"],
+	"ZR GS Tree": ["a spider hiding in a #tree by a river# holds"],
+	"ZR GS Above Bridge": [
+		"night in the future reveals a #spider in a river# holding"
+	],
+	"ZR GS Near Raised Grottos": [
+		"night in the future reveals a #spider in a river# holding"
+	],
+
+	"ZD GS Frozen Waterfall": [
+		"night reveals a #spider by a frozen waterfall# holding"
+	],
+	"ZF GS Above the Log": ["night reveals a #spider near a deity# holding"],
+	"ZF GS Tree": ["a spider hiding in a #tree near a deity# holds"],
+
+	"LH GS Bean Patch": ["a #spider buried by a lake# holds"],
+	"LH GS Small Island": ["night reveals a #spider by a lake# holding"],
+	"LH GS Lab Wall": ["night reveals a #spider by a lake# holding"],
+	"LH GS Lab Crate": ["a spider deed underwater in a #lab crate# holds"],
+	"LH GS Tree": ["night reveals a #spider by a lake high in a tree# holding"],
+
+	"GV GS Bean Patch": ["a #spider buried in a valley# holds"],
+	"GV GS Small Bridge": [
+		"night in the past reveals a #spider in a valley# holding"
+	],
+	"GV GS Pillar": [
+		"night in the future reveals a #spider in a valley# holding"
+	],
+	"GV GS Behind Tent": [
+		"night in the future reveals a #spider in a valley# holding"
+	],
+
+	"GF GS Archery Range": ["night reveals a #spider in a fortress# holding"],
+	"GF GS Top Floor": ["night reveals a #spider in a fortress# holding"],
+
+	"Colossus GS Bean Patch": ["a #spider buried in the desert# holds"],
+	"Colossus GS Hill": ["night reveals a #spider deep in the desert# holding"],
+	"Colossus GS Tree": ["night reveals a #spider deep in the desert# holding"],
+
+	"KF Shop Item 1": ["a #child shopkeeper# sells"],
+	"KF Shop Item 2": ["a #child shopkeeper# sells"],
+	"KF Shop Item 3": ["a #child shopkeeper# sells"],
+	"KF Shop Item 4": ["a #child shopkeeper# sells"],
+	"KF Shop Item 5": ["a #child shopkeeper# sells"],
+	"KF Shop Item 6": ["a #child shopkeeper# sells"],
+	"KF Shop Item 7": ["a #child shopkeeper# sells"],
+	"KF Shop Item 8": ["a #child shopkeeper# sells"],
+
+	"Kak Potion Shop Item 1": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 2": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 3": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 4": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 5": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 6": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 7": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+	"Kak Potion Shop Item 8": [
+		"a #potion seller# offers",
+		"the #Kakariko Potion Shop# offers"
+	],
+
+	"Market Bombchu Shop Item 1": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 2": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 3": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 4": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 5": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 6": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 7": ["a #Bombchu merchant# sells"],
+	"Market Bombchu Shop Item 8": ["a #Bombchu merchant# sells"],
+
+	"Market Potion Shop Item 1": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 2": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 3": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 4": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 5": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 6": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 7": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+	"Market Potion Shop Item 8": [
+		"a #potion seller# offers",
+		"the #Market Potion Shop# offers"
+	],
+
+	"Market Bazaar Item 1": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 2": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 3": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 4": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 5": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 6": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 7": ["the #Market Bazaar# offers"],
+	"Market Bazaar Item 8": ["the #Market Bazaar# offers"],
+
+	"Kak Bazaar Item 1": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 2": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 3": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 4": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 5": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 6": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 7": ["the #Kakariko Bazaar# offers"],
+	"Kak Bazaar Item 8": ["the #Kakariko Bazaar# offers"],
+
+	"ZD Shop Item 1": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 2": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 3": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 4": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 5": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 6": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 7": ["a #Zora shopkeeper# sells"],
+	"ZD Shop Item 8": ["a #Zora shopkeeper# sells"],
+
+	"GC Shop Item 1": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 2": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 3": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 4": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 5": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 6": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 7": ["a #Goron shopkeeper# sells"],
+	"GC Shop Item 8": ["a #Goron shopkeeper# sells"],
+
+	"Deku Tree MQ Deku Scrub": ["a #scrub in the Deku Tree# sells"],
+
+	"HF Deku Scrub Grotto": ["a lonely #scrub in a hole# sells"],
+	"LLR Deku Scrub Grotto Left": ["a #trio of scrubs# sells"],
+	"LLR Deku Scrub Grotto Right": ["a #trio of scrubs# sells"],
+	"LLR Deku Scrub Grotto Center": ["a #trio of scrubs# sells"],
+
+	"LW Deku Scrub Near Deku Theater Right": [
+		"a pair of #scrubs in the woods# sells"
+	],
+	"LW Deku Scrub Near Deku Theater Left": [
+		"a pair of #scrubs in the woods# sells"
+	],
+	"LW Deku Scrub Near Bridge": ["a #scrub by a bridge# sells"],
+	"LW Deku Scrub Grotto Rear": ["a #scrub underground duo# sells"],
+	"LW Deku Scrub Grotto Front": ["a #scrub underground duo# sells"],
+
+	"SFM Deku Scrub Grotto Rear": ["a #scrub underground duo# sells"],
+	"SFM Deku Scrub Grotto Front": ["a #scrub underground duo# sells"],
+
+	"GC Deku Scrub Grotto Left": ["a #trio of scrubs# sells"],
+	"GC Deku Scrub Grotto Right": ["a #trio of scrubs# sells"],
+	"GC Deku Scrub Grotto Center": ["a #trio of scrubs# sells"],
+
+	"Dodongos Cavern Deku Scrub Near Bomb Bag Left": [
+		"a pair of #scrubs in Dodongo's Cavern# sells"
+	],
+	"Dodongos Cavern Deku Scrub Side Room Near Dodongos": [
+		"a #scrub guarded by Lizalfos# sells"
+	],
+	"Dodongos Cavern Deku Scrub Near Bomb Bag Right": [
+		"a pair of #scrubs in Dodongo's Cavern# sells"
+	],
+	"Dodongos Cavern Deku Scrub Lobby": ["a #scrub in Dodongo's Cavern# sells"],
+
+	"Dodongos Cavern MQ Deku Scrub Lobby Rear": [
+		"a pair of #scrubs in Dodongo's Cavern# sells"
+	],
+	"Dodongos Cavern MQ Deku Scrub Lobby Front": [
+		"a pair of #scrubs in Dodongo's Cavern# sells"
+	],
+	"Dodongos Cavern MQ Deku Scrub Staircase": [
+		"a #scrub in Dodongo's Cavern# sells"
+	],
+	"Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos": [
+		"a #scrub guarded by Lizalfos# sells"
+	],
+
+	"DMC Deku Scrub Grotto Left": ["a #trio of scrubs# sells"],
+	"DMC Deku Scrub Grotto Right": ["a #trio of scrubs# sells"],
+	"DMC Deku Scrub Grotto Center": ["a #trio of scrubs# sells"],
+
+	"ZR Deku Scrub Grotto Rear": ["a #scrub underground duo# sells"],
+	"ZR Deku Scrub Grotto Front": ["a #scrub underground duo# sells"],
+
+	"Jabu Jabus Belly Deku Scrub": ["a #scrub in a deity# sells"],
+
+	"LH Deku Scrub Grotto Left": ["a #trio of scrubs# sells"],
+	"LH Deku Scrub Grotto Right": ["a #trio of scrubs# sells"],
+	"LH Deku Scrub Grotto Center": ["a #trio of scrubs# sells"],
+
+	"GV Deku Scrub Grotto Rear": ["a #scrub underground duo# sells"],
+	"GV Deku Scrub Grotto Front": ["a #scrub underground duo# sells"],
+
+	"Colossus Deku Scrub Grotto Front": ["a #scrub underground duo# sells"],
+	"Colossus Deku Scrub Grotto Rear": ["a #scrub underground duo# sells"],
+
+	"Ganons Castle Deku Scrub Center-Left": ["#scrubs in Ganon's Castle# sell"],
+	"Ganons Castle Deku Scrub Center-Right": [
+		"#scrubs in Ganon's Castle# sell"
+	],
+	"Ganons Castle Deku Scrub Right": ["#scrubs in Ganon's Castle# sell"],
+	"Ganons Castle Deku Scrub Left": ["#scrubs in Ganon's Castle# sell"],
+
+	"Ganons Castle MQ Deku Scrub Right": ["#scrubs in Ganon's Castle# sell"],
+	"Ganons Castle MQ Deku Scrub Center-Left": [
+		"#scrubs in Ganon's Castle# sell"
+	],
+	"Ganons Castle MQ Deku Scrub Center": ["#scrubs in Ganon's Castle# sell"],
+	"Ganons Castle MQ Deku Scrub Center-Right": [
+		"#scrubs in Ganon's Castle# sell"
+	],
+	"Ganons Castle MQ Deku Scrub Left": ["#scrubs in Ganon's Castle# sell"],
+
+	"LLR Stables Left Cow": ["a #cow in a stable# gifts"],
+	"LLR Stables Right Cow": ["a #cow in a stable# gifts"],
+	"LLR Tower Right Cow": ["a #cow in a ranch silo# gifts"],
+	"LLR Tower Left Cow": ["a #cow in a ranch silo# gifts"],
+	"Kak Impas House Cow": ["a #cow imprisoned in a house# protects"],
+	"DMT Cow Grotto Cow": ["a #cow in a luxurious hole# offers"],
+
+	"Desert Colossus -> Colossus Grotto": [
+		"lifting a #rock in the desert# reveals"
+	],
+	"GV Grotto Ledge -> GV Octorok Grotto": [
+		"a rock on #a ledge in the valley# hides"
+	],
+	"GC Grotto Platform -> GC Grotto": [
+		"a #pool of lava# in Goron City blocks the way to"
+	],
+	"Gerudo Fortress -> GF Storms Grotto": [
+		"a #storm within Gerudo's Fortress# reveals"
+	],
+	"Zoras Domain -> ZD Storms Grotto": [
+		"a #storm within Zora's Domain# reveals"
+	],
+	"Hyrule Castle Grounds -> HC Storms Grotto": [
+		"a #storm near the castle# reveals"
+	],
+	"GV Fortress Side -> GV Storms Grotto": ["a #storm in the valley# reveals"],
+	"Desert Colossus -> Colossus Great Fairy Fountain": [
+		"a #fractured desert wall# hides"
+	],
+	"Ganons Castle Grounds -> OGC Great Fairy Fountain": [
+		"a #heavy pillar# outside the castle obstructs"
+	],
+	"Zoras Fountain -> ZF Great Fairy Fountain": ["a #fountain wall# hides"],
+	"GV Fortress Side -> GV Carpenter Tent": ["a #tent in the valley# covers"],
+	"Graveyard Warp Pad Region -> Shadow Temple Entryway": [
+		"at the #back of the Graveyard#, there is"
+	],
+	"Lake Hylia -> Water Temple Lobby": [
+		"deep #under a vast lake#, one can find"
+	],
+	"Gerudo Fortress -> Gerudo Training Ground Lobby": [
+		"paying a #fee to the Gerudos# grants access to"
+	],
+	"Zoras Fountain -> Jabu Jabus Belly Beginning": [
+		"inside #Jabu Jabu#, one can find"
+	],
+	"Kakariko Village -> Bottom of the Well": ["a #village well# leads to"],
+
+	"KF Links House": ["Link's House"],
+	"Temple of Time": ["the #Temple of Time#"],
+	"KF Midos House": ["Mido's house"],
+	"KF Sarias House": ["Saria's House"],
+	"KF House of Twins": ["the #House of Twins#"],
+	"KF Know It All House": ["Know-It-All Brothers' House"],
+	"KF Kokiri Shop": ["the #Kokiri Shop#"],
+	"LH Lab": ["the #Lakeside Laboratory#"],
+	"LH Fishing Hole": ["the #Fishing Pond#"],
+	"GV Carpenter Tent": ["the #Carpenters' tent#"],
+	"Market Guard House": ["the #Guard House#"],
+	"Market Mask Shop": ["the #Happy Mask Shop#"],
+	"Market Bombchu Bowling": ["the #Bombchu Bowling Alley#"],
+	"Market Potion Shop": ["the #Market Potion Shop#"],
+	"Market Treasure Chest Game": ["the #Treasure Box Shop#"],
+	"Market Bombchu Shop": ["the #Bombchu Shop#"],
+	"Market Man in Green House": ["Man in Green's House"],
+	"Kak Windmill": ["the #Windmill#"],
+	"Kak Carpenter Boss House": ["the #Carpenters' Boss House#"],
+	"Kak House of Skulltula": ["the #House of Skulltula#"],
+	"Kak Impas House": ["Impa's House"],
+	"Kak Impas House Back": ["Impa's cow cage"],
+	"Kak Odd Medicine Building": ["Granny's Potion Shop"],
+	"Graveyard Dampes House": ["Dampé's Hut"],
+	"GC Shop": ["the #Goron Shop#"],
+	"ZD Shop": ["the #Zora Shop#"],
+	"LLR Talons House": ["Talon's House"],
+	"LLR Stables": ["a #stable#"],
+	"LLR Tower": ["the #Lon Lon Tower#"],
+	"Market Bazaar": ["the #Market Bazaar#"],
+	"Market Shooting Gallery": ["a #Slingshot Shooting Gallery#"],
+	"Kak Bazaar": ["the #Kakariko Bazaar#"],
+	"Kak Potion Shop Front": ["the #Kakariko Potion Shop#"],
+	"Kak Potion Shop Back": ["the #Kakariko Potion Shop#"],
+	"Kak Shooting Gallery": ["a #Bow Shooting Gallery#"],
+	"Colossus Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"HC Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"OGC Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"DMC Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"DMT Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"ZF Great Fairy Fountain": ["a #Great Fairy Fountain#"],
+	"Graveyard Shield Grave": ["a #grave with a free chest#"],
+	"Graveyard Heart Piece Grave": ["a chest spawned by #Sun's Song#"],
+	"Graveyard Royal Familys Tomb": ["the #Royal Family's Tomb#"],
+	"Graveyard Dampes Grave": ["Dampé's Grave"],
+	"DMT Cow Grotto": ["a solitary #Cow#"],
+	"HC Storms Grotto": ["a sandy grotto with #fragile walls#"],
+	"HF Tektite Grotto": ["a pool guarded by a #Tektite#"],
+	"HF Near Kak Grotto": ["a #Big Skulltula# guarding a Gold one"],
+	"HF Cow Grotto": ["a grotto full of #spider webs#"],
+	"Kak Redead Grotto": ["#ReDeads# guarding a chest"],
+	"SFM Wolfos Grotto": ["#Wolfos# guarding a chest"],
+	"GV Octorok Grotto": ["an #Octorok# guarding a rich pool"],
+	"Deku Theater": ["the #Lost Woods Stage#"],
+	"ZR Open Grotto": ["a #generic grotto#"],
+	"DMC Upper Grotto": ["a #generic grotto#"],
+	"DMT Storms Grotto": ["a #generic grotto#"],
+	"Kak Open Grotto": ["a #generic grotto#"],
+	"HF Near Market Grotto": ["a #generic grotto#"],
+	"HF Open Grotto": ["a #generic grotto#"],
+	"HF Southeast Grotto": ["a #generic grotto#"],
+	"KF Storms Grotto": ["a #generic grotto#"],
+	"LW Near Shortcuts Grotto": ["a #generic grotto#"],
+	"HF Inside Fence Grotto": ["a #single Upgrade Deku Scrub#"],
+	"LW Scrubs Grotto": ["#2 Deku Scrubs# including an Upgrade one"],
+	"Colossus Grotto": ["2 Deku Scrubs"],
+	"ZR Storms Grotto": ["2 Deku Scrubs"],
+	"SFM Storms Grotto": ["2 Deku Scrubs"],
+	"GV Storms Grotto": ["2 Deku Scrubs"],
+	"LH Grotto": ["3 Deku Scrubs"],
+	"DMC Hammer Grotto": ["3 Deku Scrubs"],
+	"GC Grotto": ["3 Deku Scrubs"],
+	"LLR Grotto": ["3 Deku Scrubs"],
+	"ZR Fairy Grotto": ["a small #Fairy Fountain#"],
+	"HF Fairy Grotto": ["a small #Fairy Fountain#"],
+	"SFM Fairy Grotto": ["a small #Fairy Fountain#"],
+	"ZD Storms Grotto": ["a small #Fairy Fountain#"],
+	"GF Storms Grotto": ["a small #Fairy Fountain#"]
+}
