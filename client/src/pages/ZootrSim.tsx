@@ -24,6 +24,8 @@ const ZootrSim = () => {
 	const [items, setItems] = useState<string[]>([]);
 	const [checked, setChecked] = useState<string[]>([]);
 	const [lastCheck, setLastCheck] = useState("");
+	const [woth, setWoth] = useState<string[]>([]);
+	const [barren, setBarren] = useState<string[]>([]);
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -38,10 +40,18 @@ const ZootrSim = () => {
 		],
 		{
 			enabled: id !== "",
-			onSuccess: ({ checked, items, locations }) => {
+			onSuccess: ({
+				checked,
+				items,
+				locations,
+				known_barren,
+				known_woth,
+			}) => {
 				setLocations(locations);
 				setItems(items);
 				setChecked(checked);
+				setWoth(known_woth);
+				setBarren(known_barren);
 				if (!checked.includes("Links Pocket")) {
 					checkLocation.mutate({ id, location: "Links Pocket" });
 				}
@@ -71,6 +81,11 @@ const ZootrSim = () => {
 		onSuccess: (data) => {
 			setChecked((prev) => [...prev, data.checked]);
 			setLastCheck(`${data.checked}: ${data.text}`);
+			if (data.type === "woth") {
+				setWoth((prev) => [...prev, data.region!]);
+			} else if (data.type === "barren") {
+				setBarren((prev) => [...prev, data.region!]);
+			}
 		},
 		onError: (err) => console.log(err),
 	});
@@ -92,6 +107,8 @@ const ZootrSim = () => {
 						age={age}
 						setAge={setAge}
 						items={items}
+						woth={woth}
+						barren={barren}
 					/>
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">

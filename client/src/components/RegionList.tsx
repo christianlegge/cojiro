@@ -1,5 +1,6 @@
 import React from "react";
 import regions from "../utils/regions";
+import Tag from "./Tag";
 
 const RegionList = ({
 	region,
@@ -7,12 +8,16 @@ const RegionList = ({
 	age,
 	setAge,
 	items,
+	woth,
+	barren,
 }: {
 	region: string;
 	setRegion: (r: string) => void;
 	age: "child" | "adult";
 	setAge: React.Dispatch<React.SetStateAction<"child" | "adult">>;
 	items: string[];
+	woth: string[];
+	barren: string[];
 }) => {
 	const regionsWithMedallions = [
 		"Deku Tree",
@@ -59,6 +64,12 @@ const RegionList = ({
 							} lg:scale-100`}
 							onClick={() => setRegion(el)}
 						>
+							{woth.includes(el) && (
+								<Tag text="WOTH" color="darkgreen" />
+							)}
+							{barren.includes(el) && (
+								<Tag text="FOOL" color="firebrick" />
+							)}
 							<span>{el}</span>
 							{regionsWithKeys.includes(el) && (
 								<span>
