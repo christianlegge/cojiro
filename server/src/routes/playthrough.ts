@@ -168,8 +168,14 @@ const router = trpc
 				returnObj = { ...returnObj, region: parsedHint.region };
 			} else if (parsedHint.type === "item") {
 				updateObj = {
-					known_locations: { [parsedHint.location]: parsedHint.item },
+					known_locations: {
+						...(playthrough.known_locations as {
+							[key: string]: string;
+						}),
+						[parsedHint.location]: parsedHint.item,
+					},
 				};
+
 				returnObj = {
 					...returnObj,
 					location: parsedHint.location,
