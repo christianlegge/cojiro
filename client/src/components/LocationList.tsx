@@ -24,6 +24,10 @@ const regions: {
 } = await import("../data/regions.json").then((x) => x.default);
 
 function locationDisplayName(name: string, region: string): string {
+	let parensMatch = /\(([^)]+)\)/.exec(name);
+	if (parensMatch) {
+		return `${parensMatch[1]} Gossip Stone`;
+	}
 	if (name.startsWith(region)) {
 		return name.slice(region.length);
 	}
@@ -91,7 +95,7 @@ const LocationList = ({
 								<CheckSquare
 									type={checkType}
 									key={el}
-									check={el}
+									check={locationDisplayName(el, region)}
 									coords={{
 										top: `${regions[region][checkType][el].top}%`,
 										left: `${regions[region][checkType][el].left}%`,
