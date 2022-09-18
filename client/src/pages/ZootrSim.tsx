@@ -28,6 +28,7 @@ const ZootrSim = () => {
 	const [knownPaths, setKnownPaths] = useState<{
 		[key: string]: string[];
 	}>({});
+	const [error, setError] = useState("");
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -76,7 +77,7 @@ const ZootrSim = () => {
 			setChecked((prev) => [...prev, checked]);
 			setLastCheck(`${checked}: ${item}`);
 		},
-		onError: (err) => console.log(err),
+		onError: (err) => setError(err.message),
 	});
 
 	const checkLocationWrapper = (input: { id: string; location: string }) => {
@@ -103,7 +104,7 @@ const ZootrSim = () => {
 				}));
 			}
 		},
-		onError: (err) => console.log(err),
+		onError: (err) => setError(err.message),
 	});
 
 	const checkStoneWrapper = (input: { id: string; stone: string }) => {
@@ -142,6 +143,7 @@ const ZootrSim = () => {
 							headerText={lastCheck}
 							knownLocations={knownLocations}
 							pathTo={knownPaths[region]}
+							error={error}
 						/>
 					</div>
 					<ItemTracker

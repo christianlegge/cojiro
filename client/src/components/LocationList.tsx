@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CheckSquare from "./CheckSquare";
 import { useParams } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
+import ErrorBox from "./ErrorBox";
 
 const regions: {
 	[key: string]: {
@@ -51,6 +52,7 @@ const LocationList = ({
 	headerText,
 	knownLocations,
 	pathTo,
+	error,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -63,6 +65,7 @@ const LocationList = ({
 	headerText?: string;
 	knownLocations: { [key: string]: string };
 	pathTo?: string[];
+	error?: string;
 }) => {
 	if (!(region in regions)) {
 		return <div>Error! region not set correctly</div>;
@@ -80,7 +83,11 @@ const LocationList = ({
 						{pathTo && `Path to: ${pathTo.join(", ")}`}
 					</span>
 				</div>
-				<span className="text-lg">{headerText}</span>
+				{error ? (
+					<ErrorBox error={error} />
+				) : (
+					<span className="text-lg">{headerText}</span>
+				)}
 				<a
 					className="flex items-center gap-1 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
 					href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}

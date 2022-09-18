@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import h from "../data/hints.json";
 
 const hintsMap = new Map<string, { meanings: string[]; type: string }>();
@@ -31,7 +32,6 @@ const parseHint = (
 	// let twoMatch = /#([^#]+)#.*#([^#]+)#/.exec(hint);
 	// let secondKeyword = twoMatch && twoMatch[2];
 
-	console.log(hint);
 	let mapArray = [...hintsMap];
 	let matches = mapArray.filter(([k, v]) => hint.includes(k));
 
@@ -65,7 +65,10 @@ const parseHint = (
 			return { type: "path", region: region, location: location };
 		}
 	}
-	throw { message: `Error parsing hint: ${hint}` };
+	throw new TRPCError({
+		code: "INTERNAL_SERVER_ERROR",
+		message: `Error parsing hint: ${hint}`,
+	});
 };
 
 export default parseHint;
