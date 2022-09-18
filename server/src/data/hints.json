@@ -4882,47 +4882,64 @@
 	"Queen Gohma": {
 		"names": [
 			"One inside an #ancient tree#...",
-			"One in the #Deku Tree#..."
+			"One in the #Deku Tree#...",
+			"Queen Gohma"
 		],
 		"type": "location"
 	},
 	"King Dodongo": {
 		"names": [
 			"One within an #immense cavern#...",
-			"One in #Dodongo's Cavern#..."
+			"One in #Dodongo's Cavern#...",
+			"King Dodongo"
 		],
 		"type": "location"
 	},
 	"Barinade": {
 		"names": [
 			"One in the #belly of a deity#...",
-			"One in #Jabu Jabu's Belly#..."
+			"One in #Jabu Jabu's Belly#...",
+			"Barinade"
 		],
 		"type": "location"
 	},
 	"Phantom Ganon": {
-		"names": ["One in a #deep forest#...", "One in the #Forest Temple#..."],
+		"names": [
+			"One in a #deep forest#...",
+			"One in the #Forest Temple#...",
+			"Phantom Ganon"
+		],
 		"type": "location"
 	},
 	"Volvagia": {
-		"names": ["One on a #high mountain#...", "One in the #Fire Temple#..."],
+		"names": [
+			"One on a #high mountain#...",
+			"One in the #Fire Temple#...",
+			"Volvagia"
+		],
 		"type": "location"
 	},
 	"Morpha": {
-		"names": ["One under a #vast lake#...", "One in the #Water Temple#..."],
+		"names": [
+			"One under a #vast lake#...",
+			"One in the #Water Temple#...",
+			"Morpha"
+		],
 		"type": "location"
 	},
 	"Bongo Bongo": {
 		"names": [
 			"One within the #house of the dead#...",
-			"One in the #Shadow Temple#..."
+			"One in the #Shadow Temple#...",
+			"Bongo Bongo"
 		],
 		"type": "location"
 	},
 	"Twinrova": {
 		"names": [
 			"One inside a #goddess of the sand#...",
-			"One in the #Spirit Temple#..."
+			"One in the #Spirit Temple#...",
+			"Twinrova"
 		],
 		"type": "location"
 	},

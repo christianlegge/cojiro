@@ -50,6 +50,7 @@ const LocationList = ({
 	checkStone,
 	headerText,
 	knownLocations,
+	pathTo,
 }: {
 	age: "child" | "adult";
 	region: string;
@@ -61,6 +62,7 @@ const LocationList = ({
 	checkStone: (input: { id: string; stone: string }) => void;
 	headerText?: string;
 	knownLocations: { [key: string]: string };
+	pathTo?: string[];
 }) => {
 	if (!(region in regions)) {
 		return <div>Error! region not set correctly</div>;
@@ -70,9 +72,14 @@ const LocationList = ({
 	return (
 		<>
 			<div className="flex px-4 py-2 gap-8 h-16 justify-between items-center">
-				<span className="w-max text-2xl font-bold flex-shrink-0">
-					{region}
-				</span>
+				<div className="flex flex-col h-full justify-center">
+					<span className="w-max text-2xl font-bold flex-shrink-0">
+						{region}
+					</span>
+					<span className="w-max max-w-[20rem]">
+						{pathTo && `Path to: ${pathTo.join(", ")}`}
+					</span>
+				</div>
 				<span className="text-lg">{headerText}</span>
 				<a
 					className="flex items-center gap-1 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"

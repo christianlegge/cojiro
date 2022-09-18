@@ -23,6 +23,7 @@ const parseHint = (
 	seedLocations: string[]
 ):
 	| { type: "woth" | "barren"; region: string }
+	| { type: "path"; region: string; location: string }
 	| { type: "item"; item: string; location: string }
 	| { type: "junk" } => {
 	// let oneMatch = /#([^#]+)#/.exec(hint);
@@ -30,6 +31,7 @@ const parseHint = (
 	// let twoMatch = /#([^#]+)#.*#([^#]+)#/.exec(hint);
 	// let secondKeyword = twoMatch && twoMatch[2];
 
+	console.log(hint);
 	let mapArray = [...hintsMap];
 	let matches = mapArray.filter(([k, v]) => hint.includes(k));
 
@@ -59,8 +61,8 @@ const parseHint = (
 			return { type: "woth", region: region };
 		} else if (hint.toLowerCase().includes("foolish choice")) {
 			return { type: "barren", region: region };
-		} else if (hint.toLowerCase().includes("on the path to")) {
-			return { type: "woth", region: region };
+		} else if (hint.toLowerCase().includes("on the path to") && location) {
+			return { type: "path", region: region, location: location };
 		}
 	}
 	throw { message: `Error parsing hint: ${hint}` };

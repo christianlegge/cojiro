@@ -25,6 +25,9 @@ const ZootrSim = () => {
 	const [knownLocations, setKnownLocations] = useState<{
 		[key: string]: string;
 	}>({});
+	const [knownPaths, setKnownPaths] = useState<{
+		[key: string]: string[];
+	}>({});
 
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
@@ -46,6 +49,7 @@ const ZootrSim = () => {
 				known_barren,
 				known_woth,
 				known_locations,
+				known_paths,
 			}) => {
 				setLocations(locations);
 				setItems(items);
@@ -53,6 +57,7 @@ const ZootrSim = () => {
 				setWoth(known_woth);
 				setBarren(known_barren);
 				setKnownLocations(known_locations);
+				setKnownPaths(known_paths);
 				if (!checked.includes("Links Pocket")) {
 					checkLocation.mutate({ id, location: "Links Pocket" });
 				}
@@ -91,6 +96,11 @@ const ZootrSim = () => {
 					...prev,
 					[data.location!]: data.item!,
 				}));
+			} else if (data.type === "path") {
+				setKnownPaths((prev) => ({
+					...prev,
+					[data.region!]: data.path_locations!,
+				}));
 			}
 		},
 		onError: (err) => console.log(err),
@@ -115,6 +125,7 @@ const ZootrSim = () => {
 						items={items}
 						woth={woth}
 						barren={barren}
+						pathRegions={Object.keys(knownPaths)}
 					/>
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
@@ -130,6 +141,7 @@ const ZootrSim = () => {
 							checkStone={checkStoneWrapper}
 							headerText={lastCheck}
 							knownLocations={knownLocations}
+							pathTo={knownPaths[region]}
 						/>
 					</div>
 					<ItemTracker

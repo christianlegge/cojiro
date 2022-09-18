@@ -10,6 +10,7 @@ const RegionList = ({
 	items,
 	woth,
 	barren,
+	pathRegions,
 }: {
 	region: string;
 	setRegion: (r: string) => void;
@@ -18,6 +19,7 @@ const RegionList = ({
 	items: string[];
 	woth: string[];
 	barren: string[];
+	pathRegions: string[];
 }) => {
 	const regionsWithMedallions = [
 		"Deku Tree",
@@ -64,6 +66,9 @@ const RegionList = ({
 							} lg:scale-100`}
 							onClick={() => setRegion(el)}
 						>
+							{pathRegions.includes(el) && (
+								<Tag text="PATH" color="midnightblue" />
+							)}
 							{woth.includes(el) && (
 								<Tag text="WOTH" color="darkgreen" />
 							)}

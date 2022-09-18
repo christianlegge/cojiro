@@ -52,6 +52,7 @@ const router = trpc
 							...seed,
 						},
 					},
+					known_paths: {},
 					known_locations: {},
 					// known_medallions: {},
 					items: startingItems,

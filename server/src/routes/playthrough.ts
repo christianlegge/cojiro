@@ -40,6 +40,9 @@ const router = trpc
 				known_locations: playthrough.known_locations as {
 					[key: string]: string;
 				},
+				known_paths: playthrough.known_paths as {
+					[key: string]: string[];
+				},
 				// known_medallions: playthrough.known_medallions,
 			};
 		},
@@ -110,10 +113,11 @@ const router = trpc
 		async resolve({ input }): Promise<{
 			text: string;
 			checked: string;
-			type: "junk" | "woth" | "barren" | "item";
+			type: "junk" | "woth" | "barren" | "item" | "path";
 			region?: string;
 			location?: string;
 			item?: string;
+			path_locations?: string[];
 		}> {
 			let playthrough = await prisma.playthrough.findUnique({
 				where: { id: input.id },
@@ -153,10 +157,11 @@ const router = trpc
 			} as {
 				text: string;
 				checked: string;
-				type: "junk" | "woth" | "barren" | "item";
+				type: "junk" | "woth" | "barren" | "item" | "path";
 				region?: string;
 				location?: string;
 				item?: string;
+				path_locations?: string[];
 			};
 			let updateObj = {};
 			if (parsedHint.type === "junk") {
@@ -166,6 +171,44 @@ const router = trpc
 			} else if (parsedHint.type === "barren") {
 				updateObj = { known_barren: { push: parsedHint.region } };
 				returnObj = { ...returnObj, region: parsedHint.region };
+			} else if (parsedHint.type === "path") {
+				updateObj = {
+					known_paths: {
+						...(playthrough.known_paths as {
+							[key: string]: string[];
+						}),
+						[parsedHint.region]: [
+							...(parsedHint.region in
+							(playthrough.known_paths as {
+								[key: string]: string[];
+							})
+								? (
+										playthrough.known_paths as {
+											[key: string]: string[];
+										}
+								  )[parsedHint.region]
+								: []),
+							parsedHint.location,
+						],
+					},
+				};
+				returnObj = {
+					...returnObj,
+					region: parsedHint.region,
+					path_locations: [
+						...(parsedHint.region in
+						(playthrough.known_paths as {
+							[key: string]: string[];
+						})
+							? (
+									playthrough.known_paths as {
+										[key: string]: string[];
+									}
+							  )[parsedHint.region]
+							: []),
+						parsedHint.location,
+					],
+				};
 			} else if (parsedHint.type === "item") {
 				updateObj = {
 					known_locations: {
