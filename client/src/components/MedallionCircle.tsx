@@ -3,7 +3,13 @@ import { formatFilename } from "../utils/filename";
 import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
 
-const MedallionCircle = ({ items }: { items: string[] }) => {
+const MedallionCircle = ({
+	items,
+	itemLocations,
+}: {
+	items: string[];
+	itemLocations: { [key: string]: string };
+}) => {
 	const medallions = [
 		"Light",
 		"Forest",
@@ -31,7 +37,12 @@ const MedallionCircle = ({ items }: { items: string[] }) => {
 								top,
 								left,
 							}}
-							content={medallion}
+							content={
+								medallion in itemLocations
+									? `${medallion} (${itemLocations[medallion]})`
+									: medallion
+							}
+							showInfoIcon={medallion in itemLocations}
 						>
 							<ItemIcon
 								className="w-full h-full object-contain"

@@ -1,6 +1,7 @@
 import React from "react";
 import regions from "../utils/regions";
 import Tag from "./Tag";
+import { formatFilename } from "../utils/filename";
 
 const RegionList = ({
 	region,
@@ -11,6 +12,7 @@ const RegionList = ({
 	woth,
 	barren,
 	pathRegions,
+	knownLocations,
 }: {
 	region: string;
 	setRegion: (r: string) => void;
@@ -20,7 +22,18 @@ const RegionList = ({
 	woth: string[];
 	barren: string[];
 	pathRegions: string[];
+	knownLocations: { [key: string]: string };
 }) => {
+	const bosses = {
+		"Deku Tree": "Queen Gohma",
+		"Dodongo's Cavern": "King Dodongo",
+		"Jabu Jabu's Belly": "Barinade",
+		"Forest Temple": "Phantom Ganon",
+		"Fire Temple": "Volvagia",
+		"Water Temple": "Morpha",
+		"Shadow Temple": "Bongo Bongo",
+		"Spirit Temple": "Twinrova",
+	} as { [key: string]: string };
 	const regionsWithMedallions = [
 		"Deku Tree",
 		"Dodongo's Cavern",
@@ -104,7 +117,13 @@ const RegionList = ({
 							{regionsWithMedallions.includes(el) && (
 								<img
 									className="h-6"
-									src="/images/unknown-small.png"
+									src={`/images/${
+										bosses[el] in knownLocations
+											? formatFilename(
+													knownLocations[bosses[el]]
+											  )
+											: "unknown-small"
+									}.png`}
 									alt=""
 								/>
 							)}

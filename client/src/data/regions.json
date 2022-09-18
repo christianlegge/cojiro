@@ -785,6 +785,34 @@
 	},
 	"Temple of Time": {
 		"locations": {
+			"Take Master Sword": {
+				"top": 40,
+				"left": 70,
+				"child": true,
+				"adult": false,
+				"always": true
+			},
+			"Place Master Sword": {
+				"top": 40,
+				"left": 70,
+				"child": false,
+				"adult": true,
+				"always": true
+			},
+			"Check Stone Dungeons": {
+				"top": 70,
+				"left": 40,
+				"child": true,
+				"adult": false,
+				"always": true
+			},
+			"Check Medallion Dungeons": {
+				"top": 70,
+				"left": 40,
+				"child": false,
+				"adult": true,
+				"always": true
+			},
 			"Sheik at Temple": {
 				"top": 72.81368821292776,
 				"left": 35.70205479452055,

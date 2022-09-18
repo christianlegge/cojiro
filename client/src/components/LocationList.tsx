@@ -12,6 +12,7 @@ const regions: {
 				left: number;
 				child: boolean;
 				adult: boolean;
+				always?: boolean;
 			};
 		};
 		gossip_stones: {
@@ -120,7 +121,8 @@ const LocationList = ({
 							.filter(
 								(el) =>
 									regions[region][checkType][el][age] &&
-									(checkType === "gossip_stones" ||
+									(regions[region][checkType][el].always ||
+										checkType === "gossip_stones" ||
 										allLocations.includes(el) ||
 										el.includes("GS"))
 							)

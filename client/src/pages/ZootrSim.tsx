@@ -72,10 +72,23 @@ const ZootrSim = () => {
 	}, [region, age]);
 
 	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
-		onSuccess: ({ checked, item }) => {
-			setItems((items) => [...items, item]);
+		onSuccess: ({ checked, item, known_locations }) => {
+			setError("");
+			setKnownLocations(known_locations);
+			if (item) {
+				setItems((items) => [...items, item]);
+				setLastCheck(`${checked}: ${item}`);
+			} else if (/Check .* Dungeons/.test(checked)) {
+				if (checked.includes("Medallion")) {
+					setChecked((prev) => [...prev, "Check Stone Dungeons"]);
+				}
+				setLastCheck(
+					`You inspect the altar and gain information about the sacred ${
+						checked.includes("Stone") ? "stones" : "medallions"
+					}...`
+				);
+			}
 			setChecked((prev) => [...prev, checked]);
-			setLastCheck(`${checked}: ${item}`);
 		},
 		onError: (err) => setError(err.message),
 	});
@@ -86,6 +99,7 @@ const ZootrSim = () => {
 
 	const checkStone = trpc.useMutation("playthrough.checkStone", {
 		onSuccess: (data) => {
+			setError("");
 			setChecked((prev) => [...prev, data.checked]);
 			setLastCheck(`${data.checked}: ${data.text}`);
 			if (data.type === "woth") {
@@ -127,6 +141,7 @@ const ZootrSim = () => {
 						woth={woth}
 						barren={barren}
 						pathRegions={Object.keys(knownPaths)}
+						knownLocations={knownLocations}
 					/>
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
@@ -151,7 +166,10 @@ const ZootrSim = () => {
 						knownLocations={knownLocations}
 					/>
 					<div className="bg-blue-400">
-						<QuestTracker items={items} />
+						<QuestTracker
+							items={items}
+							knownLocations={knownLocations}
+						/>
 					</div>
 					<HintTracker />
 				</div>

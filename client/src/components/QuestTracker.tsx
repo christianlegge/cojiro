@@ -8,8 +8,21 @@ function formatFilename(str: string): string {
 	return str.toLowerCase().replaceAll(" ", "-");
 }
 
-const QuestTracker = ({ items }: { items: string[] }) => {
+const QuestTracker = ({
+	items,
+	knownLocations,
+}: {
+	items: string[];
+	knownLocations: { [key: string]: string };
+}) => {
 	const stones = ["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"];
+	let itemLocations = Object.keys(knownLocations).reduce(
+		(a, v) => ({
+			...a,
+			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
+		}),
+		{} as { [key: string]: string[] }
+	);
 	return (
 		<div className="grid grid-cols-[1fr_16rem]">
 			<div>
@@ -17,13 +30,18 @@ const QuestTracker = ({ items }: { items: string[] }) => {
 				{items.filter((el) => el === "Gold Skulltula Token").length}
 			</div>
 			<div className="row-span-2 pr-12 py-6">
-				<MedallionCircle items={items} />
+				<MedallionCircle items={items} itemLocations={itemLocations} />
 				<div className="flex justify-between gap-1 w-full mt-20">
 					{stones.map((stone) => (
 						<Tooltip
 							key={stone}
-							content={stone}
+							content={
+								stone in itemLocations
+									? `${stone} (${itemLocations[stone]})`
+									: stone
+							}
 							className="w-12 h-12 relative"
+							showInfoIcon={stone in itemLocations}
 						>
 							<ItemIcon
 								src={`/images/${formatFilename(stone)}.png`}

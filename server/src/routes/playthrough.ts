@@ -34,7 +34,6 @@ const router = trpc
 				locations: Array.from(Object.keys(seed.locations)),
 				items: playthrough.items,
 				id: playthrough.id,
-				// known_hints: playthrough.known_hints,
 				known_woth: playthrough.known_woth,
 				known_barren: playthrough.known_barren,
 				known_locations: playthrough.known_locations as {
@@ -43,7 +42,6 @@ const router = trpc
 				known_paths: playthrough.known_paths as {
 					[key: string]: string[];
 				},
-				// known_medallions: playthrough.known_medallions,
 			};
 		},
 	})
@@ -76,9 +74,45 @@ const router = trpc
 					message: `Playthrough already checked location ${input.location}`,
 				});
 			}
-			let item: string;
+			let item: string | undefined;
+			let known_locations: { [key: string]: string } =
+				playthrough.known_locations as { [key: string]: string };
 			if (input.location in seed.locations) {
 				item = seed.locations[input.location].item;
+			} else if (/Check .* Dungeons/.test(input.location)) {
+				if (input.location.includes("Medallion")) {
+					await prisma.playthrough.update({
+						where: { id: playthrough.id },
+						data: {
+							checked: {
+								push: "Check Stone Dungeons",
+							},
+						},
+					});
+				}
+				[
+					"Queen Gohma",
+					"King Dodongo",
+					"Barinade",
+					"Phantom Ganon",
+					"Volvagia",
+					"Morpha",
+					"Bongo Bongo",
+					"Twinrova",
+				].forEach((boss) => {
+					if (
+						input.location.includes("Medallion") ||
+						[
+							"Kokiri Emerald",
+							"Goron Ruby",
+							"Zora Sapphire",
+						].includes(seed.locations[boss].item)
+					)
+						known_locations = {
+							...known_locations,
+							[boss]: seed.locations[boss].item,
+						};
+				});
 			} else if (input.location.includes("GS")) {
 				item = "Gold Skulltula Token";
 			} else {
@@ -87,21 +121,24 @@ const router = trpc
 					message: `Location ${input.location} not found in seed`,
 				});
 			}
-			let x = playthrough.known_locations as { [key: string]: string };
 			await prisma.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
 					checked: {
 						push: input.location,
 					},
-					items: {
-						push: item,
-					},
+					items: item
+						? {
+								push: item,
+						  }
+						: undefined,
+					known_locations,
 				},
 			});
 			return {
 				item,
 				checked: input.location,
+				known_locations,
 			};
 		},
 	})
