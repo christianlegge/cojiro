@@ -38,7 +38,7 @@ const QuestTracker = () => {
 		{} as { [key: string]: string[] }
 	);
 	return (
-		<div className="grid grid-cols-[1fr_16rem]">
+		<div className="grid grid-cols-[1fr_16rem] bg-blue-400">
 			<div>
 				Skulltulas:{" "}
 				{

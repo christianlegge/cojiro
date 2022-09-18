@@ -16,7 +16,7 @@ const Tooltip = ({
 }) => {
 	return (
 		<div className={`${className} group hover:z-50`} style={style}>
-			<div className="bottom-full absolute w-max max-w-[20rem] font-semibold scale-0 group-hover:scale-100 text-white bg-zinc-900 p-2 rounded-md order-last transition duration-100 z-50">
+			<div className="pointer-events-none bottom-full absolute w-max max-w-[20rem] font-semibold scale-0 group-hover:scale-100 text-white bg-zinc-900 p-2 rounded-md order-last transition duration-100 z-50">
 				{content}
 			</div>
 			{children}

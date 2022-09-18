@@ -38,10 +38,8 @@ const ZootrSim = () => {
 						<LocationList age={age} region={region} />
 					</div>
 					<ItemTracker />
-					<div className="bg-blue-400">
-						<QuestTracker />
-					</div>
-					<HintTracker />
+					<QuestTracker />
+					{/* <HintTracker /> */}
 				</div>
 			</div>
 		</>

@@ -76,8 +76,8 @@ const LocationList = ({
 		return <div>Error! region not set correctly</div>;
 	}
 	return (
-		<>
-			<div className="flex px-4 py-2 gap-8 min-h-16 justify-between items-center">
+		<div className="flex flex-col bg-black text-white">
+			<div className="flex px-4 py-2 gap-8 min-h-16 bg-gradient-to-b from-black to-zinc-700 justify-between items-center sticky top-0 z-40">
 				<div className="flex flex-col h-full justify-center">
 					<span className="w-max text-2xl font-bold flex-shrink-0">
 						{region}
@@ -97,7 +97,7 @@ const LocationList = ({
 					<span className="text-lg">{headerText}</span>
 				)}
 				<a
-					className="flex items-center gap-1 px-2 py-0 bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
+					className="flex items-center gap-1 px-2 py-0 text-black bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
 					href={`//github.com/scatter-dev/zootr-sim/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
 					target="_blank"
 					rel="noreferrer"
@@ -106,7 +106,7 @@ const LocationList = ({
 					<FiExternalLink style={{ display: "inline" }} />
 				</a>
 			</div>
-			<div className="flex justify-center w-full h-auto">
+			<div className="flex justify-center w-full h-auto py-8">
 				<div className="relative inline-block min-h-0 min-w-0">
 					<img
 						src={`/images/maps/${region}.jpg`}
@@ -148,28 +148,7 @@ const LocationList = ({
 					)}
 				</div>
 			</div>
-			<div className="flex flex-wrap gap-2">
-				{Object.keys(regions[region].locations)
-					.filter(
-						(el) =>
-							(playthrough.locations.includes(el) ||
-								el.includes("GS")) &&
-							regions[region].locations[el][age]
-					)
-					.map((el) => (
-						<button
-							className={`block rounded-md p-2 ${
-								playthrough.checked.includes(el)
-									? "line-through cursor-default bg-gray-100 text-gray-500"
-									: "shadow-md cursor-pointer bg-green-300 hover:bg-green-200 active:bg-green-400"
-							}`}
-							key={el}
-						>
-							{locationDisplayName(el, region)}
-						</button>
-					))}
-			</div>
-		</>
+		</div>
 	);
 };
 

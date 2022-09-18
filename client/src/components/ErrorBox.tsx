@@ -10,7 +10,7 @@ const ErrorBox = ({
 }) => {
 	return (
 		<div
-			className={`flex items-center gap-1 p-1 rounded-md border-2 border-red-700 bg-red-300 ${
+			className={`flex items-center gap-1 text-black p-1 rounded-md border-2 border-red-700 bg-red-300 ${
 				error ? "" : "hidden"
 			} ${className}`}
 		>
