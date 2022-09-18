@@ -284,8 +284,10 @@ const ItemTracker = ({
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, items);
 				let tooltip = trackerItem.displayName;
-				if (item in itemLocations) {
-					tooltip = `${tooltip} (${itemLocations[item].join(", ")})`;
+				if (trackerItem.itemName in itemLocations) {
+					tooltip = `${tooltip} (${itemLocations[
+						trackerItem.itemName
+					].join(", ")})`;
 				}
 				return (
 					<Tooltip
@@ -299,7 +301,7 @@ const ItemTracker = ({
 							alt={trackerItem.displayName}
 							has={items.includes(trackerItem.itemName)}
 						/>
-						{item in itemLocations && (
+						{trackerItem.itemName in itemLocations && (
 							<FcInfo className="absolute bottom-0 right-2 w-6 h-6" />
 						)}
 					</Tooltip>

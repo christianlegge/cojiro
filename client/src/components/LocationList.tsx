@@ -74,7 +74,7 @@ const LocationList = ({
 
 	return (
 		<>
-			<div className="flex px-4 py-2 gap-8 h-16 justify-between items-center">
+			<div className="flex px-4 py-2 gap-8 min-h-16 justify-between items-center">
 				<div className="flex flex-col h-full justify-center">
 					<span className="w-max text-2xl font-bold flex-shrink-0">
 						{region}
