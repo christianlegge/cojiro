@@ -80,7 +80,12 @@ const LocationList = ({
 						{region}
 					</span>
 					<span className="w-max max-w-[20rem]">
-						{pathTo && `Path to: ${pathTo.join(", ")}`}
+						{pathTo &&
+							`Path to: ${pathTo
+								.filter(
+									(el, idx, arr) => arr.indexOf(el) === idx
+								)
+								.join(", ")}`}
 					</span>
 				</div>
 				{error ? (
