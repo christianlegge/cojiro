@@ -1,15 +1,18 @@
 import React, { CSSProperties, ReactNode } from "react";
+import { FcInfo } from "react-icons/fc";
 
 const Tooltip = ({
 	children,
 	content,
 	className,
 	style,
+	showInfoIcon,
 }: {
 	children: ReactNode;
 	content: ReactNode;
 	className?: string;
 	style?: CSSProperties;
+	showInfoIcon?: boolean;
 }) => {
 	return (
 		<div className={`${className} group`} style={style}>
@@ -17,6 +20,9 @@ const Tooltip = ({
 				{content}
 			</div>
 			{children}
+			{showInfoIcon && (
+				<FcInfo className="absolute bottom-0 right-0 w-6 h-6" />
+			)}
 		</div>
 	);
 };

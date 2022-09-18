@@ -1,7 +1,6 @@
 import React from "react";
 import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
-import { FcInfo } from "react-icons/fc";
 
 type TrackerItem = {
 	fileName: string; // path to image file in public/images
@@ -294,6 +293,7 @@ const ItemTracker = ({
 						key={trackerItem.fileName}
 						className="w-16 h-16 relative"
 						content={tooltip}
+						showInfoIcon={trackerItem.itemName in itemLocations}
 					>
 						<ItemIcon
 							className="object-contain w-full h-full z-0"
@@ -301,9 +301,6 @@ const ItemTracker = ({
 							alt={trackerItem.displayName}
 							has={items.includes(trackerItem.itemName)}
 						/>
-						{trackerItem.itemName in itemLocations && (
-							<FcInfo className="absolute bottom-0 right-2 w-6 h-6" />
-						)}
 					</Tooltip>
 				);
 			})}

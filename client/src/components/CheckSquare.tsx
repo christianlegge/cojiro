@@ -31,6 +31,7 @@ const CheckSquare = ({
 			}
 			className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2"
 			style={{ ...coords }}
+			showInfoIcon={item}
 		>
 			<div
 				className={`w-full h-full bg-contain bg-center bg-no-repeat ${
