@@ -152,7 +152,7 @@ const router = trpc
 			let parsedHint = parseHint(hint, Object.keys(seed.locations));
 			let returnObj = {
 				type: parsedHint.type,
-				text: hint,
+				text: hint.replaceAll("#", ""),
 				checked: input.stone,
 			} as {
 				text: string;
