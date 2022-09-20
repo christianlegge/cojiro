@@ -1,0 +1,31 @@
+{
+	"name": "zootr-sim",
+	"version": "1.0.0",
+	"description": "Simulate and practice Ocarina of Time Randomizer seeds",
+	"main": "index.js",
+	"scripts": {
+		"install": "concurrently \"yarn install:client\" \"yarn install:server\"",
+		"install:client": "cd client && yarn",
+		"install:server": "cd server && yarn",
+		"dev": "concurrently \"yarn dev:client\" \"yarn dev:server\"",
+		"dev:client": "cd client && yarn dev",
+		"dev:server": "cd server && yarn dev",
+		"start": "concurrently \"yarn start:client\" \"yarn start:server\"",
+		"start:client": "cd client && yarn build && yarn start",
+		"start:server": "cd server && yarn start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/christianlegge/zootr-sim.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/christianlegge/zootr-sim/issues"
+	},
+	"homepage": "https://github.com/christianlegge/zootr-sim#readme",
+	"devDependencies": {
+		"concurrently": "^7.4.0"
+	}
+}
