@@ -1,4 +1,6 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { usePlaythrough } from "../utils/trpc";
 import ItemIcon from "./ItemIcon";
 import MedallionCircle from "./MedallionCircle";
 import SongTracker from "./SongTracker";
@@ -8,18 +10,30 @@ function formatFilename(str: string): string {
 	return str.toLowerCase().replaceAll(" ", "-");
 }
 
-const QuestTracker = ({
-	items,
-	knownLocations,
-}: {
-	items: string[];
-	knownLocations: { [key: string]: string };
-}) => {
+const QuestTracker = () => {
+	const { id } = useParams() as { id: string };
+	const { data: playthrough, error, status } = usePlaythrough(id);
+
+	if (!playthrough) {
+		if (status === "loading") {
+			return <div>Loading...</div>;
+		} else {
+			return (
+				<div>
+					Error in ItemTracker:{" "}
+					{error ? error.message : "Unknown error"}
+				</div>
+			);
+		}
+	}
 	const stones = ["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"];
-	let itemLocations = Object.keys(knownLocations).reduce(
+	let itemLocations = Object.keys(playthrough.known_locations).reduce(
 		(a, v) => ({
 			...a,
-			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
+			[playthrough.known_locations[v]]: [
+				...(a[playthrough.known_locations[v]] ?? []),
+				v,
+			],
 		}),
 		{} as { [key: string]: string[] }
 	);
@@ -27,10 +41,17 @@ const QuestTracker = ({
 		<div className="grid grid-cols-[1fr_16rem]">
 			<div>
 				Skulltulas:{" "}
-				{items.filter((el) => el === "Gold Skulltula Token").length}
+				{
+					playthrough.items.filter(
+						(el) => el === "Gold Skulltula Token"
+					).length
+				}
 			</div>
 			<div className="row-span-2 pr-12 py-6">
-				<MedallionCircle items={items} itemLocations={itemLocations} />
+				<MedallionCircle
+					items={playthrough.items}
+					itemLocations={itemLocations}
+				/>
 				<div className="flex justify-between gap-1 w-full mt-20">
 					{stones.map((stone) => (
 						<Tooltip
@@ -47,13 +68,13 @@ const QuestTracker = ({
 								src={`/images/${formatFilename(stone)}.png`}
 								className="object-contain w-full h-full"
 								alt={stone}
-								has={items.includes(stone)}
+								has={playthrough.items.includes(stone)}
 							/>
 						</Tooltip>
 					))}
 				</div>
 			</div>
-			<SongTracker items={items} />
+			<SongTracker items={playthrough.items} />
 		</div>
 	);
 };

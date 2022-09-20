@@ -1,6 +1,8 @@
 import React from "react";
 import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
+import { usePlaythrough } from "../utils/trpc";
+import { useParams } from "react-router-dom";
 
 type TrackerItem = {
 	fileName: string; // path to image file in public/images
@@ -264,24 +266,37 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 	}
 }
 
-const ItemTracker = ({
-	items,
-	knownLocations,
-}: {
-	items: string[];
-	knownLocations: { [key: string]: string };
-}) => {
-	let itemLocations = Object.keys(knownLocations).reduce(
+const ItemTracker = () => {
+	const { id } = useParams() as { id: string };
+	const { status, error, data: playthrough } = usePlaythrough(id);
+
+	if (!playthrough) {
+		if (status === "loading") {
+			return <div>Loading...</div>;
+		} else {
+			return (
+				<div>
+					Error in ItemTracker:{" "}
+					{error ? error.message : "Unknown error"}
+				</div>
+			);
+		}
+	}
+
+	let itemLocations = Object.keys(playthrough.known_locations).reduce(
 		(a, v) => ({
 			...a,
-			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
+			[playthrough.known_locations[v]]: [
+				...(a[playthrough.known_locations[v]] ?? []),
+				v,
+			],
 		}),
 		{} as { [key: string]: string[] }
 	);
 	return (
 		<div className="bg-gray-700 p-2 grid grid-cols-7 gap-2">
 			{itemGrid.map((item) => {
-				const trackerItem = createTrackerItem(item, items);
+				const trackerItem = createTrackerItem(item, playthrough.items);
 				let tooltip = trackerItem.displayName;
 				if (trackerItem.itemName in itemLocations) {
 					tooltip = `${tooltip} (${itemLocations[
@@ -299,7 +314,9 @@ const ItemTracker = ({
 							className="object-contain w-full h-full z-0"
 							src={trackerItem.fileName}
 							alt={trackerItem.displayName}
-							has={items.includes(trackerItem.itemName)}
+							has={playthrough.items.includes(
+								trackerItem.itemName
+							)}
 						/>
 					</Tooltip>
 				);

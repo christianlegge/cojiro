@@ -2,28 +2,38 @@ import React from "react";
 import regions from "../utils/regions";
 import Tag from "./Tag";
 import { formatFilename } from "../utils/filename";
+import { useParams } from "react-router-dom";
+import { usePlaythrough } from "../utils/trpc";
 
 const RegionList = ({
 	region,
 	setRegion,
 	age,
 	setAge,
-	items,
-	woth,
-	barren,
-	pathRegions,
-	knownLocations,
 }: {
 	region: string;
 	setRegion: (r: string) => void;
 	age: "child" | "adult";
 	setAge: React.Dispatch<React.SetStateAction<"child" | "adult">>;
-	items: string[];
-	woth: string[];
-	barren: string[];
-	pathRegions: string[];
-	knownLocations: { [key: string]: string };
 }) => {
+	const { id } = useParams() as { id: string };
+	const { data: playthrough, error, status } = usePlaythrough(id);
+
+	if (!playthrough) {
+		if (status === "loading") {
+			return <div>Loading...</div>;
+		} else {
+			return (
+				<div>
+					Error in ItemTracker:{" "}
+					{error ? error.message : "Unknown error"}
+				</div>
+			);
+		}
+	}
+
+	const pathRegions = Object.keys(playthrough.known_paths);
+
 	const bosses = {
 		"Deku Tree": "Queen Gohma",
 		"Dodongo's Cavern": "King Dodongo",
@@ -82,10 +92,10 @@ const RegionList = ({
 							{pathRegions.includes(el) && (
 								<Tag text="PATH" color="midnightblue" />
 							)}
-							{woth.includes(el) && (
+							{playthrough.known_woth.includes(el) && (
 								<Tag text="WOTH" color="darkgreen" />
 							)}
-							{barren.includes(el) && (
+							{playthrough.known_barren.includes(el) && (
 								<Tag text="FOOL" color="firebrick" />
 							)}
 							<span>{el}</span>
@@ -96,7 +106,7 @@ const RegionList = ({
 										src="/images/small-key.png"
 									/>
 									{
-										items.filter(
+										playthrough.items.filter(
 											(item) =>
 												item === `Small Key (${el})`
 										).length
@@ -106,7 +116,9 @@ const RegionList = ({
 							{regionsWithBossKeys.includes(el) && (
 								<img
 									className={`h-6 inline-block ${
-										items.includes(`Boss Key (${el})`)
+										playthrough.items.includes(
+											`Boss Key (${el})`
+										)
 											? "opacity-100"
 											: "opacity-30"
 									}`}
@@ -118,9 +130,12 @@ const RegionList = ({
 								<img
 									className="h-6"
 									src={`/images/${
-										bosses[el] in knownLocations
+										bosses[el] in
+										playthrough.known_locations
 											? formatFilename(
-													knownLocations[bosses[el]]
+													playthrough.known_locations[
+														bosses[el]
+													]
 											  )
 											: "unknown-small"
 									}.png`}

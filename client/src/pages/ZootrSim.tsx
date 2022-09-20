@@ -2,128 +2,22 @@ import React, { useEffect, useState } from "react";
 import RegionList from "../components/RegionList";
 import LocationList from "../components/LocationList";
 import ItemTracker from "../components/ItemTracker";
-import { trpc } from "../utils/trpc";
 import QuestTracker from "../components/QuestTracker";
-import { useParams, useNavigate } from "react-router-dom";
 import HintTracker from "../components/HintTracker";
 
 const ZootrSim = () => {
-	const { id } = useParams() as { id: string };
-	const navigate = useNavigate();
-
 	const [region, setRegion] = useState<string>(
 		() => localStorage.getItem("region") ?? "Kokiri Forest"
 	);
 
-	const [locations, setLocations] = useState<string[]>([]);
-
-	const [items, setItems] = useState<string[]>([]);
-	const [checked, setChecked] = useState<string[]>([]);
-	const [lastCheck, setLastCheck] = useState("");
-	const [woth, setWoth] = useState<string[]>([]);
-	const [barren, setBarren] = useState<string[]>([]);
-	const [knownLocations, setKnownLocations] = useState<{
-		[key: string]: string;
-	}>({});
-	const [knownPaths, setKnownPaths] = useState<{
-		[key: string]: string[];
-	}>({});
-	const [error, setError] = useState("");
-
 	const [age, setAge] = useState<"child" | "adult">(
 		() => (localStorage.getItem("age") as "child" | "adult") ?? "child"
-	);
-
-	const getPlaythroughResult = trpc.useQuery(
-		[
-			"playthrough.get",
-			{
-				id,
-			},
-		],
-		{
-			enabled: id !== "",
-			onSuccess: ({
-				checked,
-				items,
-				locations,
-				known_barren,
-				known_woth,
-				known_locations,
-				known_paths,
-			}) => {
-				setLocations(locations);
-				setItems(items);
-				setChecked(checked);
-				setWoth(known_woth);
-				setBarren(known_barren);
-				setKnownLocations(known_locations);
-				setKnownPaths(known_paths);
-				if (!checked.includes("Links Pocket")) {
-					checkLocation.mutate({ id, location: "Links Pocket" });
-				}
-			},
-		}
 	);
 
 	useEffect(() => {
 		localStorage.setItem("region", region);
 		localStorage.setItem("age", age);
 	}, [region, age]);
-
-	const checkLocation = trpc.useMutation("playthrough.checkLocation", {
-		onSuccess: ({ checked, item, known_locations }) => {
-			setError("");
-			setKnownLocations(known_locations);
-			if (item) {
-				setItems((items) => [...items, item]);
-				setLastCheck(`${checked}: ${item}`);
-			} else if (/Check .* Dungeons/.test(checked)) {
-				if (checked.includes("Medallion")) {
-					setChecked((prev) => [...prev, "Check Stone Dungeons"]);
-				}
-				setLastCheck(
-					`You inspect the altar and gain information about the sacred ${
-						checked.includes("Stone") ? "stones" : "medallions"
-					}...`
-				);
-			}
-			setChecked((prev) => [...prev, checked]);
-		},
-		onError: (err) => setError(err.message),
-	});
-
-	const checkLocationWrapper = (input: { id: string; location: string }) => {
-		checkLocation.mutate({ ...input });
-	};
-
-	const checkStone = trpc.useMutation("playthrough.checkStone", {
-		onSuccess: (data) => {
-			setError("");
-			setChecked((prev) => [...prev, data.checked]);
-			setLastCheck(`${data.checked}: ${data.text}`);
-			if (data.type === "woth") {
-				setWoth((prev) => [...prev, data.region!]);
-			} else if (data.type === "barren") {
-				setBarren((prev) => [...prev, data.region!]);
-			} else if (data.type === "item") {
-				setKnownLocations((prev) => ({
-					...prev,
-					[data.location!]: data.item!,
-				}));
-			} else if (data.type === "path") {
-				setKnownPaths((prev) => ({
-					...prev,
-					[data.region!]: data.path_locations!,
-				}));
-			}
-		},
-		onError: (err) => setError(err.message),
-	});
-
-	const checkStoneWrapper = (input: { id: string; stone: string }) => {
-		checkStone.mutate({ ...input });
-	};
 
 	return (
 		<>
@@ -137,39 +31,15 @@ const ZootrSim = () => {
 						setRegion={setRegion}
 						age={age}
 						setAge={setAge}
-						items={items}
-						woth={woth}
-						barren={barren}
-						pathRegions={Object.keys(knownPaths)}
-						knownLocations={knownLocations}
 					/>
 				</div>
 				<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
 					<div className="xl:col-span-3 lg:col-span-2 relative">
-						<LocationList
-							age={age}
-							region={region}
-							checked={checked}
-							setChecked={setChecked}
-							setItems={setItems}
-							allLocations={locations}
-							checkLocation={checkLocationWrapper}
-							checkStone={checkStoneWrapper}
-							headerText={lastCheck}
-							knownLocations={knownLocations}
-							pathTo={knownPaths[region]}
-							error={error}
-						/>
+						<LocationList age={age} region={region} />
 					</div>
-					<ItemTracker
-						items={items}
-						knownLocations={knownLocations}
-					/>
+					<ItemTracker />
 					<div className="bg-blue-400">
-						<QuestTracker
-							items={items}
-							knownLocations={knownLocations}
-						/>
+						<QuestTracker />
 					</div>
 					<HintTracker />
 				</div>

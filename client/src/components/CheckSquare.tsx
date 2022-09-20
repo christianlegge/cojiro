@@ -1,5 +1,7 @@
 import React from "react";
 import Tooltip from "./Tooltip";
+import { useCheckLocation, useCheckStone } from "../utils/trpc";
+import { useParams } from "react-router-dom";
 
 const CheckSquare = ({
 	type,
@@ -7,7 +9,6 @@ const CheckSquare = ({
 	coords,
 	displayName,
 	checked,
-	onClick,
 	item,
 }: {
 	type: "locations" | "gossip_stones";
@@ -15,9 +16,11 @@ const CheckSquare = ({
 	coords: { top: number | string; left: number | string };
 	displayName: string;
 	checked: boolean;
-	onClick: () => void;
 	item?: string;
 }) => {
+	const { id } = useParams() as { id: string };
+	const checkLocation = useCheckLocation(id);
+	const checkStone = useCheckStone(id);
 	return (
 		<Tooltip
 			content={
@@ -26,12 +29,12 @@ const CheckSquare = ({
 						checked ? "text-zinc-400 line-through font-normal" : ""
 					}`}
 				>
-					{item ? `${check} (${item})` : check}
+					{item ? `${displayName} (${item})` : displayName}
 				</span>
 			}
 			className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2"
 			style={{ ...coords }}
-			showInfoIcon={item}
+			showInfoIcon={item !== undefined}
 		>
 			<div
 				className={`w-full h-full bg-contain bg-center bg-no-repeat ${
@@ -40,7 +43,13 @@ const CheckSquare = ({
 						: "cursor-pointer" // bg-lime-500"
 				}`}
 				onClick={() => {
-					if (!checked) onClick();
+					if (!checked) {
+						if (type === "locations") {
+							checkLocation(check);
+						} else if (type === "gossip_stones") {
+							checkStone(check);
+						}
+					}
 				}}
 				// style={{
 				// 	backgroundImage: `url(${
