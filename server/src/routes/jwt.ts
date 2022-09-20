@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
+import prisma from "../db/client";
 
 if (!process.env.JWT_SECRET) {
 	throw "jwt secret not read properly!";
@@ -18,15 +19,25 @@ const router = trpc
 					input.token,
 					process.env.JWT_SECRET!
 				) as { playthroughs: string[] };
+				let validPlaythroughs: string[] = [];
+				for (let i = 0; i < playthroughs.length; i++) {
+					if (
+						(await prisma.playthrough.findUnique({
+							where: { id: playthroughs[i] },
+						})) !== null
+					) {
+						validPlaythroughs.push(playthroughs[i]);
+					}
+				}
 				let newToken = jwt.sign(
-					{ playthroughs },
+					{ playthroughs: validPlaythroughs },
 					process.env.JWT_SECRET!,
 					{
 						expiresIn: "7d",
 					}
 				) as string;
 				return {
-					playthroughs,
+					playthroughs: validPlaythroughs,
 					newToken,
 				};
 			} catch (err) {
