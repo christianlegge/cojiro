@@ -1,7 +1,7 @@
 import { createReactQueryHooks } from "@trpc/react";
 import type { AppRouter } from "../../../server/server";
 import { mapHeaderTextAtom, errorTextAtom } from "./atoms";
-import { useAtom } from "jotai";
+import { useUpdateAtom } from "jotai/utils";
 
 export const trpc = createReactQueryHooks<AppRouter>();
 
@@ -9,8 +9,8 @@ export const usePlaythrough = (id: string) =>
 	trpc.useQuery(["playthrough.get", { id }]);
 
 export const useCheckLocation = (id: string) => {
-	const [mapHeaderText, setMapHeaderText] = useAtom(mapHeaderTextAtom);
-	const [errorText, setErrorText] = useAtom(errorTextAtom);
+	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
+	const setErrorText = useUpdateAtom(errorTextAtom);
 	const playthrough = usePlaythrough(id);
 	const mutation = trpc.useMutation("playthrough.checkLocation", {
 		onSuccess: ({ checked, item }) => {
@@ -33,8 +33,8 @@ export const useCheckLocation = (id: string) => {
 };
 
 export const useCheckStone = (id: string) => {
-	const [mapHeaderText, setMapHeaderText] = useAtom(mapHeaderTextAtom);
-	const [errorText, setErrorText] = useAtom(errorTextAtom);
+	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
+	const setErrorText = useUpdateAtom(errorTextAtom);
 	const playthrough = usePlaythrough(id);
 	const mutation = trpc.useMutation("playthrough.checkStone", {
 		onSuccess: ({ text }) => {

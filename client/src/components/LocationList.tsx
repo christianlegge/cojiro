@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import ErrorBox from "./ErrorBox";
 import { usePlaythrough } from "../utils/trpc";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai/utils";
 import { mapHeaderTextAtom, errorTextAtom } from "../utils/atoms";
 
 const regions: {
@@ -55,8 +55,8 @@ const LocationList = ({
 	const { id } = useParams() as { id: string };
 	const { data: playthrough, error, status } = usePlaythrough(id);
 
-	const [headerText, setHeaderText] = useAtom(mapHeaderTextAtom);
-	const [errorText, setErrorText] = useAtom(errorTextAtom);
+	const headerText = useAtomValue(mapHeaderTextAtom);
+	const errorText = useAtomValue(errorTextAtom);
 
 	if (!playthrough) {
 		if (status === "loading") {
