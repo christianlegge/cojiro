@@ -84,14 +84,26 @@ const LocationList = () => {
 					<span className="w-max text-2xl font-bold flex-shrink-0">
 						{region}
 					</span>
-					<span className="w-max max-w-[20rem]">
-						{pathTo &&
-							`Path to: ${pathTo
+					{pathTo && (
+						<span className="w-max max-w-[20rem]">
+							{`Path to: ${pathTo
 								.filter(
 									(el, idx, arr) => arr.indexOf(el) === idx
 								)
-								.join(", ")}`}
-					</span>
+								.join(", ")}
+							`}
+						</span>
+					)}
+					{playthrough.known_woth.includes(region) && (
+						<span className="w-max max-w-[20rem]">
+							Way of the Hero
+						</span>
+					)}
+					{playthrough.known_barren.includes(region) && (
+						<span className="w-max max-w-[20rem]">
+							Foolish Choice
+						</span>
+					)}
 				</div>
 				{errorText ? (
 					<ErrorBox error={errorText} />

@@ -3,23 +3,23 @@ import React from "react";
 const LandingPage = () => {
 	return (
 		<>
-			<section className="grid place-items-center pt-8 px-4">
-				<div className="grid place-items-center">
-					<h1 className="text-5xl font-bold text-center">
+			<section className="grid place-items-center py-24 px-4 lg:grid-cols-2 text-center lg:text-left bg-[url('/images/playing-hyrule-field.png')] bg-cover bg-center">
+				<div className="grid place-items-center lg:place-items-start backdrop-opacity-0 space-y-6 p-4">
+					<h1 className="text-5xl xl:text-7xl font-bold">
 						Route the game.
 						<br />
 						Flout the tedium.
 					</h1>
-					<p className="w-[65ch] text-center text-zinc-500">
+					<p className="w-[65ch] xl:text-xl text-zinc-800">
 						ZOoTR Sim is the fastest way to learn the logic,
 						practice routing, and beat seeds faster - all without
 						loading up the game.
 					</p>
-					<button className="px-4 py-2 bg-indigo-700 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-md shadow-indigo-700">
+					<button className="px-4 py-2 bg-indigo-700 text-white text-xs xl:text-lg xl:px-8 font-semibold uppercase tracking-wider rounded-full shadow-md shadow-indigo-700">
 						Play now
 					</button>
 				</div>
-				<div>image</div>
+				<div></div>
 			</section>
 			<section>
 				<h2 className="text-2xl font-semibold">

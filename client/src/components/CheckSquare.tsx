@@ -2,6 +2,8 @@ import React from "react";
 import Tooltip from "./Tooltip";
 import { useCheckLocation, useCheckStone } from "../utils/trpc";
 import { useParams } from "react-router-dom";
+import { useUpdateAtom } from "jotai/utils";
+import { ageAtom } from "../utils/atoms";
 
 const CheckSquare = ({
 	type,
@@ -21,6 +23,7 @@ const CheckSquare = ({
 	const { id } = useParams() as { id: string };
 	const checkLocation = useCheckLocation(id);
 	const checkStone = useCheckStone(id);
+	const setAge = useUpdateAtom(ageAtom);
 	return (
 		<Tooltip
 			content={
@@ -43,7 +46,11 @@ const CheckSquare = ({
 						: "cursor-pointer" // bg-lime-500"
 				}`}
 				onClick={() => {
-					if (!checked) {
+					if (check === "Take Master Sword") {
+						setAge("adult");
+					} else if (check === "Place Master Sword") {
+						setAge("child");
+					} else if (!checked) {
 						if (type === "locations") {
 							checkLocation(check);
 						} else if (type === "gossip_stones") {

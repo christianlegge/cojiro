@@ -63,79 +63,90 @@ const RegionList = () => {
 	]);
 	return (
 		<>
-			<button
-				onClick={() =>
-					setAge((prev) => (prev === "adult" ? "child" : "adult"))
-				}
-			>
-				Go to {age === "adult" ? "child" : "adult"}
-			</button>
-			<div className="flex flex-wrap lg:block">
+			<div className="text-white bg-black text-center font-bold text-2xl py-1">
+				{age === "child" ? "Child" : "Adult"} Link
+			</div>
+			<div className="grid auto-cols-auto grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 bg-black">
 				{Object.keys(regions)
 					.filter((el) => regions[el][age])
 					.map((el) => (
 						<div
 							key={el}
-							className={`flex items-center gap-2 px-4 py-2 border-y-2 text-white lg:justify-end lg:w-full border-2 lg:h-auto transition ${
+							className={`border-black border-2 bg-cover bg-center text-white lg:justify-end lg:w-full lg:h-auto transition ${
 								el === region
-									? "font-semibold bg-zinc-500 scale-110 z-20 lg:translate-x-4"
-									: "hover:bg-zinc-600 active:bg-zinc-800 bg-zinc-700 cursor-pointer hover:z-10 hover:scale-105 hover:lg:scale-100 hover:lg:translate-x-2"
+									? "font-bold bg-zinc-500 scale-110 z-20 lg:translate-x-4"
+									: "font-semibold hover:bg-zinc-600 active:bg-zinc-800 bg-zinc-700 cursor-pointer hover:z-10 hover:scale-105 hover:lg:scale-100 hover:lg:translate-x-2"
 							} lg:scale-100`}
 							onClick={() => setRegion(el)}
+							style={{
+								backgroundImage: `url('/images/bg/${formatFilename(
+									el
+								)}.png')`,
+								textShadow:
+									"-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+							}}
 						>
-							{pathRegions.includes(el) && (
-								<Tag text="PATH" color="midnightblue" />
-							)}
-							{playthrough.known_woth.includes(el) && (
-								<Tag text="WOTH" color="darkgreen" />
-							)}
-							{playthrough.known_barren.includes(el) && (
-								<Tag text="FOOL" color="firebrick" />
-							)}
-							<span>{el}</span>
-							{regionsWithKeys.includes(el) && (
-								<span>
+							<div
+								className={`w-full h-full px-4 py-2 flex items-center gap-2 lg:justify-end ${
+									el === region
+										? "bg-zinc-400 bg-opacity-70"
+										: "bg-zinc-800 bg-opacity-60"
+								}`}
+							>
+								{pathRegions.includes(el) && (
+									<Tag text="PATH" color="midnightblue" />
+								)}
+								{playthrough.known_woth.includes(el) && (
+									<Tag text="WOTH" color="darkgreen" />
+								)}
+								{playthrough.known_barren.includes(el) && (
+									<Tag text="FOOL" color="firebrick" />
+								)}
+								<span>{el}</span>
+								{regionsWithKeys.includes(el) && (
+									<span>
+										<img
+											className="h-6 inline-block"
+											src="/images/small-key.png"
+										/>
+										{
+											playthrough.items.filter(
+												(item) =>
+													item === `Small Key (${el})`
+											).length
+										}
+									</span>
+								)}
+								{regionsWithBossKeys.includes(el) && (
 									<img
-										className="h-6 inline-block"
-										src="/images/small-key.png"
+										className={`h-6 inline-block ${
+											playthrough.items.includes(
+												`Boss Key (${el})`
+											)
+												? "opacity-100"
+												: "opacity-30"
+										}`}
+										src="/images/boss-key.png"
 									/>
-									{
-										playthrough.items.filter(
-											(item) =>
-												item === `Small Key (${el})`
-										).length
-									}
-								</span>
-							)}
-							{regionsWithBossKeys.includes(el) && (
-								<img
-									className={`h-6 inline-block ${
-										playthrough.items.includes(
-											`Boss Key (${el})`
-										)
-											? "opacity-100"
-											: "opacity-30"
-									}`}
-									src="/images/boss-key.png"
-								/>
-							)}
-
-							{regionsWithMedallions.includes(el) && (
-								<img
-									className="h-6"
-									src={`/images/${
-										bosses[el] in
-										playthrough.known_locations
-											? formatFilename(
-													playthrough.known_locations[
-														bosses[el]
-													]
-											  )
-											: "unknown-small"
-									}.png`}
-									alt=""
-								/>
-							)}
+								)}
+								{regionsWithMedallions.includes(el) && (
+									<img
+										className="h-6"
+										src={`/images/${
+											bosses[el] in
+											playthrough.known_locations
+												? formatFilename(
+														playthrough
+															.known_locations[
+															bosses[el]
+														]
+												  )
+												: "unknown-small"
+										}.png`}
+										alt=""
+									/>
+								)}
+							</div>
 						</div>
 					))}
 			</div>
