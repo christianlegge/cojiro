@@ -4,6 +4,8 @@ import TextInput from "../components/TextInput";
 import { trpc } from "../utils/trpc";
 import { Link, useNavigate } from "react-router-dom";
 import LeftRightSwitch from "../components/LeftRightSwitch";
+import { useUpdateAtom } from "jotai/utils";
+import { ageAtom, regionAtom } from "../utils/atoms";
 
 const settingsPresets: { [key: string]: string } = {
 	"S5 Tournament":
@@ -38,6 +40,10 @@ const StartForm = () => {
 	const [settings, setSettings] = useState("");
 	const [jwt, setJwt] = useState<string | null>(null);
 	const [ids, setIds] = useState<string[]>([]);
+
+	const setAge = useUpdateAtom(ageAtom);
+	const setRegion = useUpdateAtom(regionAtom);
+
 	const getPlaythroughFromJwt = trpc.useQuery(
 		[
 			"jwt.getPlaythroughs",
@@ -72,6 +78,8 @@ const StartForm = () => {
 				token: jwt,
 				playthroughId: id,
 			});
+			setAge("child");
+			setRegion("Kokiri Forest");
 			navigate(`/play/${id}`);
 		},
 		onSettled: () => setGenerating(false),
