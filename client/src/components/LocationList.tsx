@@ -5,7 +5,12 @@ import { FiExternalLink } from "react-icons/fi";
 import ErrorBox from "./ErrorBox";
 import { usePlaythrough } from "../utils/trpc";
 import { useAtomValue } from "jotai/utils";
-import { mapHeaderTextAtom, errorTextAtom } from "../utils/atoms";
+import {
+	ageAtom,
+	regionAtom,
+	mapHeaderTextAtom,
+	errorTextAtom,
+} from "../utils/atoms";
 
 const regions: {
 	[key: string]: {
@@ -45,15 +50,12 @@ function locationDisplayName(name: string, region: string): string {
 	}
 }
 
-const LocationList = ({
-	age,
-	region,
-}: {
-	age: "child" | "adult";
-	region: string;
-}) => {
+const LocationList = () => {
 	const { id } = useParams() as { id: string };
 	const { data: playthrough, error, status } = usePlaythrough(id);
+
+	const age = useAtomValue(ageAtom);
+	const region = useAtomValue(regionAtom);
 
 	const headerText = useAtomValue(mapHeaderTextAtom);
 	const errorText = useAtomValue(errorTextAtom);

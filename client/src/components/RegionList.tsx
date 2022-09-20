@@ -4,20 +4,14 @@ import Tag from "./Tag";
 import { formatFilename } from "../utils/filename";
 import { useParams } from "react-router-dom";
 import { usePlaythrough } from "../utils/trpc";
+import { useAtom } from "jotai";
+import { ageAtom, regionAtom } from "../utils/atoms";
 
-const RegionList = ({
-	region,
-	setRegion,
-	age,
-	setAge,
-}: {
-	region: string;
-	setRegion: (r: string) => void;
-	age: "child" | "adult";
-	setAge: React.Dispatch<React.SetStateAction<"child" | "adult">>;
-}) => {
+const RegionList = () => {
 	const { id } = useParams() as { id: string };
 	const { data: playthrough, error, status } = usePlaythrough(id);
+	const [age, setAge] = useAtom(ageAtom);
+	const [region, setRegion] = useAtom(regionAtom);
 
 	if (!playthrough) {
 		if (status === "loading") {
