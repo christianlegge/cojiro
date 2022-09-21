@@ -8,6 +8,7 @@ import Link from "next/link";
 import LeftRightSwitch from "../../components/LeftRightSwitch";
 import { useUpdateAtom } from "jotai/utils";
 import { ageAtom, regionAtom } from "../../utils/atoms";
+import Layout from "../../components/Layout";
 
 const settingsPresets: { [key: string]: string } = {
 	"S5 Tournament":
@@ -122,118 +123,122 @@ const StartForm = () => {
 	};
 
 	return (
-		<div className="grid place-items-center pt-2 px-2 gap-4">
-			<div className="grid grid-cols-3 gap-2">
-				<div className="flex pl-4 justify-between items-center w-full gap-10 col-span-3">
-					<h2 className="font-semibold text-2xl">Presets</h2>
-					<div className="space-x-2">
-						<label htmlFor="customSettings" className="">
-							Use custom settings
-						</label>
-						<input
-							checked={settingsType === "custom"}
-							onChange={(e) =>
-								setSettingsType(
-									e.target.checked ? "custom" : "preset"
-								)
-							}
-							type="checkbox"
-							name="customSettings"
-							id="customSettings"
-						/>
+		<Layout>
+			<div className="grid place-items-center pt-2 px-2 gap-4">
+				<div className="grid grid-cols-3 gap-2">
+					<div className="flex pl-4 justify-between items-center w-full gap-10 col-span-3">
+						<h2 className="font-semibold text-2xl">Presets</h2>
+						<div className="space-x-2">
+							<label htmlFor="customSettings" className="">
+								Use custom settings
+							</label>
+							<input
+								checked={settingsType === "custom"}
+								onChange={(e) =>
+									setSettingsType(
+										e.target.checked ? "custom" : "preset"
+									)
+								}
+								type="checkbox"
+								name="customSettings"
+								id="customSettings"
+							/>
+						</div>
 					</div>
+					{Object.keys(settingsPresets).map((preset) => (
+						<button
+							disabled={generating || settingsType === "custom"}
+							key={preset}
+							className={`border px-4 py-2 rounded-lg shadow-md ${
+								settingsType === "custom" ||
+								(generating && preset !== selectedPreset)
+									? "opacity-50"
+									: ""
+							} ${
+								preset === selectedPreset
+									? "shadow-none translate-y-1"
+									: ""
+							}`}
+							onClick={() => {
+								setSelectedPreset(preset);
+								startPlaythrough(settingsPresets[preset]);
+							}}
+						>
+							{generating && preset === selectedPreset ? (
+								<>
+									<span className="animate-spin inline-block mr-3">
+										.
+									</span>
+									<span>Generating...</span>
+								</>
+							) : (
+								preset
+							)}
+						</button>
+					))}
 				</div>
-				{Object.keys(settingsPresets).map((preset) => (
-					<button
-						disabled={generating || settingsType === "custom"}
-						key={preset}
-						className={`border px-4 py-2 rounded-lg shadow-md ${
-							settingsType === "custom" ||
-							(generating && preset !== selectedPreset)
-								? "opacity-50"
-								: ""
-						} ${
-							preset === selectedPreset
-								? "shadow-none translate-y-1"
-								: ""
-						}`}
-						onClick={() => {
-							setSelectedPreset(preset);
-							startPlaythrough(settingsPresets[preset]);
-						}}
-					>
-						{generating && preset === selectedPreset ? (
-							<>
-								<span className="animate-spin inline-block mr-3">
-									.
-								</span>
-								<span>Generating...</span>
-							</>
-						) : (
-							preset
-						)}
-					</button>
-				))}
-			</div>
-			{settingsType === "custom" && (
-				<div className="flex gap-2">
-					<TextInput
-						name="settings"
-						placeholder="settings"
-						valueState={[settings, setSettings]}
-						enterCallback={() => startPlaythrough(settings)}
+				{settingsType === "custom" && (
+					<div className="flex gap-2">
+						<TextInput
+							name="settings"
+							placeholder="settings"
+							valueState={[settings, setSettings]}
+							enterCallback={() => startPlaythrough(settings)}
+						/>
+						<button
+							className={`px-8 border rounded-lg ${
+								generating ? "translate-y-1" : "shadow-md"
+							}`}
+							onClick={() => startPlaythrough(settings)}
+						>
+							{generating ? (
+								<>
+									<span className="animate-spin inline-block mr-3">
+										.
+									</span>
+									<span>Generating...</span>
+								</>
+							) : (
+								"Submit"
+							)}
+						</button>
+					</div>
+				)}
+				<div className="flex flex-wrap justify-center items-center">
+					<LeftRightSwitch
+						left="Random seed"
+						right="Custom seed"
+						leftCallback={() => setSeedType("random")}
+						rightCallback={() => setSeedType("custom")}
 					/>
-					<button
-						className={`px-8 border rounded-lg ${
-							generating ? "translate-y-1" : "shadow-md"
-						}`}
-						onClick={() => startPlaythrough(settings)}
-					>
-						{generating ? (
-							<>
-								<span className="animate-spin inline-block mr-3">
-									.
-								</span>
-								<span>Generating...</span>
-							</>
-						) : (
-							"Submit"
-						)}
-					</button>
+					{seedType === "custom" && (
+						<TextInput
+							name="seed"
+							placeholder="seed"
+							valueState={[seed, setSeed]}
+						/>
+					)}
 				</div>
-			)}
-			<div className="flex flex-wrap justify-center items-center">
-				<LeftRightSwitch
-					left="Random seed"
-					right="Custom seed"
-					leftCallback={() => setSeedType("random")}
-					rightCallback={() => setSeedType("custom")}
-				/>
-				{seedType === "custom" && (
-					<TextInput
-						name="seed"
-						placeholder="seed"
-						valueState={[seed, setSeed]}
-					/>
-				)}
+				<ErrorBox error={error} />
+				<button
+					onClick={() => startMutation.mutate({ sampleSeed: true })}
+				>
+					Sample seed
+				</button>
+				<h2>In progress games</h2>
+				<ul>
+					{ids.length === 0 ? (
+						<span>None!</span>
+					) : (
+						ids.map((el) => (
+							<li key={el}>
+								<Link href={`/play/${el}`}>{el}</Link>
+							</li>
+						))
+					)}
+				</ul>
 			</div>
-			<ErrorBox error={error} />
-			<button onClick={() => startMutation.mutate({ sampleSeed: true })}>
-				Sample seed
-			</button>
-			<h2>In progress games</h2>
-			<ul>
-				{ids.length === 0 ? (
-					<span>None!</span>
-				) : (
-					ids.map((el) => (
-						<li key={el}>
-							<Link href={`/play/${el}`}>{el}</Link>
-						</li>
-					))
-				)}
-			</ul>
-		</div>
+		</Layout>
 	);
 };
 

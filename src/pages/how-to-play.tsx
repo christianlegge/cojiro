@@ -1,7 +1,8 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 const HowToPlay = () => {
-	return <div>How to play</div>;
+	return <Layout>How to play.</Layout>;
 };
 
 export default HowToPlay;

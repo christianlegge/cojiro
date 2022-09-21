@@ -1,7 +1,9 @@
 import React from "react";
+import Layout from "../components/Layout";
 import { trpc } from "../utils/trpc";
 
 const LoginRegister = () => {
+	return <Layout>Not Implemented.</Layout>;
 	const register = trpc.useMutation("user.register", {
 		onError(error, variables, context) {
 			console.log(error);
