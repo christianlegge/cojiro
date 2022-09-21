@@ -28,7 +28,7 @@ const QuestTracker = () => {
 		}
 	}
 	const stones = ["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"];
-	let itemLocations = Object.keys(playthrough.known_locations).reduce(
+	const itemLocations = Object.keys(playthrough.known_locations).reduce(
 		(a, v) => ({
 			...a,
 			[playthrough.known_locations[v]]: [

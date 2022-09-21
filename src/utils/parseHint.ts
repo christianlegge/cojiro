@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import h from "../data/hints.json";
 
 const hintsMap = new Map<string, { meanings: string[]; type: string }>();
-let hints = h as { [key: string]: { names: string[]; type: string } };
+const hints = h as { [key: string]: { names: string[]; type: string } };
 
 Object.keys(hints).forEach((k) => {
 	if (k.includes("MQ")) return;
@@ -13,7 +13,17 @@ Object.keys(hints).forEach((k) => {
 			hintsMap.set(name, { meanings: [], type: hints[k].type });
 		}
 		hintsMap.set(name, {
-			meanings: [...hintsMap.get(name)?.meanings!, k],
+			meanings: [
+				...(hintsMap.has(name)
+					? (
+							hintsMap.get(name) as {
+								meanings: string[];
+								type: string;
+							}
+					  ).meanings
+					: []),
+				k,
+			],
 			type: hints[k].type,
 		});
 	});
@@ -32,22 +42,26 @@ const parseHint = (
 	// let twoMatch = /#([^#]+)#.*#([^#]+)#/.exec(hint);
 	// let secondKeyword = twoMatch && twoMatch[2];
 
-	let mapArray = [...hintsMap];
-	let matches = mapArray.filter(([k, v]) => hint.includes(k));
+	const mapArray: [string, { meanings: string[]; type: string }][] = [];
+	hintsMap.forEach((v, k) => {
+		mapArray.push([k, v]);
+	});
+	const matches = mapArray.filter(([k, v]) => hint.includes(k));
 
-	let locations = matches.filter(([k, v]) => v.type === "location");
-	let location =
+	const locations = matches.filter(([k, v]) => v.type === "location");
+	const location =
 		(locations.length > 0 &&
 			locations[0][1].meanings.filter((el) =>
 				seedLocations.includes(el)
 			)[0]) ||
 		undefined;
 
-	let items = matches.filter(([k, v]) => v.type === "item");
-	let item = (items.length > 0 && items[0][1].meanings[0]) || undefined;
+	const items = matches.filter(([k, v]) => v.type === "item");
+	const item = (items.length > 0 && items[0][1].meanings[0]) || undefined;
 
-	let regions = matches.filter(([k, v]) => v.type === "region");
-	let region = (regions.length > 0 && regions[0][1].meanings[0]) || undefined;
+	const regions = matches.filter(([k, v]) => v.type === "region");
+	const region =
+		(regions.length > 0 && regions[0][1].meanings[0]) || undefined;
 
 	if (
 		matches.length === 0 ||

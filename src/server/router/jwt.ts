@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
 import { createRouter } from "./context";
+import { env } from "../../env/server.mjs";
 
 export const jwtRouter = createRouter()
 	.query("getPlaythroughs", {
@@ -10,11 +11,11 @@ export const jwtRouter = createRouter()
 		}),
 		async resolve({ ctx, input }) {
 			try {
-				let { playthroughs } = jwt.verify(
+				const { playthroughs } = jwt.verify(
 					input.token,
-					process.env.JWT_SECRET!
+					env.JWT_SECRET
 				) as { playthroughs: string[] };
-				let validPlaythroughs: string[] = [];
+				const validPlaythroughs: string[] = [];
 				for (let i = 0; i < playthroughs.length; i++) {
 					if (
 						(await ctx.prisma.playthrough.findUnique({
@@ -24,9 +25,9 @@ export const jwtRouter = createRouter()
 						validPlaythroughs.push(playthroughs[i]);
 					}
 				}
-				let newToken = jwt.sign(
+				const newToken = jwt.sign(
 					{ playthroughs: validPlaythroughs },
-					process.env.JWT_SECRET!,
+					env.JWT_SECRET,
 					{
 						expiresIn: "7d",
 					}
@@ -52,10 +53,9 @@ export const jwtRouter = createRouter()
 			let playthroughs: string[] = [];
 			if (input.token) {
 				try {
-					let decoded = jwt.verify(
-						input.token,
-						process.env.JWT_SECRET!
-					) as { playthroughs: string[] };
+					const decoded = jwt.verify(input.token, env.JWT_SECRET) as {
+						playthroughs: string[];
+					};
 					playthroughs = decoded.playthroughs;
 				} catch (err) {
 					playthroughs = [];
@@ -63,7 +63,7 @@ export const jwtRouter = createRouter()
 			}
 			playthroughs.push(input.playthroughId);
 			return {
-				newToken: jwt.sign({ playthroughs }, process.env.JWT_SECRET!, {
+				newToken: jwt.sign({ playthroughs }, env.JWT_SECRET, {
 					expiresIn: "7d",
 				}) as string,
 			};

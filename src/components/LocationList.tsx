@@ -11,7 +11,7 @@ import {
 	mapHeaderTextAtom,
 	errorTextAtom,
 } from "../utils/atoms";
-import regions from "../data/regions.json";
+import regionsJson from "../data/regions.json";
 
 type RegionsType = {
 	[key: string]: {
@@ -36,8 +36,10 @@ type RegionsType = {
 	};
 };
 
+const regions = regionsJson as RegionsType;
+
 function locationDisplayName(name: string, region: string): string {
-	let parensMatch = /\(([^)]+)\)/.exec(name);
+	const parensMatch = /\(([^)]+)\)/.exec(name);
 	if (parensMatch) {
 		return `${parensMatch[1]} Gossip Stone`;
 	}
@@ -67,7 +69,7 @@ const LocationList = () => {
 		if (playthrough && !playthrough.checked.includes("Links Pocket")) {
 			checkLocation("Links Pocket");
 		}
-	}, [id, playthrough]);
+	}, [id, playthrough, checkLocation]);
 
 	if (!playthrough) {
 		if (status === "loading") {

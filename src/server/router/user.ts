@@ -3,7 +3,7 @@ import argon2 from "argon2";
 import { TRPCError } from "@trpc/server";
 import { createRouter } from "./context";
 
-const router = createRouter()
+export const userRouter = createRouter()
 	.mutation("register", {
 		input: z.object({
 			email: z.string().email({ message: "Invalid email" }),
@@ -62,5 +62,3 @@ const router = createRouter()
 			}
 		},
 	});
-
-export default router;

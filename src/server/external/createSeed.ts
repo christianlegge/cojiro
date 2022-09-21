@@ -1,15 +1,16 @@
 import axios, { AxiosError } from "axios";
+import { env } from "../../env/server.mjs";
 
 const createSeed = async (params: {
 	seed?: string;
 	settingsString: string;
 }): Promise<SeedReturnType> => {
 	try {
-		let response = await axios.get(
+		const response = await axios.get(
 			"https://www.ootrandomizer.com/api/seed/create",
 			{
 				params: {
-					key: process.env.OOTRANDOMIZER_API_KEY,
+					key: env.OOTRANDOMIZER_API_KEY,
 					...params,
 				},
 			}
@@ -103,7 +104,7 @@ export type SeedReturnType = {
 		hints: string;
 		hint_dist: string;
 		item_hints: string[];
-		hint_dist_user: {};
+		hint_dist_user: unknown;
 		text_shuffle: string;
 		misc_hints: boolean;
 		ice_trap_appearance: string;
@@ -131,7 +132,7 @@ export type SeedReturnType = {
 		Shadow: "active" | "inactive";
 		Light: "active" | "inactive";
 	};
-	songs: {};
+	songs: unknown;
 	entrances: {
 		"Adult Spawn -> Temple of Time": "Market Shooting Gallery";
 		"Child Spawn -> KF Links House": {

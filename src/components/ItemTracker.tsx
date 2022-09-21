@@ -123,10 +123,10 @@ function adultTradeTrackerItem(items: string[]): TrackerItem {
 }
 
 function bottleTrackerItem(items: string[]): TrackerItem {
-	let item = "Bottle";
-	let nonRutoBottles = items.filter((el) => el.startsWith(item));
-	let numNonRutoBottles = Math.min(3, nonRutoBottles.length);
-	let hasRuto = items.includes("Rutos Letter");
+	const item = "Bottle";
+	const nonRutoBottles = items.filter((el) => el.startsWith(item));
+	const numNonRutoBottles = Math.min(3, nonRutoBottles.length);
+	const hasRuto = items.includes("Rutos Letter");
 	if (numNonRutoBottles === 0) {
 		if (hasRuto) {
 			return {
@@ -181,12 +181,12 @@ function progressiveTrackerItem(
 	items: string[],
 	progression: string[]
 ): TrackerItem {
-	let itemName = `Progressive ${item}`;
-	let idx = Math.min(
+	const itemName = `Progressive ${item}`;
+	const idx = Math.min(
 		items.filter((el) => el === itemName).length,
 		progression.length - 1
 	);
-	let displayName = progression[idx];
+	const displayName = progression[idx];
 	return {
 		fileName: itemToImageFilename(displayName),
 		itemName,
@@ -227,7 +227,7 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 				"Golden Scale",
 			]);
 		case "Magic Meter":
-			let magicMeters = items.filter((el) => el === item).length;
+			const magicMeters = items.filter((el) => el === item).length;
 			let fileName = itemToImageFilename("magic");
 			let displayName = "Magic";
 			if (magicMeters >= 2) {
@@ -242,7 +242,7 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 		case "Bottle":
 			return bottleTrackerItem(items);
 		case "Ocarina":
-			let ocarinas = ["Ocarina of Time", "Fairy Ocarina"];
+			const ocarinas = ["Ocarina of Time", "Fairy Ocarina"];
 			for (let i = 0; i < ocarinas.length; i++) {
 				if (items.includes(ocarinas[i])) {
 					return {
@@ -284,7 +284,7 @@ const ItemTracker = () => {
 		}
 	}
 
-	let itemLocations = Object.keys(playthrough.known_locations).reduce(
+	const itemLocations = Object.keys(playthrough.known_locations).reduce(
 		(a, v) => ({
 			...a,
 			[playthrough.known_locations[v]]: [

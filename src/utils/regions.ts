@@ -3785,10 +3785,8 @@ const regions: Record<Region["name"], Region> = {
 
 const getRegions = () => Object.keys(regions);
 
-const getLocationsAtRegion = (region: string) => ["Check 1, Check 2, Check 3"];
-
 export default regions;
-export { getRegions, getLocationsAtRegion };
+export { getRegions };
 
 export const getNonNoneLocations = () =>
 	Object.keys(regions)

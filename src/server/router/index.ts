@@ -6,6 +6,7 @@ import superjson from "superjson";
 import { playthroughRouter } from "./playthrough";
 import { jwtRouter } from "./jwt";
 import createSeed, { sampleSeed } from "../external/createSeed";
+import { userRouter } from "./user";
 
 const indexRouter = createRouter()
 	.query("getSampleSeed", {
@@ -36,7 +37,7 @@ const indexRouter = createRouter()
 						)
 				);
 			} else {
-				let apiSeed = await createSeed({
+				const apiSeed = await createSeed({
 					seed: input.seed,
 					settingsString: input.settingsString,
 				});
@@ -69,7 +70,8 @@ export const appRouter = createRouter()
 	.transformer(superjson)
 	.merge("", indexRouter)
 	.merge("playthrough.", playthroughRouter)
-	.merge("jwt.", jwtRouter);
+	.merge("jwt.", jwtRouter)
+	.merge("user.", userRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

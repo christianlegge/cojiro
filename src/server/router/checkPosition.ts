@@ -38,7 +38,7 @@ const router = createRouter()
 	})
 	.query("getAll", {
 		async resolve({ ctx }) {
-			let allChecks = await ctx.prisma.checkPosition.findMany({
+			const allChecks = await ctx.prisma.checkPosition.findMany({
 				select: { location: true },
 			});
 			return allChecks.map((el) => el.location);

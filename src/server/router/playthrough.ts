@@ -1,6 +1,6 @@
 import { createRouter } from "./context";
 import { TRPCError } from "@trpc/server";
-import { string, z } from "zod";
+import { z } from "zod";
 import { ParsedSeed } from "../../utils/parseSeed";
 import parseHint from "../../utils/parseHint";
 
@@ -10,7 +10,7 @@ export const playthroughRouter = createRouter()
 			id: z.string(),
 		}),
 		async resolve({ ctx, input }) {
-			let playthrough = await ctx.prisma.playthrough.findUnique({
+			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true },
 			});
@@ -20,7 +20,7 @@ export const playthroughRouter = createRouter()
 					message: "Playthrough for ID not found",
 				});
 			}
-			let seed = playthrough.seed as unknown as ParsedSeed;
+			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
 				throw new TRPCError({
 					code: "INTERNAL_SERVER_ERROR",
@@ -50,7 +50,7 @@ export const playthroughRouter = createRouter()
 			location: z.string(),
 		}),
 		async resolve({ ctx, input }) {
-			let playthrough = await ctx.prisma.playthrough.findUnique({
+			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true },
 			});
@@ -60,7 +60,7 @@ export const playthroughRouter = createRouter()
 					message: "Playthrough for ID not found",
 				});
 			}
-			let seed = playthrough.seed as unknown as ParsedSeed;
+			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
 				throw new TRPCError({
 					code: "INTERNAL_SERVER_ERROR",
@@ -80,7 +80,7 @@ export const playthroughRouter = createRouter()
 				item = seed.locations[input.location].item;
 			} else if (/Check .* Dungeons/.test(input.location)) {
 				if (input.location.includes("Medallion")) {
-					await prisma.playthrough.update({
+					await ctx.prisma.playthrough.update({
 						where: { id: playthrough.id },
 						data: {
 							checked: {
@@ -155,7 +155,7 @@ export const playthroughRouter = createRouter()
 			item?: string;
 			path_locations?: string[];
 		}> {
-			let playthrough = await ctx.prisma.playthrough.findUnique({
+			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true },
 			});
@@ -165,7 +165,7 @@ export const playthroughRouter = createRouter()
 					message: "Playthrough for ID not found",
 				});
 			}
-			let seed = playthrough.seed as unknown as ParsedSeed;
+			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
 				throw new TRPCError({
 					code: "INTERNAL_SERVER_ERROR",
@@ -184,8 +184,8 @@ export const playthroughRouter = createRouter()
 					message: `Gossip stone ${input.stone} not found in seed`,
 				});
 			}
-			let hint = seed.gossip_stones[input.stone];
-			let parsedHint = parseHint(hint, Object.keys(seed.locations));
+			const hint = seed.gossip_stones[input.stone];
+			const parsedHint = parseHint(hint, Object.keys(seed.locations));
 			let returnObj = {
 				type: parsedHint.type,
 				text: hint.replaceAll("#", ""),
@@ -261,7 +261,7 @@ export const playthroughRouter = createRouter()
 					item: parsedHint.item,
 				};
 			}
-			await prisma.playthrough.update({
+			await ctx.prisma.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
 					...updateObj,
