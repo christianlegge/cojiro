@@ -1,9 +1,9 @@
-import React from "react";
-import Layout from "../components/Layout";
+import React, { useState } from "react";
 import { trpc } from "../utils/trpc";
+import TextInput from "../components/TextInput";
 
 const LoginRegister = () => {
-	return <Layout>Not Implemented.</Layout>;
+	return <div>Not implemented.</div>;
 	const register = trpc.useMutation("user.register", {
 		onError(error, variables, context) {
 			console.log(error);
@@ -18,31 +18,37 @@ const LoginRegister = () => {
 		},
 	});
 
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
 	return (
-		<>
-			<button
-				onClick={() => {
-					register.mutate({
-						email: "hello@email.com",
-						password: "mypassword",
-						username: "scatter",
-					});
-				}}
-			>
-				register my awesome ass
-			</button>
-			<br />
-			<button
-				onClick={() => {
-					login.mutate({
-						password: "mypassword",
-						username: "scatter",
-					});
-				}}
-			>
-				log me in hamachie
-			</button>
-		</>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				register.mutate({ email, username, password });
+			}}
+		>
+			<TextInput
+				type="email"
+				name="email"
+				valueState={[email, setEmail]}
+				placeholder="email"
+			/>
+			<TextInput
+				type="text"
+				name="username"
+				valueState={[username, setUsername]}
+				placeholder="username"
+			/>
+			<TextInput
+				type="password"
+				name="password"
+				valueState={[password, setPassword]}
+				placeholder="password"
+			/>
+			<button>submit</button>
+		</form>
 	);
 };
 

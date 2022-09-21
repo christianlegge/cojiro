@@ -6,12 +6,14 @@ const TextInput = ({
 	required,
 	valueState,
 	enterCallback,
+	type,
 }: {
 	name: string;
 	placeholder?: string;
 	required?: boolean;
 	valueState?: [string, React.Dispatch<React.SetStateAction<string>>];
 	enterCallback?: () => void;
+	type?: string;
 }) => {
 	return (
 		<div>
@@ -20,7 +22,7 @@ const TextInput = ({
 			<input
 				className="border-[1px] border-gray-300 rounded-md p-2"
 				placeholder={placeholder}
-				type="text"
+				type={type || "text"}
 				name={name}
 				onKeyDown={
 					enterCallback &&
