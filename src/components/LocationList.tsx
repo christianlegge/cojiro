@@ -12,6 +12,7 @@ import {
 	errorTextAtom,
 } from "../utils/atoms";
 import regionsJson from "../data/regions.json";
+import { fetchingAtom } from "../utils/atoms";
 
 type RegionsType = {
 	[key: string]: {
@@ -60,6 +61,7 @@ const LocationList = () => {
 	const age = useAtomValue(ageAtom);
 	const region = useAtomValue(regionAtom);
 
+	const fetching = useAtomValue(fetchingAtom);
 	const headerText = useAtomValue(mapHeaderTextAtom);
 	const errorText = useAtomValue(errorTextAtom);
 
@@ -116,7 +118,9 @@ const LocationList = () => {
 						</span>
 					)}
 				</div>
-				{errorText ? (
+				{fetching ? (
+					<span className="h-full animate-spin">.</span>
+				) : errorText ? (
 					<ErrorBox error={errorText} />
 				) : (
 					<span className="text-lg">{headerText}</span>

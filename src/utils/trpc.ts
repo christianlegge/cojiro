@@ -2,7 +2,7 @@
 import type { AppRouter } from "../server/router";
 import { createReactQueryHooks } from "@trpc/react";
 import type { inferProcedureOutput, inferProcedureInput } from "@trpc/server";
-import { mapHeaderTextAtom, errorTextAtom } from "./atoms";
+import { mapHeaderTextAtom, errorTextAtom, fetchingAtom } from "./atoms";
 import { useUpdateAtom } from "jotai/utils";
 
 export const trpc = createReactQueryHooks<AppRouter>();
@@ -31,12 +31,14 @@ export const usePlaythrough = (id: string) =>
 	trpc.useQuery(["playthrough.get", { id }]);
 
 export const useCheckLocation = (id: string) => {
+	const setFetching = useUpdateAtom(fetchingAtom);
 	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
 	const queryClient = trpc.useContext();
 
 	const mutation = trpc.useMutation("playthrough.checkLocation", {
 		onMutate({ location }) {
+			setFetching(true);
 			queryClient.setQueryData(
 				["playthrough.get", { id }],
 				(old: any) => {
@@ -76,18 +78,23 @@ export const useCheckLocation = (id: string) => {
 			}
 		},
 		onError: (err) => setErrorText(err.message),
+		onSettled: () => {
+			setFetching(false);
+		},
 	});
 
 	return (location: string) => mutation.mutate({ id, location });
 };
 
 export const useCheckStone = (id: string) => {
+	const setFetching = useUpdateAtom(fetchingAtom);
 	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
 	const queryClient = trpc.useContext();
 
 	const mutation = trpc.useMutation("playthrough.checkStone", {
 		onMutate({ stone }) {
+			setFetching(true);
 			queryClient.setQueryData(
 				["playthrough.get", { id }],
 				(old: any) => {
@@ -158,6 +165,9 @@ export const useCheckStone = (id: string) => {
 			setMapHeaderText(text);
 		},
 		onError: (err) => setErrorText(err.message),
+		onSettled: () => {
+			setFetching(false);
+		},
 	});
 
 	return (stone: string) => mutation.mutate({ id, stone });
