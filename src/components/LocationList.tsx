@@ -69,7 +69,7 @@ const LocationList = () => {
 		if (playthrough && !playthrough.checked.includes("Links Pocket")) {
 			checkLocation("Links Pocket");
 		}
-	}, [id, playthrough, checkLocation]);
+	}, [id, playthrough]);
 
 	if (!playthrough) {
 		if (status === "loading") {
