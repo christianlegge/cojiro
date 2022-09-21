@@ -33,10 +33,37 @@ export const usePlaythrough = (id: string) =>
 export const useCheckLocation = (id: string) => {
 	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
-	const playthrough = usePlaythrough(id);
+	const queryClient = trpc.useContext();
+
 	const mutation = trpc.useMutation("playthrough.checkLocation", {
+		onMutate({ location }) {
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					return {
+						...old,
+						checked: [...old.checked, location],
+					};
+				}
+			);
+		},
 		onSuccess: ({ checked, item }) => {
-			playthrough.refetch();
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					return {
+						...old,
+						checked: [...old.checked, checked],
+						items: [...old.items, item],
+					};
+				}
+			);
 			setErrorText("");
 			if (/Check .* Dungeons/.test(checked)) {
 				setMapHeaderText(
@@ -57,10 +84,76 @@ export const useCheckLocation = (id: string) => {
 export const useCheckStone = (id: string) => {
 	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
-	const playthrough = usePlaythrough(id);
+	const queryClient = trpc.useContext();
+
 	const mutation = trpc.useMutation("playthrough.checkStone", {
-		onSuccess: ({ text }) => {
-			playthrough.refetch();
+		onMutate({ stone }) {
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					return {
+						...old,
+						checked: [...old.checked, stone],
+					};
+				}
+			);
+		},
+		onSuccess: ({
+			text,
+			type,
+			checked,
+			item,
+			location,
+			path_locations,
+			region,
+		}) => {
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					if (type === "barren") {
+						return {
+							...old,
+							checked: [...old.checked, checked],
+							known_barren: [...old.known_barren, region],
+						};
+					} else if (type === "woth") {
+						return {
+							...old,
+							checked: [...old.checked, checked],
+							known_woth: [...old.known_woth, region],
+						};
+					} else if (type === "path") {
+						return {
+							...old,
+							checked: [...old.checked, checked],
+							known_paths: {
+								...old.known_paths,
+								[region as string]: path_locations,
+							},
+						};
+					} else if (type === "item") {
+						return {
+							...old,
+							checked: [...old.checked, checked],
+							known_locations: {
+								...old.known_locations,
+								[location as string]: item,
+							},
+						};
+					} else if (type === "junk") {
+						return {
+							...old,
+							checked: [...old.checked, checked],
+						};
+					}
+				}
+			);
 			setErrorText("");
 			setMapHeaderText(text);
 		},
