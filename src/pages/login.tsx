@@ -6,6 +6,7 @@ import { registerValidation } from "../server/common/form-validation";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { FaDiscord, FaGoogle, FaTwitch } from "react-icons/fa";
 
 const textInputClasses = "p-2 w-full border text-lg rounded-lg";
 
@@ -42,7 +43,7 @@ const RegisterForm = () => {
 
 	return (
 		<form
-			className="flex flex-col p-4"
+			className="flex flex-col"
 			onSubmit={handleSubmit(({ email, username, password }) =>
 				registerMutation.mutate({ email, username, password })
 			)}
@@ -127,12 +128,36 @@ const RegisterForm = () => {
 };
 
 const LoginRegister = () => {
+	const signInButtonClasses =
+		"w-full flex justify-center items-center gap-2 text-white font-semibold rounded-lg py-2";
 	return (
-		<Layout>
-			<RegisterForm />
-			<button onClick={() => signIn("google")}>
-				sign in with google
-			</button>
+		<Layout mainClass="p-2 bg-[url('/images/bg/kakariko-night.jpg')] bg-no-repeat bg-cover bg-center grid place-items-center">
+			<div className="flex flex-col gap-4 px-8 py-4 backdrop-blur shadow-xl rounded-lg bg-zinc-300 bg-opacity-30 w-full max-w-lg">
+				<h1 className="text-center text-white text-4xl font-bold mb-4">
+					Sign in to Cojiro
+				</h1>
+				<button
+					onClick={() => signIn("google", { callbackUrl: "/play" })}
+					className={`${signInButtonClasses} bg-orange-700`}
+				>
+					<FaGoogle />
+					Sign in with Google
+				</button>
+				<button
+					onClick={() => signIn("twitch", { callbackUrl: "/play" })}
+					className={`${signInButtonClasses} bg-twitchpurple`}
+				>
+					<FaTwitch />
+					Sign in with Twitch
+				</button>
+				<button
+					onClick={() => signIn("discord", { callbackUrl: "/play" })}
+					className={`${signInButtonClasses} bg-discordblurple`}
+				>
+					<FaDiscord />
+					Sign in with Discord
+				</button>
+			</div>
 		</Layout>
 	);
 };

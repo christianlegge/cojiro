@@ -2,10 +2,16 @@ import React, { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({ children }: { children: ReactNode }) => (
+const Layout = ({
+	children,
+	mainClass,
+}: {
+	children: ReactNode;
+	mainClass?: string;
+}) => (
 	<>
 		<Header />
-		<main className="relative">{children}</main>
+		<main className={`relative flex-grow ${mainClass}`}>{children}</main>
 		<Footer />
 	</>
 );
