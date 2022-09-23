@@ -2,42 +2,58 @@ import { z } from "zod";
 import argon2 from "argon2";
 import { TRPCError } from "@trpc/server";
 import { createRouter } from "./context";
+import { registerValidation, loginValidation } from "../common/form-validation";
+import { Prisma } from "@prisma/client";
 
 export const userRouter = createRouter()
 	.mutation("register", {
-		input: z.object({
-			email: z.string().email({ message: "Invalid email" }),
-			password: z
-				.string()
-				.min(4, { message: "Password must be at least 4 characters" })
-				.max(256, {
-					message: "Password cannot be longer than 256 characters",
-				}),
-			username: z
-				.string()
-				.min(4, { message: "Username must be at least 4 characters" })
-				.max(20, {
-					message: "Username cannot be longer than 20 characters",
-				})
-				.regex(/[A-Za-z0-9_-]+/),
-		}),
+		input: registerValidation,
 		async resolve({ ctx, input }) {
 			const passhash = await argon2.hash(input.password);
-			const user = await ctx.prisma.user.create({
-				data: {
-					email: input.email,
-					passhash,
-					username: input.username.toLowerCase(),
-					displayname: input.username,
-				},
-			});
+			try {
+				const user = await ctx.prisma.user.create({
+					data: {
+						email: input.email,
+						passhash,
+						username: input.username.toLowerCase(),
+						displayname: input.username,
+					},
+				});
+				return { username: user.username };
+			} catch (err) {
+				if (err instanceof Prisma.PrismaClientKnownRequestError) {
+					if (err.code === "P2002") {
+						// failed unique constraint
+						if (err.meta && "target" in err.meta) {
+							if (
+								(err.meta.target as string[]).includes("email")
+							) {
+								throw new TRPCError({
+									code: "CONFLICT",
+									message: "email",
+								});
+							} else if (
+								(err.meta.target as string[]).includes(
+									"username"
+								)
+							) {
+								throw new TRPCError({
+									code: "CONFLICT",
+									message: "username",
+								});
+							}
+						}
+					}
+				}
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Unknown server error",
+				});
+			}
 		},
 	})
 	.mutation("login", {
-		input: z.object({
-			username: z.string().min(4).max(20),
-			password: z.string().min(4).max(256),
-		}),
+		input: loginValidation,
 		async resolve({ ctx, input }) {
 			const user = await ctx.prisma.user.findUnique({
 				where: {
