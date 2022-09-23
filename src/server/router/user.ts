@@ -6,6 +6,16 @@ import { registerValidation, loginValidation } from "../common/form-validation";
 import { Prisma } from "@prisma/client";
 
 export const userRouter = createRouter()
+	.mutation("usernameExists", {
+		input: z.string(),
+		async resolve({ ctx, input }) {
+			return !!(await ctx.prisma.user.findUnique({
+				where: {
+					username: input,
+				},
+			}));
+		},
+	})
 	.mutation("register", {
 		input: registerValidation,
 		async resolve({ ctx, input }) {

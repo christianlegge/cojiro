@@ -6,6 +6,8 @@ import { registerValidation } from "../server/common/form-validation";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+const textInputClasses = "p-2 w-full border text-lg rounded-lg";
+
 const RegisterForm = () => {
 	const {
 		register,
@@ -15,6 +17,14 @@ const RegisterForm = () => {
 	} = useForm({
 		mode: "all",
 		resolver: zodResolver(registerValidation),
+	});
+
+	const usernameExists = trpc.useMutation("user.usernameExists", {
+		onSuccess(data) {
+			if (data) {
+				setError("username", { message: "Username already exists :(" });
+			}
+		},
 	});
 
 	const registerMutation = trpc.useMutation("user.register", {
@@ -40,7 +50,7 @@ const RegisterForm = () => {
 				<label htmlFor="email">email</label>
 				<input
 					{...register("email")}
-					className={`${"p-2 w-full border text-lg rounded-lg"} ${
+					className={`${textInputClasses} ${
 						errors.email && "border-red-500"
 					}`}
 					type="text"
@@ -62,13 +72,14 @@ const RegisterForm = () => {
 				<label htmlFor="username">username</label>
 				<input
 					{...register("username")}
-					className={`${"p-2 w-full border text-lg rounded-lg"} ${
+					className={`${textInputClasses} ${
 						errors.username && "border-red-500"
 					}`}
 					type="text"
 					name="username"
 					id="username"
 					placeholder="username"
+					onBlur={(e) => usernameExists.mutate(e.currentTarget.value)}
 				/>
 				<p
 					className={`text-sm ${
@@ -84,7 +95,7 @@ const RegisterForm = () => {
 				<label htmlFor="password">password</label>
 				<input
 					{...register("password")}
-					className={`${"p-2 w-full border text-lg rounded-lg"} ${
+					className={`${textInputClasses} ${
 						errors.password && "border-red-500"
 					}`}
 					type="password"
@@ -115,54 +126,9 @@ const RegisterForm = () => {
 };
 
 const LoginRegister = () => {
-	const login = trpc.useMutation("user.login", {
-		onSuccess(data, variables, context) {
-			console.log(data);
-		},
-		onError(error, variables, context) {
-			console.log(error);
-			console.log(context);
-		},
-	});
-	const registerInputs = ["email", "username", "password"] as const;
 	return (
 		<Layout>
 			<RegisterForm />
-		</Layout>
-	);
-
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-
-	return (
-		<Layout>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					register.mutate({ email, username, password });
-				}}
-			>
-				<TextInput
-					type="email"
-					name="email"
-					valueState={[email, setEmail]}
-					placeholder="email"
-				/>
-				<TextInput
-					type="text"
-					name="username"
-					valueState={[username, setUsername]}
-					placeholder="username"
-				/>
-				<TextInput
-					type="password"
-					name="password"
-					valueState={[password, setPassword]}
-					placeholder="password"
-				/>
-				<button>submit</button>
-			</form>
 		</Layout>
 	);
 };
