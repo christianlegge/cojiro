@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import { registerValidation } from "../server/common/form-validation";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 
 const textInputClasses = "p-2 w-full border text-lg rounded-lg";
 
@@ -129,6 +130,9 @@ const LoginRegister = () => {
 	return (
 		<Layout>
 			<RegisterForm />
+			<button onClick={() => signIn("google")}>
+				sign in with google
+			</button>
 		</Layout>
 	);
 };
