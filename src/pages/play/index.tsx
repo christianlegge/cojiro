@@ -12,6 +12,8 @@ import { ageAtom, regionAtom, errorTextAtom } from "../../utils/atoms";
 import Layout from "../../components/Layout";
 import { useSession } from "next-auth/react";
 import { MdWarningAmber } from "react-icons/md";
+import MedallionCircle from "../../components/MedallionCircle";
+import { formatFilename } from "../../utils/filename";
 
 const settingsPresets: { [key: string]: string } = {
 	"S5 Tournament":
@@ -31,6 +33,46 @@ const settingsPresets: { [key: string]: string } = {
 	// "Hell Mode": "AJKSYCHYKSTBAAAZ6559HD7PXCHGLTDRAA29BAAASEGAE23S",
 	Bingo: "AJ2AWCHYKASFKAAHJAAAANCUWCHGLTDDAKJ8S82TBASAWJG4TU6EMKA2UAAAWDASFFAA",
 	League: "AASWXCHYKAA8KCAHJAAAAECCWCHGLTDDAKAAJAEAHADLED7JKQUXEANKAJ2AAJZAADLAC",
+};
+
+const InProgressPlaythroughCard = ({
+	medallions,
+	startTime,
+	checked,
+	locations,
+}: {
+	medallions: string[];
+	startTime: Date;
+	checked: number;
+	locations: number;
+}) => {
+	const seconds = (Date.now() - startTime.getTime()) / 1000;
+	const rtf = new Intl.RelativeTimeFormat();
+	const relTimeString =
+		seconds < 60
+			? rtf.format(-seconds, "second")
+			: seconds < 60 * 60
+			? rtf.format(-seconds / 60, "minute")
+			: seconds < 60 * 60 * 24
+			? rtf.format(-seconds / 60 / 60, "hour")
+			: seconds < 60 * 60 * 24 * 7
+			? rtf.format(-seconds / 60 / 60 / 24, "day")
+			: seconds < 60 * 60 * 24 * 30
+			? rtf.format(-seconds / 60 / 60 / 24 / 7, "week")
+			: seconds < 60 * 60 * 24 * 365
+			? rtf.format(-seconds / 60 / 60 / 24 / 30, "month")
+			: rtf.format(-seconds / 60 / 60 / 24 / 365, "year");
+	return (
+		<div className="w-24 h-24 border shadow-md rounded-lg cursor-pointer">
+			{medallions.map((el) => (
+				<img src={`/images/${formatFilename(el)}.png`} alt="" />
+			))}
+
+			{`${checked}/${locations}`}
+			<br />
+			{relTimeString}
+		</div>
+	);
 };
 
 const StartForm = () => {
@@ -61,7 +103,7 @@ const StartForm = () => {
 		],
 		{
 			enabled: jwt !== null,
-			onSuccess({ playthroughs, newToken }) {
+			onSuccess({ newToken }) {
 				localStorage.setItem("playthroughsJwt", newToken);
 			},
 			onError(err) {
@@ -125,13 +167,13 @@ const StartForm = () => {
 			seed: seedType === "custom" ? seed : undefined,
 			settingsString: settingsString,
 		});
-		setError(null);
+		setError("");
 		setGenerating(true);
 	};
 
-	const ids = (jwtPlaythroughs.data?.playthroughs ?? []).concat(
-		userPlaythroughs.data ?? []
-	);
+	const inProgressPlaythroughs = (
+		jwtPlaythroughs.data?.playthroughs ?? []
+	).concat(userPlaythroughs.data ?? []);
 
 	return (
 		<Layout>
@@ -245,14 +287,21 @@ const StartForm = () => {
 					Sample seed
 				</button>
 				<h2>In progress games</h2>
-				<ul>
-					{ids.length === 0 ? (
+				<ul className="flex flex-wrap gap-4">
+					{inProgressPlaythroughs.length === 0 ? (
 						<span>None!</span>
 					) : (
-						ids.map((el) => (
-							<li key={el}>
-								<Link href={`/play/${el}`}>{el}</Link>
-							</li>
+						inProgressPlaythroughs.map((el) => (
+							<Link key={el.id} href={`/play/${el.id}`}>
+								<li>
+									<InProgressPlaythroughCard
+										medallions={el.medallions}
+										startTime={el.startTime}
+										checked={el.checked}
+										locations={el.locations}
+									/>
+								</li>
+							</Link>
 						))
 					)}
 				</ul>

@@ -3,6 +3,7 @@ import * as trpc from "@trpc/server";
 import { z } from "zod";
 import { createRouter } from "./context";
 import { env } from "../../env/server.mjs";
+import type InProgressPlaythrough from "../../types/InProgressPlaythrough";
 
 export const jwtRouter = createRouter()
 	.query("getPlaythroughs", {
@@ -15,19 +16,37 @@ export const jwtRouter = createRouter()
 					input.token,
 					env.JWT_SECRET
 				) as { playthroughs: string[] };
-				const validPlaythroughs: string[] = [];
+				const validPlaythroughs: InProgressPlaythrough[] = [];
 				for (let i = 0; i < playthroughs.length; i++) {
 					const playthrough = await ctx.prisma.playthrough.findUnique(
 						{
 							where: { id: playthroughs[i] },
+							select: {
+								items: true,
+								userId: true,
+								id: true,
+								createdAt: true,
+								checked: true,
+								seed: true,
+							},
 						}
 					);
 					if (playthrough && !playthrough.userId) {
-						validPlaythroughs.push(playthroughs[i]);
+						validPlaythroughs.push({
+							id: playthrough.id,
+							medallions: playthrough.items.filter((el) =>
+								el.includes("Medallion")
+							),
+							startTime: playthrough.createdAt,
+							checked: playthrough.checked.length,
+							locations: Object.keys(
+								playthrough.seed.locations as {}
+							).length,
+						});
 					}
 				}
 				const newToken = jwt.sign(
-					{ playthroughs: validPlaythroughs },
+					{ playthroughs: validPlaythroughs.map((el) => el.id) },
 					env.JWT_SECRET,
 					{
 						expiresIn: "3d",

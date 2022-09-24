@@ -34,12 +34,8 @@ export const usePlaythrough = (id: string) => {
 	return trpc.useQuery(["playthrough.get", { id }], {
 		retry: false,
 		onError(err) {
-			if (err.data?.code === "FORBIDDEN") {
-				setErrorText(
-					"You are not logged in as the owner of that playthrough."
-				);
-				router.push("/play");
-			}
+			setErrorText(err.message);
+			router.push("/play");
 		},
 	});
 };

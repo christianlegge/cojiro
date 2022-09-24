@@ -4,9 +4,10 @@ import { TRPCError } from "@trpc/server";
 import { createRouter } from "./context";
 import { registerValidation, loginValidation } from "../common/form-validation";
 import { Prisma } from "@prisma/client";
+import type InProgressPlaythrough from "../../types/InProgressPlaythrough";
 
 export const userRouter = createRouter().query("getPlaythroughs", {
-	async resolve({ ctx }) {
+	async resolve({ ctx }): Promise<InProgressPlaythrough[]> {
 		if (!ctx.session || !ctx.session.user) {
 			throw new TRPCError({
 				code: "FORBIDDEN",
@@ -18,7 +19,11 @@ export const userRouter = createRouter().query("getPlaythroughs", {
 				id: ctx.session.user.id,
 			},
 			select: {
-				playthroughs: true,
+				playthroughs: {
+					include: {
+						seed: true,
+					},
+				},
 			},
 		});
 		if (!user) {
@@ -27,6 +32,12 @@ export const userRouter = createRouter().query("getPlaythroughs", {
 				message: "Session valid but user not found",
 			});
 		}
-		return user.playthroughs.map((el) => el.id);
+		return user.playthroughs.map((el) => ({
+			id: el.id,
+			medallions: el.items.filter((item) => item.includes("Medallion")),
+			startTime: el.createdAt,
+			checked: el.checked.length,
+			locations: Object.keys(el.seed.locations as {}).length,
+		}));
 	},
 });
