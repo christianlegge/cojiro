@@ -9,6 +9,8 @@ import LeftRightSwitch from "../../components/LeftRightSwitch";
 import { useUpdateAtom } from "jotai/utils";
 import { ageAtom, regionAtom } from "../../utils/atoms";
 import Layout from "../../components/Layout";
+import { useSession } from "next-auth/react";
+import { MdWarningAmber } from "react-icons/md";
 
 const settingsPresets: { [key: string]: string } = {
 	"S5 Tournament":
@@ -47,6 +49,8 @@ const StartForm = () => {
 
 	const setAge = useUpdateAtom(ageAtom);
 	const setRegion = useUpdateAtom(regionAtom);
+
+	const { data: session, status } = useSession();
 
 	const getPlaythroughFromJwt = trpc.useQuery(
 		[
@@ -125,6 +129,14 @@ const StartForm = () => {
 	return (
 		<Layout>
 			<div className="grid place-items-center pt-2 px-2 gap-4">
+				{status === "unauthenticated" && (
+					<div className="flex justify-center items-center gap-1 p-2 rounded-lg bg-amber-200 w-[65ch]">
+						<MdWarningAmber className="w-8" />
+						You are not signed in. You may play as a guest, but the
+						game will be deleted after 3 days, will not be tracked
+						for stats, and can be claimed by anyone with the URL.
+					</div>
+				)}
 				<div className="grid grid-cols-3 gap-2">
 					<div className="flex pl-4 justify-between items-center w-full gap-10 col-span-3">
 						<h2 className="font-semibold text-2xl">Presets</h2>
