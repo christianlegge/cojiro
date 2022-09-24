@@ -31,6 +31,7 @@ const Header = () => {
 						<button onClick={() => signOut()}>Log out</button>
 					</>
 				)}
+				{status === "loading" && <div></div>}
 			</div>
 		</header>
 	);
