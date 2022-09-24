@@ -6,16 +6,18 @@ import QuestTracker from "../../components/QuestTracker";
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import { useUpdateAtom } from "jotai/utils";
-import { idAtom } from "../../utils/atoms";
+import { idAtom, errorTextAtom } from "../../utils/atoms";
 
 const ZootrSim = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const setId = useUpdateAtom(idAtom);
+	const setErrorText = useUpdateAtom(errorTextAtom);
 	if (!id) {
 		return <div>Loading...</div>;
 	}
 	setId(id as string);
+	setErrorText("");
 
 	return (
 		<Layout>

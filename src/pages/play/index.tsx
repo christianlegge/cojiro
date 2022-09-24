@@ -6,8 +6,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 // import { Link, useNavigate } from "react-router-dom";
 import LeftRightSwitch from "../../components/LeftRightSwitch";
+import { useAtom } from "jotai";
 import { useUpdateAtom } from "jotai/utils";
-import { ageAtom, regionAtom } from "../../utils/atoms";
+import { ageAtom, regionAtom, errorTextAtom } from "../../utils/atoms";
 import Layout from "../../components/Layout";
 import { useSession } from "next-auth/react";
 import { MdWarningAmber } from "react-icons/md";
@@ -35,7 +36,7 @@ const settingsPresets: { [key: string]: string } = {
 const StartForm = () => {
 	// const navigate = useNavigate();
 	const router = useRouter();
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useAtom(errorTextAtom);
 	const [generating, setGenerating] = useState(false);
 	const [selectedPreset, setSelectedPreset] = useState<string>("");
 	const [seedType, setSeedType] = useState<"random" | "custom">("random");

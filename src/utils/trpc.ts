@@ -4,6 +4,7 @@ import { createReactQueryHooks } from "@trpc/react";
 import type { inferProcedureOutput, inferProcedureInput } from "@trpc/server";
 import { mapHeaderTextAtom, errorTextAtom, fetchingAtom } from "./atoms";
 import { useUpdateAtom } from "jotai/utils";
+import { useRouter } from "next/router";
 
 export const trpc = createReactQueryHooks<AppRouter>();
 
@@ -27,8 +28,21 @@ export type inferMutationInput<
 	TRouteKey extends keyof AppRouter["_def"]["mutations"]
 > = inferProcedureInput<AppRouter["_def"]["mutations"][TRouteKey]>;
 
-export const usePlaythrough = (id: string) =>
-	trpc.useQuery(["playthrough.get", { id }]);
+export const usePlaythrough = (id: string) => {
+	const router = useRouter();
+	const setErrorText = useUpdateAtom(errorTextAtom);
+	return trpc.useQuery(["playthrough.get", { id }], {
+		retry: false,
+		onError(err) {
+			if (err.data?.code === "FORBIDDEN") {
+				setErrorText(
+					"You are not logged in as the owner of that playthrough."
+				);
+				router.push("/play");
+			}
+		},
+	});
+};
 
 export const useCheckLocation = (id: string) => {
 	const setFetching = useUpdateAtom(fetchingAtom);
