@@ -17,11 +17,12 @@ export const jwtRouter = createRouter()
 				) as { playthroughs: string[] };
 				const validPlaythroughs: string[] = [];
 				for (let i = 0; i < playthroughs.length; i++) {
-					if (
-						(await ctx.prisma.playthrough.findUnique({
+					const playthrough = await ctx.prisma.playthrough.findUnique(
+						{
 							where: { id: playthroughs[i] },
-						})) !== null
-					) {
+						}
+					);
+					if (playthrough && !playthrough.userId) {
 						validPlaythroughs.push(playthroughs[i]);
 					}
 				}
@@ -29,7 +30,7 @@ export const jwtRouter = createRouter()
 					{ playthroughs: validPlaythroughs },
 					env.JWT_SECRET,
 					{
-						expiresIn: "7d",
+						expiresIn: "3d",
 					}
 				) as string;
 				return {
@@ -64,7 +65,7 @@ export const jwtRouter = createRouter()
 			playthroughs.push(input.playthroughId);
 			return {
 				newToken: jwt.sign({ playthroughs }, env.JWT_SECRET, {
-					expiresIn: "7d",
+					expiresIn: "3d",
 				}) as string,
 			};
 		},

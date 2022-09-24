@@ -5,86 +5,28 @@ import { createRouter } from "./context";
 import { registerValidation, loginValidation } from "../common/form-validation";
 import { Prisma } from "@prisma/client";
 
-export const userRouter = createRouter()
-	.mutation("usernameExists", {
-		input: z.string(),
-		async resolve({ ctx, input }) {
-			return !!(await ctx.prisma.user.findUnique({
-				where: {
-					username: input,
-				},
-			}));
-		},
-	})
-	.mutation("register", {
-		input: registerValidation,
-		async resolve({ ctx, input }) {
-			const passhash = await argon2.hash(input.password);
-			try {
-				const user = await ctx.prisma.user.create({
-					data: {
-						email: input.email,
-						passhash,
-						username: input.username.toLowerCase(),
-						displayname: input.username,
-					},
-				});
-				return { username: user.username };
-			} catch (err) {
-				if (err instanceof Prisma.PrismaClientKnownRequestError) {
-					if (err.code === "P2002") {
-						// failed unique constraint
-						if (err.meta && "target" in err.meta) {
-							if (
-								(err.meta.target as string[]).includes("email")
-							) {
-								throw new TRPCError({
-									code: "CONFLICT",
-									message: "email",
-								});
-							} else if (
-								(err.meta.target as string[]).includes(
-									"username"
-								)
-							) {
-								throw new TRPCError({
-									code: "CONFLICT",
-									message: "username",
-								});
-							}
-						}
-					}
-				}
-				throw new TRPCError({
-					code: "INTERNAL_SERVER_ERROR",
-					message: "Unknown server error",
-				});
-			}
-		},
-	})
-	.mutation("login", {
-		input: loginValidation,
-		async resolve({ ctx, input }) {
-			const user = await ctx.prisma.user.findUnique({
-				where: {
-					username: input.username.toLowerCase(),
-				},
-				select: {
-					username: true,
-					passhash: true,
-				},
+export const userRouter = createRouter().query("getPlaythroughs", {
+	async resolve({ ctx }) {
+		if (!ctx.session || !ctx.session.user) {
+			throw new TRPCError({
+				code: "FORBIDDEN",
+				message: "You are not logged in",
 			});
-			if (!user) {
-				throw new TRPCError({
-					code: "UNAUTHORIZED",
-				});
-			}
-			if (await argon2.verify(user.passhash, input.password)) {
-				return true;
-			} else {
-				throw new TRPCError({
-					code: "UNAUTHORIZED",
-				});
-			}
-		},
-	});
+		}
+		const user = await ctx.prisma.user.findUnique({
+			where: {
+				id: ctx.session.user.id,
+			},
+			select: {
+				playthroughs: true,
+			},
+		});
+		if (!user) {
+			throw new TRPCError({
+				code: "INTERNAL_SERVER_ERROR",
+				message: "Session valid but user not found",
+			});
+		}
+		return user.playthroughs.map((el) => el.id);
+	},
+});

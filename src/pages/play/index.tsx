@@ -45,14 +45,13 @@ const StartForm = () => {
 	const [seed, setSeed] = useState("");
 	const [settings, setSettings] = useState("");
 	const [jwt, setJwt] = useState<string | null>(null);
-	const [ids, setIds] = useState<string[]>([]);
 
 	const setAge = useUpdateAtom(ageAtom);
 	const setRegion = useUpdateAtom(regionAtom);
 
 	const { data: session, status } = useSession();
 
-	const getPlaythroughFromJwt = trpc.useQuery(
+	const jwtPlaythroughs = trpc.useQuery(
 		[
 			"jwt.getPlaythroughs",
 			{
@@ -63,12 +62,10 @@ const StartForm = () => {
 			enabled: jwt !== null,
 			onSuccess({ playthroughs, newToken }) {
 				localStorage.setItem("playthroughsJwt", newToken);
-				setIds(playthroughs);
 			},
 			onError(err) {
 				localStorage.removeItem("playthroughsJwt");
 				setJwt(null);
-				setIds([]);
 			},
 		}
 	);
@@ -82,10 +79,12 @@ const StartForm = () => {
 	});
 	const startMutation = trpc.useMutation("startPlaythrough", {
 		onSuccess: ({ id }) => {
-			addPlaythroughToJwt.mutate({
-				token: jwt,
-				playthroughId: id,
-			});
+			if (status !== "authenticated") {
+				addPlaythroughToJwt.mutate({
+					token: jwt,
+					playthroughId: id,
+				});
+			}
 			setAge("child");
 			setRegion("Kokiri Forest");
 			router.push(`/play/${id}`);
@@ -95,6 +94,9 @@ const StartForm = () => {
 			setError(err.message);
 			setSelectedPreset("");
 		},
+	});
+	const userPlaythroughs = trpc.useQuery(["user.getPlaythroughs"], {
+		enabled: status === "authenticated",
 	});
 
 	useEffect(() => {
@@ -125,6 +127,10 @@ const StartForm = () => {
 		setError(null);
 		setGenerating(true);
 	};
+
+	const ids = (jwtPlaythroughs.data?.playthroughs ?? []).concat(
+		userPlaythroughs.data ?? []
+	);
 
 	return (
 		<Layout>
