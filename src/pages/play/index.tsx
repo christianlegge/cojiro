@@ -65,7 +65,11 @@ const InProgressPlaythroughCard = ({
 	return (
 		<div className="w-24 h-24 border shadow-md rounded-lg cursor-pointer">
 			{medallions.map((el) => (
-				<img src={`/images/${formatFilename(el)}.png`} alt="" />
+				<img
+					key={el}
+					src={`/images/${formatFilename(el)}.png`}
+					alt=""
+				/>
 			))}
 
 			{`${checked}/${locations}`}

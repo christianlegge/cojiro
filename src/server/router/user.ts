@@ -37,7 +37,8 @@ export const userRouter = createRouter().query("getPlaythroughs", {
 			medallions: el.items.filter((item) => item.includes("Medallion")),
 			startTime: el.createdAt,
 			checked: el.checked.length,
-			locations: Object.keys(el.seed.locations as {}).length,
+			locations: Object.keys(el.seed.locations as Record<string, string>)
+				.length,
 		}));
 	},
 });

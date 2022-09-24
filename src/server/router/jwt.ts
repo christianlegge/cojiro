@@ -40,7 +40,10 @@ export const jwtRouter = createRouter()
 							startTime: playthrough.createdAt,
 							checked: playthrough.checked.length,
 							locations: Object.keys(
-								playthrough.seed.locations as {}
+								playthrough.seed.locations as Record<
+									string,
+									string
+								>
 							).length,
 						});
 					}
