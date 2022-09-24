@@ -57,6 +57,11 @@ const indexRouter = createRouter()
 					known_paths: {},
 					known_locations: {},
 					items: startingItems,
+					user: ctx.session?.user
+						? {
+								connect: { id: ctx.session.user.id },
+						  }
+						: undefined,
 				},
 			});
 
