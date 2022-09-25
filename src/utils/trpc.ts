@@ -62,7 +62,7 @@ export const useCheckLocation = (id: string) => {
 				}
 			);
 		},
-		onSuccess: ({ checked, item }) => {
+		onSuccess: ({ checked, item, known_locations }) => {
 			queryClient.setQueryData(
 				["playthrough.get", { id }],
 				(old: any) => {
@@ -72,7 +72,8 @@ export const useCheckLocation = (id: string) => {
 					return {
 						...old,
 						checked: [...old.checked, checked],
-						items: [...old.items, item],
+						items: item ? [...old.items, item] : old.items,
+						known_locations,
 					};
 				}
 			);
