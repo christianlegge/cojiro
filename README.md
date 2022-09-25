@@ -1,6 +1,10 @@
-# ZOoTR Sim
+# Cojiro
+
+(formerly ZOoTR Sim)
 
 Simulate and practice Ocarina of Time Randomizer seeds
+
+Assuming the last commit is more than ~2 minutes old, the `main` branch of this repo has parity with the `cojiro.app` deployment.
 
 ## Postgres setup
 
