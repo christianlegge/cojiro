@@ -1,4 +1,5 @@
 import { SeedReturnType } from "../server/external/createSeed";
+import { TRPCError } from "@trpc/server";
 
 export type ParsedSeed = {
 	locations: {
@@ -10,6 +11,19 @@ export type ParsedSeed = {
 	gossip_stones: {
 		[key: string]: string;
 	};
+};
+
+const requiredSettings = {
+	shopsanity: "off",
+	mq_dungeons: 0,
+	triforce_hunt: false,
+	world_count: 1,
+	shuffle_beans: false,
+	shuffle_ocarinas: false,
+	shuffle_interior_entrances: "off",
+	shuffle_grotto_entrances: false,
+	shuffle_dungeon_entrances: false,
+	shuffle_overworld_entrances: false,
 };
 
 function parseSeed(seed: SeedReturnType): ParsedSeed {
@@ -28,6 +42,16 @@ function parseSeed(seed: SeedReturnType): ParsedSeed {
 	const gossip_stones: ParsedSeed["gossip_stones"] = Object.keys(
 		seed.gossip_stones
 	).reduce((acc, el) => ({ ...acc, [el]: seed.gossip_stones[el].text }), {});
+
+	let setting: keyof typeof requiredSettings;
+	for (setting in requiredSettings) {
+		if (seed.settings[setting] !== requiredSettings[setting]) {
+			throw new TRPCError({
+				code: "METHOD_NOT_SUPPORTED",
+				message: `Seed must have ${setting} set to ${requiredSettings[setting]}`,
+			});
+		}
+	}
 
 	return {
 		locations,
