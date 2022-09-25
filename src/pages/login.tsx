@@ -1,25 +1,20 @@
-import React, { useState } from "react";
-import { trpc } from "../utils/trpc";
-import TextInput from "../components/TextInput";
+import React from "react";
 import Layout from "../components/Layout";
-import { registerValidation } from "../server/common/form-validation";
-import { Resolver, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { FaDiscord, FaGoogle, FaTwitch } from "react-icons/fa";
 
 const textInputClasses = "p-2 w-full border text-lg rounded-lg";
 
 const RegisterForm = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors, isValid },
-		setError,
-	} = useForm({
-		mode: "all",
-		resolver: zodResolver(registerValidation),
-	});
+	// const {
+	// 	register,
+	// 	handleSubmit,
+	// 	formState: { errors, isValid },
+	// 	setError,
+	// } = useForm({
+	// 	mode: "all",
+	// 	resolver: zodResolver(registerValidation),
+	// });
 
 	return <div>Unimplemented.</div>;
 

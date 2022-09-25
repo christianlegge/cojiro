@@ -1,9 +1,6 @@
 import { z } from "zod";
-import argon2 from "argon2";
 import { TRPCError } from "@trpc/server";
 import { createRouter } from "./context";
-import { registerValidation, loginValidation } from "../common/form-validation";
-import { Prisma } from "@prisma/client";
 import type InProgressPlaythrough from "../../types/InProgressPlaythrough";
 
 export const userRouter = createRouter().query("getPlaythroughs", {
