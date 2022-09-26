@@ -8,7 +8,7 @@ const Header = () => {
 	const activeClass = "text-red-500";
 
 	return (
-		<header className="w-full h-20 px-4 bg-zinc-700 text-gray-50 flex justify-between items-center">
+		<header className="w-full h-20 px-4 bg-zinc-700 text-gray-50 flex justify-between items-center z-[999]">
 			<div>logo</div>
 			<div className="flex h-full justify-center items-center gap-12">
 				<Link href="/play">Play</Link>

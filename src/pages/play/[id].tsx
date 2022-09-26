@@ -28,11 +28,17 @@ const WinScreen = ({
 		.toString()
 		.padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 	return (
-		<div className="text-white text-center grid bg-black bg-opacity-70 place-items-center w-full h-full col-start-1 row-start-1 z-[999]">
-			<div className="fixed top-1/2">
-				Locations checked: {checked}/{locations}
-				<br />
-				Total time: {timeStr}
+		<div className="fixed top-0 text-white text-center bg-black bg-opacity-70 w-full h-screen col-start-1 row-start-1 z-[998]">
+			<div className="grid place-items-center h-full">
+				<div className="flex flex-col gap-4">
+					<h2 className="text-6xl font-bold tracking-wide">
+						You win!
+					</h2>
+					<span className="text-xl">
+						Locations checked: {checked}/{locations}
+					</span>
+					<span className="text-xl">Total time: {timeStr}</span>
+				</div>
 			</div>
 		</div>
 	);
