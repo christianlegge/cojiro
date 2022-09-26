@@ -46,7 +46,9 @@ const CheckSquare = ({
 						: "cursor-pointer" // bg-lime-500"
 				}`}
 				onClick={() => {
-					if (check === "Take Master Sword") {
+					if (checked) {
+						return;
+					} else if (check === "Take Master Sword") {
 						setAge("adult");
 					} else if (check === "Place Master Sword") {
 						setAge("child");
