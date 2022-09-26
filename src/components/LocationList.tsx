@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CheckSquare from "./CheckSquare";
 import { FiExternalLink } from "react-icons/fi";
 import ErrorBox from "./ErrorBox";
-import { usePlaythrough, useCheckLocation } from "../utils/trpc";
+import { usePlaythrough, useCheckLocation, trpc } from "../utils/trpc";
 import { useAtomValue } from "jotai/utils";
 import {
 	idAtom,
@@ -66,6 +66,16 @@ const LocationList = () => {
 	const errorText = useAtomValue(errorTextAtom);
 
 	const checkLocation = useCheckLocation(id);
+
+	const { data: freestandingItems } = trpc.useQuery([
+		"playthrough.getFreestandingItems",
+		{
+			id: id,
+			locations: Object.keys(regions[region].locations).filter((loc) =>
+				loc.includes("Freestanding")
+			),
+		},
+	]);
 
 	useEffect(() => {
 		if (playthrough && !playthrough.checked.includes("Links Pocket")) {
@@ -171,7 +181,12 @@ const LocationList = () => {
 										region
 									)}
 									checked={playthrough.checked.includes(el)}
-									item={playthrough.known_locations[el]}
+									item={
+										playthrough.known_locations[el] ??
+										(freestandingItems
+											? freestandingItems[el]
+											: undefined)
+									}
 								/>
 							))
 					)}

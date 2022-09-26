@@ -59,6 +59,38 @@ export const playthroughRouter = createRouter()
 			};
 		},
 	})
+	.query("getFreestandingItems", {
+		input: z.object({
+			id: z.string().cuid(),
+			locations: z.string().array(),
+		}),
+		async resolve({ ctx, input }) {
+			const playthrough = await ctx.prisma.playthrough.findUnique({
+				where: { id: input.id },
+				include: { seed: true },
+			});
+			if (!playthrough) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			const seed = playthrough.seed as unknown as ParsedSeed;
+			if (!seed) {
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Playthrough corrupt: seed missing",
+				});
+			}
+			return input.locations.reduce((acc, loc) => {
+				if (loc.includes("Freestanding")) {
+					return { ...acc, [loc]: seed.locations[loc].item };
+				} else {
+					return acc;
+				}
+			}, {} as Record<string, string>);
+		},
+	})
 	.mutation("checkLocation", {
 		input: z.object({
 			id: z.string().cuid(),
