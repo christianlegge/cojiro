@@ -1,6 +1,6 @@
 import React from "react";
 import Tooltip from "./Tooltip";
-import { useCheckLocation, useCheckStone } from "../utils/trpc";
+import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 import { idAtom, ageAtom } from "../utils/atoms";
 
@@ -23,6 +23,7 @@ const CheckSquare = ({
 	const checkLocation = useCheckLocation(id);
 	const checkStone = useCheckStone(id);
 	const setAge = useUpdateAtom(ageAtom);
+	const beatGanon = useBeatGanon(id);
 	return (
 		<Tooltip
 			content={
@@ -49,6 +50,8 @@ const CheckSquare = ({
 						setAge("adult");
 					} else if (check === "Place Master Sword") {
 						setAge("child");
+					} else if (check === "Ganon") {
+						beatGanon();
 					} else if (!checked) {
 						if (type === "locations") {
 							checkLocation(check);

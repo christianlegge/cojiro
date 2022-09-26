@@ -7,7 +7,7 @@ import parseHint from "../../utils/parseHint";
 export const playthroughRouter = createRouter()
 	.query("get", {
 		input: z.object({
-			id: z.string(),
+			id: z.string().cuid(),
 		}),
 		async resolve({ ctx, input }) {
 			const playthrough = await ctx.prisma.playthrough.findUnique({
@@ -53,12 +53,15 @@ export const playthroughRouter = createRouter()
 				known_paths: playthrough.known_paths as {
 					[key: string]: string[];
 				},
+				finished: playthrough.finished,
+				finishedAt: playthrough.finishedAt,
+				createdAt: playthrough.createdAt,
 			};
 		},
 	})
 	.mutation("checkLocation", {
 		input: z.object({
-			id: z.string(),
+			id: z.string().cuid(),
 			location: z.string(),
 		}),
 		async resolve({ ctx, input }) {
@@ -155,7 +158,7 @@ export const playthroughRouter = createRouter()
 	})
 	.mutation("checkStone", {
 		input: z.object({
-			id: z.string(),
+			id: z.string().cuid(),
 			stone: z.string(),
 		}),
 		async resolve({ ctx, input }): Promise<{
@@ -284,5 +287,19 @@ export const playthroughRouter = createRouter()
 			});
 			// console.log(returnObj);
 			return returnObj;
+		},
+	})
+	.mutation("beatGanon", {
+		input: z.object({
+			id: z.string().cuid(),
+		}),
+		async resolve({ ctx, input }) {
+			await ctx.prisma.playthrough.updateMany({
+				where: { id: input.id, finished: false },
+				data: {
+					finished: true,
+					finishedAt: new Date(),
+				},
+			});
 		},
 	});

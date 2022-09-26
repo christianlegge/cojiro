@@ -2828,6 +2828,13 @@
 	},
 	"Ganon's Castle": {
 		"locations": {
+			"Ganon": {
+				"top": 12,
+				"left": 81.5,
+				"adult": true,
+				"child": false,
+				"always": true
+			},
 			"Ganons Castle Forest Trial Chest": {
 				"top": 70.6839562674803,
 				"left": 30.54430949167791,

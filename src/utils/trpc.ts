@@ -189,3 +189,15 @@ export const useCheckStone = (id: string) => {
 
 	return (stone: string) => mutation.mutate({ id, stone });
 };
+
+export const useBeatGanon = (id: string) => {
+	const queryClient = trpc.useContext();
+
+	const mutation = trpc.useMutation("playthrough.beatGanon", {
+		onSuccess(data, variables, context) {
+			queryClient.invalidateQueries(["playthrough.get"]);
+		},
+	});
+
+	return () => mutation.mutate({ id });
+};
