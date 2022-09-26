@@ -4,6 +4,18 @@ import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 import { idAtom, ageAtom } from "../utils/atoms";
 
+const checkImages = {
+	"Take Master Sword": "tot-pedestal-sword.png",
+	"Place Master Sword": "tot-pedestal.png",
+	Ganon: "ganon.png",
+	gossip_stone: "gossip-stone.png",
+	skulltula: "skulltula.png",
+	piece_of_heart: "heartpiecemodel.png",
+	default: "chest.png",
+};
+
+const bigChecks = ["Take Master Sword", "Place Master Sword", "Ganon"];
+
 const CheckSquare = ({
 	type,
 	check,
@@ -35,7 +47,9 @@ const CheckSquare = ({
 					{item ? `${displayName} (${item})` : displayName}
 				</span>
 			}
-			className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2"
+			className={`absolute ${
+				bigChecks.includes(check) ? "w-20 h-20" : "w-12 h-12"
+			} -translate-x-1/2 -translate-y-1/2`}
 			style={{ ...coords }}
 			showInfoIcon={item !== undefined}
 		>
@@ -74,15 +88,17 @@ const CheckSquare = ({
 			>
 				<img
 					className="object-contain w-full h-full"
-					src={
-						type === "gossip_stones"
-							? "/images/gossip-stone.png"
+					src={`/images/${
+						check in checkImages
+							? checkImages[check as keyof typeof checkImages]
+							: type === "gossip_stones"
+							? checkImages.gossip_stone
 							: check.includes("GS")
-							? "/images/skulltula.png"
+							? checkImages.skulltula
 							: check.includes("Freestanding PoH")
-							? "/images/heartpiecemodel.png"
-							: "/images/chest.png"
-					}
+							? checkImages.piece_of_heart
+							: checkImages.default
+					}`}
 					alt=""
 					style={
 						checked

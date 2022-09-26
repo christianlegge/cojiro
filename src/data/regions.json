@@ -786,15 +786,15 @@
 	"Temple of Time": {
 		"locations": {
 			"Take Master Sword": {
-				"top": 40,
-				"left": 70,
+				"top": 32,
+				"left": 73,
 				"child": true,
 				"adult": false,
 				"always": true
 			},
 			"Place Master Sword": {
-				"top": 40,
-				"left": 70,
+				"top": 32,
+				"left": 73,
 				"child": false,
 				"adult": true,
 				"always": true
