@@ -11,6 +11,7 @@ const checkImages = {
 	gossip_stone: "gossip-stone.png",
 	skulltula: "skulltula.png",
 	piece_of_heart: "heartpiecemodel.png",
+	small_key: "small-key.png",
 	default: "chest.png",
 };
 
@@ -97,6 +98,8 @@ const CheckSquare = ({
 							? checkImages.skulltula
 							: check.includes("Freestanding PoH")
 							? checkImages.piece_of_heart
+							: check.includes("Freestanding Key")
+							? checkImages.small_key
 							: checkImages.default
 					}`}
 					alt=""
