@@ -88,7 +88,10 @@ export const useCheckLocation = (id: string) => {
 				setMapHeaderText(`${checked}: ${item}`);
 			}
 		},
-		onError: (err) => setErrorText(err.message),
+		onError: (err) => {
+			setErrorText(err.message);
+			queryClient.invalidateQueries(["playthrough.get"]);
+		},
 		onSettled: () => {
 			setFetching(false);
 		},
@@ -175,7 +178,10 @@ export const useCheckStone = (id: string) => {
 			setErrorText("");
 			setMapHeaderText(text);
 		},
-		onError: (err) => setErrorText(err.message),
+		onError: (err) => {
+			setErrorText(err.message);
+			queryClient.invalidateQueries(["playthrough.get"]);
+		},
 		onSettled: () => {
 			setFetching(false);
 		},
