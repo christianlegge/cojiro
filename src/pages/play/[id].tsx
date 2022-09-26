@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RegionList from "../../components/RegionList";
 import LocationList from "../../components/LocationList";
 import ItemTracker from "../../components/ItemTracker";
@@ -14,11 +14,13 @@ const WinScreen = ({
 	locations,
 	createdAt,
 	finishedAt,
+	closeWinScreen,
 }: {
 	checked: number;
 	locations: number;
 	createdAt: Date;
 	finishedAt: Date;
+	closeWinScreen: () => void;
 }) => {
 	const elapsedMs = finishedAt.getTime() - createdAt.getTime();
 	const hours = Math.floor(elapsedMs / 1000 / 60 / 60);
@@ -38,6 +40,12 @@ const WinScreen = ({
 						Locations checked: {checked}/{locations}
 					</span>
 					<span className="text-xl">Total time: {timeStr}</span>
+					<button
+						className="text-xl font-semibold underline"
+						onClick={() => closeWinScreen()}
+					>
+						Close
+					</button>
 				</div>
 			</div>
 		</div>
@@ -47,6 +55,7 @@ const WinScreen = ({
 const ZootrSim = () => {
 	const router = useRouter();
 	const { id } = router.query;
+	const [winScreenOpen, setWinScreenOpen] = useState(true);
 	const setId = useUpdateAtom(idAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
 	const { data, isLoading } = usePlaythrough(id as string);
@@ -54,12 +63,11 @@ const ZootrSim = () => {
 		return <div>Loading...</div>;
 	}
 	setId(id as string);
-	setErrorText("");
 
 	return (
 		<Layout>
 			<div className="grid">
-				{data?.finished && (
+				{data?.finished && winScreenOpen && (
 					<WinScreen
 						checked={
 							data.checked.filter((el) =>
@@ -69,6 +77,7 @@ const ZootrSim = () => {
 						locations={data.locations.length}
 						createdAt={data.createdAt}
 						finishedAt={data.finishedAt}
+						closeWinScreen={() => setWinScreenOpen(false)}
 					/>
 				)}
 				<div

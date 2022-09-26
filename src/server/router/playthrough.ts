@@ -135,6 +135,12 @@ export const playthroughRouter = createRouter()
 					message: `Location ${input.location} not found in seed`,
 				});
 			}
+			if (playthrough.finished) {
+				throw new TRPCError({
+					code: "FORBIDDEN",
+					message: `Game already finished, but item was: ${item}`,
+				});
+			}
 			await ctx.prisma.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
@@ -200,6 +206,15 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			const hint = seed.gossip_stones[input.stone];
+			if (playthrough.finished) {
+				throw new TRPCError({
+					code: "FORBIDDEN",
+					message: `Game already finished, but hint was: ${hint.replaceAll(
+						"#",
+						""
+					)}`,
+				});
+			}
 			const parsedHint = parseHint(hint, Object.keys(seed.locations));
 			let returnObj = {
 				type: parsedHint.type,
@@ -299,6 +314,9 @@ export const playthroughRouter = createRouter()
 				data: {
 					finished: true,
 					finishedAt: new Date(),
+					checked: {
+						push: "Ganon",
+					},
 				},
 			});
 		},
