@@ -67,13 +67,25 @@ export const playthroughRouter = createRouter()
 		async resolve({ ctx, input }) {
 			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
-				include: { seed: true },
+				include: { seed: true, user: true },
 			});
 			if (!playthrough) {
 				throw new TRPCError({
 					code: "NOT_FOUND",
 					message: "Playthrough for ID not found",
 				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
 			}
 			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
@@ -99,13 +111,25 @@ export const playthroughRouter = createRouter()
 		async resolve({ ctx, input }) {
 			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
-				include: { seed: true },
+				include: { seed: true, user: true },
 			});
 			if (!playthrough) {
 				throw new TRPCError({
 					code: "NOT_FOUND",
 					message: "Playthrough for ID not found",
 				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
 			}
 			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
@@ -222,13 +246,25 @@ export const playthroughRouter = createRouter()
 		}> {
 			const playthrough = await ctx.prisma.playthrough.findUnique({
 				where: { id: input.id },
-				include: { seed: true },
+				include: { seed: true, user: true },
 			});
 			if (!playthrough) {
 				throw new TRPCError({
 					code: "NOT_FOUND",
 					message: "Playthrough for ID not found",
 				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
 			}
 			const seed = playthrough.seed as unknown as ParsedSeed;
 			if (!seed) {
@@ -353,6 +389,28 @@ export const playthroughRouter = createRouter()
 			id: z.string().cuid(),
 		}),
 		async resolve({ ctx, input }) {
+			const playthrough = await ctx.prisma.playthrough.findUnique({
+				where: { id: input.id },
+				include: { seed: true, user: true },
+			});
+			if (!playthrough) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
+			}
 			await ctx.prisma.playthrough.updateMany({
 				where: { id: input.id, finished: false },
 				data: {
