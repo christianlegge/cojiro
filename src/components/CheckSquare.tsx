@@ -51,7 +51,9 @@ const CheckSquare = ({
 				</span>
 			}
 			className={`absolute ${
-				bigChecks.includes(check) ? "w-20 h-20" : "w-12 h-12"
+				bigChecks.includes(check)
+					? "w-20 h-20"
+					: "w-8 h-8 lg:w-12 lg:h-12"
 			} -translate-x-1/2 -translate-y-1/2`}
 			style={{ ...coords }}
 			showInfoIcon={item !== undefined}
