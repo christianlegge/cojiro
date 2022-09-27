@@ -10,6 +10,30 @@ import { idAtom, errorTextAtom } from "../../utils/atoms";
 import { usePlaythrough } from "../../utils/trpc";
 import SongTracker from "../../components/SongTracker";
 
+const Trackers = ({
+	items,
+	knownLocations,
+}: {
+	items: string[];
+	knownLocations: Record<string, string>;
+}) => {
+	const itemLocations = Object.keys(knownLocations).reduce(
+		(a, v) => ({
+			...a,
+			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
+		}),
+		{} as { [key: string]: string[] }
+	);
+	console.log(itemLocations);
+	return (
+		<>
+			<QuestTracker items={items} itemLocations={itemLocations} />
+			<SongTracker items={items} itemLocations={itemLocations} />
+			<ItemTracker items={items} itemLocations={itemLocations} />
+		</>
+	);
+};
+
 const WinScreen = ({
 	checked,
 	locations,
@@ -94,9 +118,12 @@ const ZootrSim = () => {
 						</div>
 
 						<div className="bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-around items-center">
-							<QuestTracker />
-							<SongTracker items={data ? data.items : []} />
-							<ItemTracker />
+							<Trackers
+								items={data ? data.items : []}
+								knownLocations={
+									data ? data.known_locations : {}
+								}
+							/>
 						</div>
 						{/* <HintTracker /> */}
 					</div>

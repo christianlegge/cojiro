@@ -255,37 +255,14 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 	}
 }
 
-const ItemTracker = () => {
-	const id = useAtomValue(idAtom);
-	const { status, error, data: playthrough } = usePlaythrough(id);
-
-	if (!playthrough) {
-		if (status === "loading") {
-			return <div>Loading...</div>;
-		} else {
-			return (
-				<div>
-					Error in ItemTracker:{" "}
-					{error ? error.message : "Unknown error"}
-				</div>
-			);
-		}
-	}
-
-	const itemLocations = Object.keys(playthrough.known_locations).reduce(
-		(a, v) => ({
-			...a,
-			[playthrough.known_locations[v]]: [
-				...(a[playthrough.known_locations[v]] ?? []),
-				v,
-			],
-		}),
-		{} as { [key: string]: string[] }
-	);
+const ItemTracker: React.FC<{
+	items: string[];
+	itemLocations: Record<string, string[]>;
+}> = ({ items, itemLocations }) => {
 	return (
 		<div className="grid grid-cols-5 gap-2">
 			{itemGrid.map((item) => {
-				const trackerItem = createTrackerItem(item, playthrough.items);
+				const trackerItem = createTrackerItem(item, items);
 				let tooltip = trackerItem.displayName;
 				if (trackerItem.itemName in itemLocations) {
 					tooltip = `${tooltip} (${itemLocations[
@@ -303,9 +280,7 @@ const ItemTracker = () => {
 							className="object-contain w-full h-full z-0"
 							src={trackerItem.fileName}
 							alt={trackerItem.displayName}
-							has={playthrough.items.includes(
-								trackerItem.itemName
-							)}
+							has={items.includes(trackerItem.itemName)}
 						/>
 					</Tooltip>
 				);

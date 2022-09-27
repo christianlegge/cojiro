@@ -18,14 +18,25 @@ const songs = [
 	"Prelude of Light",
 ];
 
-const SongTracker = ({ items }: { items: string[] }) => {
+const SongTracker = ({
+	items,
+	itemLocations,
+}: {
+	items: string[];
+	itemLocations: Record<string, string[]>;
+}) => {
 	return (
 		<div className="grid grid-rows-6 grid-flow-col 2xl:grid-cols-6 2xl:grid-flow-row 2xl:grid-rows-1">
 			{songs.map((song) => (
 				<Tooltip
 					key={song}
-					content={song}
+					content={
+						song in itemLocations
+							? `${song} (${itemLocations[song]})`
+							: song
+					}
 					className="relative w-16 h-16"
+					showInfoIcon={song in itemLocations}
 				>
 					<ItemIcon
 						src={`/images/${formatFilename(song)}.png`}
