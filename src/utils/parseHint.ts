@@ -68,8 +68,12 @@ const parseHint = (
 		matches.filter(([k, v]) => v.type === "junk").length > 0
 	) {
 		return { type: "junk" };
-	} else if (location && item) {
-		return { type: "item", location: location, item: item };
+	} else if (item && (location || region)) {
+		return {
+			type: "item",
+			location: (location ?? region) as string,
+			item: item,
+		};
 	} else if (region) {
 		if (hint.toLowerCase().includes("way of the hero")) {
 			return { type: "woth", region: region };

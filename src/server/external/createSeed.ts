@@ -1000,15 +1000,15 @@ export const sampleSeed: SeedReturnType = {
 			colors: ["Green", "Red"],
 		},
 		"SFM (Maze Lower)": {
-			text: "They say that #Forest Temple# is on the path to #Volvagia#.",
+			text: "They say that #the Boomerang# can be found at #Zora's River#.",
 			colors: ["Red", "Light Blue"],
 		},
 		"SFM (Maze Upper)": {
-			text: "They say that #the Graveyard# is on the path to #Phantom Ganon#.",
+			text: "They say that #inside Ganon's Castle# hoards #a Big Poe Bottle#.",
 			colors: ["Green", "Light Blue"],
 		},
 		"SFM (Saria)": {
-			text: "They say that the #Ocarina of Time# teaches #Epona's Song#.",
+			text: "They say that #the Kokiri Sword# can be found at #Kokiri Forest#.",
 			colors: ["Green", "Red"],
 		},
 		"ToT (Left)": {
