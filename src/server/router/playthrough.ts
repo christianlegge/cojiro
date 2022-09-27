@@ -173,6 +173,18 @@ export const playthroughRouter = createRouter()
 					message: `Game already finished, but item was: ${item}`,
 				});
 			}
+			if (
+				item &&
+				(item.includes("Medallion") ||
+					["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"].includes(
+						item
+					))
+			) {
+				known_locations = {
+					...known_locations,
+					[input.location]: item,
+				};
+			}
 			await ctx.prisma.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
