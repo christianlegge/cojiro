@@ -2,7 +2,8 @@ import React from "react";
 import Tooltip from "./Tooltip";
 import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
-import { idAtom, ageAtom } from "../utils/atoms";
+import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
+import { ImEnter } from "react-icons/im";
 
 const checkImages = {
 	"Take Master Sword": "tot-pedestal-sword.png",
@@ -25,7 +26,7 @@ const CheckSquare = ({
 	checked,
 	item,
 }: {
-	type: "locations" | "gossip_stones";
+	type: "locations" | "gossip_stones" | "entrances";
 	check: string;
 	coords: { top: number | string; left: number | string };
 	displayName: string;
@@ -36,6 +37,7 @@ const CheckSquare = ({
 	const checkLocation = useCheckLocation(id);
 	const checkStone = useCheckStone(id);
 	const setAge = useUpdateAtom(ageAtom);
+	const setRegion = useUpdateAtom(regionAtom);
 	const beatGanon = useBeatGanon(id);
 	return (
 		<Tooltip
@@ -63,6 +65,8 @@ const CheckSquare = ({
 				onClick={() => {
 					if (checked) {
 						return;
+					} else if (type === "entrances") {
+						setRegion(check);
 					} else if (check === "Take Master Sword") {
 						setAge("adult");
 					} else if (check === "Place Master Sword") {
@@ -87,30 +91,43 @@ const CheckSquare = ({
 				// 	})`,
 				// }}
 			>
-				<img
-					className="object-contain w-full h-full"
-					src={`/images/${
-						check in checkImages
-							? checkImages[check as keyof typeof checkImages]
-							: type === "gossip_stones"
-							? checkImages.gossip_stone
-							: check.includes("GS")
-							? checkImages.skulltula
-							: check.includes("Freestanding PoH")
-							? checkImages.piece_of_heart
-							: check.includes("Freestanding Key")
-							? checkImages.small_key
-							: checkImages.default
-					}`}
-					alt=""
-					style={
-						checked
-							? { opacity: 0.7 }
-							: {
-									filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
-							  }
-					}
-				/>
+				{type === "entrances" ? (
+					<ImEnter
+						className="w-full h-full text-black"
+						style={
+							checked
+								? { opacity: 0.7 }
+								: {
+										filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
+								  }
+						}
+					/>
+				) : (
+					<img
+						className="object-contain w-full h-full"
+						src={`/images/${
+							check in checkImages
+								? checkImages[check as keyof typeof checkImages]
+								: type === "gossip_stones"
+								? checkImages.gossip_stone
+								: check.includes("GS")
+								? checkImages.skulltula
+								: check.includes("Freestanding PoH")
+								? checkImages.piece_of_heart
+								: check.includes("Freestanding Key")
+								? checkImages.small_key
+								: checkImages.default
+						}`}
+						alt=""
+						style={
+							checked
+								? { opacity: 0.7 }
+								: {
+										filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
+								  }
+						}
+					/>
+				)}
 			</div>
 		</Tooltip>
 	);

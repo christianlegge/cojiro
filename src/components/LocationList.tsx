@@ -129,9 +129,10 @@ const LocationList = () => {
 						className="object-contain h-full w-full mx-auto"
 					/>
 					{(
-						["locations", "gossip_stones"] as (
+						["locations", "gossip_stones", "entrances"] as (
 							| "locations"
 							| "gossip_stones"
+							| "entrances"
 						)[]
 					).flatMap((checkType) =>
 						Object.keys(regions[region][checkType])
@@ -140,6 +141,7 @@ const LocationList = () => {
 									regions[region][checkType][el][age] &&
 									(regions[region][checkType][el].always ||
 										checkType === "gossip_stones" ||
+										checkType === "entrances" ||
 										playthrough.locations.includes(el) ||
 										el.includes("GS"))
 							)
@@ -152,10 +154,11 @@ const LocationList = () => {
 										top: `${regions[region][checkType][el].top}%`,
 										left: `${regions[region][checkType][el].left}%`,
 									}}
-									displayName={locationDisplayName(
-										el,
-										region
-									)}
+									displayName={
+										checkType === "entrances"
+											? `To ${regions[el].name}`
+											: locationDisplayName(el, region)
+									}
 									checked={playthrough.checked.includes(el)}
 									item={
 										playthrough.known_locations[el] ??
