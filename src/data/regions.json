@@ -90,6 +90,50 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Kakariko Village": {
+				"top": 42.18138070941463,
+				"left": 99.26931106471817,
+				"child": true,
+				"adult": true
+			},
+			"Lake Hylia": {
+				"top": 75.3238941239547,
+				"left": 0.7306889352818372,
+				"child": true,
+				"adult": true
+			},
+			"Gerudo Valley": {
+				"top": 9.641458447866201,
+				"left": 7.724425887265136,
+				"child": true,
+				"adult": true
+			},
+			"Lon Lon Ranch": {
+				"top": 39.469720520952265,
+				"left": 51.67014613778706,
+				"child": true,
+				"adult": true
+			},
+			"Kokiri Forest": {
+				"top": 89.18349064276237,
+				"left": 72.65135699373695,
+				"child": true,
+				"adult": true
+			},
+			"Zoras River": {
+				"top": 70.5031649000216,
+				"left": 99.37369519832986,
+				"child": true,
+				"adult": true
+			},
+			"Market": {
+				"top": 28.020488614111148,
+				"left": 83.19415448851774,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Kakariko Village": {
@@ -225,6 +269,32 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Death Mountain Trail": {
+				"top": 20.258294073752438,
+				"left": 1.9832985386221293,
+				"child": true,
+				"adult": true
+			},
+			"Graveyard": {
+				"top": 55.2038513509754,
+				"left": 97.07724425887265,
+				"child": true,
+				"adult": true
+			},
+			"Bottom of the Well": {
+				"top": 51.99628812263126,
+				"left": 65.65762004175366,
+				"child": true,
+				"adult": false
+			},
+			"Hyrule Field": {
+				"top": 97.23981155401171,
+				"left": 8.1419624217119,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Hyrule Castle": {
@@ -281,6 +351,14 @@
 				"left": 74.08906882591093,
 				"adult": false,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Market": {
+				"top": 90.89223190326216,
+				"left": 12.31732776617954,
+				"child": true,
+				"adult": false
 			}
 		}
 	},
@@ -375,6 +453,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Deku Tree": {
+				"top": 84.78665757218826,
+				"left": 96.45093945720251,
+				"child": true,
+				"adult": false
+			},
+			"Lost Woods": {
+				"top": 11.373819918220377,
+				"left": 75.88726513569938,
+				"child": true,
+				"adult": true
+			},
+			"Hyrule Field": {
+				"top": 34.53505320623278,
+				"left": 30.062630480167016,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Lon Lon Ranch": {
@@ -467,7 +565,15 @@
 				"child": true
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Hyrule Field": {
+				"top": 90.86937365771766,
+				"left": 2.6096033402922756,
+				"child": true,
+				"adult": true
+			}
+		}
 	},
 	"Sacred Forest Meadow": {
 		"name": "Sacred Forest Meadow",
@@ -529,6 +635,20 @@
 				"left": 75.92483852025836,
 				"adult": true,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Forest Temple": {
+				"top": 16.492101384549038,
+				"left": 95.82463465553236,
+				"child": false,
+				"adult": true
+			},
+			"Lost Woods": {
+				"top": 91.48776241744572,
+				"left": 3.0271398747390394,
+				"child": true,
+				"adult": true
 			}
 		}
 	},
@@ -604,6 +724,20 @@
 				"left": 86.25877632898695,
 				"adult": true,
 				"child": false
+			}
+		},
+		"entrances": {
+			"Shadow Temple": {
+				"top": 13.566672341981704,
+				"left": 91.64926931106471,
+				"child": false,
+				"adult": true
+			},
+			"Kakariko Village": {
+				"top": 93.851637434257,
+				"left": 11.377870563674321,
+				"child": true,
+				"adult": true
 			}
 		}
 	},
@@ -692,6 +826,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Death Mountain Trail": {
+				"top": 11.27420284721252,
+				"left": 36.32567849686848,
+				"child": true,
+				"adult": true
+			},
+			"Goron City": {
+				"top": 42.809291970575075,
+				"left": 86.53444676409185,
+				"child": true,
+				"adult": true
+			},
+			"Fire Temple": {
+				"top": 87.41592062693765,
+				"left": 86.95198329853862,
+				"child": false,
+				"adult": true
+			}
 		}
 	},
 	"Ice Cavern": {
@@ -748,7 +902,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Zoras Fountain": {
+				"top": 92.32877623211837,
+				"left": 2.5052192066805845,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Desert Colossus": {
 		"name": "Desert Colossus",
@@ -811,6 +973,20 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Spirit Temple": {
+				"top": 37.8905110305137,
+				"left": 27.55741127348643,
+				"child": true,
+				"adult": true
+			},
+			"Haunted Wasteland": {
+				"top": 92.0915069417121,
+				"left": 96.65970772442589,
+				"child": false,
+				"adult": true
+			}
 		}
 	},
 	"Temple of Time": {
@@ -859,7 +1035,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Market": {
+				"top": 91.3270190657455,
+				"left": 12.31732776617954,
+				"child": true,
+				"adult": true
+			}
+		}
 	},
 	"Lost Woods": {
 		"name": "Lost Woods",
@@ -964,6 +1148,32 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Kokiri Forest": {
+				"top": 57.79598726435751,
+				"left": 42.90187891440501,
+				"child": true,
+				"adult": true
+			},
+			"Zoras River": {
+				"top": 88.85054758550483,
+				"left": 81.94154488517745,
+				"child": true,
+				"adult": true
+			},
+			"Goron City": {
+				"top": 41.406080428196425,
+				"left": 67.3277661795407,
+				"child": true,
+				"adult": true
+			},
+			"Sacred Forest Meadow": {
+				"top": 14.664653484986234,
+				"left": 87.57828810020877,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Market": {
@@ -1038,6 +1248,32 @@
 				"left": 98.71794871794872,
 				"adult": true,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Hyrule Field": {
+				"top": 90,
+				"left": 17.735042735042736,
+				"child": true,
+				"adult": true
+			},
+			"Hyrule Castle": {
+				"top": 32.25806451612903,
+				"left": 68.16239316239316,
+				"child": true,
+				"adult": false
+			},
+			"Outside Ganons Castle": {
+				"top": 32.903225806451616,
+				"left": 67.41452991452991,
+				"child": false,
+				"adult": true
+			},
+			"Temple of Time": {
+				"top": 67.74193548387096,
+				"left": 90.8119658119658,
+				"child": true,
+				"adult": true
 			}
 		}
 	},
@@ -1119,6 +1355,26 @@
 				"left": 59.5591542959964,
 				"adult": true,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Kakariko Village": {
+				"top": 59.634163033845056,
+				"left": 7.933194154488517,
+				"child": true,
+				"adult": true
+			},
+			"Goron City": {
+				"top": 52.495909104606746,
+				"left": 66.2839248434238,
+				"child": true,
+				"adult": true
+			},
+			"Death Mountain Crater": {
+				"top": 7.584394799815706,
+				"left": 93.84133611691023,
+				"child": true,
+				"adult": true
 			}
 		}
 	},
@@ -1219,6 +1475,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Death Mountain Crater": {
+				"top": 81.62556327844645,
+				"left": 66.70146137787056,
+				"child": true,
+				"adult": true
+			},
+			"Lost Woods": {
+				"top": 96.79286652593082,
+				"left": 32.67223382045929,
+				"child": true,
+				"adult": true
+			},
+			"Death Mountain Trail": {
+				"top": 33.22913001548104,
+				"left": 19.937369519832984,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Zoras River": {
@@ -1318,6 +1594,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Lost Woods": {
+				"top": 22.006984960505907,
+				"left": 94.258872651357,
+				"child": true,
+				"adult": true
+			},
+			"Hyrule Field": {
+				"top": 97.25242455600814,
+				"left": 33.82045929018789,
+				"child": true,
+				"adult": true
+			},
+			"Zoras Domain": {
+				"top": 6.852474358959922,
+				"left": 87.89144050104385,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Zoras Domain": {
@@ -1356,6 +1652,26 @@
 				"left": 31.03448275862069,
 				"adult": false,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Zoras Fountain": {
+				"top": 10.242290748898679,
+				"left": 12.56952169076752,
+				"child": true,
+				"adult": true
+			},
+			"Zoras River": {
+				"top": 89.97797356828194,
+				"left": 13.348164627363737,
+				"child": true,
+				"adult": true
+			},
+			"Lake Hylia": {
+				"top": 91.40969162995594,
+				"left": 60.28921023359288,
+				"child": true,
+				"adult": false
 			}
 		}
 	},
@@ -1413,6 +1729,26 @@
 				"left": 5.53290623179965,
 				"adult": true,
 				"child": true
+			}
+		},
+		"entrances": {
+			"Zoras Domain": {
+				"top": 88.73394097916334,
+				"left": 25.887265135699373,
+				"child": true,
+				"adult": true
+			},
+			"Jabu Jabus Belly": {
+				"top": 55.70641952289907,
+				"left": 23.48643006263048,
+				"child": true,
+				"adult": false
+			},
+			"Ice Cavern": {
+				"top": 22.458714590259703,
+				"left": 10.855949895615867,
+				"child": false,
+				"adult": true
 			}
 		}
 	},
@@ -1525,6 +1861,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Water Temple": {
+				"top": 90.18300874267884,
+				"left": 27.76617954070981,
+				"child": false,
+				"adult": true
+			},
+			"Zoras Domain": {
+				"top": 61.12823186742247,
+				"left": 67.3277661795407,
+				"child": true,
+				"adult": false
+			},
+			"Hyrule Field": {
+				"top": 16.602729643003634,
+				"left": 79.95824634655533,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Gerudo Valley": {
@@ -1600,6 +1956,26 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Lake Hylia": {
+				"top": 89.95523346564724,
+				"left": 8.455114822546973,
+				"child": true,
+				"adult": true
+			},
+			"Gerudos Fortress": {
+				"top": 18.616327936808513,
+				"left": 4.592901878914405,
+				"child": false,
+				"adult": true
+			},
+			"Hyrule Field": {
+				"top": 96.63437402312816,
+				"left": 82.15031315240084,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Gerudos Fortress": {
@@ -1638,7 +2014,21 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Haunted Wasteland": {
+				"top": 94.29839854661569,
+				"left": 11.482254697286013,
+				"child": false,
+				"adult": true
+			},
+			"Gerudo Valley": {
+				"top": 96.41271241537389,
+				"left": 47.390396659707726,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Thieves Hideout": {
 		"name": "Thieves' Hideout",
@@ -1676,6 +2066,14 @@
 				"left": 80.79951544518474,
 				"adult": true,
 				"child": false
+			}
+		},
+		"entrances": {
+			"Gerudos Fortress": {
+				"top": 48.07437878465139,
+				"left": 50.208768267223384,
+				"child": false,
+				"adult": true
 			}
 		}
 	},
@@ -1794,6 +2192,14 @@
 				"adult": true,
 				"child": true
 			}
+		},
+		"entrances": {
+			"Death Mountain Trail": {
+				"top": 77.29576416372242,
+				"left": 15.553235908141962,
+				"child": true,
+				"adult": true
+			}
 		}
 	},
 	"Haunted Wasteland": {
@@ -1820,7 +2226,21 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Desert Colossus": {
+				"top": 8.481532147742818,
+				"left": 5.11482254697286,
+				"child": false,
+				"adult": true
+			},
+			"Gerudo Valley": {
+				"top": 86.73050615595075,
+				"left": 90.18789144050105,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Outside Ganons Castle": {
 		"name": "Outside Ganon's Castle",
@@ -1840,7 +2260,21 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Ganons Castle": {
+				"top": 44.796563842709965,
+				"left": 39.144050104384135,
+				"child": false,
+				"adult": true
+			},
+			"Market": {
+				"top": 78.95797224074778,
+				"left": 5.6367432150313155,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Deku Tree": {
 		"name": "Deku Tree",
@@ -1920,7 +2354,15 @@
 				"child": true
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Kokiri Forest": {
+				"top": 35.23600954210798,
+				"left": 50.73068893528184,
+				"child": true,
+				"adult": false
+			}
+		}
 	},
 	"Jabu Jabus Belly": {
 		"name": "Jabu Jabu's Belly",
@@ -1988,7 +2430,15 @@
 				"child": true
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Zoras Fountain": {
+				"top": 57.119891837564644,
+				"left": 9.290187891440501,
+				"child": true,
+				"adult": false
+			}
+		}
 	},
 	"Bottom of the Well": {
 		"name": "Bottom of the Well",
@@ -2098,7 +2548,15 @@
 				"child": true
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Kakariko Village": {
+				"top": 48.01670146137787,
+				"left": 13.569937369519833,
+				"child": true,
+				"adult": false
+			}
+		}
 	},
 	"Forest Temple": {
 		"name": "Forest Temple",
@@ -2226,7 +2684,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Sacred Forest Meadow": {
+				"top": 78.25843043015396,
+				"left": 6.263048016701461,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Fire Temple": {
 		"name": "Fire Temple",
@@ -2360,7 +2826,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Death Mountain Crater": {
+				"top": 88.05181043889395,
+				"left": 44.98956158663883,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Water Temple": {
 		"name": "Water Temple",
@@ -2470,7 +2944,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Lake Hylia": {
+				"top": 63.405944114502525,
+				"left": 41.544885177453025,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Shadow Temple": {
 		"name": "Shadow Temple",
@@ -2622,7 +3104,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Graveyard": {
+				"top": 28.0171497465695,
+				"left": 64.61377870563675,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Gerudo Training Ground": {
 		"name": "Gerudo Training Ground",
@@ -2762,7 +3252,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Gerudos Fortress": {
+				"top": 68.3943865259306,
+				"left": 25.36534446764092,
+				"child": false,
+				"adult": true
+			}
+		}
 	},
 	"Spirit Temple": {
 		"name": "Spirit Temple",
@@ -2926,7 +3424,15 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Desert Colossus": {
+				"top": 88.75128998968009,
+				"left": 27.974947807933194,
+				"child": true,
+				"adult": true
+			}
+		}
 	},
 	"Ganons Castle": {
 		"name": "Ganon's Castle",
@@ -3061,6 +3567,14 @@
 				"child": false
 			}
 		},
-		"gossip_stones": {}
+		"gossip_stones": {},
+		"entrances": {
+			"Outside Ganons Castle": {
+				"top": 61.833771380550246,
+				"left": 13.152400835073069,
+				"child": false,
+				"adult": true
+			}
+		}
 	}
 }

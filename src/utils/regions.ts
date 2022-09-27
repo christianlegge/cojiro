@@ -23,6 +23,15 @@ type RegionsType = {
 				always?: boolean;
 			};
 		};
+		entrances: {
+			[key: string]: {
+				top: number;
+				left: number;
+				child: boolean;
+				adult: boolean;
+				always?: boolean;
+			};
+		};
 	};
 };
 
