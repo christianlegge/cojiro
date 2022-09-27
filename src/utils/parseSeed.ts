@@ -11,6 +11,8 @@ export type ParsedSeed = {
 	gossip_stones: {
 		[key: string]: string;
 	};
+	seedValue: string;
+	settingsString: string;
 };
 
 const requiredSettings = {
@@ -56,6 +58,8 @@ function parseSeed(seed: SeedReturnType): ParsedSeed {
 	return {
 		locations,
 		gossip_stones,
+		seedValue: seed[":seed"],
+		settingsString: seed[":settings_string"],
 	};
 }
 

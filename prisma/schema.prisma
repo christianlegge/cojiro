@@ -64,6 +64,8 @@ model VerificationToken {
 
 model Seed {
 	id String @id @default(cuid())
+	seedValue String @default("unknown")
+	settingsString String @default("unknown")
 	locations Json
 	gossip_stones Json
 	playthrough Playthrough?
