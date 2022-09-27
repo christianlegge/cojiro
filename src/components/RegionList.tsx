@@ -87,7 +87,7 @@ const RegionList = () => {
 							}}
 						>
 							<div
-								className={`w-full h-full px-4 py-2 flex items-center gap-2 lg:justify-end ${
+								className={`w-full h-full px-4 py-1 flex items-center gap-2 lg:justify-end ${
 									el === region
 										? "bg-zinc-400 bg-opacity-70"
 										: "bg-zinc-800 bg-opacity-60"

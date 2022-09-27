@@ -11,8 +11,9 @@ const Layout = ({
 }) => (
 	<>
 		<Header />
-		<main className={`relative flex-grow ${mainClass}`}>{children}</main>
-		<Footer />
+		<main className={`relative flex-grow basis-0 ${mainClass}`}>
+			{children}
+		</main>
 	</>
 );
 

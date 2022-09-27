@@ -17,43 +17,31 @@ const itemGrid = [
 	"Bow",
 	"Fire Arrows",
 	"Dins Fire",
-	"Zeldas Lullaby",
-	"Minuet of Forest",
 	"Wallet",
 	"Boomerang",
 	"Hookshot",
 	"Light Arrows",
 	"Farores Wind",
-	"Eponas Song",
-	"Bolero of Fire",
 	"Bottle",
 	"Lens of Truth",
 	"Megaton Hammer",
 	"Magic Meter",
 	"Nayrus Love",
-	"Sarias Song",
-	"Serenade of Water",
 	"Kokiri Sword",
 	"Ocarina",
 	"Iron Boots",
 	"Strength Upgrade",
 	"Stone of Agony",
-	"Suns Song",
-	"Requiem of Spirit",
 	"Goron Tunic",
 	"Zora Tunic",
 	"Hover Boots",
 	"Scale",
 	"Child Trade",
-	"Song of Time",
-	"Nocturne of Shadow",
 	"Deku Shield",
 	"Hylian Shield",
 	"Mirror Shield",
 	"Bombchus",
 	"Adult Trade",
-	"Song of Storms",
-	"Prelude of Light",
 ];
 
 function itemToImageFilename(item: string): string {
@@ -295,7 +283,7 @@ const ItemTracker = () => {
 		{} as { [key: string]: string[] }
 	);
 	return (
-		<div className="bg-gray-700 p-2 grid grid-cols-7 gap-2">
+		<div className="grid grid-cols-5 gap-2">
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, playthrough.items);
 				let tooltip = trackerItem.displayName;

@@ -101,7 +101,7 @@ const LocationList = () => {
 		return <div>Error! region not set correctly</div>;
 	}
 	return (
-		<div className="flex flex-col bg-black text-white">
+		<div className="flex flex-col bg-black text-white h-full">
 			<div className="flex px-4 py-2 gap-8 min-h-16 bg-gradient-to-b from-black to-zinc-700 justify-between items-center sticky top-0 z-40">
 				<div className="flex flex-col h-full justify-center">
 					<span className="w-max text-2xl font-bold flex-shrink-0">
@@ -145,12 +145,12 @@ const LocationList = () => {
 					<FiExternalLink style={{ display: "inline" }} />
 				</a>
 			</div>
-			<div className="flex justify-center w-full h-auto py-8">
-				<div className="relative inline-block min-h-0 min-w-0">
+			<div className="flex justify-center items-center w-full h-full py-8">
+				<div className="relative w-full">
 					<img
 						src={`/images/maps/${region}.jpg`}
 						alt=""
-						className="object-contain h-full w-auto mx-auto"
+						className="object-contain h-full w-full mx-auto"
 					/>
 					{(
 						["locations", "gossip_stones"] as (

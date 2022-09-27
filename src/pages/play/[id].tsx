@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useUpdateAtom } from "jotai/utils";
 import { idAtom, errorTextAtom } from "../../utils/atoms";
 import { usePlaythrough } from "../../utils/trpc";
+import SongTracker from "../../components/SongTracker";
 
 const WinScreen = ({
 	checked,
@@ -66,7 +67,7 @@ const ZootrSim = () => {
 
 	return (
 		<Layout>
-			<div className="grid">
+			<div className="grid min-h-full bg-black">
 				{data?.finished && winScreenOpen && (
 					<WinScreen
 						checked={
@@ -87,12 +88,16 @@ const ZootrSim = () => {
 					<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 z-10">
 						<RegionList />
 					</div>
-					<div className="grid lg:grid-cols-2 xl:grid-cols-3 auto-rows-min flex-grow">
-						<div className="xl:col-span-3 lg:col-span-2 relative">
+					<div className="flex-grow flex flex-col 2xl:flex-row">
+						<div className="lg:col-span-2 xl:col-span-1 xl:row-span-2 relative flex-grow basis-0 h-full">
 							<LocationList />
 						</div>
-						<ItemTracker />
-						<QuestTracker />
+
+						<div className=" bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-center items-center">
+							<QuestTracker />
+							<SongTracker items={data ? data.items : []} />
+							<ItemTracker />
+						</div>
 						{/* <HintTracker /> */}
 					</div>
 				</div>

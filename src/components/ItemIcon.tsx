@@ -13,7 +13,7 @@ const ItemIcon = ({
 }) => {
 	return (
 		<img
-			className={`${className} ${has ? "opacity-100" : "opacity-30"}`}
+			className={`${className} ${has ? "opacity-100" : "opacity-40"}`}
 			src={src}
 			alt={alt}
 		/>

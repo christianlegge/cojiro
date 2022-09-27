@@ -39,43 +39,32 @@ const QuestTracker = () => {
 		{} as { [key: string]: string[] }
 	);
 	return (
-		<div className="grid grid-cols-[1fr_16rem] bg-blue-400">
-			<div>
-				Skulltulas:{" "}
-				{
-					playthrough.items.filter(
-						(el) => el === "Gold Skulltula Token"
-					).length
-				}
+		<div className="w-52">
+			<MedallionCircle
+				items={playthrough.items}
+				itemLocations={itemLocations}
+			/>
+			<div className="flex justify-between gap-1 w-full mt-20">
+				{stones.map((stone) => (
+					<Tooltip
+						key={stone}
+						content={
+							stone in itemLocations
+								? `${stone} (${itemLocations[stone]})`
+								: stone
+						}
+						className="w-20 h-20 relative"
+						showInfoIcon={stone in itemLocations}
+					>
+						<ItemIcon
+							src={`/images/${formatFilename(stone)}.png`}
+							className="object-contain w-full h-full"
+							alt={stone}
+							has={playthrough.items.includes(stone)}
+						/>
+					</Tooltip>
+				))}
 			</div>
-			<div className="row-span-2 pr-12 py-6">
-				<MedallionCircle
-					items={playthrough.items}
-					itemLocations={itemLocations}
-				/>
-				<div className="flex justify-between gap-1 w-full mt-20">
-					{stones.map((stone) => (
-						<Tooltip
-							key={stone}
-							content={
-								stone in itemLocations
-									? `${stone} (${itemLocations[stone]})`
-									: stone
-							}
-							className="w-12 h-12 relative"
-							showInfoIcon={stone in itemLocations}
-						>
-							<ItemIcon
-								src={`/images/${formatFilename(stone)}.png`}
-								className="object-contain w-full h-full"
-								alt={stone}
-								has={playthrough.items.includes(stone)}
-							/>
-						</Tooltip>
-					))}
-				</div>
-			</div>
-			<SongTracker items={playthrough.items} />
 		</div>
 	);
 };

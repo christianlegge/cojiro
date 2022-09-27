@@ -20,12 +20,12 @@ const songs = [
 
 const SongTracker = ({ items }: { items: string[] }) => {
 	return (
-		<div className="grid grid-cols-6">
+		<div className="grid grid-rows-6 grid-flow-col 2xl:grid-cols-6 2xl:grid-flow-row 2xl:grid-rows-1">
 			{songs.map((song) => (
 				<Tooltip
 					key={song}
 					content={song}
-					className="relative w-12 h-12"
+					className="relative w-16 h-16"
 				>
 					<ItemIcon
 						src={`/images/${formatFilename(song)}.png`}
