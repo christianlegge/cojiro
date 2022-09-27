@@ -93,7 +93,7 @@ const ZootrSim = () => {
 							<LocationList />
 						</div>
 
-						<div className=" bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-center items-center">
+						<div className="bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-around items-center">
 							<QuestTracker />
 							<SongTracker items={data ? data.items : []} />
 							<ItemTracker />
