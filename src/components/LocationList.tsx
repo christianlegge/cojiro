@@ -13,6 +13,7 @@ import {
 } from "../utils/atoms";
 import regions from "../utils/regions";
 import { fetchingAtom } from "../utils/atoms";
+import { formatFilename } from "../utils/filename";
 
 function locationDisplayName(name: string, region: string): string {
 	const parensMatch = /\(([^)]+)\)/.exec(name);
@@ -123,7 +124,7 @@ const LocationList = () => {
 			<div className="flex justify-center items-center w-full h-full py-8">
 				<div className="relative w-full">
 					<img
-						src={`/images/maps/${region}.jpg`}
+						src={`/images/maps/${formatFilename(region)}.jpg`}
 						alt=""
 						className="object-contain h-full w-full mx-auto"
 					/>

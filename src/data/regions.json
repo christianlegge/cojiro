@@ -1,5 +1,6 @@
 {
 	"Hyrule Field": {
+		"name": "Hyrule Field",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -92,6 +93,7 @@
 		}
 	},
 	"Kakariko Village": {
+		"name": "Kakariko Village",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -226,6 +228,7 @@
 		}
 	},
 	"Hyrule Castle": {
+		"name": "Hyrule Castle",
 		"child": true,
 		"adult": false,
 		"locations": {
@@ -282,6 +285,7 @@
 		}
 	},
 	"Kokiri Forest": {
+		"name": "Kokiri Forest",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -374,6 +378,7 @@
 		}
 	},
 	"Lon Lon Ranch": {
+		"name": "Lon Lon Ranch",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -465,6 +470,7 @@
 		"gossip_stones": {}
 	},
 	"Sacred Forest Meadow": {
+		"name": "Sacred Forest Meadow",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -527,6 +533,7 @@
 		}
 	},
 	"Graveyard": {
+		"name": "Graveyard",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -601,6 +608,7 @@
 		}
 	},
 	"Death Mountain Crater": {
+		"name": "Death Mountain Crater",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -687,6 +695,7 @@
 		}
 	},
 	"Ice Cavern": {
+		"name": "Ice Cavern",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -742,6 +751,7 @@
 		"gossip_stones": {}
 	},
 	"Desert Colossus": {
+		"name": "Desert Colossus",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -804,6 +814,7 @@
 		}
 	},
 	"Temple of Time": {
+		"name": "Temple of Time",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -851,6 +862,7 @@
 		"gossip_stones": {}
 	},
 	"Lost Woods": {
+		"name": "Lost Woods",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -955,6 +967,7 @@
 		}
 	},
 	"Market": {
+		"name": "Market",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1029,6 +1042,7 @@
 		}
 	},
 	"Death Mountain Trail": {
+		"name": "Death Mountain Trail",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1109,6 +1123,7 @@
 		}
 	},
 	"Goron City": {
+		"name": "Goron City",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1206,7 +1221,8 @@
 			}
 		}
 	},
-	"Zora's River": {
+	"Zoras River": {
+		"name": "Zora's River",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1304,7 +1320,8 @@
 			}
 		}
 	},
-	"Zora's Domain": {
+	"Zoras Domain": {
+		"name": "Zora's Domain",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1342,7 +1359,8 @@
 			}
 		}
 	},
-	"Zora's Fountain": {
+	"Zoras Fountain": {
+		"name": "Zora's Fountain",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1399,6 +1417,7 @@
 		}
 	},
 	"Lake Hylia": {
+		"name": "Lake Hylia",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1509,6 +1528,7 @@
 		}
 	},
 	"Gerudo Valley": {
+		"name": "Gerudo Valley",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1582,7 +1602,8 @@
 			}
 		}
 	},
-	"Gerudo's Fortress": {
+	"Gerudos Fortress": {
+		"name": "Gerudo's Fortress",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -1619,7 +1640,8 @@
 		},
 		"gossip_stones": {}
 	},
-	"Thieves' Hideout": {
+	"Thieves Hideout": {
+		"name": "Thieves' Hideout",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -1657,7 +1679,8 @@
 			}
 		}
 	},
-	"Dodongo's Cavern": {
+	"Dodongos Cavern": {
+		"name": "Dodongo's Cavern",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -1774,6 +1797,7 @@
 		}
 	},
 	"Haunted Wasteland": {
+		"name": "Haunted Wasteland",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -1798,7 +1822,8 @@
 		},
 		"gossip_stones": {}
 	},
-	"Outside Ganon's Castle": {
+	"Outside Ganons Castle": {
+		"name": "Outside Ganon's Castle",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -1818,6 +1843,7 @@
 		"gossip_stones": {}
 	},
 	"Deku Tree": {
+		"name": "Deku Tree",
 		"child": true,
 		"adult": false,
 		"locations": {
@@ -1896,7 +1922,8 @@
 		},
 		"gossip_stones": {}
 	},
-	"Jabu Jabu's Belly": {
+	"Jabu Jabus Belly": {
+		"name": "Jabu Jabu's Belly",
 		"child": true,
 		"adult": false,
 		"locations": {
@@ -1964,6 +1991,7 @@
 		"gossip_stones": {}
 	},
 	"Bottom of the Well": {
+		"name": "Bottom of the Well",
 		"child": true,
 		"adult": false,
 		"locations": {
@@ -2073,6 +2101,7 @@
 		"gossip_stones": {}
 	},
 	"Forest Temple": {
+		"name": "Forest Temple",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -2200,6 +2229,7 @@
 		"gossip_stones": {}
 	},
 	"Fire Temple": {
+		"name": "Fire Temple",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -2333,6 +2363,7 @@
 		"gossip_stones": {}
 	},
 	"Water Temple": {
+		"name": "Water Temple",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -2442,6 +2473,7 @@
 		"gossip_stones": {}
 	},
 	"Shadow Temple": {
+		"name": "Shadow Temple",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -2593,6 +2625,7 @@
 		"gossip_stones": {}
 	},
 	"Gerudo Training Ground": {
+		"name": "Gerudo Training Ground",
 		"child": false,
 		"adult": true,
 		"locations": {
@@ -2732,6 +2765,7 @@
 		"gossip_stones": {}
 	},
 	"Spirit Temple": {
+		"name": "Spirit Temple",
 		"child": true,
 		"adult": true,
 		"locations": {
@@ -2894,7 +2928,8 @@
 		},
 		"gossip_stones": {}
 	},
-	"Ganon's Castle": {
+	"Ganons Castle": {
+		"name": "Ganon's Castle",
 		"child": false,
 		"adult": true,
 		"locations": {

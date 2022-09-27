@@ -2,6 +2,7 @@ import regionsJson from "../data/regions.json";
 
 type RegionsType = {
 	[key: string]: {
+		name: string;
 		child: boolean;
 		adult: boolean;
 		locations: {

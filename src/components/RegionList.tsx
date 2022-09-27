@@ -30,8 +30,8 @@ const RegionList = () => {
 
 	const bosses = {
 		"Deku Tree": "Queen Gohma",
-		"Dodongo's Cavern": "King Dodongo",
-		"Jabu Jabu's Belly": "Barinade",
+		"Dodongos Cavern": "King Dodongo",
+		"Jabu Jabus Belly": "Barinade",
 		"Forest Temple": "Phantom Ganon",
 		"Fire Temple": "Volvagia",
 		"Water Temple": "Morpha",
@@ -40,8 +40,8 @@ const RegionList = () => {
 	} as { [key: string]: string };
 	const regionsWithMedallions = [
 		"Deku Tree",
-		"Dodongo's Cavern",
-		"Jabu Jabu's Belly",
+		"Dodongos Cavern",
+		"Jabu Jabus Belly",
 		"Forest Temple",
 		"Fire Temple",
 		"Water Temple",
@@ -59,7 +59,7 @@ const RegionList = () => {
 	const regionsWithKeys = regionsWithBossKeys.concat([
 		"Gerudo Training Ground",
 		"Bottom of the Well",
-		"Thieves' Hideout",
+		"Thieves Hideout",
 	]);
 	return (
 		<>
@@ -102,7 +102,7 @@ const RegionList = () => {
 								{playthrough.known_barren.includes(el) && (
 									<Tag text="FOOL" color="firebrick" />
 								)}
-								<span>{el}</span>
+								<span>{regions[el].name}</span>
 								{regionsWithKeys.includes(el) && (
 									<span>
 										<img

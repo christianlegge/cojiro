@@ -4747,11 +4747,11 @@
 		"names": ["Hyrule Castle"],
 		"type": "region"
 	},
-	"Outside Ganon's Castle": {
+	"Outside Ganons Castle": {
 		"names": ["Outside Ganon's Castle", "outside Ganon's Castle"],
 		"type": "region"
 	},
-	"Thieves' Hideout": {
+	"Thieves Hideout": {
 		"names": ["Thieves' Hideout"],
 		"type": "region"
 	},
@@ -4764,17 +4764,17 @@
 		"type": "region"
 	},
 
-	"Zora's River": {
+	"Zoras River": {
 		"names": ["Zora's River"],
 		"type": "region"
 	},
 
-	"Zora's Domain": {
+	"Zoras Domain": {
 		"names": ["Zora's Domain"],
 		"type": "region"
 	},
 
-	"Zora's Fountain": {
+	"Zoras Fountain": {
 		"names": ["Zora's Fountain"],
 		"type": "region"
 	},
