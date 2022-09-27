@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegionList from "../../components/RegionList";
 import LocationList from "../../components/LocationList";
 import ItemTracker from "../../components/ItemTracker";
@@ -6,8 +6,8 @@ import QuestTracker from "../../components/QuestTracker";
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import { useUpdateAtom } from "jotai/utils";
-import { idAtom, errorTextAtom } from "../../utils/atoms";
-import { usePlaythrough } from "../../utils/trpc";
+import { idAtom, errorTextAtom, mapHeaderTextAtom } from "../../utils/atoms";
+import { usePlaythrough, trpc } from "../../utils/trpc";
 import SongTracker from "../../components/SongTracker";
 
 const Trackers = ({
@@ -77,31 +77,83 @@ const WinScreen = ({
 	);
 };
 
-const ZootrSim = () => {
+const Cojiro = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const [winScreenOpen, setWinScreenOpen] = useState(true);
 	const setId = useUpdateAtom(idAtom);
 	const setErrorText = useUpdateAtom(errorTextAtom);
-	const { data, isLoading } = usePlaythrough(id as string);
-	if (!id || isLoading) {
-		return <div>Loading...</div>;
+	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
+	const { data: playthrough, isLoading } = usePlaythrough(id as string);
+	const queryClient = trpc.useContext();
+	const { mutate: checkLocation, isLoading: checkIsLoading } =
+		trpc.useMutation("playthrough.checkLocation", {
+			onSuccess: ({ checked, item, known_locations }) => {
+				queryClient.setQueryData(
+					["playthrough.get", { id: id as string }],
+					(old: any) => {
+						if (!old) {
+							return undefined;
+						}
+						return {
+							...old,
+							checked: [...old.checked, checked],
+							items: item ? [...old.items, item] : old.items,
+							known_locations,
+						};
+					}
+				);
+				setErrorText("");
+
+				setMapHeaderText(`${checked}: ${item}`);
+			},
+			onError: (err) => {
+				setErrorText(err.message);
+				queryClient.invalidateQueries(["playthrough.get"]);
+			},
+		});
+
+	useEffect(() => {
+		setErrorText("");
+	}, [id]);
+
+	useEffect(() => {
+		if (
+			id &&
+			playthrough &&
+			!isLoading &&
+			!checkIsLoading &&
+			!playthrough.checked.includes("Links Pocket")
+		) {
+			checkLocation({
+				id: id as string,
+				location: "Links Pocket",
+			});
+		}
+	}, [id, isLoading, checkIsLoading]);
+
+	if (!id || !playthrough || isLoading) {
+		if (isLoading) {
+			return <div>Loading...</div>;
+		} else {
+			return <div>Unknown error in Cojiro component.</div>;
+		}
 	}
 	setId(id as string);
 
 	return (
 		<Layout>
 			<div className="grid min-h-full bg-black">
-				{data?.finished && winScreenOpen && (
+				{playthrough.finished && winScreenOpen && (
 					<WinScreen
 						checked={
-							data.checked.filter((el) =>
-								data.locations.includes(el)
+							playthrough.checked.filter((el) =>
+								playthrough.locations.includes(el)
 							).length
 						}
-						locations={data.locations.length}
-						createdAt={data.createdAt}
-						finishedAt={data.finishedAt}
+						locations={playthrough.locations.length}
+						createdAt={playthrough.createdAt}
+						finishedAt={playthrough.finishedAt}
 						closeWinScreen={() => setWinScreenOpen(false)}
 					/>
 				)}
@@ -119,10 +171,8 @@ const ZootrSim = () => {
 
 						<div className="bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-around items-center">
 							<Trackers
-								items={data ? data.items : []}
-								knownLocations={
-									data ? data.known_locations : {}
-								}
+								items={playthrough.items}
+								knownLocations={playthrough.known_locations}
 							/>
 						</div>
 						{/* <HintTracker /> */}
@@ -133,4 +183,4 @@ const ZootrSim = () => {
 	);
 };
 
-export default ZootrSim;
+export default Cojiro;
