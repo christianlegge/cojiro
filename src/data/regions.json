@@ -2027,6 +2027,18 @@
 				"left": 47.390396659707726,
 				"child": false,
 				"adult": true
+			},
+			"Thieves Hideout": {
+				"top": 58,
+				"left": 41,
+				"child": false,
+				"adult": true
+			},
+			"Gerudo Training Ground": {
+				"top": 84,
+				"left": 55,
+				"child": false,
+				"adult": true
 			}
 		}
 	},
@@ -2040,9 +2052,7 @@
 				"left": 78.07389460932768,
 				"adult": true,
 				"child": false
-			}
-		},
-		"gossip_stones": {
+			},
 			"Hideout Jail Guard (2 Torches)": {
 				"top": 80.13157894736842,
 				"left": 85.6450635978195,
@@ -2068,6 +2078,7 @@
 				"child": false
 			}
 		},
+		"gossip_stones": {},
 		"entrances": {
 			"Gerudos Fortress": {
 				"top": 48.07437878465139,
