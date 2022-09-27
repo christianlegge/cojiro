@@ -1,5 +1,7 @@
 {
 	"Hyrule Field": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Song from Ocarina of Time": {
 				"top": 32.32996404379411,
@@ -90,6 +92,8 @@
 		}
 	},
 	"Kakariko Village": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Song from Windmill": {
 				"top": 39.61117861482381,
@@ -222,6 +226,8 @@
 		}
 	},
 	"Hyrule Castle": {
+		"child": true,
+		"adult": false,
 		"locations": {
 			"Song from Impa": {
 				"top": 42.20735936730179,
@@ -276,6 +282,8 @@
 		}
 	},
 	"Kokiri Forest": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"KF Midos Top Left Chest": {
 				"top": 36.62162162162162,
@@ -366,6 +374,8 @@
 		}
 	},
 	"Lon Lon Ranch": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Song from Malon": {
 				"top": 64.76445452657447,
@@ -455,6 +465,8 @@
 		"gossip_stones": {}
 	},
 	"Sacred Forest Meadow": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Song from Saria": {
 				"top": 28.7109375,
@@ -515,6 +527,8 @@
 		}
 	},
 	"Graveyard": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Song from Royal Familys Tomb": {
 				"top": 38.75,
@@ -587,6 +601,8 @@
 		}
 	},
 	"Death Mountain Crater": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Sheik in Crater": {
 				"top": 60.62378167641326,
@@ -671,6 +687,8 @@
 		}
 	},
 	"Ice Cavern": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Sheik in Ice Cavern": {
 				"top": 46.75850891410049,
@@ -724,6 +742,8 @@
 		"gossip_stones": {}
 	},
 	"Desert Colossus": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Sheik at Colossus": {
 				"top": 39.79453906461206,
@@ -784,6 +804,8 @@
 		}
 	},
 	"Temple of Time": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Take Master Sword": {
 				"top": 32,
@@ -829,6 +851,8 @@
 		"gossip_stones": {}
 	},
 	"Lost Woods": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"LW Ocarina Memory Game": {
 				"top": 85.8736059479554,
@@ -931,6 +955,8 @@
 		}
 	},
 	"Market": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Market Shooting Gallery Reward": {
 				"top": 22.25806451612903,
@@ -1003,6 +1029,8 @@
 		}
 	},
 	"Death Mountain Trail": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"DMT Freestanding PoH": {
 				"top": 25.76317478457306,
@@ -1081,6 +1109,8 @@
 		}
 	},
 	"Goron City": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"GC Pot Freestanding PoH": {
 				"top": 83.20610687022901,
@@ -1177,6 +1207,8 @@
 		}
 	},
 	"Zora's River": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"ZR Magic Bean Salesman": {
 				"top": 77.12318286151492,
@@ -1273,6 +1305,8 @@
 		}
 	},
 	"Zora's Domain": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"ZD Diving Minigame": {
 				"top": 39.20704845814978,
@@ -1309,6 +1343,8 @@
 		}
 	},
 	"Zora's Fountain": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"ZF Great Fairy Reward": {
 				"top": 72.11302211302211,
@@ -1363,6 +1399,8 @@
 		}
 	},
 	"Lake Hylia": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"LH Underwater Item": {
 				"top": 67.88985763051264,
@@ -1471,6 +1509,8 @@
 		}
 	},
 	"Gerudo Valley": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"GV Crate Freestanding PoH": {
 				"top": 63.32622601279318,
@@ -1543,6 +1583,8 @@
 		}
 	},
 	"Gerudo's Fortress": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"GF Chest": {
 				"top": 54.57858769931663,
@@ -1578,6 +1620,8 @@
 		"gossip_stones": {}
 	},
 	"Thieves' Hideout": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Hideout Gerudo Membership Card": {
 				"top": 42.89473684210526,
@@ -1614,6 +1658,8 @@
 		}
 	},
 	"Dodongo's Cavern": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Dodongos Cavern Bomb Bag Chest": {
 				"top": 26.15171531978941,
@@ -1728,6 +1774,8 @@
 		}
 	},
 	"Haunted Wasteland": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Wasteland Bombchu Salesman": {
 				"top": 64.9066098597196,
@@ -1751,6 +1799,8 @@
 		"gossip_stones": {}
 	},
 	"Outside Ganon's Castle": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"OGC Great Fairy Reward": {
 				"top": 87.5,
@@ -1768,6 +1818,8 @@
 		"gossip_stones": {}
 	},
 	"Deku Tree": {
+		"child": true,
+		"adult": false,
 		"locations": {
 			"Queen Gohma": {
 				"top": 72.29268292682927,
@@ -1845,6 +1897,8 @@
 		"gossip_stones": {}
 	},
 	"Jabu Jabu's Belly": {
+		"child": true,
+		"adult": false,
 		"locations": {
 			"Barinade": {
 				"top": 49.81490058606754,
@@ -1910,6 +1964,8 @@
 		"gossip_stones": {}
 	},
 	"Bottom of the Well": {
+		"child": true,
+		"adult": false,
 		"locations": {
 			"Bottom of the Well Front Left Fake Wall Chest": {
 				"top": 36.16666666666666,
@@ -2017,6 +2073,8 @@
 		"gossip_stones": {}
 	},
 	"Forest Temple": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Phantom Ganon": {
 				"top": 83.78093201200411,
@@ -2142,6 +2200,8 @@
 		"gossip_stones": {}
 	},
 	"Fire Temple": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Volvagia": {
 				"top": 66.36624168346009,
@@ -2273,6 +2333,8 @@
 		"gossip_stones": {}
 	},
 	"Water Temple": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Water Temple Morpha Heart": {
 				"top": 34.91445929867744,
@@ -2380,6 +2442,8 @@
 		"gossip_stones": {}
 	},
 	"Shadow Temple": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Shadow Temple Map Chest": {
 				"top": 22.17221916542119,
@@ -2529,6 +2593,8 @@
 		"gossip_stones": {}
 	},
 	"Gerudo Training Ground": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Gerudo Training Ground Maze Right Central Chest": {
 				"top": 51.72631101602384,
@@ -2666,6 +2732,8 @@
 		"gossip_stones": {}
 	},
 	"Spirit Temple": {
+		"child": true,
+		"adult": true,
 		"locations": {
 			"Twinrova": {
 				"top": 19.56831232861006,
@@ -2827,6 +2895,8 @@
 		"gossip_stones": {}
 	},
 	"Ganon's Castle": {
+		"child": false,
+		"adult": true,
 		"locations": {
 			"Ganon": {
 				"top": 12,

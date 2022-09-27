@@ -11,33 +11,8 @@ import {
 	mapHeaderTextAtom,
 	errorTextAtom,
 } from "../utils/atoms";
-import regionsJson from "../data/regions.json";
+import regions from "../utils/regions";
 import { fetchingAtom } from "../utils/atoms";
-
-type RegionsType = {
-	[key: string]: {
-		locations: {
-			[key: string]: {
-				top: number;
-				left: number;
-				child: boolean;
-				adult: boolean;
-				always?: boolean;
-			};
-		};
-		gossip_stones: {
-			[key: string]: {
-				top: number;
-				left: number;
-				child: boolean;
-				adult: boolean;
-				always?: boolean;
-			};
-		};
-	};
-};
-
-const regions = regionsJson as RegionsType;
 
 function locationDisplayName(name: string, region: string): string {
 	const parensMatch = /\(([^)]+)\)/.exec(name);
