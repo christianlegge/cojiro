@@ -12,9 +12,9 @@ const LandingPage = () => {
 						Flout the tedium.
 					</h1>
 					<p className="w-[65ch] xl:text-xl text-zinc-800">
-						ZOoTR Sim is the fastest way to learn the logic,
-						practice routing, and beat seeds faster - all without
-						loading up the game.
+						Cojiro is the fastest way to learn the logic, practice
+						routing, and beat seeds faster - all without loading up
+						the game.
 					</p>
 					<button className="px-4 py-2 bg-indigo-700 text-white text-xs xl:text-lg xl:px-8 font-semibold uppercase tracking-wider rounded-full shadow-md shadow-indigo-700">
 						Play now

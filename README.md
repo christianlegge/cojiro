@@ -4,7 +4,7 @@
 
 Simulate and practice Ocarina of Time Randomizer seeds
 
-Assuming the last commit is more than ~2 minutes old, the `main` branch of this repo has parity with the `cojiro.app` deployment.
+Assuming the last commit is more than ~2 minutes old, the `main` branch of this repo has parity with the [cojiro.app](https://www.cojiro.app) deployment.
 
 ## Postgres setup
 
@@ -17,7 +17,7 @@ You must create a .env file with the following keys (sensible defaults shown). I
 ```.env
 OOTRANDOMIZER_API_KEY= # api for the ootrandomizer service. at the time of writing this is NOT A PUBLIC API and there is no way to generate a key for yourself. at some point I will set up some kind of mock so people other than me can reasonably run the backend. until then you're on your own
 JWT_SECRET=secret # key used to verify JWTs. it can be anything but it has to be something. crypto strength doesn't matter for a local setup
-DATABASE_URL=postgresql://postgres:PASSWORD@localhost:5432/zootr-sim?schema=public # postgres database url. note that postgres:PASSWORD is a username:password and will be different depending on your setup
+DATABASE_URL=postgresql://postgres:PASSWORD@localhost:5432/cojiro?schema=public # postgres database url. note that postgres:PASSWORD is a username:password and will be different depending on your setup
 ```
 
 ## Running locally
