@@ -38,7 +38,14 @@ export const jwtRouter = createRouter()
 								el.includes("Medallion")
 							),
 							startTime: playthrough.createdAt,
-							checked: playthrough.checked.length,
+							checked: playthrough.checked.filter(
+								(loc) =>
+									loc in
+									(playthrough.seed.locations as Record<
+										string,
+										string
+									>)
+							).length,
 							locations: Object.keys(
 								playthrough.seed.locations as Record<
 									string,

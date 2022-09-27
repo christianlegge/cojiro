@@ -33,7 +33,9 @@ export const userRouter = createRouter().query("getPlaythroughs", {
 			id: el.id,
 			medallions: el.items.filter((item) => item.includes("Medallion")),
 			startTime: el.createdAt,
-			checked: el.checked.length,
+			checked: el.checked.filter(
+				(loc) => loc in (el.seed.locations as Record<string, string>)
+			).length,
 			locations: Object.keys(el.seed.locations as Record<string, string>)
 				.length,
 		}));
