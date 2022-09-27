@@ -26,11 +26,15 @@ const Trackers = ({
 	);
 	console.log(itemLocations);
 	return (
-		<>
-			<QuestTracker items={items} itemLocations={itemLocations} />
-			<SongTracker items={items} itemLocations={itemLocations} />
+		<div className="bg-gray-700 gap-1 md:gap-4 p-4 flex flex-col sm:flex-row 2xl:flex-col justify-around items-center">
+			<SongTracker
+				items={items}
+				itemLocations={itemLocations}
+				className="grid grid-cols-6 grid-flow-row sm:grid-rows-6 sm:grid-flow-col sm:grid-cols-1 2xl:grid-cols-6 2xl:grid-flow-row 2xl:grid-rows-1"
+			/>
 			<ItemTracker items={items} itemLocations={itemLocations} />
-		</>
+			<QuestTracker items={items} itemLocations={itemLocations} />
+		</div>
 	);
 };
 
@@ -169,12 +173,11 @@ const Cojiro = () => {
 							<LocationList />
 						</div>
 
-						<div className="bg-gray-700 gap-4 p-4 flex 2xl:flex-col justify-around items-center">
-							<Trackers
-								items={playthrough.items}
-								knownLocations={playthrough.known_locations}
-							/>
-						</div>
+						<Trackers
+							items={playthrough.items}
+							knownLocations={playthrough.known_locations}
+						/>
+
 						{/* <HintTracker /> */}
 					</div>
 				</div>

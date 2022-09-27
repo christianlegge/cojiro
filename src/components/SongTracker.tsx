@@ -26,13 +26,15 @@ const songs = [
 const SongTracker = ({
 	items,
 	itemLocations,
+	className,
 }: {
 	items: string[];
 	itemLocations: Record<string, string[]>;
+	className: string;
 }) => {
 	const setRegion = useUpdateAtom(regionAtom);
 	return (
-		<div className="grid grid-rows-6 grid-flow-col 2xl:grid-cols-6 2xl:grid-flow-row 2xl:grid-rows-1">
+		<div className={className}>
 			{songs.map((song) => (
 				<Tooltip
 					key={song}
