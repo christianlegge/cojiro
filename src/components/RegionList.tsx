@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import regions from "../utils/regions";
 import Tag from "./Tag";
 import { formatFilename } from "../utils/filename";
 import { usePlaythrough } from "../utils/trpc";
 import { useAtom, useAtomValue } from "jotai";
-
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
 
 const RegionList = () => {
@@ -12,6 +12,7 @@ const RegionList = () => {
 	const { data: playthrough, error, status } = usePlaythrough(id);
 	const [age, setAge] = useAtom(ageAtom);
 	const [region, setRegion] = useAtom(regionAtom);
+	const [collapsed, setCollapsed] = useState(true);
 
 	if (!playthrough) {
 		if (status === "loading") {
@@ -63,10 +64,20 @@ const RegionList = () => {
 	]);
 	return (
 		<>
-			<div className="text-white bg-black text-center font-bold text-2xl py-1">
-				{age === "child" ? "Child" : "Adult"} Link
+			<div
+				className="text-white bg-black text-center font-bold text-2xl py-1 flex justify-center items-center gap-2 cursor-pointer lg:cursor-default"
+				onClick={() => setCollapsed((prev) => !prev)}
+			>
+				<span>{age === "child" ? "Child" : "Adult"} Link</span>
+				<button className="lg:hidden">
+					{collapsed ? <FiChevronDown /> : <FiChevronUp />}
+				</button>
 			</div>
-			<div className="grid auto-cols-auto grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 bg-black">
+			<div
+				className={`auto-cols-auto grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 bg-black ${
+					collapsed ? "hidden" : "grid"
+				} lg:grid`}
+			>
 				{Object.keys(regions)
 					.filter((el) => regions[el][age])
 					.map((el) => (
