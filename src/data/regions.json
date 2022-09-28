@@ -153,6 +153,18 @@
 				"adult": true,
 				"child": false
 			},
+			"Kak Anju as Child": {
+				"top": 70.16524908869988,
+				"left": 85.31555221637866,
+				"adult": false,
+				"child": true
+			},
+			"Kak Anju as Adult": {
+				"top": 70.16524908869988,
+				"left": 85.31555221637866,
+				"adult": true,
+				"child": false
+			},
 			"Kak Impas House Freestanding PoH": {
 				"top": 68.16524908869988,
 				"left": 80.31555221637866,
