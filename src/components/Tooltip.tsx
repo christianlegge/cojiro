@@ -21,7 +21,7 @@ const Tooltip = ({
 			</div>
 			{children}
 			{showInfoIcon && (
-				<FcInfo className="absolute bottom-0 right-0 w-6 h-6" />
+				<FcInfo className="absolute bottom-0 right-0 w-6 h-6 pointer-events-none" />
 			)}
 		</div>
 	);
