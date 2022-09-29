@@ -16,12 +16,12 @@ const Tooltip = ({
 }) => {
 	return (
 		<div className={`${className} group hover:z-50`} style={style}>
-			<div className="pointer-events-none bottom-full right-0 absolute w-max max-w-[20rem] font-semibold scale-0 group-hover:scale-100 text-white bg-zinc-900 p-2 rounded-md order-last transition duration-100 z-[1000]">
+			<div className="pointer-events-none absolute bottom-full right-0 z-[1000] order-last w-max max-w-[20rem] scale-0 rounded-md bg-zinc-900 p-2 font-semibold text-white transition duration-100 group-hover:scale-100">
 				{content}
 			</div>
 			{children}
 			{showInfoIcon && (
-				<FcInfo className="absolute bottom-0 right-0 w-6 h-6 pointer-events-none" />
+				<FcInfo className="pointer-events-none absolute bottom-0 right-0 h-6 w-6" />
 			)}
 		</div>
 	);

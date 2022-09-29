@@ -20,7 +20,7 @@ const TextInput = ({
 			{/* <label htmlFor={name}>{name}</label>
 			<br /> */}
 			<input
-				className="border-[1px] border-gray-300 rounded-md p-2"
+				className="rounded-md border-[1px] border-gray-300 p-2"
 				placeholder={placeholder}
 				type={type || "text"}
 				name={name}

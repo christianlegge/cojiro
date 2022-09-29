@@ -44,7 +44,7 @@ const CheckSquare = ({
 			content={
 				<span
 					className={`${
-						checked ? "text-zinc-400 line-through font-normal" : ""
+						checked ? "font-normal text-zinc-400 line-through" : ""
 					}`}
 				>
 					{item ? `${displayName} (${item})` : displayName}
@@ -52,14 +52,14 @@ const CheckSquare = ({
 			}
 			className={`absolute ${
 				bigChecks.includes(check)
-					? "w-20 h-20"
-					: "w-8 h-8 lg:w-12 lg:h-12"
+					? "h-20 w-20"
+					: "h-8 w-8 lg:h-12 lg:w-12"
 			} -translate-x-1/2 -translate-y-1/2`}
 			style={{ ...coords }}
 			showInfoIcon={item !== undefined}
 		>
 			<div
-				className={`w-full h-full bg-contain bg-center bg-no-repeat ${
+				className={`h-full w-full bg-contain bg-center bg-no-repeat ${
 					checked
 						? "cursor-default" // bg-zinc-500"
 						: "cursor-pointer" // bg-lime-500"
@@ -95,7 +95,7 @@ const CheckSquare = ({
 			>
 				{type === "entrances" ? (
 					<ImEnter
-						className="w-full h-full text-black"
+						className="h-full w-full text-black"
 						style={
 							checked
 								? { opacity: 0.7 }
@@ -106,7 +106,7 @@ const CheckSquare = ({
 					/>
 				) : (
 					<img
-						className="object-contain w-full h-full"
+						className="h-full w-full object-contain"
 						src={`/images/${
 							check in checkImages
 								? checkImages[check as keyof typeof checkImages]

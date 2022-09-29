@@ -26,11 +26,11 @@ const Trackers = ({
 	);
 	console.log(itemLocations);
 	return (
-		<div className="bg-gray-700 gap-1 md:gap-4 p-4 flex flex-col sm:flex-row 2xl:flex-col justify-around items-center">
+		<div className="flex flex-col items-center justify-around gap-1 bg-gray-700 p-4 sm:flex-row md:gap-4 2xl:flex-col">
 			<SongTracker
 				items={items}
 				itemLocations={itemLocations}
-				className="grid grid-cols-6 grid-flow-row sm:grid-rows-6 sm:grid-flow-col sm:grid-cols-1 2xl:grid-cols-6 2xl:grid-flow-row 2xl:grid-rows-1"
+				className="grid grid-flow-row grid-cols-6 sm:grid-flow-col sm:grid-cols-1 sm:grid-rows-6 2xl:grid-flow-row 2xl:grid-cols-6 2xl:grid-rows-1"
 			/>
 			<ItemTracker items={items} itemLocations={itemLocations} />
 			<QuestTracker items={items} itemLocations={itemLocations} />
@@ -59,8 +59,8 @@ const WinScreen = ({
 		.toString()
 		.padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 	return (
-		<div className="fixed top-0 text-white text-center bg-black bg-opacity-70 w-full h-screen col-start-1 row-start-1 z-[998]">
-			<div className="grid place-items-center h-full">
+		<div className="fixed top-0 z-[998] col-start-1 row-start-1 h-screen w-full bg-black bg-opacity-70 text-center text-white">
+			<div className="grid h-full place-items-center">
 				<div className="flex flex-col gap-4">
 					<h2 className="text-6xl font-bold tracking-wide">
 						You win!
@@ -162,14 +162,14 @@ const Cojiro = () => {
 					/>
 				)}
 				<div
-					className="flex flex-col lg:flex-row col-start-1 row-start-1"
+					className="col-start-1 row-start-1 flex flex-col lg:flex-row"
 					style={{ imageRendering: "crisp-edges" }}
 				>
-					<div className="w-full flex-shrink-0 lg:w-80 lg:border-r-2 lg:border-b-0 border-b-2 z-10">
+					<div className="z-10 w-full flex-shrink-0 border-b-2 lg:w-80 lg:border-r-2 lg:border-b-0">
 						<RegionList />
 					</div>
-					<div className="flex-grow flex flex-col 2xl:flex-row">
-						<div className="lg:col-span-2 xl:col-span-1 xl:row-span-2 relative flex-grow basis-0 h-full">
+					<div className="flex flex-grow flex-col 2xl:flex-row">
+						<div className="relative h-full flex-grow basis-0 lg:col-span-2 xl:col-span-1 xl:row-span-2">
 							<LocationList />
 						</div>
 

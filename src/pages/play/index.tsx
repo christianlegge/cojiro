@@ -63,7 +63,7 @@ const InProgressPlaythroughCard = ({
 			? rtf.format(-seconds / 60 / 60 / 24 / 30, "month")
 			: rtf.format(-seconds / 60 / 60 / 24 / 365, "year");
 	return (
-		<div className="w-40 border shadow-md rounded-lg cursor-pointer">
+		<div className="w-40 cursor-pointer rounded-lg border shadow-md">
 			<div className="flex">
 				{medallions.map((el) => (
 					<img
@@ -183,9 +183,9 @@ const StartForm = () => {
 
 	return (
 		<Layout>
-			<div className="grid place-items-center pt-2 px-2 gap-4">
+			<div className="grid place-items-center gap-4 px-2 pt-2">
 				{status === "unauthenticated" && (
-					<div className="flex justify-center items-center gap-1 p-2 rounded-lg bg-amber-200 w-[65ch]">
+					<div className="flex w-[65ch] items-center justify-center gap-1 rounded-lg bg-amber-200 p-2">
 						<MdWarningAmber className="w-8" />
 						You are not signed in. You may play as a guest, but the
 						game will be deleted after 3 days, will not be tracked
@@ -193,8 +193,8 @@ const StartForm = () => {
 					</div>
 				)}
 				<div className="grid grid-cols-3 gap-2">
-					<div className="flex pl-4 justify-between items-center w-full gap-10 col-span-3">
-						<h2 className="font-semibold text-2xl">Presets</h2>
+					<div className="col-span-3 flex w-full items-center justify-between gap-10 pl-4">
+						<h2 className="text-2xl font-semibold">Presets</h2>
 						<div className="space-x-2">
 							<label htmlFor="customSettings" className="">
 								Use custom settings
@@ -216,14 +216,14 @@ const StartForm = () => {
 						<button
 							disabled={generating || settingsType === "custom"}
 							key={preset}
-							className={`border px-4 py-2 rounded-lg shadow-md ${
+							className={`rounded-lg border px-4 py-2 shadow-md ${
 								settingsType === "custom" ||
 								(generating && preset !== selectedPreset)
 									? "opacity-50"
 									: ""
 							} ${
 								preset === selectedPreset
-									? "shadow-none translate-y-1"
+									? "translate-y-1 shadow-none"
 									: ""
 							}`}
 							onClick={() => {
@@ -233,7 +233,7 @@ const StartForm = () => {
 						>
 							{generating && preset === selectedPreset ? (
 								<>
-									<span className="animate-spin inline-block mr-3">
+									<span className="mr-3 inline-block animate-spin">
 										.
 									</span>
 									<span>Generating...</span>
@@ -253,14 +253,14 @@ const StartForm = () => {
 							enterCallback={() => startPlaythrough(settings)}
 						/>
 						<button
-							className={`px-8 border rounded-lg ${
+							className={`rounded-lg border px-8 ${
 								generating ? "translate-y-1" : "shadow-md"
 							}`}
 							onClick={() => startPlaythrough(settings)}
 						>
 							{generating ? (
 								<>
-									<span className="animate-spin inline-block mr-3">
+									<span className="mr-3 inline-block animate-spin">
 										.
 									</span>
 									<span>Generating...</span>
@@ -271,7 +271,7 @@ const StartForm = () => {
 						</button>
 					</div>
 				)}
-				<div className="flex flex-wrap justify-center items-center">
+				<div className="flex flex-wrap items-center justify-center">
 					<LeftRightSwitch
 						left="Random seed"
 						right="Custom seed"

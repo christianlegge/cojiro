@@ -20,7 +20,7 @@ const QuestTracker: React.FC<{
 	return (
 		<div className="w-52">
 			<MedallionCircle items={items} itemLocations={itemLocations} />
-			<div className="flex justify-between gap-1 w-full mt-20">
+			<div className="mt-20 flex w-full justify-between gap-1">
 				{stones.map((stone) => (
 					<Tooltip
 						key={stone}
@@ -29,12 +29,12 @@ const QuestTracker: React.FC<{
 								? `${stone} (${itemLocations[stone]})`
 								: stone
 						}
-						className="w-20 h-20 relative"
+						className="relative h-20 w-20"
 						showInfoIcon={stone in itemLocations}
 					>
 						<ItemIcon
 							src={`/images/${formatFilename(stone)}.png`}
-							className="object-contain w-full h-full"
+							className="h-full w-full object-contain"
 							alt={stone}
 							has={items.includes(stone)}
 						/>

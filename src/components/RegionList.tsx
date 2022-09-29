@@ -65,7 +65,7 @@ const RegionList = () => {
 	return (
 		<>
 			<div
-				className="text-white bg-black text-center font-bold text-2xl py-1 flex justify-center items-center gap-2 cursor-pointer lg:cursor-default"
+				className="flex cursor-pointer items-center justify-center gap-2 bg-black py-1 text-center text-2xl font-bold text-white lg:cursor-default"
 				onClick={() => setCollapsed((prev) => !prev)}
 			>
 				<span>{age === "child" ? "Child" : "Adult"} Link</span>
@@ -74,7 +74,7 @@ const RegionList = () => {
 				</button>
 			</div>
 			<div
-				className={`auto-cols-auto grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 bg-black ${
+				className={`auto-cols-auto grid-cols-2 bg-black sm:grid-cols-3 lg:grid-cols-1 ${
 					collapsed ? "hidden" : "grid"
 				} lg:grid`}
 			>
@@ -83,10 +83,10 @@ const RegionList = () => {
 					.map((el) => (
 						<div
 							key={el}
-							className={`border-black border-2 bg-cover bg-center text-white lg:justify-end lg:w-full lg:h-auto transition ${
+							className={`border-2 border-black bg-cover bg-center text-white transition lg:h-auto lg:w-full lg:justify-end ${
 								el === region
-									? "font-bold bg-zinc-500 scale-110 z-20 lg:translate-x-4"
-									: "font-semibold hover:bg-zinc-600 active:bg-zinc-800 bg-zinc-700 cursor-pointer hover:z-10 hover:scale-105 hover:lg:scale-100 hover:lg:translate-x-2"
+									? "z-20 scale-110 bg-zinc-500 font-bold lg:translate-x-4"
+									: "cursor-pointer bg-zinc-700 font-semibold hover:z-10 hover:scale-105 hover:bg-zinc-600 active:bg-zinc-800 hover:lg:translate-x-2 hover:lg:scale-100"
 							} lg:scale-100`}
 							onClick={() => setRegion(el)}
 							style={{
@@ -98,7 +98,7 @@ const RegionList = () => {
 							}}
 						>
 							<div
-								className={`w-full h-full px-4 py-1 flex items-center gap-2 lg:justify-end ${
+								className={`flex h-full w-full items-center gap-2 px-4 py-1 lg:justify-end ${
 									el === region
 										? "bg-zinc-400 bg-opacity-70"
 										: "bg-zinc-800 bg-opacity-60"
@@ -117,7 +117,7 @@ const RegionList = () => {
 								{regionsWithKeys.includes(el) && (
 									<span>
 										<img
-											className="h-6 inline-block"
+											className="inline-block h-6"
 											src="/images/small-key.png"
 										/>
 										{
@@ -130,7 +130,7 @@ const RegionList = () => {
 								)}
 								{regionsWithBossKeys.includes(el) && (
 									<img
-										className={`h-6 inline-block ${
+										className={`inline-block h-6 ${
 											playthrough.items.includes(
 												`Boss Key (${el})`
 											)

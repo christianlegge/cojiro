@@ -272,12 +272,12 @@ const ItemTracker: React.FC<{
 				return (
 					<Tooltip
 						key={trackerItem.fileName}
-						className="w-16 h-16 relative"
+						className="relative h-16 w-16"
 						content={tooltip}
 						showInfoIcon={trackerItem.itemName in itemLocations}
 					>
 						<ItemIcon
-							className="object-contain w-full h-full z-0"
+							className="z-0 h-full w-full object-contain"
 							src={trackerItem.fileName}
 							alt={trackerItem.displayName}
 							has={items.includes(trackerItem.itemName)}

@@ -18,7 +18,7 @@ const LeftRightSwitch = ({
 	const selectedClasses =
 		"cursor-default shadow-none translate-y-0.5 border-zinc-700 bg-blue-500 text-white";
 	return (
-		<div className="grid grid-cols-2 w-max h-fit">
+		<div className="grid h-fit w-max grid-cols-2">
 			<button
 				onClick={() => {
 					setSelected("left");

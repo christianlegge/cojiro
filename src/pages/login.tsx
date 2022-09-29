@@ -129,8 +129,8 @@ const LoginRegister = () => {
 		"w-full flex justify-center items-center gap-2 text-white font-semibold rounded-lg py-2";
 	return (
 		<Layout mainClass="p-2 bg-[url('/images/bg/kakariko-night.jpg')] bg-no-repeat bg-cover bg-center grid place-items-center">
-			<div className="flex flex-col gap-4 px-8 py-4 backdrop-blur shadow-xl rounded-lg bg-zinc-300 bg-opacity-30 w-full max-w-lg">
-				<h1 className="text-center text-white text-4xl font-bold mb-4">
+			<div className="flex w-full max-w-lg flex-col gap-4 rounded-lg bg-zinc-300 bg-opacity-30 px-8 py-4 shadow-xl backdrop-blur">
+				<h1 className="mb-4 text-center text-4xl font-bold text-white">
 					Sign in to Cojiro
 				</h1>
 				<button

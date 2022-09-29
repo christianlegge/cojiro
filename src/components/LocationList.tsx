@@ -69,10 +69,10 @@ const LocationList = () => {
 		return <div>Error! region not set correctly</div>;
 	}
 	return (
-		<div className="flex flex-col bg-black text-white h-full">
-			<div className="flex px-4 py-2 gap-8 min-h-16 bg-gradient-to-b from-black to-zinc-700 justify-between items-center sticky top-0 z-40">
-				<div className="flex flex-col h-full justify-center">
-					<span className="w-max text-2xl font-bold flex-shrink-0">
+		<div className="flex h-full flex-col bg-black text-white">
+			<div className="min-h-16 sticky top-0 z-40 flex items-center justify-between gap-8 bg-gradient-to-b from-black to-zinc-700 px-4 py-2">
+				<div className="flex h-full flex-col justify-center">
+					<span className="w-max flex-shrink-0 text-2xl font-bold">
 						{region}
 					</span>
 					{pathTo && (
@@ -104,7 +104,7 @@ const LocationList = () => {
 					<span className="text-lg">{headerText}</span>
 				)}
 				<a
-					className="flex items-center gap-1 px-2 py-0 text-black bg-red-200 border-2 border-red-600 rounded-md text-lg hover:bg-red-100 active:bg-red-300 z-50"
+					className="z-50 flex items-center gap-1 rounded-md border-2 border-red-600 bg-red-200 px-2 py-0 text-lg text-black hover:bg-red-100 active:bg-red-300"
 					href={`//github.com/christianlegge/cojiro/issues/new?body=**Describe issue here**%0APlease be as specific as possible!%0A%0A---- DO NOT EDIT BELOW THIS LINE ----%0APlaythrough id: ${id}`}
 					target="_blank"
 					rel="noreferrer"
@@ -113,12 +113,12 @@ const LocationList = () => {
 					<FiExternalLink style={{ display: "inline" }} />
 				</a>
 			</div>
-			<div className="flex justify-center items-center w-full h-full py-8">
+			<div className="flex h-full w-full items-center justify-center py-8">
 				<div className="relative w-full">
 					<img
 						src={`/images/maps/${formatFilename(region)}.jpg`}
 						alt=""
-						className="object-contain h-full w-full mx-auto"
+						className="mx-auto h-full w-full object-contain"
 					/>
 					{(
 						["locations", "gossip_stones", "entrances"] as (

@@ -10,11 +10,11 @@ const ErrorBox = ({
 }) => {
 	return (
 		<div
-			className={`flex items-center gap-1 text-black p-1 rounded-md border-2 border-red-700 bg-red-300 ${
+			className={`flex items-center gap-1 rounded-md border-2 border-red-700 bg-red-300 p-1 text-black ${
 				error ? "" : "hidden"
 			} ${className}`}
 		>
-			<MdErrorOutline className="w-8 h-full" />
+			<MdErrorOutline className="h-full w-8" />
 			{error || undefined}
 		</div>
 	);

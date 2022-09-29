@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = () => (
-	<footer className="w-full h-10 text-sm text-zinc-500 text-center">
+	<footer className="h-10 w-full text-center text-sm text-zinc-500">
 		<a href="https://ootrandomizer.com/" className="underline">
 			OoT Randomizer
 		</a>

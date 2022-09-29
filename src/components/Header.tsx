@@ -8,13 +8,13 @@ const Header = () => {
 	const activeClass = "text-red-500";
 
 	return (
-		<header className="w-full h-20 px-4 bg-zinc-700 text-gray-50 flex justify-between items-center z-[999]">
+		<header className="z-[999] flex h-20 w-full items-center justify-between bg-zinc-700 px-4 text-gray-50">
 			<div>logo</div>
-			<div className="flex h-full justify-center items-center gap-12">
+			<div className="flex h-full items-center justify-center gap-12">
 				<Link href="/play">Play</Link>
 				<Link href="/how-to-play">How to Play</Link>
 			</div>
-			<div className="flex gap-2 items-center">
+			<div className="flex items-center gap-2">
 				{status === "unauthenticated" && (
 					<Link href="/login">Log in</Link>
 				)}

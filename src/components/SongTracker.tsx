@@ -43,12 +43,12 @@ const SongTracker = ({
 							? `${song} (${itemLocations[song]})`
 							: song
 					}
-					className="relative w-16 h-16"
+					className="relative h-16 w-16"
 					showInfoIcon={song in itemLocations}
 				>
 					<ItemIcon
 						src={`/images/${formatFilename(song)}.png`}
-						className={`w-full h-full ${
+						className={`h-full w-full ${
 							items.includes(song) && song in warpSongs
 								? "cursor-pointer"
 								: "cursor-default"
