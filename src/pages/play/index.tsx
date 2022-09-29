@@ -183,134 +183,143 @@ const StartForm = () => {
 
 	return (
 		<Layout>
-			<div className="grid place-items-center gap-4 px-2 pt-2">
-				{status === "unauthenticated" && (
-					<div className="flex w-[65ch] items-center justify-center gap-1 rounded-lg bg-amber-200 p-2">
-						<MdWarningAmber className="w-8" />
-						You are not signed in. You may play as a guest, but the
-						game will be deleted after 3 days, will not be tracked
-						for stats, and can be claimed by anyone with the URL.
-					</div>
-				)}
-				<div className="grid grid-cols-3 gap-2">
-					<div className="col-span-3 flex w-full items-center justify-between gap-10 pl-4">
-						<h2 className="text-2xl font-semibold">Presets</h2>
-						<div className="space-x-2">
-							<label htmlFor="customSettings" className="">
-								Use custom settings
-							</label>
-							<input
-								checked={settingsType === "custom"}
-								onChange={(e) =>
-									setSettingsType(
-										e.target.checked ? "custom" : "preset"
-									)
-								}
-								type="checkbox"
-								name="customSettings"
-								id="customSettings"
-							/>
+			<div className="grid h-full place-items-center bg-[url('/images/bg/hyrule-field-mountain.jpg')] bg-cover bg-center">
+				<div className="grid place-items-center gap-4 rounded-lg bg-gray-300 bg-opacity-50 p-4 px-2 pt-2 backdrop-blur-md">
+					{status === "unauthenticated" && (
+						<div className="flex w-[65ch] items-center justify-center gap-1 rounded-lg bg-amber-200 p-2">
+							<MdWarningAmber className="w-8" />
+							You are not signed in. You may play as a guest, but
+							the game will be deleted after 3 days, will not be
+							tracked for stats, and can be claimed by anyone with
+							the URL.
 						</div>
-					</div>
-					{Object.keys(settingsPresets).map((preset) => (
-						<button
-							disabled={generating || settingsType === "custom"}
-							key={preset}
-							className={`rounded-lg border px-4 py-2 shadow-md ${
-								settingsType === "custom" ||
-								(generating && preset !== selectedPreset)
-									? "opacity-50"
-									: ""
-							} ${
-								preset === selectedPreset
-									? "translate-y-1 shadow-none"
-									: ""
-							}`}
-							onClick={() => {
-								setSelectedPreset(preset);
-								startPlaythrough(settingsPresets[preset]);
-							}}
-						>
-							{generating && preset === selectedPreset ? (
-								<>
-									<span className="mr-3 inline-block animate-spin">
-										.
-									</span>
-									<span>Generating...</span>
-								</>
-							) : (
-								preset
-							)}
-						</button>
-					))}
-				</div>
-				{settingsType === "custom" && (
-					<div className="flex gap-2">
-						<TextInput
-							name="settings"
-							placeholder="settings"
-							valueState={[settings, setSettings]}
-							enterCallback={() => startPlaythrough(settings)}
-						/>
-						<button
-							className={`rounded-lg border px-8 ${
-								generating ? "translate-y-1" : "shadow-md"
-							}`}
-							onClick={() => startPlaythrough(settings)}
-						>
-							{generating ? (
-								<>
-									<span className="mr-3 inline-block animate-spin">
-										.
-									</span>
-									<span>Generating...</span>
-								</>
-							) : (
-								"Submit"
-							)}
-						</button>
-					</div>
-				)}
-				<div className="flex flex-wrap items-center justify-center">
-					<LeftRightSwitch
-						left="Random seed"
-						right="Custom seed"
-						leftCallback={() => setSeedType("random")}
-						rightCallback={() => setSeedType("custom")}
-					/>
-					{seedType === "custom" && (
-						<TextInput
-							name="seed"
-							placeholder="seed"
-							valueState={[seed, setSeed]}
-						/>
 					)}
-				</div>
-				<ErrorBox error={error} />
-				<button
-					onClick={() => startMutation.mutate({ sampleSeed: true })}
-				>
-					Sample seed
-				</button>
-				<h2>In progress games</h2>
-				<ul className="flex flex-wrap gap-4">
-					{inProgressPlaythroughs.length === 0 ? (
-						<span>None!</span>
-					) : (
-						inProgressPlaythroughs.map((el) => (
-							<Link key={el.id} href={`/play/${el.id}`}>
-								<li>
-									<InProgressPlaythroughCard
-										medallions={el.medallions}
-										startTime={el.startTime}
-										checked={el.checked}
-										locations={el.locations}
-									/>
-								</li>
-							</Link>
-						))
+					<div className="grid grid-cols-3 gap-2">
+						<div className="col-span-3 flex w-full items-center justify-between gap-10 pl-4">
+							<h2 className="text-2xl font-semibold">Presets</h2>
+							<div className="space-x-2">
+								<label htmlFor="customSettings" className="">
+									Use custom settings
+								</label>
+								<input
+									checked={settingsType === "custom"}
+									onChange={(e) =>
+										setSettingsType(
+											e.target.checked
+												? "custom"
+												: "preset"
+										)
+									}
+									type="checkbox"
+									name="customSettings"
+									id="customSettings"
+								/>
+							</div>
+						</div>
+						{Object.keys(settingsPresets).map((preset) => (
+							<button
+								disabled={
+									generating || settingsType === "custom"
+								}
+								key={preset}
+								className={`rounded-lg border px-4 py-2 shadow-md ${
+									settingsType === "custom" ||
+									(generating && preset !== selectedPreset)
+										? "opacity-50"
+										: ""
+								} ${
+									preset === selectedPreset
+										? "translate-y-1 shadow-none"
+										: ""
+								}`}
+								onClick={() => {
+									setSelectedPreset(preset);
+									startPlaythrough(settingsPresets[preset]);
+								}}
+							>
+								{generating && preset === selectedPreset ? (
+									<>
+										<span className="mr-3 inline-block animate-spin">
+											.
+										</span>
+										<span>Generating...</span>
+									</>
+								) : (
+									preset
+								)}
+							</button>
+						))}
+					</div>
+					{settingsType === "custom" && (
+						<div className="flex gap-2">
+							<TextInput
+								name="settings"
+								placeholder="settings"
+								valueState={[settings, setSettings]}
+								enterCallback={() => startPlaythrough(settings)}
+							/>
+							<button
+								className={`rounded-lg border px-8 ${
+									generating ? "translate-y-1" : "shadow-md"
+								}`}
+								onClick={() => startPlaythrough(settings)}
+							>
+								{generating ? (
+									<>
+										<span className="mr-3 inline-block animate-spin">
+											.
+										</span>
+										<span>Generating...</span>
+									</>
+								) : (
+									"Submit"
+								)}
+							</button>
+						</div>
 					)}
-				</ul>
+					<div className="flex flex-wrap items-center justify-center">
+						<LeftRightSwitch
+							left="Random seed"
+							right="Custom seed"
+							leftCallback={() => setSeedType("random")}
+							rightCallback={() => setSeedType("custom")}
+						/>
+						{seedType === "custom" && (
+							<TextInput
+								name="seed"
+								placeholder="seed"
+								valueState={[seed, setSeed]}
+							/>
+						)}
+					</div>
+					<ErrorBox error={error} />
+					<button
+						onClick={() =>
+							startMutation.mutate({ sampleSeed: true })
+						}
+					>
+						Sample seed
+					</button>
+					<h2>In progress games</h2>
+					<ul className="flex flex-wrap gap-4">
+						{inProgressPlaythroughs.length === 0 ? (
+							<span>None!</span>
+						) : (
+							inProgressPlaythroughs.map((el) => (
+								<Link key={el.id} href={`/play/${el.id}`}>
+									<li>
+										<InProgressPlaythroughCard
+											medallions={el.medallions}
+											startTime={el.startTime}
+											checked={el.checked}
+											locations={el.locations}
+										/>
+									</li>
+								</Link>
+							))
+						)}
+					</ul>
+				</div>
 			</div>
 		</Layout>
 	);
