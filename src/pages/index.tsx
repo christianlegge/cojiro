@@ -4,8 +4,8 @@ import Layout from "../components/Layout";
 const LandingPage = () => {
 	return (
 		<Layout>
-			<section className="grid place-items-center bg-[url('/images/bg/cojiro.jpg')] bg-cover bg-center py-24 px-4 text-center lg:grid-cols-2 lg:text-left">
-				<div className=" grid place-items-center space-y-6 rounded-lg bg-gray-200 bg-opacity-50 p-4 backdrop-blur-md lg:place-items-start">
+			<section className="flex h-[calc(100vh-5rem)] items-center justify-center bg-[url('/images/bg/cojiro.jpg')] bg-cover bg-center px-4 text-center lg:grid-cols-2 lg:text-left">
+				<div className=" grid place-items-center space-y-6 rounded-lg bg-gray-200 bg-opacity-50 p-4 backdrop-blur-md">
 					<h1 className="text-5xl font-bold xl:text-7xl">
 						Route the game.
 						<br />
@@ -62,11 +62,21 @@ const LandingPage = () => {
 			<section>
 				<h1>Bigger and better</h1>
 				<p>
-					Cojiro is a remake of a now-defunct web app called ZOoTR
-					Sim. Cojiro aims for a much nicer user experience, using
-					icons on a map rather than lists of names.
+					Cojiro is a green-field rewrite of a now-defunct web app
+					called ZOoTR Sim. Cojiro aims for a much nicer user
+					experience, using icons on a map rather than lists of names.
 				</p>
-				<p></p>
+				<p>On top of that, here are some future plans for Cojiro:</p>
+				<ul className="grid grid-flow-col grid-rows-4">
+					<li>Enforcing game logic based on your current items</li>
+					<li>Detailed history of your playthrough</li>
+					<li>Shopsanity and Master Quest support</li>
+					<li>High score leaderboard</li>
+					<li>Multiplayer challenges and multiworld support</li>
+					<li>Entrance shuffle</li>
+					<li>Achievements</li>
+					<li>More...</li>
+				</ul>
 			</section>
 			<section>
 				<h1>Contribute</h1>
@@ -81,10 +91,16 @@ const LandingPage = () => {
 					, and community contributions are encouraged.
 				</p>
 				<p>
-					It's built using the t3 stack (React, NextJS, TypeScript,
-					TailwindCSS, Prisma, tRPC), and care has been taken to make
-					the codebase easy to work with for those familiar with the
-					technologies.
+					It's built using the{" "}
+					<a
+						href="https://init.tips"
+						className="text-blue-500 underline"
+					>
+						t3 stack
+					</a>{" "}
+					(React, NextJS, TypeScript, TailwindCSS, Prisma, tRPC), and
+					care has been taken to make the codebase easy to work with
+					for those familiar with the technologies.
 				</p>
 			</section>
 		</Layout>
