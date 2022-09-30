@@ -153,10 +153,12 @@ const LocationList = () => {
 									}
 									checked={playthrough.checked.includes(el)}
 									item={
-										playthrough.known_locations[el] ??
-										(freestandingItems
-											? freestandingItems[el]
-											: undefined)
+										checkType === "locations"
+											? playthrough.known_locations[el] ??
+											  (freestandingItems
+													? freestandingItems[el]
+													: undefined)
+											: undefined
 									}
 								/>
 							))
