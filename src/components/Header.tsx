@@ -22,7 +22,7 @@ const Header = () => {
 				<Link href="/play">Play</Link>
 				<Link href="/how-to-play">How to Play</Link>
 			</div>
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-2 normal-case tracking-normal">
 				{status === "unauthenticated" && (
 					<Link href="/login">Log in</Link>
 				)}
@@ -33,7 +33,9 @@ const Header = () => {
 							src={session.user?.image as string}
 							className="h-10 rounded-full"
 						/>
-						<button onClick={() => signOut()}>Log out</button>
+						<button onClick={() => signOut()} className="uppercase">
+							Log out
+						</button>
 					</>
 				)}
 				{status === "loading" && <div></div>}
