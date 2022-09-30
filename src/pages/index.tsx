@@ -4,9 +4,9 @@ import Layout from "../components/Layout";
 const LandingPage = () => {
 	return (
 		<Layout>
-			<section className="flex h-[calc(100vh-5rem)] items-center justify-center bg-[url('/images/bg/cojiro.jpg')] bg-cover bg-center px-4 text-center lg:grid-cols-2 lg:text-left">
-				<div className=" grid place-items-center space-y-6 rounded-lg bg-gray-200 bg-opacity-50 p-4 backdrop-blur-md">
-					<h1 className="text-5xl font-bold xl:text-7xl">
+			<section className="flex h-[calc(100vh-5rem)] items-center justify-center bg-[url('/images/bg/cojiro.jpg')] bg-cover bg-center px-4 text-center lg:grid-cols-2">
+				<div className=" grid place-items-center space-y-6 rounded-lg bg-gray-200 bg-opacity-60 p-4 backdrop-blur-lg">
+					<h1 className="font-heading text-5xl font-bold xl:text-7xl">
 						Route the game.
 						<br />
 						Flout the tedium.
@@ -23,7 +23,7 @@ const LandingPage = () => {
 				<div></div>
 			</section>
 			<section className="grid place-items-center space-y-2 p-4 text-center">
-				<h1 className="text-3xl font-semibold">
+				<h1 className="font-heading text-3xl font-semibold">
 					Why not just play the game?
 				</h1>
 				<p className="w-[65ch]">

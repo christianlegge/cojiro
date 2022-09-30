@@ -7,6 +7,10 @@ module.exports = {
 				twitchpurple: "rgb(130, 5, 180)",
 				discordblurple: "#5865F2",
 			},
+			fontFamily: {
+				heading: ["Crete Round", "Georgia", "Times", "serif"],
+				sans: ["Lato", "Helvetica", "Arial", "sans"],
+			},
 		},
 	},
 	plugins: [],
