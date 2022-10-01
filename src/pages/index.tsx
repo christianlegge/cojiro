@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -16,9 +17,11 @@ const LandingPage = () => {
 						routing, and beat seeds faster - all without loading up
 						the game.
 					</p>
-					<button className="rounded-full bg-indigo-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-indigo-700 xl:px-8 xl:text-lg">
-						Play now
-					</button>
+					<Link href="/play">
+						<button className="rounded-full bg-indigo-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-indigo-700 xl:px-8 xl:text-lg">
+							Play now
+						</button>
+					</Link>
 				</div>
 				<div></div>
 			</section>
