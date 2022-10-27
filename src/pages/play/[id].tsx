@@ -146,43 +146,41 @@ const Cojiro = () => {
 	setId(id as string);
 
 	return (
-		<Layout>
-			<div className="grid min-h-full bg-black">
-				{playthrough.finished && winScreenOpen && (
-					<WinScreen
-						checked={
-							playthrough.checked.filter((el) =>
-								playthrough.locations.includes(el)
-							).length
-						}
-						locations={playthrough.locations.length}
-						createdAt={playthrough.createdAt}
-						finishedAt={playthrough.finishedAt}
-						closeWinScreen={() => setWinScreenOpen(false)}
+		<div className="grid min-h-full bg-black">
+			{playthrough.finished && winScreenOpen && (
+				<WinScreen
+					checked={
+						playthrough.checked.filter((el) =>
+							playthrough.locations.includes(el)
+						).length
+					}
+					locations={playthrough.locations.length}
+					createdAt={playthrough.createdAt}
+					finishedAt={playthrough.finishedAt}
+					closeWinScreen={() => setWinScreenOpen(false)}
+				/>
+			)}
+			<div
+				className="col-start-1 row-start-1 flex flex-col lg:flex-row"
+				style={{ imageRendering: "crisp-edges" }}
+			>
+				<div className="z-10 w-full flex-shrink-0 border-b-2 lg:w-80 lg:border-r-2 lg:border-b-0">
+					<RegionList />
+				</div>
+				<div className="flex flex-grow flex-col 2xl:flex-row">
+					<div className="relative h-full flex-grow basis-0 lg:col-span-2 xl:col-span-1 xl:row-span-2">
+						<LocationList />
+					</div>
+
+					<Trackers
+						items={playthrough.items}
+						knownLocations={playthrough.known_locations}
 					/>
-				)}
-				<div
-					className="col-start-1 row-start-1 flex flex-col lg:flex-row"
-					style={{ imageRendering: "crisp-edges" }}
-				>
-					<div className="z-10 w-full flex-shrink-0 border-b-2 lg:w-80 lg:border-r-2 lg:border-b-0">
-						<RegionList />
-					</div>
-					<div className="flex flex-grow flex-col 2xl:flex-row">
-						<div className="relative h-full flex-grow basis-0 lg:col-span-2 xl:col-span-1 xl:row-span-2">
-							<LocationList />
-						</div>
 
-						<Trackers
-							items={playthrough.items}
-							knownLocations={playthrough.known_locations}
-						/>
-
-						{/* <HintTracker /> */}
-					</div>
+					{/* <HintTracker /> */}
 				</div>
 			</div>
-		</Layout>
+		</div>
 	);
 };
 
