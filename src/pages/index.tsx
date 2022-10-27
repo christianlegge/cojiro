@@ -31,9 +31,12 @@ const LandingPage = () => {
 				</h1>
 				<p className="w-[65ch]">
 					Cojiro is not and will never be a replacement for Ocarina of
-					Time Randomizer. It doesn't help you with execution, but
-					more importantly,{" "}
-					<strong className="font-bold">it's just not as fun</strong>.
+					Time Randomizer. It doesn&apos;t help you with execution,
+					but more importantly,{" "}
+					<strong className="font-bold">
+						it&apos;s just not as fun
+					</strong>
+					.
 				</p>
 				<p>
 					Cojiro is a{" "}
@@ -42,7 +45,7 @@ const LandingPage = () => {
 					might.
 				</p>
 				<h2 className="text-xl font-semibold">
-					Here's why you might want to give Cojiro a shot:
+					Here&apos;s why you might want to give Cojiro a shot:
 				</h2>
 				<ul className="text-left">
 					<li>
@@ -94,7 +97,7 @@ const LandingPage = () => {
 					, and community contributions are encouraged.
 				</p>
 				<p>
-					It's built using the{" "}
+					It&apos;s built using the{" "}
 					<a
 						href="https://init.tips"
 						className="text-blue-500 underline"
