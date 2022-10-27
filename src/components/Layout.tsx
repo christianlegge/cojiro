@@ -5,12 +5,14 @@ import Footer from "./Footer";
 const Layout = ({
 	children,
 	mainClass,
+	noHeader,
 }: {
 	children: ReactNode;
 	mainClass?: string;
+	noHeader?: boolean;
 }) => (
 	<>
-		<Header />
+		{noHeader && <Header />}
 		<main className={`relative flex-grow basis-0 ${mainClass}`}>
 			{children}
 		</main>
