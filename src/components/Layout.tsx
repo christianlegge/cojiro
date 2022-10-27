@@ -12,7 +12,7 @@ const Layout = ({
 	noHeader?: boolean;
 }) => (
 	<>
-		{noHeader && <Header />}
+		{noHeader || <Header />}
 		<main className={`relative flex-grow basis-0 ${mainClass}`}>
 			{children}
 		</main>
