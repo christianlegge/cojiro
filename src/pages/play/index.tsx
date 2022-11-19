@@ -301,7 +301,7 @@ const StartForm = () => {
 						Sample seed
 					</button>
 					<h2>In progress games</h2>
-					<ul className="flex flex-wrap gap-4">
+					<ul className="flex max-w-4xl flex-wrap justify-center gap-4">
 						{inProgressPlaythroughs.length === 0 ? (
 							<span>None!</span>
 						) : (
