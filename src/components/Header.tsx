@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { FiExternalLink } from "react-icons/fi";
 
 const Header = () => {
 	const { data: session, status } = useSession();
@@ -20,7 +21,16 @@ const Header = () => {
 			</div>
 			<div className="flex h-full items-center justify-center gap-12">
 				<Link href="/play">Play</Link>
-				<Link href="/how-to-play">How to Play</Link>
+				{/* <Link href="/how-to-play">How to Play</Link> */}
+				<a
+					href="https://github.com/christianlegge/cojiro"
+					className="flex items-center gap-2"
+					target="_blank"
+					rel="noreferrer"
+				>
+					Source on GitHub
+					<FiExternalLink />
+				</a>
 			</div>
 			<div className="flex items-center gap-2 normal-case tracking-normal">
 				{status === "unauthenticated" && (
