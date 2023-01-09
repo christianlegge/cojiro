@@ -3,7 +3,7 @@ import CheckSquare from "./CheckSquare";
 import { FiExternalLink } from "react-icons/fi";
 import ErrorBox from "./ErrorBox";
 import { usePlaythrough, trpc } from "../utils/trpc";
-import { useAtomValue } from "jotai/utils";
+import { useAtomValue } from "jotai";
 import {
 	idAtom,
 	ageAtom,

@@ -5,7 +5,7 @@ import ItemTracker from "../../components/ItemTracker";
 import QuestTracker from "../../components/QuestTracker";
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
-import { useUpdateAtom } from "jotai/utils";
+import { useSetAtom } from "jotai";
 import { idAtom, errorTextAtom, mapHeaderTextAtom } from "../../utils/atoms";
 import { usePlaythrough, trpc } from "../../utils/trpc";
 import SongTracker from "../../components/SongTracker";
@@ -85,9 +85,9 @@ const Cojiro = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const [winScreenOpen, setWinScreenOpen] = useState(true);
-	const setId = useUpdateAtom(idAtom);
-	const setErrorText = useUpdateAtom(errorTextAtom);
-	const setMapHeaderText = useUpdateAtom(mapHeaderTextAtom);
+	const setId = useSetAtom(idAtom);
+	const setErrorText = useSetAtom(errorTextAtom);
+	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
 	const { data: playthrough, isLoading } = usePlaythrough(id as string);
 	const queryClient = trpc.useContext();
 	const { mutate: checkLocation, isLoading: checkIsLoading } =

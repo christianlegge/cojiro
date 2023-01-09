@@ -2,7 +2,7 @@ import React from "react";
 import { formatFilename } from "../utils/filename";
 import Tooltip from "./Tooltip";
 import ItemIcon from "./ItemIcon";
-import { useUpdateAtom } from "jotai/utils";
+import { useSetAtom } from "jotai";
 import { regionAtom } from "../utils/atoms";
 
 const warpSongs = {
@@ -32,7 +32,7 @@ const SongTracker = ({
 	itemLocations: Record<string, string[]>;
 	className: string;
 }) => {
-	const setRegion = useUpdateAtom(regionAtom);
+	const setRegion = useSetAtom(regionAtom);
 	return (
 		<div className={className}>
 			{songs.map((song) => (

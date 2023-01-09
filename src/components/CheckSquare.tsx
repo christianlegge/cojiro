@@ -1,7 +1,7 @@
 import React from "react";
 import Tooltip from "./Tooltip";
 import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
-import { useAtomValue, useUpdateAtom } from "jotai/utils";
+import { useAtomValue, useSetAtom } from "jotai";
 import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
 
@@ -36,8 +36,8 @@ const CheckSquare = ({
 	const id = useAtomValue(idAtom);
 	const checkLocation = useCheckLocation(id);
 	const checkStone = useCheckStone(id);
-	const setAge = useUpdateAtom(ageAtom);
-	const setRegion = useUpdateAtom(regionAtom);
+	const setAge = useSetAtom(ageAtom);
+	const setRegion = useSetAtom(regionAtom);
 	const beatGanon = useBeatGanon(id);
 	return (
 		<Tooltip

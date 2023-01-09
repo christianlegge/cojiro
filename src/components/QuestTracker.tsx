@@ -4,7 +4,7 @@ import ItemIcon from "./ItemIcon";
 import MedallionCircle from "./MedallionCircle";
 import SongTracker from "./SongTracker";
 import Tooltip from "./Tooltip";
-import { useAtomValue } from "jotai/utils";
+import { useAtomValue } from "jotai";
 import { idAtom } from "../utils/atoms";
 
 function formatFilename(str: string): string {

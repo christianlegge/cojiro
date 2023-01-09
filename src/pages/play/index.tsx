@@ -7,7 +7,7 @@ import Link from "next/link";
 // import { Link, useNavigate } from "react-router-dom";
 import LeftRightSwitch from "../../components/LeftRightSwitch";
 import { useAtom } from "jotai";
-import { useUpdateAtom } from "jotai/utils";
+import { useSetAtom } from "jotai";
 import { ageAtom, regionAtom, errorTextAtom } from "../../utils/atoms";
 import Layout from "../../components/Layout";
 import { useSession } from "next-auth/react";
@@ -95,8 +95,8 @@ const StartForm = () => {
 	const [settings, setSettings] = useState("");
 	const [jwt, setJwt] = useState<string | null>(null);
 
-	const setAge = useUpdateAtom(ageAtom);
-	const setRegion = useUpdateAtom(regionAtom);
+	const setAge = useSetAtom(ageAtom);
+	const setRegion = useSetAtom(regionAtom);
 
 	const { data: session, status } = useSession();
 
