@@ -5,7 +5,7 @@
 		"adult": true,
 		"locations": {
 			"Song from Ocarina of Time": {
-				"top": 32.32996404379411,
+				"top": 34.32996404379411,
 				"left": 83.35582546108861,
 				"adult": false,
 				"child": true
@@ -17,7 +17,7 @@
 				"child": true
 			},
 			"HF Near Market Grotto Chest": {
-				"top": 23.24121913188412,
+				"top": 18.24121913188412,
 				"left": 76.20332883490778,
 				"adult": true,
 				"child": true
@@ -30,7 +30,7 @@
 			},
 			"HF Open Grotto Chest": {
 				"top": 81.27934735508077,
-				"left": 7.917228969860549,
+				"left": 11.917228969860549,
 				"adult": true,
 				"child": true
 			},
@@ -47,19 +47,19 @@
 				"child": true
 			},
 			"HF GS Cow Grotto": {
-				"top": 28.04527001389368,
+				"top": 20.04527001389368,
 				"left": 22.35717498875394,
 				"adult": true,
 				"child": true
 			},
 			"HF Deku Scrub Grotto": {
-				"top": 76.60513568609849,
-				"left": 3.418803418803419,
+				"top": 67.60513568609849,
+				"left": 6.418803418803419,
 				"adult": true,
 				"child": true
 			},
 			"HF Southeast Grotto Chest": {
-				"top": 86.4729158761722,
+				"top": 81.4729158761722,
 				"left": 30.7242465137202,
 				"adult": true,
 				"child": true
@@ -67,26 +67,26 @@
 		},
 		"gossip_stones": {
 			"HF (Southeast Grotto)": {
-				"top": 91.01728833212718,
+				"top": 95.01728833212718,
 				"left": 30.7242465137202,
 				"adult": true,
 				"child": true
 			},
 			"HF (Cow Grotto)": {
-				"top": 29.99285820930297,
+				"top": 35.99285820930297,
 				"left": 21.27755285650023,
 				"adult": true,
 				"child": true
 			},
 			"HF (Near Market Grotto)": {
-				"top": 29.08398371811197,
+				"top": 31.08398371811197,
 				"left": 76.15834457939721,
 				"adult": true,
 				"child": true
 			},
 			"HF (Open Grotto)": {
-				"top": 85.69388059800848,
-				"left": 7.647323436797121,
+				"top": 90.69388059800848,
+				"left": 6.647323436797121,
 				"adult": true,
 				"child": true
 			}
@@ -99,7 +99,7 @@
 				"adult": true
 			},
 			"Lake Hylia": {
-				"top": 75.3238941239547,
+				"top": 79.3238941239547,
 				"left": 0.7306889352818372,
 				"child": true,
 				"adult": true
@@ -129,7 +129,7 @@
 				"adult": true
 			},
 			"Market": {
-				"top": 28.020488614111148,
+				"top": 21.020488614111148,
 				"left": 83.19415448851774,
 				"child": true,
 				"adult": true
@@ -148,8 +148,8 @@
 				"child": true
 			},
 			"Sheik in Kakariko": {
-				"top": 57.22964763061968,
-				"left": 59.65439519158527,
+				"top": 62.22964763061968,
+				"left": 50.65439519158527,
 				"adult": true,
 				"child": false
 			},
@@ -167,7 +167,7 @@
 			},
 			"Kak Impas House Freestanding PoH": {
 				"top": 68.16524908869988,
-				"left": 80.31555221637866,
+				"left": 78.31555221637866,
 				"adult": true,
 				"child": true
 			},
@@ -202,32 +202,32 @@
 				"child": false
 			},
 			"Kak 10 Gold Skulltula Reward": {
-				"top": 69.86634264884569,
-				"left": 40.72126220886552,
+				"top": 92,
+				"left": 35,
 				"adult": true,
 				"child": true
 			},
 			"Kak 20 Gold Skulltula Reward": {
-				"top": 66.34264884568651,
-				"left": 43.87678437265214,
+				"top": 92,
+				"left": 42,
 				"adult": true,
 				"child": true
 			},
 			"Kak 30 Gold Skulltula Reward": {
-				"top": 63.54799513973268,
-				"left": 49.06085649887303,
+				"top": 92,
+				"left": 49,
 				"adult": true,
 				"child": true
 			},
 			"Kak 40 Gold Skulltula Reward": {
-				"top": 72.90400972053463,
-				"left": 45.00375657400451,
+				"top": 92,
+				"left": 56,
 				"adult": true,
 				"child": true
 			},
 			"Kak 50 Gold Skulltula Reward": {
-				"top": 68.52976913730255,
-				"left": 49.88730277986476,
+				"top": 92,
+				"left": 63,
 				"adult": true,
 				"child": true
 			},
@@ -239,7 +239,7 @@
 			},
 			"Kak GS Tree": {
 				"top": 70.35236938031592,
-				"left": 31.17956423741548,
+				"left": 29.17956423741548,
 				"adult": true,
 				"child": true
 			},
@@ -380,26 +380,26 @@
 		"adult": true,
 		"locations": {
 			"KF Midos Top Left Chest": {
-				"top": 36.62162162162162,
-				"left": 55.72987721691678,
+				"top": 40.27027027027027,
+				"left": 50.20600272851296,
 				"adult": false,
 				"child": true
 			},
 			"KF Midos Top Right Chest": {
-				"top": 40.27027027027027,
-				"left": 53.20600272851296,
+				"top": 32.62162162162162,
+				"left": 55.72987721691678,
 				"adult": false,
 				"child": true
 			},
 			"KF Midos Bottom Left Chest": {
-				"top": 41.08108108108108,
-				"left": 60.30013642564802,
+				"top": 48,
+				"left": 55.36698499317872,
 				"adult": false,
 				"child": true
 			},
 			"KF Midos Bottom Right Chest": {
-				"top": 45,
-				"left": 57.36698499317872,
+				"top": 41.08108108108108,
+				"left": 61.30013642564802,
 				"adult": false,
 				"child": true
 			},
@@ -410,7 +410,7 @@
 				"child": true
 			},
 			"KF Storms Grotto Chest": {
-				"top": 15.54054054054054,
+				"top": 21,
 				"left": 67.53069577080491,
 				"adult": true,
 				"child": true
@@ -442,26 +442,26 @@
 		},
 		"gossip_stones": {
 			"KF (Deku Tree Left)": {
-				"top": 77.70270270270271,
-				"left": 98.0900409276944,
+				"top": 72.70270270270271,
+				"left": 95.0900409276944,
 				"adult": true,
 				"child": true
 			},
 			"KF (Deku Tree Right)": {
-				"top": 88.51351351351352,
-				"left": 97.61255115961801,
+				"top": 93.51351351351352,
+				"left": 94.61255115961801,
 				"adult": true,
 				"child": true
 			},
 			"KF (Outside Storms)": {
-				"top": 12.83783783783784,
-				"left": 64.32469304229195,
+				"top": 9.83783783783784,
+				"left": 63.32469304229195,
 				"adult": true,
 				"child": true
 			},
 			"KF (Storms Grotto)": {
 				"top": 20.54054054054054,
-				"left": 64.87039563437926,
+				"left": 60.87039563437926,
 				"adult": true,
 				"child": true
 			}
@@ -553,14 +553,14 @@
 				"child": false
 			},
 			"LLR GS House Window": {
-				"top": 66.77265466693336,
-				"left": 14.08007197480882,
+				"top": 68.77265466693336,
+				"left": 13.08007197480882,
 				"adult": true,
 				"child": true
 			},
 			"LLR GS Tree": {
 				"top": 61.75215431603611,
-				"left": 16.55420602789024,
+				"left": 17.55420602789024,
 				"adult": true,
 				"child": true
 			},
@@ -707,13 +707,13 @@
 			},
 			"Graveyard Hookshot Chest": {
 				"top": 50,
-				"left": 29.08726178535607,
+				"left": 28.08726178535607,
 				"adult": true,
 				"child": false
 			},
 			"Graveyard Dampe Race Freestanding PoH": {
 				"top": 50.17857142857143,
-				"left": 33.70110330992979,
+				"left": 34.70110330992979,
 				"adult": true,
 				"child": false
 			},
@@ -783,7 +783,7 @@
 				"child": true
 			},
 			"DMC Great Fairy Reward": {
-				"top": 33.4307992202729,
+				"top": 29.4307992202729,
 				"left": 62.70236612702366,
 				"adult": true,
 				"child": false
@@ -820,7 +820,7 @@
 			},
 			"DMC GS Crate": {
 				"top": 11.89083820662768,
-				"left": 39.16562889165629,
+				"left": 41.16562889165629,
 				"adult": true,
 				"child": true
 			}
@@ -833,7 +833,7 @@
 				"child": true
 			},
 			"DMC (Upper Grotto)": {
-				"top": 33.23586744639376,
+				"top": 35.23586744639376,
 				"left": 23.6612702366127,
 				"adult": true,
 				"child": true
@@ -842,7 +842,7 @@
 		"entrances": {
 			"Death Mountain Trail": {
 				"top": 11.27420284721252,
-				"left": 36.32567849686848,
+				"left": 34.32567849686848,
 				"child": true,
 				"adult": true
 			},
@@ -866,13 +866,13 @@
 		"adult": true,
 		"locations": {
 			"Sheik in Ice Cavern": {
-				"top": 46.75850891410049,
+				"top": 43.75850891410049,
 				"left": 13.77777777777778,
 				"adult": true,
 				"child": false
 			},
 			"Ice Cavern Iron Boots Chest": {
-				"top": 50.56726094003241,
+				"top": 52.56726094003241,
 				"left": 13.77777777777778,
 				"adult": true,
 				"child": false
@@ -890,8 +890,8 @@
 				"child": false
 			},
 			"Ice Cavern Freestanding PoH": {
-				"top": 82.6580226904376,
-				"left": 73.28395061728395,
+				"top": 83.6580226904376,
+				"left": 74.28395061728395,
 				"adult": true,
 				"child": false
 			},
@@ -902,8 +902,8 @@
 				"child": false
 			},
 			"Ice Cavern GS Heart Piece Room": {
-				"top": 78.44408427876823,
-				"left": 72.93827160493827,
+				"top": 74.44408427876823,
+				"left": 70.93827160493827,
 				"adult": true,
 				"child": false
 			},
@@ -930,8 +930,8 @@
 		"adult": true,
 		"locations": {
 			"Sheik at Colossus": {
-				"top": 39.79453906461206,
-				"left": 27.48538011695906,
+				"top": 37.79453906461206,
+				"left": 25.48538011695906,
 				"adult": true,
 				"child": true
 			},
@@ -960,7 +960,7 @@
 				"child": false
 			},
 			"Colossus GS Bean Patch": {
-				"top": 48.44552581778859,
+				"top": 50.44552581778859,
 				"left": 26.31578947368421,
 				"adult": false,
 				"child": true
@@ -989,7 +989,7 @@
 		"entrances": {
 			"Spirit Temple": {
 				"top": 37.8905110305137,
-				"left": 27.55741127348643,
+				"left": 31.55741127348643,
 				"child": true,
 				"adult": true
 			},
@@ -1035,8 +1035,8 @@
 				"always": true
 			},
 			"Sheik at Temple": {
-				"top": 72.81368821292776,
-				"left": 35.70205479452055,
+				"top": 73.81368821292776,
+				"left": 33.70205479452055,
 				"adult": true,
 				"child": false
 			},
@@ -1075,26 +1075,26 @@
 				"child": true
 			},
 			"LW Near Shortcuts Grotto Chest": {
-				"top": 50,
+				"top": 65,
 				"left": 67.88124156545209,
 				"adult": true,
 				"child": true
 			},
 			"Deku Theater Skull Mask": {
-				"top": 26.95167286245353,
-				"left": 64.95726495726495,
+				"top": 5.95167286245353,
+				"left": 60.95726495726495,
 				"adult": false,
 				"child": true
 			},
 			"Deku Theater Mask of Truth": {
-				"top": 28.25278810408922,
+				"top": 5.95167286245353,
 				"left": 67.29644624381467,
 				"adult": false,
 				"child": true
 			},
 			"LW Deku Scrub Near Bridge": {
 				"top": 82.5278810408922,
-				"left": 6.837606837606837,
+				"left": 8.837606837606837,
 				"adult": false,
 				"child": true
 			},
@@ -1149,14 +1149,14 @@
 		},
 		"gossip_stones": {
 			"LW (Bridge)": {
-				"top": 82.8996282527881,
+				"top": 92.8996282527881,
 				"left": 3.643724696356275,
 				"adult": true,
 				"child": true
 			},
 			"LW (Near Shortcuts Grotto)": {
-				"top": 44.98141263940521,
-				"left": 65.22717049032839,
+				"top": 37.98141263940521,
+				"left": 60.22717049032839,
 				"adult": true,
 				"child": true
 			}
@@ -1224,8 +1224,8 @@
 				"child": true
 			},
 			"Market 10 Big Poes": {
-				"top": 92.58064516129032,
-				"left": 14.74358974358974,
+				"top": 100,
+				"left": 13.74358974358974,
 				"adult": true,
 				"child": false
 			},
@@ -1238,26 +1238,26 @@
 		},
 		"gossip_stones": {
 			"ToT (Left)": {
-				"top": 50,
-				"left": 98.18376068376068,
+				"top": 85,
+				"left": 95,
 				"adult": true,
 				"child": true
 			},
 			"ToT (Left-Center)": {
-				"top": 56.7741935483871,
-				"left": 97.86324786324786,
+				"top": 90,
+				"left": 90,
 				"adult": true,
 				"child": true
 			},
 			"ToT (Right)": {
-				"top": 85.80645161290323,
-				"left": 98.2905982905983,
+				"top": 100,
+				"left": 80,
 				"adult": true,
 				"child": true
 			},
 			"ToT (Right-Center)": {
-				"top": 75.48387096774194,
-				"left": 98.71794871794872,
+				"top": 95,
+				"left": 85,
 				"adult": true,
 				"child": true
 			}
@@ -1296,7 +1296,7 @@
 		"locations": {
 			"DMT Freestanding PoH": {
 				"top": 25.76317478457306,
-				"left": 38.64147548358075,
+				"left": 39.64147548358075,
 				"adult": true,
 				"child": true
 			},
@@ -1314,12 +1314,12 @@
 			},
 			"DMT Great Fairy Reward": {
 				"top": 7.9468499335499,
-				"left": 89.60863697705803,
+				"left": 85.60863697705803,
 				"adult": true,
 				"child": true
 			},
 			"DMT Biggoron": {
-				"top": 12.24071239764541,
+				"top": 16.24071239764541,
 				"left": 94.15204678362574,
 				"adult": true,
 				"child": false
@@ -1343,8 +1343,8 @@
 				"child": true
 			},
 			"DMT GS Above Dodongos Cavern": {
-				"top": 24.80186229261138,
-				"left": 35.85245164192533,
+				"top": 20.80186229261138,
+				"left": 33.85245164192533,
 				"adult": true,
 				"child": false
 			},
@@ -1363,7 +1363,7 @@
 				"child": true
 			},
 			"DMT (Storms Grotto)": {
-				"top": 57.03787452305976,
+				"top": 62.03787452305976,
 				"left": 59.5591542959964,
 				"adult": true,
 				"child": true
@@ -1385,6 +1385,12 @@
 			"Death Mountain Crater": {
 				"top": 7.584394799815706,
 				"left": 93.84133611691023,
+				"child": true,
+				"adult": true
+			},
+			"Dodongos Cavern": {
+				"top": 26.584394799815706,
+				"left": 45.84133611691023,
 				"child": true,
 				"adult": true
 			}
@@ -1414,8 +1420,8 @@
 				"child": false
 			},
 			"GC Maze Left Chest": {
-				"top": 7.099236641221374,
-				"left": 45.9050240880936,
+				"top": 3.099236641221374,
+				"left": 41.9050240880936,
 				"adult": true,
 				"child": true
 			},
@@ -1432,8 +1438,8 @@
 				"child": true
 			},
 			"GC Maze Center Chest": {
-				"top": 8.244274809160306,
-				"left": 48.79559532002753,
+				"top": 6.244274809160306,
+				"left": 47.19559532002753,
 				"adult": true,
 				"child": true
 			},
@@ -1445,7 +1451,7 @@
 			},
 			"GC GS Boulder Maze": {
 				"top": 9.618320610687023,
-				"left": 55.19614590502409,
+				"left": 60.19614590502409,
 				"adult": true,
 				"child": true
 			},
@@ -1476,8 +1482,8 @@
 		},
 		"gossip_stones": {
 			"GC (Maze)": {
-				"top": 6.183206106870229,
-				"left": 51.68616655196146,
+				"top": 4.183206106870229,
+				"left": 55.68616655196146,
 				"adult": true,
 				"child": true
 			},
@@ -1521,7 +1527,7 @@
 				"child": true
 			},
 			"ZR Open Grotto Chest": {
-				"top": 59.44912012241775,
+				"top": 57.44912012241775,
 				"left": 46.96969696969697,
 				"adult": true,
 				"child": true
@@ -1557,14 +1563,14 @@
 				"child": true
 			},
 			"ZR GS Ladder": {
-				"top": 18.82172915072686,
+				"top": 19.82172915072686,
 				"left": 75.27272727272727,
 				"adult": true,
 				"child": true
 			},
 			"ZR Frogs in the Rain": {
-				"top": 55.77658760520276,
-				"left": 32.54545454545455,
+				"top": 57.77658760520276,
+				"left": 30.54545454545455,
 				"adult": false,
 				"child": true
 			},
@@ -1576,7 +1582,7 @@
 			},
 			"ZR GS Near Raised Grottos": {
 				"top": 60.29074215761285,
-				"left": 44.3030303030303,
+				"left": 41.3030303030303,
 				"adult": true,
 				"child": true
 			},
@@ -1589,8 +1595,8 @@
 		},
 		"gossip_stones": {
 			"ZR (Near Domain)": {
-				"top": 15.83779648048967,
-				"left": 78.18181818181819,
+				"top": 14.83779648048967,
+				"left": 80.18181818181819,
 				"adult": true,
 				"child": true
 			},
@@ -1601,7 +1607,7 @@
 				"child": true
 			},
 			"ZR (Open Grotto)": {
-				"top": 63.81025248661056,
+				"top": 64.81025248661056,
 				"left": 46.90909090909091,
 				"adult": true,
 				"child": true
@@ -1693,7 +1699,7 @@
 		"adult": true,
 		"locations": {
 			"ZF Great Fairy Reward": {
-				"top": 72.11302211302211,
+				"top": 75.11302211302211,
 				"left": 93.94292370413513,
 				"adult": true,
 				"child": true
@@ -1717,8 +1723,8 @@
 				"child": true
 			},
 			"ZF GS Tree": {
-				"top": 61.3022113022113,
-				"left": 84.2748980780431,
+				"top": 55.3022113022113,
+				"left": 80.2748980780431,
 				"adult": false,
 				"child": true
 			},
@@ -1731,7 +1737,7 @@
 		},
 		"gossip_stones": {
 			"ZF (Fairy)": {
-				"top": 65.23341523341523,
+				"top": 63.23341523341523,
 				"left": 89.22539312754805,
 				"adult": true,
 				"child": true
@@ -1789,13 +1795,13 @@
 			},
 			"LH GS Lab Crate": {
 				"top": 41.384356328061,
-				"left": 38.73144399460189,
+				"left": 34.73144399460189,
 				"adult": true,
 				"child": false
 			},
 			"LH Lab Dive": {
-				"top": 35.44907536156109,
-				"left": 42.28520017993702,
+				"top": 45.44907536156109,
+				"left": 40.28520017993702,
 				"adult": true,
 				"child": true
 			},
@@ -2002,8 +2008,8 @@
 				"child": false
 			},
 			"GF HBA 1000 Points": {
-				"top": 39.72665148063781,
-				"left": 85.15519568151147,
+				"top": 38.72665148063781,
+				"left": 81.15519568151147,
 				"adult": true,
 				"child": false
 			},
@@ -2118,8 +2124,8 @@
 				"child": true
 			},
 			"Dodongos Cavern King Dodongo Heart": {
-				"top": 44.50987309394623,
-				"left": 32.25371120107962,
+				"top": 41.50987309394623,
+				"left": 29.25371120107962,
 				"adult": true,
 				"child": true
 			},
@@ -2237,8 +2243,8 @@
 				"child": false
 			},
 			"Wasteland Chest": {
-				"top": 48.10517134017365,
-				"left": 74.1340530814215,
+				"top": 50.10517134017365,
+				"left": 70.1340530814215,
 				"adult": true,
 				"child": false
 			},
@@ -2311,8 +2317,8 @@
 				"child": true
 			},
 			"Deku Tree Queen Gohma Heart": {
-				"top": 75.07317073170732,
-				"left": 82.55,
+				"top": 76.07317073170732,
+				"left": 80.55,
 				"adult": false,
 				"child": true
 			},
@@ -2323,19 +2329,19 @@
 				"child": true
 			},
 			"Deku Tree Slingshot Room Side Chest": {
-				"top": 21.80487804878049,
-				"left": 19.6,
+				"top": 18.00487804878049,
+				"left": 17.6,
 				"adult": false,
 				"child": true
 			},
 			"Deku Tree Slingshot Chest": {
 				"top": 23.26829268292683,
-				"left": 18.2,
+				"left": 20.2,
 				"adult": false,
 				"child": true
 			},
 			"Deku Tree Compass Chest": {
-				"top": 7.365853658536586,
+				"top": 6.365853658536586,
 				"left": 36.85,
 				"adult": false,
 				"child": true
@@ -2354,7 +2360,7 @@
 			},
 			"Deku Tree GS Compass Room": {
 				"top": 11.95121951219512,
-				"left": 35.7,
+				"left": 32.7,
 				"adult": false,
 				"child": true
 			},
@@ -2365,8 +2371,8 @@
 				"child": true
 			},
 			"Deku Tree GS Basement Vines": {
-				"top": 59.65853658536585,
-				"left": 64.85,
+				"top": 57.65853658536585,
+				"left": 63.85,
 				"adult": false,
 				"child": true
 			},
@@ -2400,7 +2406,7 @@
 			},
 			"Jabu Jabus Belly Barinade Heart": {
 				"top": 52.08807075622708,
-				"left": 74.80881691408007,
+				"left": 72.80881691408007,
 				"adult": false,
 				"child": true
 			},
@@ -2436,13 +2442,13 @@
 			},
 			"Jabu Jabus Belly GS Lobby Basement Upper": {
 				"top": 71.96207281533616,
-				"left": 70.35537561853351,
+				"left": 69.35537561853351,
 				"adult": false,
 				"child": true
 			},
 			"Jabu Jabus Belly GS Lobby Basement Lower": {
-				"top": 73.3909226365793,
-				"left": 74.1340530814215,
+				"top": 73.9909226365793,
+				"left": 75.1340530814215,
 				"adult": false,
 				"child": true
 			},
@@ -2493,8 +2499,8 @@
 				"child": true
 			},
 			"Bottom of the Well Center Skulltula Chest": {
-				"top": 40.16666666666666,
-				"left": 60.3125,
+				"top": 39.16666666666666,
+				"left": 61.3125,
 				"adult": false,
 				"child": true
 			},
@@ -2547,7 +2553,7 @@
 				"child": true
 			},
 			"Bottom of the Well GS Like Like Cage": {
-				"top": 40.66666666666666,
+				"top": 37.66666666666666,
 				"left": 80.375,
 				"adult": false,
 				"child": true
@@ -2565,8 +2571,8 @@
 				"child": true
 			},
 			"Bottom of the Well Right Bottom Fake Wall Chest": {
-				"top": 43.25,
-				"left": 57.75,
+				"top": 44.25,
+				"left": 56.75,
 				"adult": false,
 				"child": true
 			}
@@ -2588,12 +2594,12 @@
 		"locations": {
 			"Phantom Ganon": {
 				"top": 83.78093201200411,
-				"left": 40.89068825910931,
+				"left": 37.89068825910931,
 				"adult": true,
 				"child": false
 			},
 			"Forest Temple Phantom Ganon Heart": {
-				"top": 85.81022794309072,
+				"top": 87.81022794309072,
 				"left": 42.82501124606388,
 				"adult": true,
 				"child": false
@@ -2629,7 +2635,7 @@
 				"child": false
 			},
 			"Forest Temple GS Basement": {
-				"top": 91.84979916656276,
+				"top": 87.84979916656276,
 				"left": 12.19073324336482,
 				"adult": true,
 				"child": false
@@ -2724,13 +2730,13 @@
 		"locations": {
 			"Volvagia": {
 				"top": 66.36624168346009,
-				"left": 12.68556005398111,
+				"left": 10.68556005398111,
 				"adult": true,
 				"child": false
 			},
 			"Fire Temple Volvagia Heart": {
 				"top": 67.2879950401748,
-				"left": 15.5195681511471,
+				"left": 17.5195681511471,
 				"adult": true,
 				"child": false
 			},
@@ -2790,7 +2796,7 @@
 			},
 			"Fire Temple GS Scarecrow Top": {
 				"top": 26.26997066636962,
-				"left": 85.06522717049033,
+				"left": 83.06522717049033,
 				"adult": true,
 				"child": false
 			},
@@ -2826,7 +2832,7 @@
 			},
 			"Fire Temple Boulder Maze Side Room Chest": {
 				"top": 59.70913410718708,
-				"left": 77.05802968960863,
+				"left": 79.05802968960863,
 				"adult": true,
 				"child": false
 			},
@@ -2837,7 +2843,7 @@
 				"child": false
 			},
 			"Fire Temple Boulder Maze Upper Chest": {
-				"top": 46.80458711318096,
+				"top": 44.80458711318096,
 				"left": 96.26630679262259,
 				"adult": true,
 				"child": false
@@ -2866,7 +2872,7 @@
 		"locations": {
 			"Water Temple Morpha Heart": {
 				"top": 34.91445929867744,
-				"left": 84.43544759334233,
+				"left": 82.43544759334233,
 				"adult": true,
 				"child": false
 			},
@@ -3007,38 +3013,38 @@
 				"child": false
 			},
 			"Shadow Temple Invisible Blades Visible Chest": {
-				"top": 27.66039222616901,
-				"left": 96.71614934772829,
+				"top": 14.66039222616901,
+				"left": 94.71614934772829,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple Invisible Blades Invisible Chest": {
-				"top": 30.51424221775787,
-				"left": 98.56050382366172,
+				"top": 38.51424221775787,
+				"left": 94.71614934772829,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple Falling Spikes Lower Chest": {
-				"top": 69.04121710420756,
-				"left": 78.31758884390463,
+				"top": 82.04121710420756,
+				"left": 74.31758884390463,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple Falling Spikes Upper Chest": {
 				"top": 63.88233442710461,
-				"left": 81.60143949617634,
+				"left": 86.60143949617634,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple Falling Spikes Switch Chest": {
-				"top": 70.6876690224319,
-				"left": 80.38686459739091,
+				"top": 82.04121710420756,
+				"left": 81.38686459739091,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple Invisible Spikes Chest": {
 				"top": 55.65007483598288,
-				"left": 63.74269005847953,
+				"left": 64.74269005847953,
 				"adult": true,
 				"child": false
 			},
@@ -3056,13 +3062,13 @@
 			},
 			"Shadow Temple After Wind Enemy Chest": {
 				"top": 35.67312489486082,
-				"left": 59.60413855150697,
+				"left": 57.60413855150697,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple After Wind Hidden Chest": {
-				"top": 37.42934027430012,
-				"left": 62.16824111560954,
+				"top": 40.42934027430012,
+				"left": 63.16824111560954,
 				"adult": true,
 				"child": false
 			},
@@ -3073,8 +3079,8 @@
 				"child": false
 			},
 			"Shadow Temple Boss Key Chest": {
-				"top": 79.79803630327328,
-				"left": 6.972559604138551,
+				"top": 77.79803630327328,
+				"left": 9.972559604138551,
 				"adult": true,
 				"child": false
 			},
@@ -3086,18 +3092,18 @@
 			},
 			"Shadow Temple Bongo Bongo Heart": {
 				"top": 90.99390934719884,
-				"left": 47.14349977507872,
+				"left": 45.14349977507872,
 				"adult": true,
 				"child": false
 			},
 			"Bongo Bongo": {
 				"top": 88.57911320046979,
-				"left": 49.66261808367071,
+				"left": 51.66261808367071,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple GS Triple Giant Pot": {
-				"top": 94.17704972243257,
+				"top": 98.17704972243257,
 				"left": 2.744039586144849,
 				"adult": true,
 				"child": false
@@ -3109,14 +3115,14 @@
 				"child": false
 			},
 			"Shadow Temple GS Single Giant Pot": {
-				"top": 63.11399019859991,
-				"left": 58.83940620782726,
+				"top": 70.11399019859991,
+				"left": 54.83940620782726,
 				"adult": true,
 				"child": false
 			},
 			"Shadow Temple GS Falling Spikes Room": {
-				"top": 68.60216325934773,
-				"left": 81.55645524066577,
+				"top": 66.60216325934773,
+				"left": 80.55645524066577,
 				"adult": true,
 				"child": false
 			},
@@ -3149,8 +3155,8 @@
 				"child": false
 			},
 			"Gerudo Training Ground Maze Right Side Chest": {
-				"top": 51.64233973190692,
-				"left": 56.14035087719298,
+				"top": 47.64233973190692,
+				"left": 58.14035087719298,
 				"adult": true,
 				"child": false
 			},
@@ -3179,26 +3185,26 @@
 				"child": false
 			},
 			"Gerudo Training Ground Heavy Block First Chest": {
-				"top": 10.58038179873215,
-				"left": 59.78407557354926,
+				"top": 0,
+				"left": 53,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Heavy Block Second Chest": {
-				"top": 6.633731445236823,
-				"left": 58.88439046333783,
+				"top": 0,
+				"left": 59,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Heavy Block Third Chest": {
-				"top": 9.320812536978321,
-				"left": 63.06792622582096,
+				"top": 0,
+				"left": 65,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Heavy Block Fourth Chest": {
-				"top": 4.786363194664544,
-				"left": 60.90868196131354,
+				"top": 0,
+				"left": 71,
 				"adult": true,
 				"child": false
 			},
@@ -3215,8 +3221,8 @@
 				"child": false
 			},
 			"Gerudo Training Ground Hammer Room Clear Chest": {
-				"top": 50.21482790191924,
-				"left": 91.58794421952317,
+				"top": 56.21482790191924,
+				"left": 89.58794421952317,
 				"adult": true,
 				"child": false
 			},
@@ -3245,32 +3251,32 @@
 				"child": false
 			},
 			"Gerudo Training Ground Hidden Ceiling Chest": {
-				"top": 35.18396804499024,
-				"left": 47.18848403058929,
+				"top": 37.18396804499024,
+				"left": 44.88848403058929,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Maze Path First Chest": {
-				"top": 45.93229241195623,
-				"left": 44.26450742240216,
+				"top": 90,
+				"left": 20,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Maze Path Final Chest": {
-				"top": 49.20717249251618,
-				"left": 51.01214574898786,
+				"top": 90,
+				"left": 38,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Maze Path Second Chest": {
-				"top": 42.57344104727936,
-				"left": 50.96716149347728,
+				"top": 90,
+				"left": 26,
 				"adult": true,
 				"child": false
 			},
 			"Gerudo Training Ground Maze Path Third Chest": {
-				"top": 45.4284647072547,
-				"left": 53.53126405757985,
+				"top": 90,
+				"left": 32,
 				"adult": true,
 				"child": false
 			}
@@ -3309,14 +3315,14 @@
 				"child": true
 			},
 			"Spirit Temple Mirror Shield Chest": {
-				"top": 87.52372423341953,
+				"top": 89.52372423341953,
 				"left": 65.8119658119658,
 				"adult": true,
 				"child": false
 			},
 			"Spirit Temple Hallway Left Invisible Chest": {
-				"top": 94.90631479375878,
-				"left": 84.21052631578948,
+				"top": 98.90631479375878,
+				"left": 87.21052631578948,
 				"adult": true,
 				"child": false
 			},
@@ -3328,18 +3334,18 @@
 			},
 			"Spirit Temple Near Four Armos Chest": {
 				"top": 82.36480552860415,
-				"left": 98.69545659019343,
+				"left": 96.69545659019343,
 				"adult": true,
 				"child": false
 			},
 			"Spirit Temple Statue Room Hand Chest": {
 				"top": 46.2523745948965,
-				"left": 47.68331084120558,
+				"left": 45.68331084120558,
 				"adult": true,
 				"child": false
 			},
 			"Spirit Temple Early Adult Right Chest": {
-				"top": 81.74217740905746,
+				"top": 79.74217740905746,
 				"left": 66.53171390013495,
 				"adult": true,
 				"child": false
@@ -3363,25 +3369,25 @@
 				"child": true
 			},
 			"Spirit Temple Child Bridge Chest": {
-				"top": 49.81024956373469,
+				"top": 51.81024956373469,
 				"left": 20.19793072424651,
 				"adult": false,
 				"child": true
 			},
 			"Spirit Temple Child Climb East Chest": {
-				"top": 38.86978403455725,
+				"top": 25,
 				"left": 40.7557354925776,
 				"adult": true,
 				"child": true
 			},
 			"Spirit Temple Child Climb North Chest": {
-				"top": 36.55716530481243,
-				"left": 39.76608187134503,
+				"top": 25,
+				"left": 33.76608187134503,
 				"adult": true,
 				"child": true
 			},
 			"Spirit Temple Map Chest": {
-				"top": 52.65654953880524,
+				"top": 54.65654953880524,
 				"left": 49.842555105713,
 				"adult": true,
 				"child": true
@@ -3399,14 +3405,14 @@
 				"child": false
 			},
 			"Spirit Temple First Mirror Left Chest": {
-				"top": 68.66698689857711,
-				"left": 58.29959514170041,
+				"top": 66.66698689857711,
+				"left": 61.29959514170041,
 				"adult": true,
 				"child": false
 			},
 			"Spirit Temple First Mirror Right Chest": {
-				"top": 69.82329626344952,
-				"left": 56.54520917678813,
+				"top": 70.82329626344952,
+				"left": 54.54520917678813,
 				"adult": true,
 				"child": false
 			},
@@ -3435,8 +3441,8 @@
 				"child": true
 			},
 			"Spirit Temple GS Lobby": {
-				"top": 40.91556214163921,
-				"left": 47.953216374269,
+				"top": 35.91556214163921,
+				"left": 49.953216374269,
 				"adult": true,
 				"child": false
 			},
@@ -3476,14 +3482,14 @@
 				"child": false
 			},
 			"Ganons Castle Water Trial Left Chest": {
-				"top": 65.59877955758962,
-				"left": 48.897885739991,
+				"top": 64.59877955758962,
+				"left": 50.897885739991,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Water Trial Right Chest": {
-				"top": 68.24307144673277,
-				"left": 46.42375168690958,
+				"top": 69.24307144673277,
+				"left": 44.42375168690958,
 				"adult": true,
 				"child": false
 			},
@@ -3500,44 +3506,44 @@
 				"child": false
 			},
 			"Ganons Castle Light Trial First Left Chest": {
-				"top": 50.54665649631325,
-				"left": 20.6927575348628,
+				"top": 28,
+				"left": 18,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial Second Left Chest": {
-				"top": 48.61428934655479,
-				"left": 18.4885290148448,
+				"top": 14,
+				"left": 15,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial Third Left Chest": {
-				"top": 45.05466564963132,
-				"left": 17.58884390463338,
+				"top": 0,
+				"left": 18,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial First Right Chest": {
-				"top": 46.3768115942029,
-				"left": 24.38146648672964,
+				"top": 28,
+				"left": 26,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial Second Right Chest": {
-				"top": 42.20696669209255,
-				"left": 24.20152946468736,
+				"top": 14,
+				"left": 29,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial Third Right Chest": {
-				"top": 40.57971014492754,
-				"left": 21.99730094466937,
+				"top": 0,
+				"left": 26,
 				"adult": true,
 				"child": false
 			},
 			"Ganons Castle Light Trial Invisible Enemies Chest": {
-				"top": 46.17340452580727,
-				"left": 21.18758434547908,
+				"top": 14,
+				"left": 22,
 				"adult": true,
 				"child": false
 			},
@@ -3554,8 +3560,8 @@
 				"child": false
 			},
 			"Ganons Castle Spirit Trial Invisible Chest": {
-				"top": 48.10577167556573,
-				"left": 8.412055780476834,
+				"top": 50.10577167556573,
+				"left": 6.412055780476834,
 				"adult": true,
 				"child": false
 			},
