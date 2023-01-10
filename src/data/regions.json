@@ -240,25 +240,25 @@
 			"Kak GS Tree": {
 				"top": 70.35236938031592,
 				"left": 29.17956423741548,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"Kak GS Guards House": {
 				"top": 35.84447144592953,
 				"left": 9.616829451540195,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"Kak GS Watchtower": {
 				"top": 32.1992709599028,
 				"left": 34.86100676183321,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"Kak GS Skulltula House": {
 				"top": 76.67071688942892,
 				"left": 49.73703981968445,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"Kak GS House Under Construction": {
