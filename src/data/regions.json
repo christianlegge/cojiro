@@ -144,8 +144,8 @@
 			"Song from Windmill": {
 				"top": 39.61117861482381,
 				"left": 75.05634861006762,
-				"adult": false,
-				"child": true
+				"adult": true,
+				"child": false
 			},
 			"Sheik in Kakariko": {
 				"top": 62.22964763061968,
