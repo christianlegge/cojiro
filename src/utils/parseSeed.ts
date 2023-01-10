@@ -17,14 +17,14 @@ export type ParsedSeed = {
 
 const requiredSettings = {
 	shopsanity: "off",
-	mq_dungeons: 0,
+	mq_dungeons_mode: "vanilla",
 	triforce_hunt: false,
 	world_count: 1,
 	shuffle_beans: false,
 	shuffle_ocarinas: false,
 	shuffle_interior_entrances: "off",
 	shuffle_grotto_entrances: false,
-	shuffle_dungeon_entrances: false,
+	shuffle_dungeon_entrances: "off",
 	shuffle_overworld_entrances: false,
 };
 

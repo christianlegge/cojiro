@@ -380,7 +380,6 @@ export const playthroughRouter = createRouter()
 					},
 				},
 			});
-			// console.log(returnObj);
 			return returnObj;
 		},
 	})

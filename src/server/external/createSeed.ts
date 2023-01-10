@@ -12,7 +12,7 @@ const createSeed = async (params: {
 			{
 				params: {
 					key: env.OOTRANDOMIZER_API_KEY,
-					version: "6.2",
+					version: "7.1",
 					...params,
 				},
 			}
@@ -20,8 +20,11 @@ const createSeed = async (params: {
 
 		return response.data as SeedReturnType;
 	} catch (err) {
+		console.log(err);
 		if (axios.isAxiosError(err) && typeof err.response?.data === "string") {
-			if (err.response.data.includes("must have spoiler enabled")) {
+			if (
+				err.response.data.includes("must have at least one output type")
+			) {
 				throw new TRPCError({
 					code: "BAD_REQUEST",
 					message:
@@ -102,7 +105,7 @@ export type SeedReturnType = {
 		shuffle_medigoron_carpet_salesman: boolean;
 		shuffle_interior_entrances: string;
 		shuffle_grotto_entrances: boolean;
-		shuffle_dungeon_entrances: boolean;
+		shuffle_dungeon_entrances: string;
 		shuffle_overworld_entrances: boolean;
 		owl_drops: boolean;
 		warp_songs: boolean;
@@ -118,13 +121,15 @@ export type SeedReturnType = {
 		lacs_condition: string;
 		enhance_map_compass: boolean;
 		mq_dungeons_random: boolean;
-		mq_dungeons: number;
+		mq_dungeons_mode: string;
 		disabled_locations: string[];
 		allowed_tricks: string[];
 		logic_earliest_adult_trade: string;
 		logic_latest_adult_trade: string;
 		starting_equipment: string[];
-		starting_items: string[];
+		starting_items: {
+			[key: string]: number;
+		};
 		starting_songs: string[];
 		ocarina_songs: boolean;
 		correct_chest_sizes: boolean;
@@ -144,9 +149,6 @@ export type SeedReturnType = {
 		starting_age: string;
 	};
 	randomized_settings: { starting_age: "child" | "adult" };
-	starting_items: {
-		[key: string]: number;
-	};
 	item_pool: {
 		[key: string]: number;
 	};

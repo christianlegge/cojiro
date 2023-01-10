@@ -42,9 +42,12 @@ const indexRouter = createRouter()
 					settingsString: input.settingsString,
 				});
 				seed = parseSeed(apiSeed);
-				startingItems = Object.keys(apiSeed.starting_items).flatMap(
-					(el) =>
-						Array(Math.min(apiSeed.starting_items[el], 5)).fill(el)
+				startingItems = Object.keys(
+					apiSeed.settings.starting_items
+				).flatMap((el) =>
+					Array(
+						Math.min(apiSeed.settings.starting_items[el], 5)
+					).fill(el)
 				);
 			}
 			const playthrough = await ctx.prisma.playthrough.create({
