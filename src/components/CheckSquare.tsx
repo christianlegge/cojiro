@@ -1,6 +1,11 @@
 import React from "react";
 import Tooltip from "./Tooltip";
-import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
+import {
+	useBeatGanon,
+	useLightArrowsHint,
+	useCheckLocation,
+	useCheckStone,
+} from "../utils/trpc";
 import { useAtomValue, useSetAtom } from "jotai";
 import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
@@ -9,6 +14,7 @@ import songs from "../data/songs.json";
 const checkImages = {
 	"Take Master Sword": "tot-pedestal-sword.png",
 	"Place Master Sword": "tot-pedestal.png",
+	"Light Arrows Hint": "light-arrows.png",
 	Ganon: "ganon.png",
 	song: "prelude-of-light.png",
 	gossip_stone: "gossip-stone.png",
@@ -40,6 +46,7 @@ const CheckSquare = ({
 	const checkStone = useCheckStone(id);
 	const setAge = useSetAtom(ageAtom);
 	const setRegion = useSetAtom(regionAtom);
+	const checkLightArrowsHint = useLightArrowsHint(id);
 	const beatGanon = useBeatGanon(id);
 	return (
 		<Tooltip
@@ -75,6 +82,8 @@ const CheckSquare = ({
 						setAge("adult");
 					} else if (check === "Place Master Sword") {
 						setAge("child");
+					} else if (check === "Light Arrows Hint") {
+						checkLightArrowsHint();
 					} else if (check === "Ganon") {
 						beatGanon();
 					} else if (!checked) {

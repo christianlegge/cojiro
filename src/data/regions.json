@@ -3469,6 +3469,13 @@
 		"adult": true,
 		"locations": {
 			"Ganon": {
+				"top": 0,
+				"left": 81.5,
+				"adult": true,
+				"child": false,
+				"always": true
+			},
+			"Light Arrows Hint": {
 				"top": 12,
 				"left": 81.5,
 				"adult": true,

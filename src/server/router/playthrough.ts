@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { ParsedSeed } from "../../utils/parseSeed";
 import parseHint from "../../utils/parseHint";
+import regions from "../../utils/regions";
 
 export const playthroughRouter = createRouter()
 	.query("get", {
@@ -381,6 +382,89 @@ export const playthroughRouter = createRouter()
 				},
 			});
 			return returnObj;
+		},
+	})
+	.mutation("checkLightArrowsHint", {
+		input: z.object({
+			id: z.string().cuid(),
+		}),
+		async resolve({ ctx, input }) {
+			const playthrough = await ctx.prisma.playthrough.findUnique({
+				where: { id: input.id },
+				include: { seed: true, user: true },
+			});
+			if (!playthrough) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
+			}
+			const seed = playthrough.seed as unknown as ParsedSeed;
+			if (!seed) {
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Playthrough corrupt: seed missing",
+				});
+			}
+			if (playthrough.checked.includes("Light Arrows Hint")) {
+				throw new TRPCError({
+					code: "BAD_REQUEST",
+					message: `Playthrough already checked Light Arrows Hint`,
+				});
+			}
+			let lightArrowsRegion = "";
+			try {
+				const lightArrowsLocation = Object.keys(seed.locations).filter(
+					(loc) => seed.locations[loc].item === "Light Arrows"
+				)[0];
+				lightArrowsRegion = Object.keys(regions).filter((region) =>
+					Object.keys(regions[region].locations).includes(
+						lightArrowsLocation
+					)
+				)[0];
+			} catch (err) {
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Unable to find Light Arrows in seed",
+				});
+			}
+			if (playthrough.finished) {
+				throw new TRPCError({
+					code: "FORBIDDEN",
+					message: `Game already finished, but Light Arrows were in ${lightArrowsRegion}`,
+				});
+			}
+			await ctx.prisma.playthrough.update({
+				where: { id: playthrough.id },
+				data: {
+					known_locations: {
+						...(playthrough.known_locations as Record<
+							string,
+							string
+						>),
+						[lightArrowsRegion]: "Light Arrows",
+					},
+					checked: {
+						push: "Light Arrows Hint",
+					},
+				},
+			});
+			return {
+				region: lightArrowsRegion,
+				message: `Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from ${lightArrowsRegion}!`,
+			};
 		},
 	})
 	.mutation("beatGanon", {

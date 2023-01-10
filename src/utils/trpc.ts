@@ -190,6 +190,60 @@ export const useCheckStone = (id: string) => {
 	return (stone: string) => mutation.mutate({ id, stone });
 };
 
+export const useLightArrowsHint = (id: string) => {
+	const setFetching = useSetAtom(fetchingAtom);
+	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
+	const setErrorText = useSetAtom(errorTextAtom);
+	const queryClient = trpc.useContext();
+
+	const mutation = trpc.useMutation("playthrough.checkLightArrowsHint", {
+		onMutate() {
+			setFetching(true);
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					return {
+						...old,
+						checked: [...old.checked, "Light Arrows Hint"],
+					};
+				}
+			);
+		},
+		onSuccess: ({ message, region }) => {
+			queryClient.setQueryData(
+				["playthrough.get", { id }],
+				(old: any) => {
+					if (!old) {
+						return undefined;
+					}
+					return {
+						...old,
+						checked: [...old.checked, "Light Arrows Hint"],
+						known_locations: {
+							...old.known_locations,
+							[region]: "Light Arrows",
+						},
+					};
+				}
+			);
+			setErrorText("");
+			setMapHeaderText(message);
+		},
+		onError: (err) => {
+			setErrorText(err.message);
+			queryClient.invalidateQueries(["playthrough.get"]);
+		},
+		onSettled: () => {
+			setFetching(false);
+		},
+	});
+
+	return () => mutation.mutate({ id });
+};
+
 export const useBeatGanon = (id: string) => {
 	const queryClient = trpc.useContext();
 
