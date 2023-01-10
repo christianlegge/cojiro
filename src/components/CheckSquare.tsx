@@ -4,11 +4,13 @@ import { useBeatGanon, useCheckLocation, useCheckStone } from "../utils/trpc";
 import { useAtomValue, useSetAtom } from "jotai";
 import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
+import songs from "../data/songs.json";
 
 const checkImages = {
 	"Take Master Sword": "tot-pedestal-sword.png",
 	"Place Master Sword": "tot-pedestal.png",
 	Ganon: "ganon.png",
+	song: "prelude-of-light.png",
 	gossip_stone: "gossip-stone.png",
 	skulltula: "skulltula.png",
 	piece_of_heart: "heartpiecemodel.png",
@@ -110,6 +112,8 @@ const CheckSquare = ({
 						src={`/images/${
 							check in checkImages
 								? checkImages[check as keyof typeof checkImages]
+								: check in songs.songChecks
+								? checkImages.song
 								: type === "gossip_stones"
 								? checkImages.gossip_stone
 								: check.includes("GS")

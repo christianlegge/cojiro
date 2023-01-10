@@ -4,24 +4,7 @@ import Tooltip from "./Tooltip";
 import ItemIcon from "./ItemIcon";
 import { useSetAtom } from "jotai";
 import { regionAtom } from "../utils/atoms";
-
-const warpSongs = {
-	"Minuet of Forest": "Sacred Forest Meadow",
-	"Bolero of Fire": "Death Mountain Crater",
-	"Serenade of Water": "Lake Hylia",
-	"Requiem of Spirit": "Desert Colossus",
-	"Nocturne of Shadow": "Graveyard",
-	"Prelude of Light": "Temple of Time",
-};
-
-const songs = [
-	"Zeldas Lullaby",
-	"Eponas Song",
-	"Sarias Song",
-	"Suns Song",
-	"Song of Time",
-	"Song of Storms",
-].concat(Object.keys(warpSongs));
+import songData from "../data/songs.json";
 
 const SongTracker = ({
 	items,
@@ -35,7 +18,7 @@ const SongTracker = ({
 	const setRegion = useSetAtom(regionAtom);
 	return (
 		<div className={className}>
-			{songs.map((song) => (
+			{songData.songs.map((song) => (
 				<Tooltip
 					key={song}
 					content={
@@ -49,16 +32,21 @@ const SongTracker = ({
 					<ItemIcon
 						src={`/images/${formatFilename(song)}.png`}
 						className={`h-full w-full ${
-							items.includes(song) && song in warpSongs
+							items.includes(song) && song in songData.warpSongs
 								? "cursor-pointer"
 								: "cursor-default"
 						}`}
 						has={items.includes(song)}
 						alt={song}
 						onClick={() => {
-							if (items.includes(song) && song in warpSongs) {
+							if (
+								items.includes(song) &&
+								song in songData.warpSongs
+							) {
 								setRegion(
-									warpSongs[song as keyof typeof warpSongs]
+									songData.warpSongs[
+										song as keyof typeof songData.warpSongs
+									]
 								);
 							}
 						}}

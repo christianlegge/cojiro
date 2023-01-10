@@ -1,0 +1,38 @@
+{
+	"songChecks": {
+		"Song from Impa": "Zeldas Lullaby",
+		"Song from Malon": "Eponas Song",
+		"Song from Saria": "Sarias Song",
+		"Song from Royal Familys Tomb": "Suns Song",
+		"Song from Ocarina of Time": "Song of Time",
+		"Song from Windmill": "Song of Storms",
+		"Sheik in Forest": "Minuet of Forest",
+		"Sheik in Crater": "Bolero of Fire",
+		"Sheik in Ice Cavern": "Minuet of Forest",
+		"Sheik at Colossus": "Requiem of Spirit",
+		"Sheik in Kakariko": "Nocturne of Shadow",
+		"Sheik at Temple": "Prelude of Light"
+	},
+	"songs": [
+		"Zeldas Lullaby",
+		"Eponas Song",
+		"Sarias Song",
+		"Suns Song",
+		"Song of Time",
+		"Song of Storms",
+		"Minuet of Forest",
+		"Bolero of Fire",
+		"Serenade of Water",
+		"Requiem of Spirit",
+		"Nocturne of Shadow",
+		"Prelude of Light"
+	],
+	"warpSongs": {
+		"Minuet of Forest": "Sacred Forest Meadow",
+		"Bolero of Fire": "Death Mountain Crater",
+		"Serenade of Water": "Lake Hylia",
+		"Requiem of Spirit": "Desert Colossus",
+		"Nocturne of Shadow": "Graveyard",
+		"Prelude of Light": "Temple of Time"
+	}
+}
