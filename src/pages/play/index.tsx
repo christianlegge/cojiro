@@ -20,8 +20,8 @@ const settingsPresets: { [key: string]: string } = {
 		"BSA4BGBSL62A6LTDDSAJFQNALCAECKAEAAABAJAAAEACSSAAAC2ALSFWBA3RYEGKL3V8YZELVAFAJAASAESHFEABE7KACDCSAAJJHNLB",
 	"Scrub Tournament":
 		"BSA4BGBSL62AWLTDDSSMFQNALCAEAKAEAAABA2AAABSAYAJJJ8B7DTSAAJADJBYSGAE93U2EKFRKWGBLASASBSSBJCRQLACA6RAEGEABASSWA",
-	"Co-op Tournament Season 2":
-		"BSA4BGBSL62ANLTDDSSNFQNALCAEAKACAAABAASCEBSAEEE9S8BAAC2ALSFWBA3RYEGKL3V8YZELVAFAAASANSHHHABA8DACDCSAAJJHNLB",
+	// "Co-op Tournament Season 2":
+	// 	"BSA4BGBSL62ANLTDDSSNFQNALCAEAKACAAABAASCEBSAEEE9S8BAAC2ALSFWBA3RYEGKL3V8YZELVAFAAASANSHHHABA8DACDCSAAJJHNLB",
 	"Standard Weekly (Latest)":
 		"BSA4BGBSL62A6LTDDSAJFQNALCAEAKAEAAABA2AAABSAEEAASAGSCNBPAJ8VFTKUL8WZ7FT4EJBACAGACSA8W6AESWZBJNJACAAB7SKFA",
 	"DDR Weekly (2021-01-19)":
@@ -196,8 +196,8 @@ const StartForm = () => {
 							the URL.
 						</div>
 					)}
-					<div className="grid grid-cols-3 gap-2">
-						<div className="col-span-3 flex w-full items-center justify-between gap-10 pl-4">
+					<div className="mx-8 grid grid-cols-4 gap-2">
+						<div className="col-span-4 flex w-full items-center justify-between gap-10 pl-4">
 							<h2 className="text-2xl font-semibold">Presets</h2>
 							<span>OoT Randomizer v7.1</span>
 							<div className="space-x-2">
