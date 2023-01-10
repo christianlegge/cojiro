@@ -257,11 +257,11 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 
 function getBottleTooltip(itemLocations: Record<string, string[]>): string {
 	let tooltip = "Bottle";
-	let knownBottles = Object.keys(itemLocations).filter(
+	const knownBottles = Object.keys(itemLocations).filter(
 		(item) => item.includes("Bottle") || item === "Rutos Letter"
 	);
 	if (knownBottles.length > 0) {
-		let bottleLocations = knownBottles
+		const bottleLocations = knownBottles
 			.map((item) => `${item}: ${itemLocations[item]}`)
 			.join(", ");
 		tooltip = `${tooltip} (${bottleLocations})`;
@@ -285,7 +285,7 @@ const ItemTracker: React.FC<{
 						trackerItem.itemName
 					].join(", ")})`;
 				}
-				let showInfoIcon =
+				const showInfoIcon =
 					trackerItem.itemName in itemLocations ||
 					(item === "Bottle" &&
 						Object.keys(itemLocations).filter(
