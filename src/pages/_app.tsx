@@ -18,6 +18,30 @@ const MyApp: AppType<{ session: Session | null }> = ({
 		<>
 			<Head>
 				<title>Cojiro</title>
+				<meta property="og:title" content="Cojiro" />
+				<meta
+					property="og:description"
+					content="Simulate and practice Ocarina of Time Randomizer seeds"
+				/>
+				<meta property="og:url" content="https://www.cojiro.app" />
+				<meta
+					property="og:image"
+					content="https://www.cojiro.app/images/cojiro.png"
+				/>
+				<meta property="og:type" content="website" />
+				<meta property="og:site_name" content="cojiro.app" />
+				<meta name="twitter:card" content="summary" />
+
+				<meta name="twitter:title" content="Cojiro" />
+				<meta
+					name="twitter:description"
+					content="Simulate and practice Ocarina of Time Randomizer seeds"
+				/>
+				<meta
+					name="twitter:image"
+					content="https://www.cojiro.app/images/cojiro.png"
+				/>
+				<meta name="twitter:site:id" content="@christian_legge" />
 			</Head>
 			<SessionProvider session={session}>
 				<Component {...pageProps} />
