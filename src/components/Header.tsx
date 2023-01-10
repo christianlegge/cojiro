@@ -9,7 +9,7 @@ const Header = () => {
 	const activeClass = "text-red-500";
 
 	return (
-		<header className="z-[999] flex h-28 w-full items-center justify-between bg-gradient-to-t from-white to-indigo-200 px-8 text-lg font-bold uppercase tracking-wider text-black shadow-2xl">
+		<header className="z-[999] flex h-28 w-full items-center justify-between px-8 font-heading text-2xl font-bold tracking-wider text-black shadow-2xl">
 			<div className="h-full">
 				<Link href="/">
 					<img
