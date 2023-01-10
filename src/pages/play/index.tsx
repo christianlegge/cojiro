@@ -275,7 +275,7 @@ const StartForm = () => {
 										<span>Generating...</span>
 									</>
 								) : (
-									"Submit"
+									"Generate"
 								)}
 							</button>
 						</div>
