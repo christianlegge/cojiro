@@ -255,6 +255,20 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 	}
 }
 
+function getBottleTooltip(itemLocations: Record<string, string[]>): string {
+	let tooltip = "Bottle";
+	let knownBottles = Object.keys(itemLocations).filter(
+		(item) => item.includes("Bottle") || item === "Rutos Letter"
+	);
+	if (knownBottles.length > 0) {
+		let bottleLocations = knownBottles
+			.map((item) => `${item}: ${itemLocations[item]}`)
+			.join(", ");
+		tooltip = `${tooltip} (${bottleLocations})`;
+	}
+	return tooltip;
+}
+
 const ItemTracker: React.FC<{
 	items: string[];
 	itemLocations: Record<string, string[]>;
@@ -264,17 +278,27 @@ const ItemTracker: React.FC<{
 			{itemGrid.map((item) => {
 				const trackerItem = createTrackerItem(item, items);
 				let tooltip = trackerItem.displayName;
-				if (trackerItem.itemName in itemLocations) {
+				if (item === "Bottle") {
+					tooltip = getBottleTooltip(itemLocations);
+				} else if (trackerItem.itemName in itemLocations) {
 					tooltip = `${tooltip} (${itemLocations[
 						trackerItem.itemName
 					].join(", ")})`;
 				}
+				let showInfoIcon =
+					trackerItem.itemName in itemLocations ||
+					(item === "Bottle" &&
+						Object.keys(itemLocations).filter(
+							(item) =>
+								item.includes("Bottle") ||
+								item === "Rutos Letter"
+						).length > 0);
 				return (
 					<Tooltip
 						key={trackerItem.fileName}
 						className="relative h-16 w-16"
 						content={tooltip}
-						showInfoIcon={trackerItem.itemName in itemLocations}
+						showInfoIcon={showInfoIcon}
 					>
 						<ItemIcon
 							className="z-0 h-full w-full object-contain"
