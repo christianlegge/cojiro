@@ -77,7 +77,7 @@ const LandingPage = () => {
 					</li>
 				</ul>
 				<p>
-					You can also play just for fun, if you want. We don't
+					You can also play just for fun, if you want. We don&apos;t
 					discriminate.
 				</p>
 			</section>
@@ -150,7 +150,7 @@ const LandingPage = () => {
 					itself.
 				</p>
 				<p className="w-[65ch]">
-					I'm a software engineer, between jobs at the time of
+					I&apos;m a software engineer, between jobs at the time of
 					writing.
 				</p>
 				<p className="w-[65ch]">
