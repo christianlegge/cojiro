@@ -5,6 +5,7 @@ import type { inferProcedureOutput, inferProcedureInput } from "@trpc/server";
 import { mapHeaderTextAtom, errorTextAtom, fetchingAtom } from "./atoms";
 import { useSetAtom } from "jotai";
 import { useRouter } from "next/router";
+import { saveAs } from "file-saver";
 
 export const trpc = createReactQueryHooks<AppRouter>();
 
@@ -246,10 +247,33 @@ export const useLightArrowsHint = (id: string) => {
 
 export const useBeatGanon = (id: string) => {
 	const queryClient = trpc.useContext();
+	const setErrorText = useSetAtom(errorTextAtom);
 
 	const mutation = trpc.useMutation("playthrough.beatGanon", {
 		onSuccess(data, variables, context) {
 			queryClient.invalidateQueries(["playthrough.get"]);
+			setErrorText("");
+		},
+		onError(err) {
+			setErrorText(err.message);
+		},
+	});
+
+	return () => mutation.mutate({ id });
+};
+
+export const useDownloadLog = (id: string) => {
+	const queryClient = trpc.useContext();
+	const setErrorText = useSetAtom(errorTextAtom);
+
+	const mutation = trpc.useMutation("playthrough.downloadLog", {
+		onSuccess(data) {
+			const logBlob = new Blob([data.log], { type: "application/json" });
+			saveAs(logBlob, `cojiro-log-${id}.json`);
+			setErrorText("");
+		},
+		onError(err) {
+			setErrorText(err.message);
 		},
 	});
 

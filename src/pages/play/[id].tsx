@@ -5,10 +5,16 @@ import ItemTracker from "../../components/ItemTracker";
 import QuestTracker from "../../components/QuestTracker";
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
-import { useSetAtom } from "jotai";
-import { idAtom, errorTextAtom, mapHeaderTextAtom } from "../../utils/atoms";
-import { usePlaythrough, trpc } from "../../utils/trpc";
+import { useSetAtom, useAtomValue, useAtom } from "jotai";
+import {
+	idAtom,
+	errorTextAtom,
+	mapHeaderTextAtom,
+	winScreenOpenAtom,
+} from "../../utils/atoms";
+import { usePlaythrough, trpc, useDownloadLog } from "../../utils/trpc";
 import SongTracker from "../../components/SongTracker";
+import ErrorBox from "../../components/ErrorBox";
 
 const Trackers = ({
 	items,
@@ -43,12 +49,14 @@ const WinScreen = ({
 	createdAt,
 	finishedAt,
 	closeWinScreen,
+	downloadLog,
 }: {
 	checked: number;
 	locations: number;
 	createdAt: Date;
 	finishedAt: Date;
 	closeWinScreen: () => void;
+	downloadLog: () => void;
 }) => {
 	const elapsedMs = finishedAt.getTime() - createdAt.getTime();
 	const hours = Math.floor(elapsedMs / 1000 / 60 / 60);
@@ -57,6 +65,8 @@ const WinScreen = ({
 	const timeStr = `${hours.toString().padStart(2, "0")}:${minutes
 		.toString()
 		.padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+	const errorText = useAtomValue(errorTextAtom);
+
 	return (
 		<div className="fixed top-0 z-[998] col-start-1 row-start-1 h-screen w-full bg-black bg-opacity-70 text-center text-white">
 			<div className="grid h-full place-items-center">
@@ -74,6 +84,13 @@ const WinScreen = ({
 					>
 						Close
 					</button>
+					<button
+						className="text-xl font-semibold underline"
+						onClick={() => downloadLog()}
+					>
+						Download log
+					</button>
+					<ErrorBox error={errorText} />
 				</div>
 			</div>
 		</div>
@@ -83,12 +100,13 @@ const WinScreen = ({
 const Cojiro = () => {
 	const router = useRouter();
 	const { id } = router.query;
-	const [winScreenOpen, setWinScreenOpen] = useState(true);
+	const [winScreenOpen, setWinScreenOpen] = useAtom(winScreenOpenAtom);
 	const setId = useSetAtom(idAtom);
 	const setErrorText = useSetAtom(errorTextAtom);
 	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
 	const { data: playthrough, isLoading } = usePlaythrough(id as string);
 	const queryClient = trpc.useContext();
+	const downloadLog = useDownloadLog(id as string);
 	const { mutate: checkLocation, isLoading: checkIsLoading } =
 		trpc.useMutation("playthrough.checkLocation", {
 			onSuccess: ({ checked, item, known_locations }) => {
@@ -158,6 +176,7 @@ const Cojiro = () => {
 						createdAt={playthrough.createdAt}
 						finishedAt={playthrough.finishedAt}
 						closeWinScreen={() => setWinScreenOpen(false)}
+						downloadLog={() => downloadLog()}
 					/>
 				)}
 				<div

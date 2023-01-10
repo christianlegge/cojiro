@@ -7,7 +7,7 @@ import {
 	useCheckStone,
 } from "../utils/trpc";
 import { useAtomValue, useSetAtom } from "jotai";
-import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
+import { idAtom, ageAtom, regionAtom, winScreenOpenAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
 import songs from "../data/songs.json";
 
@@ -48,6 +48,7 @@ const CheckSquare = ({
 	const setRegion = useSetAtom(regionAtom);
 	const checkLightArrowsHint = useLightArrowsHint(id);
 	const beatGanon = useBeatGanon(id);
+	const openWinScreen = useSetAtom(winScreenOpenAtom);
 	return (
 		<Tooltip
 			content={
@@ -85,6 +86,7 @@ const CheckSquare = ({
 					} else if (check === "Light Arrows Hint") {
 						checkLightArrowsHint();
 					} else if (check === "Ganon") {
+						openWinScreen(true);
 						beatGanon();
 					} else if (!checked) {
 						if (type === "locations") {

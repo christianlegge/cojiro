@@ -31,6 +31,7 @@ const indexRouter = createRouter().mutation("startPlaythrough", {
 				seed: {
 					create: {
 						...seed,
+						rawLog: JSON.stringify(apiSeed),
 					},
 				},
 				known_paths: {},

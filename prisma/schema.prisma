@@ -69,6 +69,7 @@ model Seed {
 	locations Json
 	gossip_stones Json
 	playthrough Playthrough?
+	rawLog String?
 }
 
 model Playthrough {

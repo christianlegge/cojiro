@@ -8,3 +8,4 @@ export const regionAtom = atomWithStorage("region", "Kokiri Forest");
 export const fetchingAtom = atom(false);
 export const mapHeaderTextAtom = atom("");
 export const errorTextAtom = atom("");
+export const winScreenOpenAtom = atom(true);

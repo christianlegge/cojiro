@@ -505,4 +505,48 @@ export const playthroughRouter = createRouter()
 				},
 			});
 		},
+	})
+	.mutation("downloadLog", {
+		input: z.object({
+			id: z.string().cuid(),
+		}),
+		async resolve({ ctx, input }) {
+			const playthrough = await ctx.prisma.playthrough.findUnique({
+				where: { id: input.id },
+				include: { seed: true, user: true },
+			});
+			if (!playthrough) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "Playthrough for ID not found",
+				});
+			}
+			if (playthrough.user) {
+				if (
+					!ctx.session?.user ||
+					ctx.session.user.id !== playthrough.userId
+				) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message:
+							"You are not authenticated as the owner of this playthrough",
+					});
+				}
+			}
+			if (!playthrough.seed) {
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message: "Playthrough corrupt: seed missing",
+				});
+			}
+			if (!playthrough.seed.rawLog) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "Raw log not found on seed",
+				});
+			}
+			return {
+				log: playthrough.seed.rawLog,
+			};
+		},
 	});

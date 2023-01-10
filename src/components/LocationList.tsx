@@ -151,7 +151,10 @@ const LocationList = () => {
 											? `To ${regions[el].name}`
 											: locationDisplayName(el, region)
 									}
-									checked={playthrough.checked.includes(el)}
+									checked={
+										el !== "Ganon" &&
+										playthrough.checked.includes(el)
+									}
 									item={
 										checkType === "locations"
 											? playthrough.known_locations[el] ??
