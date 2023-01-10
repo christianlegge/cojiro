@@ -555,25 +555,25 @@
 			"LLR GS House Window": {
 				"top": 68.77265466693336,
 				"left": 13.08007197480882,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"LLR GS Tree": {
 				"top": 61.75215431603611,
 				"left": 17.55420602789024,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"LLR GS Rain Shed": {
 				"top": 43.5528405440336,
 				"left": 52.58659469185785,
-				"adult": true,
+				"adult": false,
 				"child": true
 			},
 			"LLR GS Back Wall": {
 				"top": 69.7849548774717,
 				"left": 94.87179487179488,
-				"adult": true,
+				"adult": false,
 				"child": true
 			}
 		},
