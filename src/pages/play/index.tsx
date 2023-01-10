@@ -183,7 +183,7 @@ const StartForm = () => {
 
 	return (
 		<Layout>
-			<div className="grid h-full place-items-center bg-[url('/images/bg/hyrule-field-mountain.jpg')] bg-cover bg-center">
+			<div className="grid h-full place-items-center bg-[url('/images/bg/hyrule-field-mountain.png')] bg-cover bg-center">
 				<div className="grid place-items-center gap-4 rounded-lg bg-gray-300 bg-opacity-50 p-4 px-2 pt-2 backdrop-blur-md">
 					{status === "unauthenticated" && (
 						<div className="flex w-[65ch] items-center justify-center gap-1 rounded-lg bg-amber-200 p-2">
