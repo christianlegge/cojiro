@@ -1,17 +1,19 @@
-import { createRouter } from "./context";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { ParsedSeed } from "../../utils/parseSeed";
-import parseHint from "../../utils/parseHint";
-import regions from "../../utils/regions";
+import { ParsedSeed } from "~/utils/parseSeed";
+import parseHint from "~/utils/parseHint";
+import regions from "~/utils/regions";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
-export const playthroughRouter = createRouter()
-	.query("get", {
-		input: z.object({
-			id: z.string().cuid(),
-		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+export const playthroughRouter = createTRPCRouter({
+	playthrough: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+			})
+		)
+		.query(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -22,10 +24,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -58,15 +57,16 @@ export const playthroughRouter = createRouter()
 				finishedAt: playthrough.finishedAt,
 				createdAt: playthrough.createdAt,
 			};
-		},
-	})
-	.query("getFreestandingItems", {
-		input: z.object({
-			id: z.string().cuid(),
-			locations: z.string().array(),
 		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+	getFreestandingItems: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+				locations: z.string().array(),
+			})
+		)
+		.query(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -77,10 +77,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -102,15 +99,17 @@ export const playthroughRouter = createRouter()
 					return acc;
 				}
 			}, {} as Record<string, string>);
-		},
-	})
-	.mutation("checkLocation", {
-		input: z.object({
-			id: z.string().cuid(),
-			location: z.string(),
 		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+
+	checkLocation: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+				location: z.string(),
+			})
+		)
+		.mutation(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -121,10 +120,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -152,7 +148,7 @@ export const playthroughRouter = createRouter()
 				item = seed.locations[input.location].item;
 			} else if (/Check .* Dungeons/.test(input.location)) {
 				if (input.location.includes("Medallion")) {
-					await ctx.prisma.playthrough.update({
+					await ctx.db.playthrough.update({
 						where: { id: playthrough.id },
 						data: {
 							checked: {
@@ -173,11 +169,9 @@ export const playthroughRouter = createRouter()
 				].forEach((boss) => {
 					if (
 						input.location.includes("Medallion") ||
-						[
-							"Kokiri Emerald",
-							"Goron Ruby",
-							"Zora Sapphire",
-						].includes(seed.locations[boss].item)
+						["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"].includes(
+							seed.locations[boss].item
+						)
 					)
 						known_locations = {
 							...known_locations,
@@ -201,16 +195,14 @@ export const playthroughRouter = createRouter()
 			if (
 				item &&
 				(item.includes("Medallion") ||
-					["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"].includes(
-						item
-					))
+					["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"].includes(item))
 			) {
 				known_locations = {
 					...known_locations,
 					[input.location]: item,
 				};
 			}
-			await ctx.prisma.playthrough.update({
+			await ctx.db.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
 					checked: {
@@ -229,79 +221,20 @@ export const playthroughRouter = createRouter()
 				checked: input.location,
 				known_locations,
 			};
-		},
-	})
-	.mutation("checkStone", {
-		input: z.object({
-			id: z.string().cuid(),
-			stone: z.string(),
 		}),
-		async resolve({ ctx, input }): Promise<{
-			text: string;
-			checked: string;
-			type: "junk" | "woth" | "barren" | "item" | "path";
-			region?: string;
-			location?: string;
-			item?: string;
-			path_locations?: string[];
-		}> {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
-				where: { id: input.id },
-				include: { seed: true, user: true },
-			});
-			if (!playthrough) {
-				throw new TRPCError({
-					code: "NOT_FOUND",
-					message: "Playthrough for ID not found",
-				});
-			}
-			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
-					throw new TRPCError({
-						code: "FORBIDDEN",
-						message:
-							"You are not authenticated as the owner of this playthrough",
-					});
-				}
-			}
-			const seed = playthrough.seed as unknown as ParsedSeed;
-			if (!seed) {
-				throw new TRPCError({
-					code: "INTERNAL_SERVER_ERROR",
-					message: "Playthrough corrupt: seed missing",
-				});
-			}
-			if (playthrough.checked.includes(input.stone)) {
-				throw new TRPCError({
-					code: "BAD_REQUEST",
-					message: `Playthrough already checked location ${input.stone}`,
-				});
-			}
-			if (!(input.stone in seed.gossip_stones)) {
-				throw new TRPCError({
-					code: "NOT_FOUND",
-					message: `Gossip stone ${input.stone} not found in seed`,
-				});
-			}
-			const hint = seed.gossip_stones[input.stone];
-			if (playthrough.finished) {
-				throw new TRPCError({
-					code: "FORBIDDEN",
-					message: `Game already finished, but hint was: ${hint.replaceAll(
-						"#",
-						""
-					)}`,
-				});
-			}
-			const parsedHint = parseHint(hint, Object.keys(seed.locations));
-			let returnObj = {
-				type: parsedHint.type,
-				text: hint.replaceAll("#", ""),
-				checked: input.stone,
-			} as {
+
+	checkStone: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+				stone: z.string(),
+			})
+		)
+		.mutation(
+			async ({
+				ctx,
+				input,
+			}): Promise<{
 				text: string;
 				checked: string;
 				type: "junk" | "woth" | "barren" | "item" | "path";
@@ -309,22 +242,105 @@ export const playthroughRouter = createRouter()
 				location?: string;
 				item?: string;
 				path_locations?: string[];
-			};
-			let updateObj = {};
-			if (parsedHint.type === "junk") {
-			} else if (parsedHint.type === "woth") {
-				updateObj = { known_woth: { push: parsedHint.region } };
-				returnObj = { ...returnObj, region: parsedHint.region };
-			} else if (parsedHint.type === "barren") {
-				updateObj = { known_barren: { push: parsedHint.region } };
-				returnObj = { ...returnObj, region: parsedHint.region };
-			} else if (parsedHint.type === "path") {
-				updateObj = {
-					known_paths: {
-						...(playthrough.known_paths as {
-							[key: string]: string[];
-						}),
-						[parsedHint.region]: [
+			}> => {
+				const playthrough = await ctx.db.playthrough.findUnique({
+					where: { id: input.id },
+					include: { seed: true, user: true },
+				});
+				if (!playthrough) {
+					throw new TRPCError({
+						code: "NOT_FOUND",
+						message: "Playthrough for ID not found",
+					});
+				}
+				if (playthrough.user) {
+					if (
+						!ctx.session?.user ||
+						ctx.session.user.id !== playthrough.userId
+					) {
+						throw new TRPCError({
+							code: "FORBIDDEN",
+							message:
+								"You are not authenticated as the owner of this playthrough",
+						});
+					}
+				}
+				const seed = playthrough.seed as unknown as ParsedSeed;
+				if (!seed) {
+					throw new TRPCError({
+						code: "INTERNAL_SERVER_ERROR",
+						message: "Playthrough corrupt: seed missing",
+					});
+				}
+				if (playthrough.checked.includes(input.stone)) {
+					throw new TRPCError({
+						code: "BAD_REQUEST",
+						message: `Playthrough already checked location ${input.stone}`,
+					});
+				}
+				if (!(input.stone in seed.gossip_stones)) {
+					throw new TRPCError({
+						code: "NOT_FOUND",
+						message: `Gossip stone ${input.stone} not found in seed`,
+					});
+				}
+				const hint = seed.gossip_stones[input.stone];
+				if (playthrough.finished) {
+					throw new TRPCError({
+						code: "FORBIDDEN",
+						message: `Game already finished, but hint was: ${hint.replaceAll(
+							"#",
+							""
+						)}`,
+					});
+				}
+				const parsedHint = parseHint(hint, Object.keys(seed.locations));
+				let returnObj = {
+					type: parsedHint.type,
+					text: hint.replaceAll("#", ""),
+					checked: input.stone,
+				} as {
+					text: string;
+					checked: string;
+					type: "junk" | "woth" | "barren" | "item" | "path";
+					region?: string;
+					location?: string;
+					item?: string;
+					path_locations?: string[];
+				};
+				let updateObj = {};
+				if (parsedHint.type === "junk") {
+				} else if (parsedHint.type === "woth") {
+					updateObj = { known_woth: { push: parsedHint.region } };
+					returnObj = { ...returnObj, region: parsedHint.region };
+				} else if (parsedHint.type === "barren") {
+					updateObj = { known_barren: { push: parsedHint.region } };
+					returnObj = { ...returnObj, region: parsedHint.region };
+				} else if (parsedHint.type === "path") {
+					updateObj = {
+						known_paths: {
+							...(playthrough.known_paths as {
+								[key: string]: string[];
+							}),
+							[parsedHint.region]: [
+								...(parsedHint.region in
+								(playthrough.known_paths as {
+									[key: string]: string[];
+								})
+									? (
+											playthrough.known_paths as {
+												[key: string]: string[];
+											}
+									  )[parsedHint.region]
+									: []),
+								parsedHint.location,
+							],
+						},
+					};
+					returnObj = {
+						...returnObj,
+						region: parsedHint.region,
+						path_locations: [
 							...(parsedHint.region in
 							(playthrough.known_paths as {
 								[key: string]: string[];
@@ -337,59 +353,44 @@ export const playthroughRouter = createRouter()
 								: []),
 							parsedHint.location,
 						],
-					},
-				};
-				returnObj = {
-					...returnObj,
-					region: parsedHint.region,
-					path_locations: [
-						...(parsedHint.region in
-						(playthrough.known_paths as {
-							[key: string]: string[];
-						})
-							? (
-									playthrough.known_paths as {
-										[key: string]: string[];
-									}
-							  )[parsedHint.region]
-							: []),
-						parsedHint.location,
-					],
-				};
-			} else if (parsedHint.type === "item") {
-				updateObj = {
-					known_locations: {
-						...(playthrough.known_locations as {
-							[key: string]: string;
-						}),
-						[parsedHint.location]: parsedHint.item,
-					},
-				};
+					};
+				} else if (parsedHint.type === "item") {
+					updateObj = {
+						known_locations: {
+							...(playthrough.known_locations as {
+								[key: string]: string;
+							}),
+							[parsedHint.location]: parsedHint.item,
+						},
+					};
 
-				returnObj = {
-					...returnObj,
-					location: parsedHint.location,
-					item: parsedHint.item,
-				};
-			}
-			await ctx.prisma.playthrough.update({
-				where: { id: playthrough.id },
-				data: {
-					...updateObj,
-					checked: {
-						push: input.stone,
+					returnObj = {
+						...returnObj,
+						location: parsedHint.location,
+						item: parsedHint.item,
+					};
+				}
+				await ctx.db.playthrough.update({
+					where: { id: playthrough.id },
+					data: {
+						...updateObj,
+						checked: {
+							push: input.stone,
+						},
 					},
-				},
-			});
-			return returnObj;
-		},
-	})
-	.mutation("checkLightArrowsHint", {
-		input: z.object({
-			id: z.string().cuid(),
-		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+				});
+				return returnObj;
+			}
+		),
+
+	checkLightArrowsHint: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+			})
+		)
+		.mutation(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -400,10 +401,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -430,9 +428,7 @@ export const playthroughRouter = createRouter()
 					(loc) => seed.locations[loc].item === "Light Arrows"
 				)[0];
 				lightArrowsRegion = Object.keys(regions).filter((region) =>
-					Object.keys(regions[region].locations).includes(
-						lightArrowsLocation
-					)
+					Object.keys(regions[region].locations).includes(lightArrowsLocation)
 				)[0];
 			} catch (err) {
 				throw new TRPCError({
@@ -446,14 +442,11 @@ export const playthroughRouter = createRouter()
 					message: `Game already finished, but Light Arrows were in ${lightArrowsRegion}`,
 				});
 			}
-			await ctx.prisma.playthrough.update({
+			await ctx.db.playthrough.update({
 				where: { id: playthrough.id },
 				data: {
 					known_locations: {
-						...(playthrough.known_locations as Record<
-							string,
-							string
-						>),
+						...(playthrough.known_locations as Record<string, string>),
 						[lightArrowsRegion]: "Light Arrows",
 					},
 					checked: {
@@ -465,14 +458,15 @@ export const playthroughRouter = createRouter()
 				region: lightArrowsRegion,
 				message: `Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from ${lightArrowsRegion}!`,
 			};
-		},
-	})
-	.mutation("beatGanon", {
-		input: z.object({
-			id: z.string().cuid(),
 		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+	beatGanon: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+			})
+		)
+		.mutation(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -483,10 +477,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -494,7 +485,7 @@ export const playthroughRouter = createRouter()
 					});
 				}
 			}
-			await ctx.prisma.playthrough.updateMany({
+			await ctx.db.playthrough.updateMany({
 				where: { id: input.id, finished: false },
 				data: {
 					finished: true,
@@ -504,14 +495,16 @@ export const playthroughRouter = createRouter()
 					},
 				},
 			});
-		},
-	})
-	.mutation("downloadLog", {
-		input: z.object({
-			id: z.string().cuid(),
 		}),
-		async resolve({ ctx, input }) {
-			const playthrough = await ctx.prisma.playthrough.findUnique({
+
+	downloadLog: protectedProcedure
+		.input(
+			z.object({
+				id: z.string().cuid(),
+			})
+		)
+		.query(async ({ ctx, input }) => {
+			const playthrough = await ctx.db.playthrough.findUnique({
 				where: { id: input.id },
 				include: { seed: true, user: true },
 			});
@@ -522,10 +515,7 @@ export const playthroughRouter = createRouter()
 				});
 			}
 			if (playthrough.user) {
-				if (
-					!ctx.session?.user ||
-					ctx.session.user.id !== playthrough.userId
-				) {
+				if (!ctx.session?.user || ctx.session.user.id !== playthrough.userId) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
 						message:
@@ -548,5 +538,5 @@ export const playthroughRouter = createRouter()
 			return {
 				log: playthrough.seed.rawLog,
 			};
-		},
-	});
+		}),
+});
