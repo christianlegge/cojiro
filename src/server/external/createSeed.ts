@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { env } from "../../env/server.mjs";
+import { env } from "~/env.mjs";
 import { TRPCError } from "@trpc/server";
 
 const createSeed = async (params: {
@@ -22,26 +22,20 @@ const createSeed = async (params: {
 	} catch (err) {
 		console.log(err);
 		if (axios.isAxiosError(err) && typeof err.response?.data === "string") {
-			if (
-				err.response.data.includes("must have at least one output type")
-			) {
+			if (err.response.data.includes("must have at least one output type")) {
 				throw new TRPCError({
 					code: "BAD_REQUEST",
 					message:
 						"You must enable the Create Spoiler Log setting to make this work.",
 				});
-			} else if (
-				err.response.data.includes("generate a seed once every")
-			) {
+			} else if (err.response.data.includes("generate a seed once every")) {
 				throw new TRPCError({
 					code: "FORBIDDEN",
 					message:
 						"Rate limited by the ootrandomizer.com API. Try again in 5 seconds.",
 				});
 			} else if (
-				err.response.data.includes(
-					"get_settings_from_command_line_args"
-				)
+				err.response.data.includes("get_settings_from_command_line_args")
 			) {
 				throw new TRPCError({
 					code: "BAD_REQUEST",
