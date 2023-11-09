@@ -27,7 +27,7 @@ export const playthroughRouter = createTRPCRouter({
 				(el) => Array(Math.min(apiSeed.settings.starting_items[el], 5)).fill(el)
 			);
 
-			const playthrough = await ctx.prisma.playthrough.create({
+			const playthrough = await ctx.db.playthrough.create({
 				data: {
 					seed: {
 						create: {
@@ -37,6 +37,7 @@ export const playthroughRouter = createTRPCRouter({
 					},
 					known_paths: {},
 					known_locations: {},
+					known_barren: [],
 					items: startingItems,
 					user: ctx.session?.user
 						? {
@@ -50,7 +51,7 @@ export const playthroughRouter = createTRPCRouter({
 				id: playthrough.id,
 			};
 		}),
-	getPlaythrough: protectedProcedure
+	getPlaythrough: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -363,9 +364,9 @@ export const playthroughRouter = createTRPCRouter({
 							[parsedHint.region]: [
 								...(parsedHint.region in
 								(playthrough.known_paths as Record<string, string[]>)
-									? (
-											playthrough.known_paths as Record<string, string[]>
-									  )[parsedHint.region]
+									? (playthrough.known_paths as Record<string, string[]>)[
+											parsedHint.region
+									  ]
 									: []),
 								parsedHint.location,
 							],
@@ -377,9 +378,9 @@ export const playthroughRouter = createTRPCRouter({
 						path_locations: [
 							...(parsedHint.region in
 							(playthrough.known_paths as Record<string, string[]>)
-								? (
-										playthrough.known_paths as Record<string, string[]>
-								  )[parsedHint.region]
+								? (playthrough.known_paths as Record<string, string[]>)[
+										parsedHint.region
+								  ]
 								: []),
 							parsedHint.location,
 						],

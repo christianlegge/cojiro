@@ -8,6 +8,10 @@ import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
+import { useRouter } from "next/router";
+import { mapHeaderTextAtom, errorTextAtom, fetchingAtom } from "./atoms";
+import { useSetAtom } from "jotai";
+import { saveAs } from "file-saver";
 
 import { type AppRouter } from "~/server/api/root";
 
@@ -53,6 +57,240 @@ export const api = createTRPCNext<AppRouter>({
 	ssr: false,
 });
 
+export const usePlaythrough = (id: string) => {
+	const router = useRouter();
+	const setErrorText = useSetAtom(errorTextAtom);
+	return api.playthrough.getPlaythrough.useQuery(
+		{ id },
+		{
+			retry: false,
+			onError(err) {
+				setErrorText(err.message);
+				void router.push("/play");
+			},
+		}
+	);
+};
+
+export const useCheckLocation = (id: string) => {
+	const setFetching = useSetAtom(fetchingAtom);
+	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
+	const setErrorText = useSetAtom(errorTextAtom);
+	const utils = api.useUtils();
+
+	const mutation = api.playthrough.checkLocation.useMutation({
+		onMutate({ location }) {
+			setFetching(true);
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				return {
+					...old,
+					checked: [...old.checked, location],
+				};
+			});
+		},
+		onSuccess: ({ checked, item, known_locations }) => {
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				return {
+					...old,
+					checked: [...old.checked, checked],
+					items: item ? [...old.items, item] : old.items,
+					known_locations,
+				};
+			});
+			setErrorText("");
+			if (/Check .* Dungeons/.test(checked)) {
+				setMapHeaderText(
+					`You inspect the altar and gain information about the sacred ${
+						checked.includes("Stone") ? "stones" : "medallions"
+					}...`
+				);
+			} else {
+				setMapHeaderText(`${checked}: ${item}`);
+			}
+		},
+		onError: (err) => {
+			setErrorText(err.message);
+			void utils.playthrough.getPlaythrough.invalidate({ id });
+		},
+		onSettled: () => {
+			setFetching(false);
+		},
+	});
+	return (location: string) => mutation.mutate({ id, location });
+};
+
+export const useCheckStone = (id: string) => {
+	const setFetching = useSetAtom(fetchingAtom);
+	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
+	const setErrorText = useSetAtom(errorTextAtom);
+	const utils = api.useUtils();
+
+	const mutation = api.playthrough.checkStone.useMutation({
+		onMutate({ stone }) {
+			setFetching(true);
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				return {
+					...old,
+					checked: [...old.checked, stone],
+				};
+			});
+		},
+		onSuccess: ({
+			text,
+			type,
+			checked,
+			item,
+			location,
+			path_locations,
+			region,
+		}) => {
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				if (type === "barren") {
+					return {
+						...old,
+						checked: [...old.checked, checked],
+						known_barren: [...old.known_barren, region],
+					};
+				} else if (type === "woth") {
+					return {
+						...old,
+						checked: [...old.checked, checked],
+						known_woth: [...old.known_woth, region],
+					};
+				} else if (type === "path") {
+					return {
+						...old,
+						checked: [...old.checked, checked],
+						known_paths: {
+							...old.known_paths,
+							[region!]: path_locations,
+						},
+					};
+				} else if (type === "item") {
+					return {
+						...old,
+						checked: [...old.checked, checked],
+						known_locations: {
+							...old.known_locations,
+							[location!]: item,
+						},
+					};
+				} else if (type === "junk") {
+					return {
+						...old,
+						checked: [...old.checked, checked],
+					};
+				}
+			});
+			setErrorText("");
+			setMapHeaderText(text);
+		},
+		onError: (err) => {
+			setErrorText(err.message);
+			void utils.playthrough.getPlaythrough.invalidate({ id });
+		},
+		onSettled: () => {
+			setFetching(false);
+		},
+	});
+
+	return (stone: string) => mutation.mutate({ id, stone });
+};
+
+export const useLightArrowsHint = (id: string) => {
+	const setFetching = useSetAtom(fetchingAtom);
+	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
+	const setErrorText = useSetAtom(errorTextAtom);
+	const utils = api.useUtils();
+
+	const mutation = api.playthrough.checkLightArrowsHint.useMutation({
+		onMutate() {
+			setFetching(true);
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				return {
+					...old,
+					checked: [...old.checked, "Light Arrows Hint"],
+				};
+			});
+		},
+		onSuccess: ({ message, region }) => {
+			utils.playthrough.getPlaythrough.setData({ id }, (old) => {
+				if (!old) {
+					return undefined;
+				}
+				return {
+					...old,
+					checked: [...old.checked, "Light Arrows Hint"],
+					known_locations: {
+						...old.known_locations,
+						[region]: "Light Arrows",
+					},
+				};
+			});
+			setErrorText("");
+			setMapHeaderText(message);
+		},
+		onError: (err) => {
+			setErrorText(err.message);
+			void utils.playthrough.getPlaythrough.invalidate({ id });
+		},
+		onSettled: () => {
+			setFetching(false);
+		},
+	});
+
+	return () => mutation.mutate({ id });
+};
+
+export const useBeatGanon = (id: string) => {
+	const utils = api.useUtils();
+	const setErrorText = useSetAtom(errorTextAtom);
+
+	const mutation = api.playthrough.beatGanon.useMutation({
+		onSuccess() {
+			void utils.playthrough.getPlaythrough.invalidate({ id });
+			setErrorText("");
+		},
+		onError(err) {
+			setErrorText(err.message);
+		},
+	});
+
+	return () => mutation.mutate({ id });
+};
+
+export const useDownloadLog = (id: string) => {
+	const setErrorText = useSetAtom(errorTextAtom);
+	return () =>
+		api.playthrough.downloadLog.useQuery(
+			{ id },
+			{
+				onSuccess(data) {
+					const logBlob = new Blob([data.log], { type: "application/json" });
+					saveAs(logBlob, `cojiro-log-${id}.json`);
+					setErrorText("");
+				},
+				onError(err) {
+					setErrorText(err.message);
+				},
+			}
+		);
+};
 /**
  * Inference helper for inputs.
  *
