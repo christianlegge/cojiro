@@ -10,15 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model CheckPosition {
-	location String @id
-	region String
-	top Float
-	left Float
-	child Boolean @default(true)
-	adult Boolean @default(true)
-}
-
 model Account {
     id                String  @id @default(cuid())
     userId            String
