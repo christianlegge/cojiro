@@ -48,7 +48,7 @@ const createSeed = async (params: {
 	}
 };
 
-export type SeedReturnType = {
+export interface SeedReturnType {
 	":version": string;
 	file_hash: string[];
 	":seed": string;
@@ -121,9 +121,7 @@ export type SeedReturnType = {
 		logic_earliest_adult_trade: string;
 		logic_latest_adult_trade: string;
 		starting_equipment: string[];
-		starting_items: {
-			[key: string]: number;
-		};
+		starting_items: Record<string, number>;
 		starting_songs: string[];
 		ocarina_songs: boolean;
 		correct_chest_sizes: boolean;
@@ -143,12 +141,8 @@ export type SeedReturnType = {
 		starting_age: string;
 	};
 	randomized_settings: { starting_age: "child" | "adult" };
-	item_pool: {
-		[key: string]: number;
-	};
-	dungeons: {
-		[key: string]: "vanilla" | "mq";
-	};
+	item_pool: Record<string, number>;
+	dungeons: Record<string, "vanilla" | "mq">;
 	trials: {
 		Forest: "active" | "inactive";
 		Fire: "active" | "inactive";
@@ -165,12 +159,8 @@ export type SeedReturnType = {
 			from: "Market Bombchu Bowling";
 		};
 	};
-	locations: {
-		[key: string]: string | { item: string; price: number };
-	};
-	":woth_locations": {
-		[key: string]: string;
-	};
+	locations: Record<string, string | { item: string; price: number }>;
+	":woth_locations": Record<string, string>;
 	":goal_locations": {
 		rainbow_bridge: {
 			"Path to Volvagia": {
@@ -253,14 +243,8 @@ export type SeedReturnType = {
 		};
 	};
 	":barren_regions": string[];
-	gossip_stones: {
-		[key: string]: { text: string; colors: string[] };
-	};
-	":playthrough": {
-		[key: string]: {
-			[key: string]: string;
-		};
-	};
+	gossip_stones: Record<string, { text: string; colors: string[] }>;
+	":playthrough": Record<string, Record<string, string>>;
 	":entrance_playthrough": {
 		"1": {
 			"Child Spawn -> KF Links House": {
@@ -270,6 +254,6 @@ export type SeedReturnType = {
 		};
 		"2": { "Adult Spawn -> Temple of Time": "Market Shooting Gallery" };
 	};
-};
+}
 
 export default createSeed;

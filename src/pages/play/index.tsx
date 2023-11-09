@@ -15,7 +15,7 @@ import { MdWarningAmber } from "react-icons/md";
 import MedallionCircle from "../../components/MedallionCircle";
 import { formatFilename } from "../../utils/filename";
 
-const settingsPresets: { [key: string]: string } = {
+const settingsPresets: Record<string, string> = {
 	"S6 Tournament":
 		"BSA4BGBSL62A6LTDDSAJFQNALCAECKAEAAABAJAAAEACSSAAAC2ALSFWBA3RYEGKL3V8YZELVAFAJAASAESHFEABE7KACDCSAAJJHNLB",
 	"Scrub Tournament":
@@ -106,7 +106,7 @@ const StartForm = () => {
 		[
 			"jwt.getPlaythroughs",
 			{
-				token: jwt as string,
+				token: jwt!,
 			},
 		],
 		{

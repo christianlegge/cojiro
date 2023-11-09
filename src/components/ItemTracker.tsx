@@ -5,11 +5,11 @@ import { usePlaythrough } from "../utils/trpc";
 import { useAtomValue } from "jotai";
 import { idAtom } from "../utils/atoms";
 
-type TrackerItem = {
+interface TrackerItem {
 	fileName: string; // path to image file in public/images
 	displayName: string; // string to display in tooltip/alt/title text
 	itemName: string; // string to check items list for
-};
+}
 
 const itemGrid = [
 	"Slingshot",

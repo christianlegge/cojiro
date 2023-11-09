@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import h from "../data/hints.json";
 
 const hintsMap = new Map<string, { meanings: string[]; type: string }>();
-const hints = h as { [key: string]: { names: string[]; type: string } };
+const hints = h as Record<string, { names: string[]; type: string }>;
 
 Object.keys(hints).forEach((k) => {
 	if (k.includes("MQ")) return;
@@ -71,7 +71,7 @@ const parseHint = (
 	} else if (item && (location || region)) {
 		return {
 			type: "item",
-			location: (location ?? region) as string,
+			location: (location ?? region)!,
 			item: item,
 		};
 	} else if (region) {

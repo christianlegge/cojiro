@@ -40,7 +40,7 @@ const Header = () => {
 					<>
 						{session.user?.name}{" "}
 						<img
-							src={session.user?.image as string}
+							src={session.user?.image!}
 							className="h-10 rounded-full"
 						/>
 						<button onClick={() => signOut()} className="uppercase">

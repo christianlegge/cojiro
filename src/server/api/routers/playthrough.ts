@@ -91,12 +91,8 @@ export const playthroughRouter = createTRPCRouter({
 				id: playthrough.id,
 				known_woth: playthrough.known_woth,
 				known_barren: playthrough.known_barren,
-				known_locations: playthrough.known_locations as {
-					[key: string]: string;
-				},
-				known_paths: playthrough.known_paths as {
-					[key: string]: string[];
-				},
+				known_locations: playthrough.known_locations as Record<string, string>,
+				known_paths: playthrough.known_paths as Record<string, string[]>,
 				finished: playthrough.finished,
 				finishedAt: playthrough.finishedAt,
 				createdAt: playthrough.createdAt,
@@ -186,8 +182,8 @@ export const playthroughRouter = createTRPCRouter({
 				});
 			}
 			let item: string | undefined;
-			let known_locations: { [key: string]: string } =
-				playthrough.known_locations as { [key: string]: string };
+			let known_locations: Record<string, string> =
+				playthrough.known_locations as Record<string, string>;
 			if (input.location in seed.locations) {
 				item = seed.locations[input.location].item;
 			} else if (/Check .* Dungeons/.test(input.location)) {
@@ -363,18 +359,12 @@ export const playthroughRouter = createTRPCRouter({
 				} else if (parsedHint.type === "path") {
 					updateObj = {
 						known_paths: {
-							...(playthrough.known_paths as {
-								[key: string]: string[];
-							}),
+							...(playthrough.known_paths as Record<string, string[]>),
 							[parsedHint.region]: [
 								...(parsedHint.region in
-								(playthrough.known_paths as {
-									[key: string]: string[];
-								})
+								(playthrough.known_paths as Record<string, string[]>)
 									? (
-											playthrough.known_paths as {
-												[key: string]: string[];
-											}
+											playthrough.known_paths as Record<string, string[]>
 									  )[parsedHint.region]
 									: []),
 								parsedHint.location,
@@ -386,13 +376,9 @@ export const playthroughRouter = createTRPCRouter({
 						region: parsedHint.region,
 						path_locations: [
 							...(parsedHint.region in
-							(playthrough.known_paths as {
-								[key: string]: string[];
-							})
+							(playthrough.known_paths as Record<string, string[]>)
 								? (
-										playthrough.known_paths as {
-											[key: string]: string[];
-										}
+										playthrough.known_paths as Record<string, string[]>
 								  )[parsedHint.region]
 								: []),
 							parsedHint.location,
@@ -401,9 +387,7 @@ export const playthroughRouter = createTRPCRouter({
 				} else if (parsedHint.type === "item") {
 					updateObj = {
 						known_locations: {
-							...(playthrough.known_locations as {
-								[key: string]: string;
-							}),
+							...(playthrough.known_locations as Record<string, string>),
 							[parsedHint.location]: parsedHint.item,
 						},
 					};

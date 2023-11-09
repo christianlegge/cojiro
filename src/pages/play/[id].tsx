@@ -28,7 +28,7 @@ const Trackers = ({
 			...a,
 			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
 		}),
-		{} as { [key: string]: string[] }
+		{} as Record<string, string[]>
 	);
 	return (
 		<div className="flex flex-col items-center justify-around gap-1 bg-gray-700 p-4 sm:flex-row md:gap-4 2xl:flex-col">

@@ -53,7 +53,7 @@ export const jwtRouter = createTRPCRouter({
 					{
 						expiresIn: "3d",
 					}
-				) as string;
+				) ;
 				return {
 					playthroughs: validPlaythroughs,
 					newToken,
@@ -88,7 +88,7 @@ export const jwtRouter = createTRPCRouter({
 			return {
 				newToken: jwt.sign({ playthroughs }, env.JWT_SECRET, {
 					expiresIn: "3d",
-				}) as string,
+				}) ,
 			};
 		}),
 });

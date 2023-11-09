@@ -5,9 +5,9 @@ import { Session } from "next-auth";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { prisma } from "../db/client";
 
-type CreateContextOptions = {
+interface CreateContextOptions {
   session: Session | null;
-};
+}
 
 /** Use this helper for:
  * - testing, where we dont have to Mock Next.js' req/res

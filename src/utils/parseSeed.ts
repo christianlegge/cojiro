@@ -1,19 +1,15 @@
 import { SeedReturnType } from "../server/external/createSeed";
 import { TRPCError } from "@trpc/server";
 
-export type ParsedSeed = {
-	locations: {
-		[key: string]: {
+export interface ParsedSeed {
+	locations: Record<string, {
 			item: string;
 			price?: number;
-		};
-	};
-	gossip_stones: {
-		[key: string]: string;
-	};
+		}>;
+	gossip_stones: Record<string, string>;
 	seedValue: string;
 	settingsString: string;
-};
+}
 
 const requiredSettings = {
 	shopsanity: "off",

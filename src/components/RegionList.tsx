@@ -60,7 +60,7 @@ const RegionList = () => {
 		"Water Temple": "Morpha",
 		"Shadow Temple": "Bongo Bongo",
 		"Spirit Temple": "Twinrova",
-	} as { [key: string]: string };
+	} as Record<string, string>;
 	const regionsWithMedallions = [
 		"Deku Tree",
 		"Dodongos Cavern",

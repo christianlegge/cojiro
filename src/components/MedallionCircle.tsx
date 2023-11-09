@@ -8,7 +8,7 @@ const MedallionCircle = ({
 	itemLocations,
 }: {
 	items: string[];
-	itemLocations: { [key: string]: string[] };
+	itemLocations: Record<string, string[]>;
 }) => {
 	const medallions = [
 		"Light",
