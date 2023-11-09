@@ -126,10 +126,10 @@ const LocationList = () => {
 							.filter(
 								(el) =>
 									regions[region]![checkType]![el]![age] &&
-									(regions[region]![checkType]![el]!.always ??
-										checkType === "gossip_stones" ??
-										checkType === "entrances" ??
-										playthrough.locations.includes(el) ??
+									(regions[region]![checkType]![el]!.always! ||
+										checkType === "gossip_stones" ||
+										checkType === "entrances" ||
+										playthrough.locations.includes(el) ||
 										el.includes("GS"))
 							)
 							.map((el) => (

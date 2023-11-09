@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { env } from "~/env.mjs";
 import { TRPCError } from "@trpc/server";
 
