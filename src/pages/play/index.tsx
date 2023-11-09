@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import ErrorBox from "../../components/ErrorBox";
-import TextInput from "../../components/TextInput";
-import { trpc } from "../../utils/trpc";
+import ErrorBox from "~/components/ErrorBox";
+import TextInput from "~/components/TextInput";
+import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 import Link from "next/link";
-// import { Link, useNavigate } from "react-router-dom";
-import LeftRightSwitch from "../../components/LeftRightSwitch";
+import LeftRightSwitch from "~/components/LeftRightSwitch";
 import { useAtom } from "jotai";
 import { useSetAtom } from "jotai";
-import { ageAtom, regionAtom, errorTextAtom } from "../../utils/atoms";
-import Layout from "../../components/Layout";
+import { ageAtom, regionAtom, errorTextAtom } from "~/utils/atoms";
+import Layout from "~/components/Layout";
 import { useSession } from "next-auth/react";
 import { MdWarningAmber } from "react-icons/md";
-import MedallionCircle from "../../components/MedallionCircle";
-import { formatFilename } from "../../utils/filename";
+import { formatFilename } from "~/utils/filename";
+import Image from "next/image";
 
 const settingsPresets: Record<string, string> = {
 	"S6 Tournament":
@@ -33,8 +32,10 @@ const settingsPresets: Record<string, string> = {
 	// "Multiworld Tournament Season 3":
 	// 	"FSA4BSBSL62A6LHDDSAJFQNALCAEBKACAAABAASCEBSAEEE9S8BAAC2ALSFWBATQ8VFTKUL8WZ7FT4EJBAAAEM2ANSHHHABE7GACDCSAAJJLA",
 	// "Hell Mode": "BSA4BGBSL62AEMTDDS6PFQNA4QBAVAAEBAATX93A9L79AA69AAAAAA2FKNESCASNHAKDA",
-	Bingo: "BSA4BGBSL62AELTDDSNKFQNALCANSBAAAAABAAAAAASAEEE9S8BTGAAESFFR458UJPCWAAAAAAKCQACA6DAEGEABASUQ2WCA",
-	League: "BSA4BGBSL62A6JTDDSSNFQNALCAECKAEAAABA2AAABSAEEAASAGSCNKNUWUH7PRKWGBLASAAA3CGAB6K3BJSKRBS2SAEAAC4BVLA",
+	Bingo:
+		"BSA4BGBSL62AELTDDSNKFQNALCANSBAAAAABAAAAAASAEEE9S8BTGAAESFFR458UJPCWAAAAAAKCQACA6DAEGEABASUQ2WCA",
+	League:
+		"BSA4BGBSL62A6JTDDSSNFQNALCAECKAEAAABA2AAABSAEEAASAGSCNKNUWUH7PRKWGBLASAAA3CGAB6K3BJSKRBS2SAEAAC4BVLA",
 };
 
 const InProgressPlaythroughCard = ({
@@ -68,11 +69,7 @@ const InProgressPlaythroughCard = ({
 		<div className="w-40 cursor-pointer rounded-lg border shadow-md">
 			<div className="flex">
 				{medallions.map((el) => (
-					<img
-						key={el}
-						src={`/images/${formatFilename(el)}.png`}
-						alt=""
-					/>
+					<Image key={el} src={`/images/${formatFilename(el)}.png`} alt="" />
 				))}
 			</div>
 
@@ -84,7 +81,6 @@ const InProgressPlaythroughCard = ({
 };
 
 const StartForm = () => {
-	// const navigate = useNavigate();
 	const router = useRouter();
 	const [error, setError] = useAtom(errorTextAtom);
 	const [generating, setGenerating] = useState(false);
@@ -100,27 +96,25 @@ const StartForm = () => {
 	const setAge = useSetAtom(ageAtom);
 	const setRegion = useSetAtom(regionAtom);
 
-	const { data: session, status } = useSession();
+	const { status } = useSession();
 
-	const jwtPlaythroughs = trpc.useQuery(
-		[
-			"jwt.getPlaythroughs",
-			{
-				token: jwt!,
-			},
-		],
+	const jwtPlaythroughs = api.jwt.getPlaythroughs.useQuery(
+		{
+			token: jwt!,
+		},
 		{
 			enabled: jwt !== null,
 			onSuccess({ newToken }) {
 				localStorage.setItem("playthroughsJwt", newToken);
 			},
 			onError(err) {
+				console.error(err);
 				localStorage.removeItem("playthroughsJwt");
 				setJwt(null);
 			},
 		}
 	);
-	const addPlaythroughToJwt = trpc.useMutation("jwt.addPlaythrough", {
+	const addPlaythroughToJwt = api.jwt.addPlaythrough.useMutation({
 		onSuccess({ newToken }) {
 			localStorage.setItem("playthroughsJwt", newToken);
 		},
@@ -128,7 +122,7 @@ const StartForm = () => {
 			console.log(err);
 		},
 	});
-	const startMutation = trpc.useMutation("startPlaythrough", {
+	const startMutation = api.playthrough.startPlaythrough.useMutation({
 		onSuccess: ({ id }) => {
 			if (status !== "authenticated") {
 				addPlaythroughToJwt.mutate({
@@ -138,7 +132,7 @@ const StartForm = () => {
 			}
 			setAge("child");
 			setRegion("Kokiri Forest");
-			router.push(`/play/${id}`);
+			void router.push(`/play/${id}`);
 		},
 		onSettled: () => setGenerating(false),
 		onError: (err) => {
@@ -146,9 +140,7 @@ const StartForm = () => {
 			setSelectedPreset("");
 		},
 	});
-	const userPlaythroughs = trpc.useQuery(["user.getPlaythroughs"], {
-		enabled: status === "authenticated",
-	});
+	const userPlaythroughs = api.user.getPlaythroughs.useQuery();
 
 	useEffect(() => {
 		setJwt(localStorage.getItem("playthroughsJwt"));
@@ -157,9 +149,7 @@ const StartForm = () => {
 	const startPlaythrough = (settingsString: string): void => {
 		if (seedType === "custom" && !seed) {
 			setSelectedPreset("");
-			setError(
-				'No seed given! Please type a seed or choose "Random seed".'
-			);
+			setError('No seed given! Please type a seed or choose "Random seed".');
 			return;
 		}
 
@@ -190,10 +180,9 @@ const StartForm = () => {
 					{status === "unauthenticated" && (
 						<div className="flex w-[65ch] items-center justify-center gap-1 rounded-lg bg-amber-200 p-2">
 							<MdWarningAmber className="w-8" />
-							You are not signed in. You may play as a guest, but
-							the game will be deleted after 3 days, will not be
-							tracked for stats, and can be claimed by anyone with
-							the URL.
+							You are not signed in. You may play as a guest, but the game will
+							be deleted after 3 days, will not be tracked for stats, and can be
+							claimed by anyone with the URL.
 						</div>
 					)}
 					<div className="mx-8 grid grid-cols-4 gap-2">
@@ -207,11 +196,7 @@ const StartForm = () => {
 								<input
 									checked={settingsType === "custom"}
 									onChange={(e) =>
-										setSettingsType(
-											e.target.checked
-												? "custom"
-												: "preset"
-										)
+										setSettingsType(e.target.checked ? "custom" : "preset")
 									}
 									type="checkbox"
 									name="customSettings"
@@ -221,9 +206,7 @@ const StartForm = () => {
 						</div>
 						{Object.keys(settingsPresets).map((preset) => (
 							<button
-								disabled={
-									generating || settingsType === "custom"
-								}
+								disabled={generating || settingsType === "custom"}
 								key={preset}
 								className={`rounded-lg border px-4 py-2 shadow-md ${
 									settingsType === "custom" ||
@@ -231,20 +214,16 @@ const StartForm = () => {
 										? "opacity-50"
 										: ""
 								} ${
-									preset === selectedPreset
-										? "translate-y-1 shadow-none"
-										: ""
+									preset === selectedPreset ? "translate-y-1 shadow-none" : ""
 								}`}
 								onClick={() => {
 									setSelectedPreset(preset);
-									startPlaythrough(settingsPresets[preset]);
+									startPlaythrough(settingsPresets[preset]!);
 								}}
 							>
 								{generating && preset === selectedPreset ? (
 									<>
-										<span className="mr-3 inline-block animate-spin">
-											.
-										</span>
+										<span className="mr-3 inline-block animate-spin">.</span>
 										<span>Generating...</span>
 									</>
 								) : (
@@ -269,9 +248,7 @@ const StartForm = () => {
 							>
 								{generating ? (
 									<>
-										<span className="mr-3 inline-block animate-spin">
-											.
-										</span>
+										<span className="mr-3 inline-block animate-spin">.</span>
 										<span>Generating...</span>
 									</>
 								) : (

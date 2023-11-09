@@ -13,21 +13,21 @@ const LoginRegister = () => {
 					Sign in to Cojiro
 				</h1>
 				<button
-					onClick={() => signIn("google", { callbackUrl: "/play" })}
+					onClick={() => void signIn("google", { callbackUrl: "/play" })}
 					className={`${signInButtonClasses} bg-orange-700`}
 				>
 					<FaGoogle />
 					Sign in with Google
 				</button>
 				<button
-					onClick={() => signIn("twitch", { callbackUrl: "/play" })}
+					onClick={() => void signIn("twitch", { callbackUrl: "/play" })}
 					className={`${signInButtonClasses} bg-twitchpurple`}
 				>
 					<FaTwitch />
 					Sign in with Twitch
 				</button>
 				<button
-					onClick={() => signIn("discord", { callbackUrl: "/play" })}
+					onClick={() => void signIn("discord", { callbackUrl: "/play" })}
 					className={`${signInButtonClasses} bg-discordblurple`}
 				>
 					<FaDiscord />
