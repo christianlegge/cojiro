@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
-import RegionList from "../../components/RegionList";
-import LocationList from "../../components/LocationList";
-import ItemTracker from "../../components/ItemTracker";
-import QuestTracker from "../../components/QuestTracker";
-import Layout from "../../components/Layout";
+import React, { useEffect } from "react";
+import RegionList from "~/components/RegionList";
+import LocationList from "~/components/LocationList";
+import ItemTracker from "~/components/ItemTracker";
+import QuestTracker from "~/components/QuestTracker";
+import Layout from "~/components/Layout";
 import { useRouter } from "next/router";
 import { useSetAtom, useAtomValue, useAtom } from "jotai";
-import {
-	idAtom,
-	errorTextAtom,
-	mapHeaderTextAtom,
-	winScreenOpenAtom,
-} from "../../utils/atoms";
-import { usePlaythrough, trpc, useDownloadLog } from "../../utils/trpc";
-import SongTracker from "../../components/SongTracker";
-import ErrorBox from "../../components/ErrorBox";
+import { idAtom, errorTextAtom, winScreenOpenAtom } from "~/utils/atoms";
+import { usePlaythrough, useDownloadLog, useCheckLocation } from "~/utils/api";
+import SongTracker from "~/components/SongTracker";
+import ErrorBox from "~/components/ErrorBox";
 
 const Trackers = ({
 	items,
@@ -23,12 +18,14 @@ const Trackers = ({
 	items: string[];
 	knownLocations: Record<string, string>;
 }) => {
-	const itemLocations = Object.keys(knownLocations).reduce(
+	const itemLocations = Object.keys(knownLocations).reduce<
+		Record<string, string[]>
+	>(
 		(a, v) => ({
 			...a,
 			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
 		}),
-		{} as Record<string, string[]>
+		{}
 	);
 	return (
 		<div className="flex flex-col items-center justify-around gap-1 bg-gray-700 p-4 sm:flex-row md:gap-4 2xl:flex-col">
@@ -101,42 +98,15 @@ const Cojiro = () => {
 	const [winScreenOpen, setWinScreenOpen] = useAtom(winScreenOpenAtom);
 	const setId = useSetAtom(idAtom);
 	const setErrorText = useSetAtom(errorTextAtom);
-	const setMapHeaderText = useSetAtom(mapHeaderTextAtom);
 	const { data: playthrough, isLoading } = usePlaythrough(id as string);
-	const queryClient = trpc.useContext();
 	const downloadLog = useDownloadLog(id as string);
-	const { mutate: checkLocation, isLoading: checkIsLoading } = trpc.useMutation(
-		"playthrough.checkLocation",
-		{
-			onSuccess: ({ checked, item, known_locations }) => {
-				queryClient.setQueryData(
-					["playthrough.get", { id: id as string }],
-					(old: any) => {
-						if (!old) {
-							return undefined;
-						}
-						return {
-							...old,
-							checked: [...old.checked, checked],
-							items: item ? [...old.items, item] : old.items,
-							known_locations,
-						};
-					}
-				);
-				setErrorText("");
-
-				setMapHeaderText(`${checked}: ${item}`);
-			},
-			onError: (err) => {
-				setErrorText(err.message);
-				queryClient.invalidateQueries(["playthrough.get"]);
-			},
-		}
+	const { mutate: checkLocation, isLoading: checkIsLoading } = useCheckLocation(
+		id as string
 	);
 
 	useEffect(() => {
 		setErrorText("");
-	}, [id]);
+	}, [id, setErrorText]);
 
 	useEffect(() => {
 		if (
@@ -146,12 +116,9 @@ const Cojiro = () => {
 			!checkIsLoading &&
 			!playthrough.checked.includes("Links Pocket")
 		) {
-			checkLocation({
-				id: id as string,
-				location: "Links Pocket",
-			});
+			checkLocation("Links Pocket");
 		}
-	}, [id, isLoading, checkIsLoading]);
+	}, [id, isLoading, checkIsLoading, checkLocation, playthrough]);
 
 	if (!id || !playthrough || isLoading) {
 		if (isLoading) {

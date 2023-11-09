@@ -5,7 +5,7 @@ import {
 	useLightArrowsHint,
 	useCheckLocation,
 	useCheckStone,
-} from "../utils/trpc";
+} from "~/utils/api";
 import { useAtomValue, useSetAtom } from "jotai";
 import { idAtom, ageAtom, regionAtom, winScreenOpenAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
@@ -43,7 +43,7 @@ const CheckSquare = ({
 	item?: string;
 }) => {
 	const id = useAtomValue(idAtom);
-	const checkLocation = useCheckLocation(id);
+	const { mutate: checkLocation } = useCheckLocation(id);
 	const checkStone = useCheckStone(id);
 	const setAge = useSetAtom(ageAtom);
 	const setRegion = useSetAtom(regionAtom);

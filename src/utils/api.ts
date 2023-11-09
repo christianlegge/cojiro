@@ -122,7 +122,10 @@ export const useCheckLocation = (id: string) => {
 			setFetching(false);
 		},
 	});
-	return (location: string) => mutation.mutate({ id, location });
+	return {
+		mutate: (location: string) => mutation.mutate({ id, location }),
+		isLoading: mutation.isLoading,
+	};
 };
 
 export const useCheckStone = (id: string) => {
