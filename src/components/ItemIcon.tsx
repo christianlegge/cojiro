@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const ItemIcon = ({
 	className,
@@ -14,7 +15,7 @@ const ItemIcon = ({
 	onClick?: () => void;
 }) => {
 	return (
-		<img
+		<Image
 			className={`${className} ${has ? "opacity-100" : "opacity-40"}`}
 			src={src}
 			alt={alt}

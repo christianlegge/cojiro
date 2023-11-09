@@ -15,7 +15,7 @@ const ErrorBox = ({
 			} ${className}`}
 		>
 			<MdErrorOutline className="h-full w-8" />
-			{error || undefined}
+			{error ?? undefined}
 		</div>
 	);
 };

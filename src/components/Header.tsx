@@ -2,17 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { FiExternalLink } from "react-icons/fi";
+import Image from "next/image";
 
 const Header = () => {
 	const { data: session, status } = useSession();
-
-	const activeClass = "text-red-500";
 
 	return (
 		<header className="z-[999] flex h-28 w-full items-center justify-between px-8 font-heading text-2xl font-bold tracking-wider text-black shadow-2xl">
 			<div className="h-full">
 				<Link href="/">
-					<img
+					<Image
 						src="/images/logo/cojiro-black.png"
 						alt="Cojiro"
 						className="h-full cursor-pointer object-contain py-8"
@@ -33,17 +32,16 @@ const Header = () => {
 				</a>
 			</div>
 			<div className="flex items-center gap-2 normal-case tracking-normal">
-				{status === "unauthenticated" && (
-					<Link href="/login">Log in</Link>
-				)}
+				{status === "unauthenticated" && <Link href="/login">Log in</Link>}
 				{status === "authenticated" && (
 					<>
 						{session.user?.name}{" "}
-						<img
-							src={session.user?.image!}
+						<Image
+							alt="Profile picture"
+							src={session.user.image!}
 							className="h-10 rounded-full"
 						/>
-						<button onClick={() => signOut()} className="uppercase">
+						<button onClick={() => void signOut()} className="uppercase">
 							Log out
 						</button>
 					</>

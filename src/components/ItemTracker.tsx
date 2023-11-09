@@ -1,9 +1,6 @@
 import React from "react";
 import ItemIcon from "./ItemIcon";
 import Tooltip from "./Tooltip";
-import { usePlaythrough } from "../utils/trpc";
-import { useAtomValue } from "jotai";
-import { idAtom } from "../utils/atoms";
 
 interface TrackerItem {
 	fileName: string; // path to image file in public/images
@@ -64,12 +61,12 @@ function childTradeTrackerItem(items: string[]): TrackerItem {
 		"Chicken",
 		"Weird Egg",
 	];
-	for (let i = 0; i < tradeItems.length; i++) {
-		if (items.includes(tradeItems[i])) {
+	for (const tradeItem of tradeItems) {
+		if (items.includes(tradeItem)) {
 			return {
-				fileName: itemToImageFilename(tradeItems[i]),
-				displayName: tradeItems[i],
-				itemName: tradeItems[i],
+				fileName: itemToImageFilename(tradeItem),
+				displayName: tradeItem,
+				itemName: tradeItem,
 			};
 		}
 	}
@@ -94,12 +91,12 @@ function adultTradeTrackerItem(items: string[]): TrackerItem {
 		"Pocket Cucco",
 		"Pocket Egg",
 	];
-	for (let i = 0; i < tradeItems.length; i++) {
-		if (items.includes(tradeItems[i])) {
+	for (const tradeItem of tradeItems) {
+		if (items.includes(tradeItem)) {
 			return {
-				fileName: itemToImageFilename(tradeItems[i]),
-				displayName: tradeItems[i],
-				itemName: tradeItems[i],
+				fileName: itemToImageFilename(tradeItem),
+				displayName: tradeItem,
+				itemName: tradeItem,
 			};
 		}
 	}
@@ -113,9 +110,8 @@ function adultTradeTrackerItem(items: string[]): TrackerItem {
 function bottleTrackerItem(items: string[]): TrackerItem {
 	const item = "Bottle";
 	const nonRutoBottles = items.filter((el) => el.startsWith(item));
-	const numNonRutoBottles = Math.min(3, nonRutoBottles.length);
 	const hasRuto = items.includes("Rutos Letter");
-	if (numNonRutoBottles === 0) {
+	if (nonRutoBottles.length === 0) {
 		if (hasRuto) {
 			return {
 				fileName: itemToImageFilename("ruto-bottle"),
@@ -129,36 +125,38 @@ function bottleTrackerItem(items: string[]): TrackerItem {
 				itemName: item,
 			};
 		}
-	} else if (numNonRutoBottles === 1) {
+	} else if (nonRutoBottles.length === 1) {
 		if (hasRuto) {
 			return {
 				fileName: itemToImageFilename("ruto-bottle2"),
 				displayName: "Bottles (2) (Rutos Letter)",
-				itemName: nonRutoBottles[0],
+				itemName: nonRutoBottles[0]!,
 			};
 		} else {
 			return {
 				fileName: itemToImageFilename(item),
 				displayName: item,
-				itemName: nonRutoBottles[0],
+				itemName: nonRutoBottles[0]!,
 			};
 		}
 	} else {
 		if (hasRuto) {
 			return {
 				fileName: itemToImageFilename(
-					`ruto-bottle${numNonRutoBottles + 1}`
+					`ruto-bottle${Math.min(nonRutoBottles.length, 3) + 1}`
 				),
 				displayName: `Bottles (${
-					numNonRutoBottles + 1
+					Math.min(nonRutoBottles.length, 3) + 1
 				}) (Rutos Letter)`,
-				itemName: nonRutoBottles[0],
+				itemName: nonRutoBottles[0]!,
 			};
 		} else {
 			return {
-				fileName: itemToImageFilename(`bottle${numNonRutoBottles}`),
-				displayName: `Bottles (${numNonRutoBottles})`,
-				itemName: nonRutoBottles[0],
+				fileName: itemToImageFilename(
+					`bottle${Math.min(nonRutoBottles.length, 3)}`
+				),
+				displayName: `Bottles (${nonRutoBottles.length})`,
+				itemName: nonRutoBottles[0]!,
 			};
 		}
 	}
@@ -174,7 +172,7 @@ function progressiveTrackerItem(
 		items.filter((el) => el === itemName).length,
 		progression.length - 1
 	);
-	const displayName = progression[idx];
+	const displayName = progression[idx]!;
 	return {
 		fileName: itemToImageFilename(displayName),
 		itemName,
@@ -231,12 +229,12 @@ function createTrackerItem(item: string, items: string[]): TrackerItem {
 			return bottleTrackerItem(items);
 		case "Ocarina":
 			const ocarinas = ["Ocarina of Time", "Fairy Ocarina"];
-			for (let i = 0; i < ocarinas.length; i++) {
-				if (items.includes(ocarinas[i])) {
+			for (const ocarina of ocarinas) {
+				if (items.includes(ocarina)) {
 					return {
-						fileName: itemToImageFilename(ocarinas[i]),
-						displayName: ocarinas[i],
-						itemName: ocarinas[i],
+						fileName: itemToImageFilename(ocarina),
+						displayName: ocarina,
+						itemName: ocarina,
 					};
 				}
 			}
@@ -262,7 +260,7 @@ function getBottleTooltip(itemLocations: Record<string, string[]>): string {
 	);
 	if (knownBottles.length > 0) {
 		const bottleLocations = knownBottles
-			.map((item) => `${item}: ${itemLocations[item]}`)
+			.map((item) => `${item}: ${itemLocations[item]!.toString()}`)
 			.join(", ");
 		tooltip = `${tooltip} (${bottleLocations})`;
 	}
@@ -281,17 +279,15 @@ const ItemTracker: React.FC<{
 				if (item === "Bottle") {
 					tooltip = getBottleTooltip(itemLocations);
 				} else if (trackerItem.itemName in itemLocations) {
-					tooltip = `${tooltip} (${itemLocations[
-						trackerItem.itemName
-					].join(", ")})`;
+					tooltip = `${tooltip} (${itemLocations[trackerItem.itemName]!.join(
+						", "
+					)})`;
 				}
 				const showInfoIcon =
 					trackerItem.itemName in itemLocations ||
 					(item === "Bottle" &&
 						Object.keys(itemLocations).filter(
-							(item) =>
-								item.includes("Bottle") ||
-								item === "Rutos Letter"
+							(item) => item.includes("Bottle") || item === "Rutos Letter"
 						).length > 0);
 				return (
 					<Tooltip

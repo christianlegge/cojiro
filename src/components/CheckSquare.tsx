@@ -10,6 +10,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { idAtom, ageAtom, regionAtom, winScreenOpenAtom } from "../utils/atoms";
 import { ImEnter } from "react-icons/im";
 import songs from "../data/songs.json";
+import Image from "next/image";
 
 const checkImages = {
 	"Take Master Sword": "tot-pedestal-sword.png",
@@ -61,9 +62,7 @@ const CheckSquare = ({
 				</span>
 			}
 			className={`absolute ${
-				bigChecks.includes(check)
-					? "h-20 w-20"
-					: "h-8 w-8 lg:h-12 lg:w-12"
+				bigChecks.includes(check) ? "h-20 w-20" : "h-8 w-8 lg:h-12 lg:w-12"
 			} -translate-x-1/2 -translate-y-1/2`}
 			style={{ ...coords }}
 			showInfoIcon={item !== undefined}
@@ -113,12 +112,13 @@ const CheckSquare = ({
 							checked
 								? { opacity: 0.7 }
 								: {
-										filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
+										filter:
+											"drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
 								  }
 						}
 					/>
 				) : (
-					<img
+					<Image
 						className="h-full w-full object-contain"
 						src={`/images/${
 							check in checkImages
@@ -140,7 +140,8 @@ const CheckSquare = ({
 							checked
 								? { opacity: 0.7 }
 								: {
-										filter: "drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
+										filter:
+											"drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 8px white)",
 								  }
 						}
 					/>

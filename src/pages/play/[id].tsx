@@ -71,9 +71,7 @@ const WinScreen = ({
 		<div className="fixed top-0 z-[998] col-start-1 row-start-1 h-screen w-full bg-black bg-opacity-70 text-center text-white">
 			<div className="grid h-full place-items-center">
 				<div className="flex flex-col gap-4">
-					<h2 className="text-6xl font-bold tracking-wide">
-						You win!
-					</h2>
+					<h2 className="text-6xl font-bold tracking-wide">You win!</h2>
 					<span className="text-xl">
 						Locations checked: {checked}/{locations}
 					</span>
@@ -107,8 +105,9 @@ const Cojiro = () => {
 	const { data: playthrough, isLoading } = usePlaythrough(id as string);
 	const queryClient = trpc.useContext();
 	const downloadLog = useDownloadLog(id as string);
-	const { mutate: checkLocation, isLoading: checkIsLoading } =
-		trpc.useMutation("playthrough.checkLocation", {
+	const { mutate: checkLocation, isLoading: checkIsLoading } = trpc.useMutation(
+		"playthrough.checkLocation",
+		{
 			onSuccess: ({ checked, item, known_locations }) => {
 				queryClient.setQueryData(
 					["playthrough.get", { id: id as string }],
@@ -132,7 +131,8 @@ const Cojiro = () => {
 				setErrorText(err.message);
 				queryClient.invalidateQueries(["playthrough.get"]);
 			},
-		});
+		}
+	);
 
 	useEffect(() => {
 		setErrorText("");
@@ -195,8 +195,6 @@ const Cojiro = () => {
 							items={playthrough.items}
 							knownLocations={playthrough.known_locations}
 						/>
-
-						{/* <HintTracker /> */}
 					</div>
 				</div>
 			</div>
