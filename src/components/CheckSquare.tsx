@@ -119,6 +119,9 @@ const CheckSquare = ({
 					/>
 				) : (
 					<Image
+						width={0}
+						height={0}
+						sizes="100vw"
 						className="h-full w-full object-contain"
 						src={`/images/${
 							check in checkImages
@@ -135,7 +138,7 @@ const CheckSquare = ({
 								? checkImages.small_key
 								: checkImages.default
 						}`}
-						alt=""
+						alt={check}
 						style={
 							checked
 								? { opacity: 0.7 }

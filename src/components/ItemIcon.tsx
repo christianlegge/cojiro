@@ -16,6 +16,9 @@ const ItemIcon = ({
 }) => {
 	return (
 		<Image
+			width={0}
+			height={0}
+			sizes="100vw"
 			className={`${className} ${has ? "opacity-100" : "opacity-40"}`}
 			src={src}
 			alt={alt}

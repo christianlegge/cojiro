@@ -67,9 +67,18 @@ const InProgressPlaythroughCard = ({
 			: rtf.format(-seconds / 60 / 60 / 24 / 365, "year");
 	return (
 		<div className="w-40 cursor-pointer rounded-lg border shadow-md">
-			<div className="flex">
+			<div className="flex relative">
 				{medallions.map((el) => (
-					<Image key={el} src={`/images/${formatFilename(el)}.png`} alt="" />
+					<Image
+						objectFit="contain"
+						key={el}
+						width={0}
+						height={0}
+						className="h-full w-auto"
+						sizes="100vw"
+						src={`/images/${formatFilename(el)}.png`}
+						alt={el}
+					/>
 				))}
 			</div>
 

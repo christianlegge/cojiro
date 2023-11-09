@@ -140,8 +140,11 @@ const RegionList = () => {
 								{regionsWithKeys.includes(el) && (
 									<span>
 										<Image
+											width={0}
+											height={0}
+											sizes="100vw"
 											alt="Small Key"
-											className="inline-block h-6"
+											className="inline-block h-6 w-auto"
 											src="/images/small-key.png"
 										/>
 										{smallKeyCount(el)}
@@ -149,8 +152,11 @@ const RegionList = () => {
 								)}
 								{regionsWithBossKeys.includes(el) && (
 									<Image
+										width={0}
+										height={0}
+										sizes="100vw"
 										alt="Boss Key"
-										className={`inline-block h-6 ${
+										className={`inline-block h-6 w-auto ${
 											playthrough.items.includes(`Boss Key (${el})`)
 												? "opacity-100"
 												: "opacity-30"
@@ -160,7 +166,10 @@ const RegionList = () => {
 								)}
 								{regionsWithMedallions.includes(el) && (
 									<Image
-										className="h-6"
+										width={0}
+										height={0}
+										sizes="100vw"
+										className="h-6 w-auto"
 										src={`/images/${
 											bosses[el]! in playthrough.known_locations
 												? formatFilename(

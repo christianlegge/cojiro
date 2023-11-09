@@ -108,6 +108,9 @@ const LocationList = () => {
 			<div className="flex h-full w-full items-center justify-center py-8">
 				<div className="relative w-full">
 					<Image
+						width={0}
+						height={0}
+						sizes="100vw"
 						src={`/images/maps/${formatFilename(region)}.jpg`}
 						alt=""
 						className="mx-auto h-full w-full object-contain"
