@@ -2,7 +2,7 @@ import React from "react";
 import CheckSquare from "./CheckSquare";
 import { FiExternalLink } from "react-icons/fi";
 import ErrorBox from "./ErrorBox";
-import { usePlaythrough, trpc } from "../utils/trpc";
+import { usePlaythrough, api } from "~/utils/api";
 import { useAtomValue } from "jotai";
 import {
 	idAtom,
@@ -14,6 +14,7 @@ import {
 import regions from "../utils/regions";
 import { fetchingAtom } from "../utils/atoms";
 import { formatFilename } from "../utils/filename";
+import Image from "next/image";
 
 function locationDisplayName(name: string, region: string): string {
 	const parensMatch = /\(([^)]+)\)/.exec(name);
@@ -41,15 +42,13 @@ const LocationList = () => {
 	const headerText = useAtomValue(mapHeaderTextAtom);
 	const errorText = useAtomValue(errorTextAtom);
 
-	const { data: freestandingItems } = trpc.useQuery([
-		"playthrough.getFreestandingItems",
-		{
+	const { data: freestandingItems } =
+		api.playthrough.getFreestandingItems.useQuery({
 			id: id,
-			locations: Object.keys(regions[region].locations).filter((loc) =>
+			locations: Object.keys(regions[region]!.locations).filter((loc) =>
 				loc.includes("Freestanding")
 			),
-		},
-	]);
+		});
 
 	if (!playthrough) {
 		if (status === "loading") {
@@ -57,8 +56,7 @@ const LocationList = () => {
 		} else {
 			return (
 				<div>
-					Error in ItemTracker:{" "}
-					{error ? error.message : "Unknown error"}
+					Error in ItemTracker: {error ? error.message : "Unknown error"}
 				</div>
 			);
 		}
@@ -78,22 +76,16 @@ const LocationList = () => {
 					{pathTo && (
 						<span className="w-max max-w-[20rem]">
 							{`Path to: ${pathTo
-								.filter(
-									(el, idx, arr) => arr.indexOf(el) === idx
-								)
+								.filter((el, idx, arr) => arr.indexOf(el) === idx)
 								.join(", ")}
 							`}
 						</span>
 					)}
 					{playthrough.known_woth.includes(region) && (
-						<span className="w-max max-w-[20rem]">
-							Way of the Hero
-						</span>
+						<span className="w-max max-w-[20rem]">Way of the Hero</span>
 					)}
 					{playthrough.known_barren.includes(region) && (
-						<span className="w-max max-w-[20rem]">
-							Foolish Choice
-						</span>
+						<span className="w-max max-w-[20rem]">Foolish Choice</span>
 					)}
 				</div>
 				{fetching ? (
@@ -115,7 +107,7 @@ const LocationList = () => {
 			</div>
 			<div className="flex h-full w-full items-center justify-center py-8">
 				<div className="relative w-full">
-					<img
+					<Image
 						src={`/images/maps/${formatFilename(region)}.jpg`}
 						alt=""
 						className="mx-auto h-full w-full object-contain"
@@ -127,14 +119,14 @@ const LocationList = () => {
 							| "entrances"
 						)[]
 					).flatMap((checkType) =>
-						Object.keys(regions[region][checkType])
+						Object.keys(regions[region]![checkType])
 							.filter(
 								(el) =>
-									regions[region][checkType][el][age] &&
-									(regions[region][checkType][el].always ||
-										checkType === "gossip_stones" ||
-										checkType === "entrances" ||
-										playthrough.locations.includes(el) ||
+									regions[region]![checkType]![el]![age] &&
+									(regions[region]![checkType]![el]!.always ??
+										checkType === "gossip_stones" ??
+										checkType === "entrances" ??
+										playthrough.locations.includes(el) ??
 										el.includes("GS"))
 							)
 							.map((el) => (
@@ -143,24 +135,19 @@ const LocationList = () => {
 									key={el}
 									check={el}
 									coords={{
-										top: `${regions[region][checkType][el].top}%`,
-										left: `${regions[region][checkType][el].left}%`,
+										top: `${regions[region]![checkType]![el]!.top}%`,
+										left: `${regions[region]![checkType]![el]!.left}%`,
 									}}
 									displayName={
 										checkType === "entrances"
-											? `To ${regions[el].name}`
+											? `To ${regions[el]!.name}`
 											: locationDisplayName(el, region)
 									}
-									checked={
-										el !== "Ganon" &&
-										playthrough.checked.includes(el)
-									}
+									checked={el !== "Ganon" && playthrough.checked.includes(el)}
 									item={
 										checkType === "locations"
 											? playthrough.known_locations[el] ??
-											  (freestandingItems
-													? freestandingItems[el]
-													: undefined)
+											  (freestandingItems ? freestandingItems[el] : undefined)
 											: undefined
 									}
 								/>

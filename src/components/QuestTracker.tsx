@@ -1,11 +1,7 @@
 import React from "react";
-import { usePlaythrough } from "../utils/trpc";
 import ItemIcon from "./ItemIcon";
 import MedallionCircle from "./MedallionCircle";
-import SongTracker from "./SongTracker";
 import Tooltip from "./Tooltip";
-import { useAtomValue } from "jotai";
-import { idAtom } from "../utils/atoms";
 
 function formatFilename(str: string): string {
 	return str.toLowerCase().replaceAll(" ", "-");
@@ -27,7 +23,7 @@ const QuestTracker: React.FC<{
 							key={stone}
 							content={
 								stone in itemLocations
-									? `${stone} (${itemLocations[stone]})`
+									? `${stone} (${itemLocations[stone]!.toString()})`
 									: stone
 							}
 							className="relative h-20 w-20"
@@ -44,10 +40,7 @@ const QuestTracker: React.FC<{
 				</div>
 			</div>
 			<div>
-				<Tooltip
-					content="Gold Skulltula Token"
-					className="relative h-20 w-20"
-				>
+				<Tooltip content="Gold Skulltula Token" className="relative h-20 w-20">
 					<ItemIcon
 						src="/images/skulltula.png"
 						alt="Gold Skulltula Token"
@@ -56,10 +49,7 @@ const QuestTracker: React.FC<{
 					/>
 				</Tooltip>
 				<p className="text-center text-3xl font-semibold text-white">
-					{
-						items.filter((item) => item === "Gold Skulltula Token")
-							.length
-					}
+					{items.filter((item) => item === "Gold Skulltula Token").length}
 				</p>
 			</div>
 		</div>

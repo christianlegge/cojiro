@@ -1,16 +1,17 @@
 import React, { useCallback, useState } from "react";
 import regions from "../utils/regions";
 import Tag from "./Tag";
-import { formatFilename } from "../utils/filename";
-import { usePlaythrough } from "../utils/trpc";
+import { formatFilename } from "~/utils/filename";
+import { usePlaythrough } from "~/utils/api";
 import { useAtom, useAtomValue } from "jotai";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { idAtom, ageAtom, regionAtom } from "../utils/atoms";
+import Image from "next/image";
 
 const RegionList = () => {
 	const id = useAtomValue(idAtom);
 	const { data: playthrough, error, status } = usePlaythrough(id);
-	const [age, setAge] = useAtom(ageAtom);
+	const age = useAtomValue(ageAtom);
 	const [region, setRegion] = useAtom(regionAtom);
 	const [collapsed, setCollapsed] = useState(true);
 	const smallKeyCount = useCallback(
@@ -31,8 +32,9 @@ const RegionList = () => {
 					"Thieves Hideout": 4,
 				}[dungeon];
 			}
-			return playthrough.items.filter(item => item === `Small Key (${dungeon})`)
-				.length;
+			return playthrough.items.filter(
+				(item) => item === `Small Key (${dungeon})`
+			).length;
 		},
 		[playthrough]
 	);
@@ -89,7 +91,7 @@ const RegionList = () => {
 		<>
 			<div
 				className="flex cursor-pointer items-center justify-center gap-2 bg-black py-1 text-center text-2xl font-bold text-white lg:cursor-default"
-				onClick={() => setCollapsed(prev => !prev)}
+				onClick={() => setCollapsed((prev) => !prev)}
 			>
 				<span>{age === "child" ? "Child" : "Adult"} Link</span>
 				<button className="lg:hidden">
@@ -102,8 +104,8 @@ const RegionList = () => {
 				} lg:grid`}
 			>
 				{Object.keys(regions)
-					.filter(el => regions[el][age])
-					.map(el => (
+					.filter((el) => regions[el]![age])
+					.map((el) => (
 						<div
 							key={el}
 							className={`border-2 border-black bg-cover bg-center text-white transition lg:h-auto lg:w-full lg:justify-end ${
@@ -134,10 +136,11 @@ const RegionList = () => {
 								{playthrough.known_barren.includes(el) && (
 									<Tag text="FOOL" color="firebrick" />
 								)}
-								<span>{regions[el].name}</span>
+								<span>{regions[el]!.name}</span>
 								{regionsWithKeys.includes(el) && (
 									<span>
-										<img
+										<Image
+											alt="Small Key"
 											className="inline-block h-6"
 											src="/images/small-key.png"
 										/>
@@ -145,7 +148,8 @@ const RegionList = () => {
 									</span>
 								)}
 								{regionsWithBossKeys.includes(el) && (
-									<img
+									<Image
+										alt="Boss Key"
 										className={`inline-block h-6 ${
 											playthrough.items.includes(`Boss Key (${el})`)
 												? "opacity-100"
@@ -155,12 +159,12 @@ const RegionList = () => {
 									/>
 								)}
 								{regionsWithMedallions.includes(el) && (
-									<img
+									<Image
 										className="h-6"
 										src={`/images/${
-											bosses[el] in playthrough.known_locations
+											bosses[el]! in playthrough.known_locations
 												? formatFilename(
-														playthrough.known_locations[bosses[el]]
+														playthrough.known_locations[bosses[el]!]!
 												  )
 												: "unknown-small"
 										}.png`}

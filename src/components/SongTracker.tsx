@@ -23,7 +23,7 @@ const SongTracker = ({
 					key={song}
 					content={
 						song in itemLocations
-							? `${song} (${itemLocations[song]})`
+							? `${song} (${itemLocations[song]!.toString()})`
 							: song
 					}
 					className="relative h-16 w-16"
@@ -39,14 +39,9 @@ const SongTracker = ({
 						has={items.includes(song)}
 						alt={song}
 						onClick={() => {
-							if (
-								items.includes(song) &&
-								song in songData.warpSongs
-							) {
+							if (items.includes(song) && song in songData.warpSongs) {
 								setRegion(
-									songData.warpSongs[
-										song as keyof typeof songData.warpSongs
-									]
+									songData.warpSongs[song as keyof typeof songData.warpSongs]
 								);
 							}
 						}}

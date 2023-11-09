@@ -22,7 +22,7 @@ const TextInput = ({
 			<input
 				className="rounded-md border-[1px] border-gray-300 p-2"
 				placeholder={placeholder}
-				type={type || "text"}
+				type={type ?? "text"}
 				name={name}
 				onKeyDown={
 					enterCallback &&

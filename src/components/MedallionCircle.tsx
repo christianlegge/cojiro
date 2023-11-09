@@ -39,7 +39,7 @@ const MedallionCircle = ({
 							}}
 							content={
 								medallion in itemLocations
-									? `${medallion} (${itemLocations[medallion]})`
+									? `${medallion} (${itemLocations[medallion]!.toString()})`
 									: medallion
 							}
 							showInfoIcon={medallion in itemLocations}
