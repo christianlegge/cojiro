@@ -1,36 +1,35 @@
 import jwt from "jsonwebtoken";
 import * as trpc from "@trpc/server";
 import { z } from "zod";
-import { createRouter } from "./context";
-import { env } from "../../env/server.mjs";
-import type InProgressPlaythrough from "../../types/InProgressPlaythrough";
+import { env } from "~/env.mjs";
+import type InProgressPlaythrough from "~/types/InProgressPlaythrough";
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-export const jwtRouter = createRouter()
-	.query("getPlaythroughs", {
-		input: z.object({
-			token: z.string(),
-		}),
-		async resolve({ ctx, input }) {
+export const jwtRouter = createTRPCRouter({
+	getPlaythroughs: publicProcedure
+		.input(
+			z.object({
+				token: z.string(),
+			})
+		)
+		.query(async ({ ctx, input }) => {
 			try {
-				const { playthroughs } = jwt.verify(
-					input.token,
-					env.JWT_SECRET
-				) as { playthroughs: string[] };
+				const { playthroughs } = jwt.verify(input.token, env.JWT_SECRET) as {
+					playthroughs: string[];
+				};
 				const validPlaythroughs: InProgressPlaythrough[] = [];
 				for (let i = 0; i < playthroughs.length; i++) {
-					const playthrough = await ctx.prisma.playthrough.findUnique(
-						{
-							where: { id: playthroughs[i] },
-							select: {
-								items: true,
-								userId: true,
-								id: true,
-								createdAt: true,
-								checked: true,
-								seed: true,
-							},
-						}
-					);
+					const playthrough = await ctx.db.playthrough.findUnique({
+						where: { id: playthroughs[i] },
+						select: {
+							items: true,
+							userId: true,
+							id: true,
+							createdAt: true,
+							checked: true,
+							seed: true,
+						},
+					});
 					if (playthrough && !playthrough.userId) {
 						validPlaythroughs.push({
 							id: playthrough.id,
@@ -40,17 +39,10 @@ export const jwtRouter = createRouter()
 							startTime: playthrough.createdAt,
 							checked: playthrough.checked.filter(
 								(loc) =>
-									loc in
-									(playthrough.seed.locations as Record<
-										string,
-										string
-									>)
+									loc in (playthrough.seed.locations as Record<string, string>)
 							).length,
 							locations: Object.keys(
-								playthrough.seed.locations as Record<
-									string,
-									string
-								>
+								playthrough.seed.locations as Record<string, string>
 							).length,
 						});
 					}
@@ -72,14 +64,15 @@ export const jwtRouter = createRouter()
 					message: "Failed to authorize jwt",
 				});
 			}
-		},
-	})
-	.mutation("addPlaythrough", {
-		input: z.object({
-			token: z.string().nullable(),
-			playthroughId: z.string(),
 		}),
-		async resolve({ input }) {
+	addPlaythrough: publicProcedure
+		.input(
+			z.object({
+				token: z.string().nullable(),
+				playthroughId: z.string(),
+			})
+		)
+		.mutation(({ input }) => {
 			let playthroughs: string[] = [];
 			if (input.token) {
 				try {
@@ -97,5 +90,5 @@ export const jwtRouter = createRouter()
 					expiresIn: "3d",
 				}) as string,
 			};
-		},
-	});
+		}),
+});
