@@ -4,11 +4,7 @@ import parseSeed, { ParsedSeed } from "~/utils/parseSeed";
 import createSeed from "~/server/external/createSeed";
 import parseHint from "~/utils/parseHint";
 import regions from "~/utils/regions";
-import {
-	createTRPCRouter,
-	protectedProcedure,
-	publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const playthroughRouter = createTRPCRouter({
 	startPlaythrough: publicProcedure
@@ -104,7 +100,7 @@ export const playthroughRouter = createTRPCRouter({
 				createdAt: playthrough.createdAt,
 			};
 		}),
-	getFreestandingItems: protectedProcedure
+	getFreestandingItems: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -147,7 +143,7 @@ export const playthroughRouter = createTRPCRouter({
 			}, {} as Record<string, string>);
 		}),
 
-	checkLocation: protectedProcedure
+	checkLocation: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -269,7 +265,7 @@ export const playthroughRouter = createTRPCRouter({
 			};
 		}),
 
-	checkStone: protectedProcedure
+	checkStone: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -417,7 +413,7 @@ export const playthroughRouter = createTRPCRouter({
 			}
 		),
 
-	checkLightArrowsHint: protectedProcedure
+	checkLightArrowsHint: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -493,7 +489,7 @@ export const playthroughRouter = createTRPCRouter({
 				message: `Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from ${lightArrowsRegion}!`,
 			};
 		}),
-	beatGanon: protectedProcedure
+	beatGanon: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
@@ -531,7 +527,7 @@ export const playthroughRouter = createTRPCRouter({
 			});
 		}),
 
-	downloadLog: protectedProcedure
+	downloadLog: publicProcedure
 		.input(
 			z.object({
 				id: z.string().cuid(),
