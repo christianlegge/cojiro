@@ -18,9 +18,9 @@ export const jwtRouter = createTRPCRouter({
 					playthroughs: string[];
 				};
 				const validPlaythroughs: InProgressPlaythrough[] = [];
-				for (let i = 0; i < playthroughs.length; i++) {
+				for (const playthroughId of playthroughs) {
 					const playthrough = await ctx.db.playthrough.findUnique({
-						where: { id: playthroughs[i] },
+						where: { id: playthroughId },
 						select: {
 							items: true,
 							userId: true,
@@ -53,7 +53,7 @@ export const jwtRouter = createTRPCRouter({
 					{
 						expiresIn: "3d",
 					}
-				) ;
+				);
 				return {
 					playthroughs: validPlaythroughs,
 					newToken,
@@ -88,7 +88,7 @@ export const jwtRouter = createTRPCRouter({
 			return {
 				newToken: jwt.sign({ playthroughs }, env.JWT_SECRET, {
 					expiresIn: "3d",
-				}) ,
+				}),
 			};
 		}),
 });
