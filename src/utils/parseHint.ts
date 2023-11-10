@@ -7,10 +7,10 @@ const hints = h as Record<string, { names: string[]; type: string }>;
 Object.keys(hints).forEach((k) => {
 	if (k.includes("MQ")) return;
 	if (/Item \d/.test(k)) return;
-	if (!["region", "location", "item"].includes(hints[k].type)) return;
-	hints[k].names.forEach((name) => {
+	if (!["region", "location", "item"].includes(hints[k]!.type)) return;
+	hints[k]!.names.forEach((name) => {
 		if (!hintsMap.has(name)) {
-			hintsMap.set(name, { meanings: [], type: hints[k].type });
+			hintsMap.set(name, { meanings: [], type: hints[k]!.type });
 		}
 		hintsMap.set(name, {
 			meanings: [
@@ -24,7 +24,7 @@ Object.keys(hints).forEach((k) => {
 					: []),
 				k,
 			],
-			type: hints[k].type,
+			type: hints[k]!.type,
 		});
 	});
 });
@@ -46,32 +46,32 @@ const parseHint = (
 	hintsMap.forEach((v, k) => {
 		mapArray.push([k, v]);
 	});
-	const matches = mapArray.filter(([k, v]) => hint.includes(k));
+	const matches = mapArray.filter(([k]) => hint.includes(k));
 
-	const locations = matches.filter(([k, v]) => v.type === "location");
+	const locations = matches.filter(([_, v]) => v.type === "location");
 	const location =
 		(locations.length > 0 &&
-			locations[0][1].meanings.filter((el) =>
+			locations[0]![1].meanings.filter((el) =>
 				seedLocations.includes(el)
-			)[0]) ||
+			)[0]) ??
 		undefined;
 
-	const items = matches.filter(([k, v]) => v.type === "item");
-	const item = (items.length > 0 && items[0][1].meanings[0]) || undefined;
+	const items = matches.filter(([_, v]) => v.type === "item");
+	const item = (items.length > 0 && items[0]![1].meanings[0]) ?? undefined;
 
-	const regions = matches.filter(([k, v]) => v.type === "region");
+	const regions = matches.filter(([_, v]) => v.type === "region");
 	const region =
-		(regions.length > 0 && regions[0][1].meanings[0]) || undefined;
+		(regions.length > 0 && regions[0]![1].meanings[0]) ?? undefined;
 
 	if (
 		matches.length === 0 ||
-		matches.filter(([k, v]) => v.type === "junk").length > 0
+		matches.filter(([_, v]) => v.type === "junk").length > 0
 	) {
 		return { type: "junk" };
-	} else if (item && (location || region)) {
+	} else if (item && (location ?? region)) {
 		return {
 			type: "item",
-			location: (location ?? region)!,
+			location: (location ?? region) as string,
 			item: item,
 		};
 	} else if (region) {

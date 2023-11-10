@@ -23,7 +23,7 @@ const Trackers = ({
 	>(
 		(a, v) => ({
 			...a,
-			[knownLocations[v]]: [...(a[knownLocations[v]] ?? []), v],
+			[knownLocations[v]!]: [...(a[knownLocations[v]!] ?? []), v],
 		}),
 		{}
 	);

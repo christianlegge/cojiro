@@ -23,8 +23,13 @@ export const playthroughRouter = createTRPCRouter({
 				settingsString: input.settingsString,
 			});
 			const seed = parseSeed(apiSeed);
-			startingItems = Object.keys(apiSeed.settings.starting_items).flatMap(
-				(el) => Array(Math.min(apiSeed.settings.starting_items[el], 5)).fill(el)
+			startingItems = Object.keys(
+				apiSeed.settings.starting_items
+			).flatMap<string>(
+				(el) =>
+					Array(Math.min(apiSeed.settings.starting_items[el]!, 5)).fill(
+						el
+					) as string[]
 			);
 
 			const playthrough = await ctx.db.playthrough.create({
@@ -135,7 +140,7 @@ export const playthroughRouter = createTRPCRouter({
 			}
 			return input.locations.reduce((acc, loc) => {
 				if (loc.includes("Freestanding")) {
-					return { ...acc, [loc]: seed.locations[loc].item };
+					return { ...acc, [loc]: seed.locations[loc]!.item };
 				} else {
 					return acc;
 				}
@@ -186,7 +191,7 @@ export const playthroughRouter = createTRPCRouter({
 			let known_locations: Record<string, string> =
 				playthrough.known_locations as Record<string, string>;
 			if (input.location in seed.locations) {
-				item = seed.locations[input.location].item;
+				item = seed.locations[input.location]!.item;
 			} else if (/Check .* Dungeons/.test(input.location)) {
 				if (input.location.includes("Medallion")) {
 					await ctx.db.playthrough.update({
@@ -211,12 +216,12 @@ export const playthroughRouter = createTRPCRouter({
 					if (
 						input.location.includes("Medallion") ||
 						["Kokiri Emerald", "Goron Ruby", "Zora Sapphire"].includes(
-							seed.locations[boss].item
+							seed.locations[boss]!.item
 						)
 					)
 						known_locations = {
 							...known_locations,
-							[boss]: seed.locations[boss].item,
+							[boss]: seed.locations[boss]!.item,
 						};
 				});
 			} else if (input.location.includes("GS")) {
@@ -329,16 +334,16 @@ export const playthroughRouter = createTRPCRouter({
 				if (playthrough.finished) {
 					throw new TRPCError({
 						code: "FORBIDDEN",
-						message: `Game already finished, but hint was: ${hint.replaceAll(
+						message: `Game already finished, but hint was: ${hint!.replaceAll(
 							"#",
 							""
 						)}`,
 					});
 				}
-				const parsedHint = parseHint(hint, Object.keys(seed.locations));
+				const parsedHint = parseHint(hint!, Object.keys(seed.locations));
 				let returnObj = {
 					type: parsedHint.type,
-					text: hint.replaceAll("#", ""),
+					text: hint!.replaceAll("#", ""),
 					checked: input.stone,
 				} as {
 					text: string;
@@ -367,7 +372,7 @@ export const playthroughRouter = createTRPCRouter({
 									? (playthrough.known_paths as Record<string, string[]>)[
 											parsedHint.region
 									  ]
-									: []),
+									: [])!,
 								parsedHint.location,
 							],
 						},
@@ -381,7 +386,7 @@ export const playthroughRouter = createTRPCRouter({
 								? (playthrough.known_paths as Record<string, string[]>)[
 										parsedHint.region
 								  ]
-								: []),
+								: [])!,
 							parsedHint.location,
 						],
 					};
@@ -454,11 +459,11 @@ export const playthroughRouter = createTRPCRouter({
 			let lightArrowsRegion = "";
 			try {
 				const lightArrowsLocation = Object.keys(seed.locations).filter(
-					(loc) => seed.locations[loc].item === "Light Arrows"
+					(loc) => seed.locations[loc]!.item === "Light Arrows"
 				)[0];
 				lightArrowsRegion = Object.keys(regions).filter((region) =>
-					Object.keys(regions[region].locations).includes(lightArrowsLocation)
-				)[0];
+					Object.keys(regions[region]!.locations).includes(lightArrowsLocation!)
+				)[0]!;
 			} catch (err) {
 				throw new TRPCError({
 					code: "INTERNAL_SERVER_ERROR",
