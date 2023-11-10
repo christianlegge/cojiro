@@ -143,7 +143,7 @@ const Cojiro = () => {
 						createdAt={playthrough.createdAt}
 						finishedAt={playthrough.finishedAt}
 						closeWinScreen={() => setWinScreenOpen(false)}
-						downloadLog={() => downloadLog()}
+						downloadLog={() => void downloadLog()}
 					/>
 				)}
 				<div

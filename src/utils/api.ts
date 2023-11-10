@@ -279,20 +279,26 @@ export const useBeatGanon = (id: string) => {
 
 export const useDownloadLog = (id: string) => {
 	const setErrorText = useSetAtom(errorTextAtom);
+	const utils = api.useUtils();
 	return () =>
-		api.playthrough.downloadLog.useQuery(
-			{ id },
-			{
-				onSuccess(data) {
-					const logBlob = new Blob([data.log], { type: "application/json" });
-					saveAs(logBlob, `cojiro-log-${id}.json`);
-					setErrorText("");
-				},
-				onError(err) {
-					setErrorText(err.message);
-				},
-			}
-		);
+		utils.playthrough.downloadLog
+			.fetch({ id })
+			.then((data) => {
+				const logBlob = new Blob([data.log], { type: "application/json" });
+				saveAs(logBlob, `cojiro-log-${id}.json`);
+				setErrorText("");
+			})
+			.catch((err: unknown) => {
+				if (err !== null && typeof err === "object") {
+					if ("message" in err && typeof err.message === "string") {
+						setErrorText(err.message);
+					} else {
+						setErrorText(JSON.stringify(err));
+					}
+				} else {
+					setErrorText("Unknown error");
+				}
+			});
 };
 /**
  * Inference helper for inputs.
