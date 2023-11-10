@@ -164,13 +164,13 @@ export const useCheckStone = (id: string) => {
 					return {
 						...old,
 						checked: [...old.checked, checked],
-						known_barren: [...old.known_barren, region],
+						known_barren: [...old.known_barren, region!],
 					};
 				} else if (type === "woth") {
 					return {
 						...old,
 						checked: [...old.checked, checked],
-						known_woth: [...old.known_woth, region],
+						known_woth: [...old.known_woth, region!],
 					};
 				} else if (type === "path") {
 					return {
@@ -178,7 +178,7 @@ export const useCheckStone = (id: string) => {
 						checked: [...old.checked, checked],
 						known_paths: {
 							...old.known_paths,
-							[region!]: path_locations,
+							[region!]: path_locations!,
 						},
 					};
 				} else if (type === "item") {
@@ -187,7 +187,7 @@ export const useCheckStone = (id: string) => {
 						checked: [...old.checked, checked],
 						known_locations: {
 							...old.known_locations,
-							[location!]: item,
+							[location!]: item!,
 						},
 					};
 				} else if (type === "junk") {
