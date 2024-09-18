@@ -125,8 +125,8 @@ const LocationList = () => {
 						Object.keys(regions[region]![checkType])
 							.filter(
 								(el) =>
-									regions[region]![checkType]![el]![age] &&
-									(regions[region]![checkType]![el]!.always! ||
+									regions[region]![checkType][el]![age] &&
+									(regions[region]![checkType][el]!.always! ||
 										checkType === "gossip_stones" ||
 										checkType === "entrances" ||
 										playthrough.locations.includes(el) ||
@@ -138,8 +138,8 @@ const LocationList = () => {
 									key={el}
 									check={el}
 									coords={{
-										top: `${regions[region]![checkType]![el]!.top}%`,
-										left: `${regions[region]![checkType]![el]!.left}%`,
+										top: `${regions[region]![checkType][el]!.top}%`,
+										left: `${regions[region]![checkType][el]!.left}%`,
 									}}
 									displayName={
 										checkType === "entrances"
