@@ -13,30 +13,7 @@ import { useSession } from "next-auth/react";
 import { MdWarningAmber } from "react-icons/md";
 import { formatFilename } from "~/utils/filename";
 import Image from "next/image";
-
-const settingsPresets: Record<string, string> = {
-	"S6 Tournament":
-		"BSA4BGBSL62A6LTDDSAJFQNALCAECKAEAAABAJAAAEACSSAAAC2ALSFWBA3RYEGKL3V8YZELVAFAJAASAESHFEABE7KACDCSAAJJHNLB",
-	"Scrub Tournament":
-		"BSA4BGBSL62AWLTDDSSMFQNALCAEAKAEAAABA2AAABSAYAJJJ8B7DTSAAJADJBYSGAE93U2EKFRKWGBLASASBSSBJCRQLACA6RAEGEABASSWA",
-	// "Co-op Tournament Season 2":
-	// 	"BSA4BGBSL62ANLTDDSSNFQNALCAEAKACAAABAASCEBSAEEE9S8BAAC2ALSFWBA3RYEGKL3V8YZELVAFAAASANSHHHABA8DACDCSAAJJHNLB",
-	"Standard Weekly (Latest)":
-		"BSA4BGBSL62A6LTDDSAJFQNALCAEAKAEAAABA2AAABSAEEAASAGSCNBPAJ8VFTKUL8WZ7FT4EJBACAGACSA8W6AESWZBJNJACAAB7SKFA",
-	"DDR Weekly (2021-01-19)":
-		"BSA4BGBSL62AWLSDDSSEFQNALCAESKAAAAABAAAAAASAEEAASAGSCNBP2GAU9NKNUWUH7FT4EJBAAAAA8G6AEA2VAJNJACAAF7SKFA",
-	"Default / Beginner":
-		"BSA4BGBSL62A6LTDDSNKFQNALCANWAAAAAABAAAAAASAAAAAAAAAAJ2FKASHAS2SAEAAL2D",
-	"Easy Mode":
-		"BSA4BGBSL62A6LTDDSAJFQNALCAEEKAAAAABAAAAABAAFEE9S8TJJAAAAAASB86EAEA2RBJJGEABASUQ2WCA",
-	// "Multiworld Tournament Season 3":
-	// 	"FSA4BSBSL62A6LHDDSAJFQNALCAEBKACAAABAASCEBSAEEE9S8BAAC2ALSFWBATQ8VFTKUL8WZ7FT4EJBAAAEM2ANSHHHABE7GACDCSAAJJLA",
-	// "Hell Mode": "BSA4BGBSL62AEMTDDS6PFQNA4QBAVAAEBAATX93A9L79AA69AAAAAA2FKNESCASNHAKDA",
-	Bingo:
-		"BSA4BGBSL62AELTDDSNKFQNALCANSBAAAAABAAAAAASAEEE9S8BTGAAESFFR458UJPCWAAAAAAKCQACA6DAEGEABASUQ2WCA",
-	League:
-		"BSA4BGBSL62A6JTDDSSNFQNALCAECKAEAAABA2AAABSAEEAASAGSCNKNUWUH7PRKWGBLASAAA3CGAB6K3BJSKRBS2SAEAAC4BVLA",
-};
+import settingsPresets from "~/server/external/apiSettingPresets";
 
 const InProgressPlaythroughCard = ({
 	medallions,
@@ -95,11 +72,11 @@ const StartForm = () => {
 	const [generating, setGenerating] = useState(false);
 	const [selectedPreset, setSelectedPreset] = useState<string>("");
 	const [seedType, setSeedType] = useState<"random" | "custom">("random");
-	const [settingsType, setSettingsType] = useState<"preset" | "custom">(
-		"preset"
-	);
+	// const [settingsType, setSettingsType] = useState<"preset" | "custom">(
+	// 	"preset"
+	// );
 	const [seed, setSeed] = useState("");
-	const [settings, setSettings] = useState("");
+	// const [settings, setSettings] = useState("");
 	const [jwt, setJwt] = useState<string | null>(null);
 
 	const setAge = useSetAtom(ageAtom);
@@ -155,24 +132,26 @@ const StartForm = () => {
 		setJwt(localStorage.getItem("playthroughsJwt"));
 	}, []);
 
-	const startPlaythrough = (settingsString: string): void => {
+	const startPlaythrough = (
+		settingsPreset: keyof typeof settingsPresets
+	): void => {
 		if (seedType === "custom" && !seed) {
 			setSelectedPreset("");
 			setError('No seed given! Please type a seed or choose "Random seed".');
 			return;
 		}
 
-		if (settingsType === "custom" && !settings) {
-			setSelectedPreset("");
-			setError(
-				'No settings given! Please type a settings string or disable "Use custom settings".'
-			);
-			return;
-		}
+		// if (settingsType === "custom" && !settings) {
+		// 	setSelectedPreset("");
+		// 	setError(
+		// 		'No settings given! Please type a settings string or disable "Use custom settings".'
+		// 	);
+		// 	return;
+		// }
 
 		startMutation.mutate({
 			seed: seedType === "custom" ? seed : undefined,
-			settingsString: settingsString,
+			settingsPreset: settingsPreset,
 		});
 		setError("");
 		setGenerating(true);
@@ -198,7 +177,7 @@ const StartForm = () => {
 						<div className="col-span-4 flex w-full items-center justify-between gap-10 pl-4">
 							<h2 className="text-2xl font-semibold">Presets</h2>
 							<span>OoT Randomizer v7.1</span>
-							<div className="space-x-2">
+							{/*<div className="space-x-2">
 								<label htmlFor="customSettings" className="">
 									Use custom settings
 								</label>
@@ -211,23 +190,22 @@ const StartForm = () => {
 									name="customSettings"
 									id="customSettings"
 								/>
-							</div>
+							</div>*/}
 						</div>
 						{Object.keys(settingsPresets).map((preset) => (
 							<button
-								disabled={generating || settingsType === "custom"}
+								// disabled={generating || settingsType === "custom"}
+								disabled={generating}
 								key={preset}
 								className={`rounded-lg border px-4 py-2 shadow-md ${
-									settingsType === "custom" ||
-									(generating && preset !== selectedPreset)
-										? "opacity-50"
-										: ""
+									// settingsType === "custom" ||
+									generating && preset !== selectedPreset ? "opacity-50" : ""
 								} ${
 									preset === selectedPreset ? "translate-y-1 shadow-none" : ""
 								}`}
 								onClick={() => {
 									setSelectedPreset(preset);
-									startPlaythrough(settingsPresets[preset]!);
+									startPlaythrough(preset as keyof typeof settingsPresets);
 								}}
 							>
 								{generating && preset === selectedPreset ? (
@@ -241,19 +219,19 @@ const StartForm = () => {
 							</button>
 						))}
 					</div>
-					{settingsType === "custom" && (
+					{/*settingsType === "custom" && (
 						<div className="flex gap-2">
 							<TextInput
 								name="settings"
 								placeholder="settings"
 								valueState={[settings, setSettings]}
-								enterCallback={() => startPlaythrough(settings)}
+								// enterCallback={() => startPlaythrough(settings)}
 							/>
 							<button
 								className={`rounded-lg border px-8 ${
 									generating ? "translate-y-1" : "shadow-md"
 								}`}
-								onClick={() => startPlaythrough(settings)}
+								// onClick={() => startPlaythrough(settings)}
 							>
 								{generating ? (
 									<>
@@ -265,7 +243,7 @@ const StartForm = () => {
 								)}
 							</button>
 						</div>
-					)}
+					)*/}
 					<div className="flex flex-wrap items-center justify-center">
 						<LeftRightSwitch
 							left="Random seed"

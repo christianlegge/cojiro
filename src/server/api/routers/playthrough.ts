@@ -5,19 +5,22 @@ import createSeed from "~/server/external/createSeed";
 import parseHint from "~/utils/parseHint";
 import regions from "~/utils/regions";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import settingsPresets from "~/server/external/apiSettingPresets";
 
 export const playthroughRouter = createTRPCRouter({
 	startPlaythrough: publicProcedure
 		.input(
-			z.object({ seed: z.string().optional(), settingsString: z.string() })
+			z.object({ seed: z.string().optional(), settingsPreset: z.string() })
 		)
 		.mutation(async ({ ctx, input }) => {
 			let startingItems: string[] = [];
+			console.log("startPlaythrough", input.settingsPreset);
 
 			const apiSeed = await createSeed({
 				seed: input.seed,
-				settingsString: input.settingsString,
+				settingsPreset: input.settingsPreset as keyof typeof settingsPresets,
 			});
+			console.log("apiSeed", apiSeed);
 			const seed = parseSeed(apiSeed);
 			startingItems = Object.keys(
 				apiSeed.settings.starting_items
