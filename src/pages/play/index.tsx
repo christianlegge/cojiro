@@ -69,6 +69,7 @@ const InProgressPlaythroughCard = ({
 const StartForm = () => {
 	const router = useRouter();
 	const [error, setError] = useAtom(errorTextAtom);
+	const [generatingId, setGeneratingId] = useState<number | null>(null);
 	const [generating, setGenerating] = useState(false);
 	const [selectedPreset, setSelectedPreset] = useState<string>("");
 	const [seedType, setSeedType] = useState<"random" | "custom">("random");
@@ -108,8 +109,20 @@ const StartForm = () => {
 			console.log(err);
 		},
 	});
+	const seedGenMutation = api.playthrough.submitSeedGen.useMutation({
+		onSuccess: (id: string) => {
+			setGeneratingId(parseInt(id));
+			setGenerating(true);
+			setError("");
+			startMutation.mutate({ id: parseInt(id) });
+		},
+	});
 	const startMutation = api.playthrough.startPlaythrough.useMutation({
-		onSuccess: ({ id }) => {
+		onSuccess: ({ id, status: responseStatus }) => {
+			if (responseStatus === 204) {
+				setTimeout(() => startMutation.mutate({ id: generatingId! }), 5000);
+				return;
+			}
 			if (status !== "authenticated") {
 				addPlaythroughToJwt.mutate({
 					token: jwt,
@@ -118,12 +131,14 @@ const StartForm = () => {
 			}
 			setAge("child");
 			setRegion("Kokiri Forest");
+			setGenerating(false);
+			setGeneratingId(null);
 			void router.push(`/play/${id}`);
 		},
-		onSettled: () => setGenerating(false),
 		onError: (err) => {
 			setError(err.message);
 			setSelectedPreset("");
+			setGenerating(false);
 		},
 	});
 	const userPlaythroughs = api.user.getPlaythroughs.useQuery();
@@ -149,12 +164,10 @@ const StartForm = () => {
 		// 	return;
 		// }
 
-		startMutation.mutate({
+		seedGenMutation.mutate({
 			seed: seedType === "custom" ? seed : undefined,
 			settingsPreset: settingsPreset,
 		});
-		setError("");
-		setGenerating(true);
 	};
 
 	const inProgressPlaythroughs = (

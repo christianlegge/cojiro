@@ -1,28 +1,28 @@
 import axios from "axios";
 import { env } from "~/env.mjs";
 import { TRPCError } from "@trpc/server";
-import settingsPresets from "./apiSettingPresets";
 
 const createSeed = async (params: {
-	seed?: string;
-	settingsPreset: keyof typeof settingsPresets;
-}): Promise<string> => {
+	id: number;
+}): Promise<SeedReturnType | "Waiting"> => {
 	try {
-		console.log("API KEY ==================", env.OOTRANDOMIZER_API_KEY);
-		const response = await axios.post(
-			"https://ootrandomizer.com/api/v2/seed/create",
-			{
-				seed: params.seed,
-				...settingsPresets[params.settingsPreset],
-			},
+		const spoiler_response = await axios.get(
+			"https://ootrandomizer.com/api/v2/seed/details",
 			{
 				params: {
 					key: env.OOTRANDOMIZER_API_KEY,
-					version: "7.1.0",
+					id: params.id,
 				},
 			}
 		);
-		return (response.data as Record<string, unknown>).id as string;
+
+		if (spoiler_response.status === 204) {
+			return "Waiting";
+		}
+
+		return JSON.parse(
+			(spoiler_response.data as Record<string, unknown>).spoilerLog as string
+		) as SeedReturnType;
 	} catch (err) {
 		console.log(err);
 		if (axios.isAxiosError(err) && typeof err.response?.data === "string") {

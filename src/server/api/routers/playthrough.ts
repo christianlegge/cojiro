@@ -2,24 +2,40 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import parseSeed, { ParsedSeed } from "~/utils/parseSeed";
 import createSeed from "~/server/external/createSeed";
+import getSpoiler from "~/server/external/getSpoiler";
 import parseHint from "~/utils/parseHint";
 import regions from "~/utils/regions";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import settingsPresets from "~/server/external/apiSettingPresets";
 
 export const playthroughRouter = createTRPCRouter({
-	startPlaythrough: publicProcedure
+	submitSeedGen: publicProcedure
 		.input(
-			z.object({ seed: z.string().optional(), settingsPreset: z.string() })
+			z.object({
+				seed: z.string().optional(),
+				settingsPreset: z.string(),
+			})
 		)
-		.mutation(async ({ ctx, input }) => {
-			let startingItems: string[] = [];
-			console.log("startPlaythrough", input.settingsPreset);
-
-			const apiSeed = await createSeed({
+		.mutation(async ({ input }) => {
+			return await createSeed({
 				seed: input.seed,
 				settingsPreset: input.settingsPreset as keyof typeof settingsPresets,
 			});
+		}),
+	startPlaythrough: publicProcedure
+		.input(z.object({ id: z.number() }))
+		.mutation(async ({ ctx, input }) => {
+			let startingItems: string[] = [];
+
+			const apiSeed = await getSpoiler({
+				id: input.id,
+			});
+			if (apiSeed === "Waiting") {
+				return {
+					status: 204,
+					id: "",
+				};
+			}
 			console.log("apiSeed", apiSeed);
 			const seed = parseSeed(apiSeed);
 			startingItems = Object.keys(
@@ -53,6 +69,7 @@ export const playthroughRouter = createTRPCRouter({
 
 			return {
 				id: playthrough.id,
+				status: 200,
 			};
 		}),
 	getPlaythrough: publicProcedure
