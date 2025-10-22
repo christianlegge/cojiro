@@ -4,7 +4,7 @@
 
 Simulate and practice Ocarina of Time Randomizer seeds
 
-Assuming the last commit is more than ~2 minutes old, the `main` branch of this repo has parity with the [cojiro.app](https://www.cojiro.app) deployment.
+Assuming the last commit is more than ~2 minutes old, the `main` branch of this repo has parity with the [cojiro.christianlegge.dev](https://cojiro.christianlegge.dev) deployment.
 
 ## Postgres setup
 
