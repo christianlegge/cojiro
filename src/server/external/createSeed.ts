@@ -1,4 +1,3 @@
-import axios from "axios";
 import { env } from "~/env.mjs";
 import { TRPCError } from "@trpc/server";
 import settingsPresets from "./apiSettingPresets";
@@ -8,46 +7,56 @@ const createSeed = async (params: {
 	settingsPreset: keyof typeof settingsPresets;
 }): Promise<string> => {
 	try {
-		console.log("API KEY ==================", env.OOTRANDOMIZER_API_KEY);
-		const response = await axios.post(
-			"https://ootrandomizer.com/api/v2/seed/create",
+		const postParams = new URLSearchParams({
+			key: env.OOTRANDOMIZER_API_KEY,
+			version: "7.1.0",
+		});
+		const response = await fetch(
+			`https://ootrandomizer.com/api/v2/seed/create?${postParams.toString()}`,
+
 			{
-				seed: params.seed,
-				...settingsPresets[params.settingsPreset],
-			},
-			{
-				params: {
-					key: env.OOTRANDOMIZER_API_KEY,
-					version: "7.1.0",
-				},
+				method: "POST",
+				body: JSON.stringify({
+					seed: params.seed,
+					...settingsPresets[params.settingsPreset],
+				}),
 			}
 		);
-		return (response.data as Record<string, unknown>).id as string;
-	} catch (err) {
-		console.log(err);
-		if (axios.isAxiosError(err) && typeof err.response?.data === "string") {
-			if (err.response.data.includes("must have at least one output type")) {
+
+		if (response.status === 200) {
+			return ((await response.json()) as Record<string, unknown>).id as string;
+		} else {
+			const response_text = await response.text();
+			if (response_text.includes("must have at least one output type")) {
 				throw new TRPCError({
 					code: "BAD_REQUEST",
 					message:
 						"You must enable the Create Spoiler Log setting to make this work.",
 				});
-			} else if (err.response.data.includes("generate a seed once every")) {
+			} else if (response_text.includes("generate a seed once every")) {
 				throw new TRPCError({
 					code: "FORBIDDEN",
 					message:
 						"Rate limited by the ootrandomizer.com API. Try again in 5 seconds.",
 				});
 			} else if (
-				err.response.data.includes("get_settings_from_command_line_args")
+				response_text.includes("get_settings_from_command_line_args")
 			) {
 				throw new TRPCError({
 					code: "BAD_REQUEST",
 					message:
 						"Invalid settings string. Check with ootrandomizer.com and try again.",
 				});
+			} else {
+				throw new TRPCError({
+					code: "INTERNAL_SERVER_ERROR",
+					message:
+						"Unknown error occurred in network request: " + response_text,
+				});
 			}
 		}
+	} catch (err) {
+		console.log(err);
 		throw err;
 	}
 };
